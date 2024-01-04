@@ -37,12 +37,19 @@ export async function fetchACFImage(pageId) {
   };
 }
 
-export async function fetchMediaData(mediaId) {
+export async function fetchMediaData(mediaId, size = 'full') {
   const res = await fetch(`https://sarpinos.mysites.io/wp-json/wp/v2/media/${mediaId}`);
   if (!res.ok) {
     throw new Error(`Failed to fetch data for media ${mediaId}`);
   }
-  return res.json();
+  const data = await res.json();
+  const imageUrl = data.media_details.sizes[size]
+    ? data.media_details.sizes[size].source_url
+    : data.source_url;
+  return {
+    ...data,
+    source_url: imageUrl
+  };
 }
 
 // utils/fetchMetadata.js

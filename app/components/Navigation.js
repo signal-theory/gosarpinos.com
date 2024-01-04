@@ -17,7 +17,7 @@ export default function Navigation() {
         const pageData = await fetchPageData(id);
 
         if (pageData.featured_media) {
-          const mediaData = await fetchMediaData(pageData.featured_media);
+          const mediaData = await fetchMediaData(pageData.featured_media, 'medium');
           if (mediaData) {
             setFeaturedImages(prevImages => ({
               ...prevImages,
@@ -60,7 +60,10 @@ export default function Navigation() {
     <nav className="main-navigation">
       <div className="navbar">
         <Link href="/" className="logo" title="Go to Sarpino&apos;s Home page">
-          <Image src={logo} alt="Sarpino&apos;s Pizzeria Logo" />
+          <Image 
+          src={logo} 
+          alt="Sarpino&apos;s Pizzeria Logo"
+           />
         </Link>
         <ul className="desktopmenu">
           <li className="item has-submenu">
@@ -106,7 +109,8 @@ export default function Navigation() {
                       src={featuredImages[91].url} 
                       alt={featuredImages[91].alt}
                       width={191}
-                      height={43} />
+                      height={43}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                   )}
                   Build Your Own
                 </Link>

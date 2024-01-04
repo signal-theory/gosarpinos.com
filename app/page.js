@@ -89,18 +89,25 @@ export default async function Page({ params }) {
             <Image src={olivesImg}  alt="olives" className="olives" />
             <Image src={tomatoesCutImg} alt="cut tomatoes" className="tomatoes-cut" />
             <Image src={garlicImg} alt="garlic" className="garlic-bulb" />
-            <Image src={heroPizzaImg} alt="pizza" className="pizza" priority="true" />
-            <Image src={onionsImg} alt="sliced onions" className="onions" />
+            <Image src={heroPizzaImg} alt="pizza" className="pizza" 
+              priority="true"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+            <Image src={onionsImg} alt="sliced onions" className="onions"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
             <Image src={heartGreenOutlineImg} alt="green outline heart" className="heart-green-outline-1" />
             <Image src={peppercornsImg} alt="peppercorns" className="peppercorns" />
             <Image src={heartTanOutlineImg} alt="tan heart outline" className="heart-tan-outline" />
-            <Image src={tomatoesFreshCutImg} alt="cut tomatoes" className="tomatoes-fresh-cut" />
+            <Image src={tomatoesFreshCutImg} alt="cut tomatoes" className="tomatoes-fresh-cut"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
             <Image src={heartGreenFill} alt= "green fill heart" className="heart-green-fill" />
-            <Image src={basilImg_1} alt="basil leaf" className="basil-leaf-1" />
+            <Image src={basilImg_1} alt="basil leaf" className="basil-leaf-1"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
             <Image src={heartGreenOutlineImg} alt= "green outline heart" className="heart-green-outline-2" />
             <Image src={tomatoWholeSliceImg} alt="sliced tomatoes" className="tomato-whole-and-slice" />
-            <Image src={basilImg_2} alt="basil leaf" className="basil-leaf-2" />
-            <Image src={basilImg_3} alt="basil leaf" className="basil-leaf-3" />
+            <Image src={basilImg_2} alt="basil leaf" className="basil-leaf-2"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+            <Image src={basilImg_3} alt="basil leaf" className="basil-leaf-3"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
           </div>
           <div className="homepage-content">
             <div dangerouslySetInnerHTML={{ __html: data?.content.rendered }} style={{ margin: '4rem 0 2rem' }} />
