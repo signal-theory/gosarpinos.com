@@ -11,6 +11,16 @@
   margin: 0 auto;
   position: relative;
 }
+.pizza-shadow {
+  position: absolute;
+  width: 92%;
+  height: 95%;
+  top: 6%;
+  left: -5%;
+  background: rgba(105, 2, 2, 0.5);
+  border-radius: 860.214px;
+  filter: blur(19px);
+}
 /*pizza animation */
 .homepage-pizza-animation {
   position: absolute;
@@ -133,7 +143,7 @@
   animation: pizza-slide 4s cubic-bezier(0.25, 0.79, 0.25, 0.79) infinite;
 }
 .homepage-pizza-animation .pizza {
-  width: 100%;
+  width: 95%;
   top: 2%;
   left: -4%;
   height: auto;

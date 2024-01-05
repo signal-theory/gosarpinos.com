@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import './styles/page.css';
-import './styles/animate.css';
 import './styles/menu.css';
 
 import SpecialsCarousel from './components/SpecialsCarousel';
@@ -69,12 +68,13 @@ export default async function Page({ params }) {
       <section className="homepage-hero">
         <div className="hero-container">
           <div className="homepage-pizza-animation">
+            <div className="pizza-shadow"></div>
             <Image src={"/olives.svg"} width={100} height={100} alt="olives" className="olives" />
             <Image src={"/tomatoes-cut.svg"} width={150} height={150} alt="cut tomatoes" className="tomatoes-cut" />
             <Image src={'/garlic-bulb.svg'} width={100} height={100} alt="garlic" className="garlic-bulb" />
-            <Image src={'/pizza-hero.webp'} width={650} height={650} alt="pizza" className="pizza" 
+            <Image src={'/pizza-hero.webp'} width={600} height={600} alt="pizza" className="pizza" 
               priority="true" />
-            <Image src={'/onions-sliced.webp'} width={200} height={200} alt="sliced onions" className="onions" />
+            <Image src={'/onions-sliced.webp'} width={180} height={180} alt="sliced onions" className="onions" />
             <Image src={'/heart-green-outline.svg'} width={60} height={60} alt="green outline heart" className="heart-green-outline-1" />
             <Image src={'/peppercorns-two.svg'} width={60} height={60} alt="peppercorns" className="peppercorns" />
             <Image src={'/heart-tan-outline.svg'} width={60} height={60} alt="tan heart outline" className="heart-tan-outline" />
