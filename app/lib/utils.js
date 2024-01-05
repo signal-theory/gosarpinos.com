@@ -25,15 +25,26 @@ export async function fetchCPTData(cptName) {
 }
 
 // utils fetchACFImage
-export async function fetchACFImage(pageId) {
-  const res = await fetch(`${MEDIA_API_URL}/${pageId}`);
+// export async function fetchACFImage(pageId) {
+//   const res = await fetch(`${MEDIA_API_URL}/${pageId}`);
+//   if (!res.ok) {
+//     throw new Error('Failed to fetch data');
+//   }
+//   const imageData = await res.json();
+//   return {
+//     sourceUrl: imageData.source_url,
+//     altText: imageData.alt_text
+//   };
+// }
+export async function fetchACFImage(imageId) {
+  const res = await fetch(`${MEDIA_API_URL}/${imageId}`);
   if (!res.ok) {
-    throw new Error('Failed to fetch data');
+    throw new Error('Failed to fetch image data');
   }
   const imageData = await res.json();
   return {
     sourceUrl: imageData.source_url,
-    altText: imageData.alt_text
+    altText: imageData.alt_text || 'Image'
   };
 }
 

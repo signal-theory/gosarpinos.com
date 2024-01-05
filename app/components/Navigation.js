@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { fetchPageData, fetchMediaData } from '../lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
+import OrderBtn from './OrderBtn';
 import './Navigation.css';
 
 import logo from '../../public/sarpinos-logo.svg'
@@ -101,7 +102,7 @@ export default function Navigation() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-  
+
   return (
     <nav className="main-navigation">
       <div className="navbar">
@@ -130,7 +131,7 @@ export default function Navigation() {
               className={`${activeMobileMenus['Menu'] ? 'active' : ''}`}
               onClick={() => handleSubmenu('Menu')}>Menu</a>
           </li>
-          <li className="item"><Link href="/">Catering</Link></li>
+          <li className="item"><Link href="/catering">Catering</Link></li>
           <li className="item has-submenu">
             <a
               className={`${activeMobileMenus['Locations'] ? 'active' : ''}`}
@@ -139,24 +140,24 @@ export default function Navigation() {
         </ul>
         <ul className="desktoplinks">
           <li className="item button heart">
-            <a href="/">Loyalty Sign-In</a>
+            <Link href="/loyalty">Loyalty Sign-In</Link>
           </li>
           <li className="item button">
-            <a href="" className=" btn primary-btn glow"><span>Order Now</span></a>
+            <OrderBtn />
           </li>
         </ul>
       </div>
       <div className={`navbar-dropdowns ${activeMenus['Locations'] ? 'locations-active' : ''}`}>
         <ul ref={myRef1} className={`item submenu about ${activeMenus['About'] ? 'active' : ''}`}>
-          <li className="subitem"><Link href="/" onClick={() => handleSubmenu('About')}>Company Info</Link></li>
-          <li className="subitem"><Link href="/" onClick={() => handleSubmenu('About')}>Why Sarpino&apos;s?</Link></li>
-          <li className="subitem"><Link href="/" onClick={() => handleSubmenu('About')}>Sarpino&apos;s Blog</Link></li>
+          <li className="subitem"><Link href="/about/company" onClick={() => handleSubmenu('About')}>Company Info</Link></li>
+          <li className="subitem"><Link href="/about/why-sarpinos" onClick={() => handleSubmenu('About')}>Why Sarpino&apos;s?</Link></li>
+          <li className="subitem"><Link href="/about/blog" onClick={() => handleSubmenu('About')}>Sarpino&apos;s Blog</Link></li>
         </ul>
         <ul ref={myRef2} className={`item submenu menu ${activeMenus['Menu'] ? 'active' : ''}`}>
           <li className="subitem has-submenu with-thumbs">
             <ul>
               <li className="subitem">
-                <Link href="/" onClick={() => handleSubmenu('Menu')}>
+                <Link href="//menu/build-your-own" onClick={() => handleSubmenu('Menu')}>
                   {featuredImages[91] && (
                     <Image 
                       className="featured-image" 
@@ -170,7 +171,7 @@ export default function Navigation() {
                 </Link>
               </li>
               <li className="subitem">
-                <Link href="/" onClick={() => handleSubmenu('Menu')}>
+                <Link href="/menu/sarpinos-specialty-pizza" onClick={() => handleSubmenu('Menu')}>
                   {featuredImages[34] && (
                     <Image 
                       className="featured-image" 
@@ -183,7 +184,7 @@ export default function Navigation() {
                 </Link>
               </li>
               <li className="subitem">
-                <Link href="/" onClick={() => handleSubmenu('Menu')}>
+                <Link href="//menu/sarpinos-specialty-pizza?selectedTerm=Vegan" onClick={() => handleSubmenu('Menu')}>
                   {featuredImages[170] && (
                     <Image 
                       className="featured-image" 
@@ -199,23 +200,23 @@ export default function Navigation() {
           </li>
           <li className="subitem has-submenu without-thumbs">
             <ul>
-              <li className="subitem"><Link href="/a" onClick={() => handleSubmenu('Menu')}>Full Menu</Link></li>
-              <li className="subitem"><Link href="/" onClick={() => handleSubmenu('Menu')}>Vegan Menu</Link></li>
-              <li className="subitem"><Link href="/" onClick={() => handleSubmenu('Menu')}>Gluten-Free Menu</Link></li>
-              <li className="subitem"><Link href="/" onClick={() => handleSubmenu('Menu')}>Specials & Promotions</Link></li>
+              <li className="subitem"><Link href="/menu/sarpinos-specialty-pizza" onClick={() => handleSubmenu('Menu')}>Full Menu</Link></li>
+              <li className="subitem"><Link href="/menu/vegan-menu" onClick={() => handleSubmenu('Menu')}>Vegan Menu</Link></li>
+              <li className="subitem"><Link href="/menu/sarpinos-specialty-pizza?selectedTerm=Gluten Free" onClick={() => handleSubmenu('Menu')}>Gluten-Free Menu</Link></li>
+              <li className="subitem"><Link href="/menu/national-specials" onClick={() => handleSubmenu('Menu')}>Specials & Promotions</Link></li>
             </ul>
           </li>
         </ul>
         <ul ref={myRef3} className={`item submenu ${activeMenus['Locations'] ? 'active' : ''}`}>
-          <li className="subitem"><Link href="/" onClick={() => handleSubmenu('Locations')}>Search Sarpino&apos;s Locations</Link></li>
+          <li className="subitem"><Link href="/locations" onClick={() => handleSubmenu('Locations')}>Search Sarpino&apos;s Locations</Link></li>
         </ul>
       </div>
       <ul className={`mobilemenu ${toggleMenu ? 'active' : ''}`}>
         <li className="item has-submenu"><a tabIndex="0" className={`${activeMobileMenus['About'] ? 'active' : ''}`} onClick={() => handleMobileSubmenu('About')}>About</a>
           <ul className={`item submenu ${activeMobileMenus['About'] ? 'active' : ''}`}>
             <li className="subitem"><Link href="/about/company" onClick={handleMobile}>Company Info</Link></li>
-            <li className="subitem"><Link href="/about/why-sarpinos" onClick={handleMobile}>Why Sarpino's?</Link></li>
-            <li className="subitem"><Link href="/about/blog" onClick={handleMobile}>Sarpino's Blog</Link></li>
+            <li className="subitem"><Link href="/about/why-sarpinos" onClick={handleMobile}>Why Sarpino&apos;s?</Link></li>
+            <li className="subitem"><Link href="/about/blog" onClick={handleMobile}>Sarpino&apos;s Blog</Link></li>
           </ul>
         </li>
         <li className="item has-submenu"><a tabIndex="0" className={`${activeMobileMenus['Menu'] ? 'active' : ''}`} onClick={() => handleMobileSubmenu('Menu')}>Menu</a>

@@ -8,23 +8,6 @@ import './styles/page.css';
 import './styles/animate.css';
 import './styles/menu.css';
 
-// import olivesImg from 'olives.svg'
-// import tomatoesCutImg from 'tomatoes-cut.svg'
-// import garlicImg from 'garlic-bulb.svg'
-// import heroPizzaImg from 'pizza-hero.webp'
-// import onionsImg from 'onions-sliced.webp'
-// import heartGreenOutlineImg from 'heart-green-outline.svg'
-// import peppercornsImg from 'peppercorns-two.svg'
-// import heartTanOutlineImg from 'heart-tan-outline.svg'
-// import tomatoesFreshCutImg from 'tomatoes-cut.webp'
-// import heartGreenFill from 'heart-green-fill.svg'
-// import basilImg_1 from 'basil-leaf-1.webp'
-// import tomatoWholeSliceImg from 'tomato-whole-and-slice.svg'
-// import basilImg_2 from 'basil-leaf-2.webp'
-// import basilImg_3 from 'basil-leaf-3.webp'
-
-// import heartSolid from 'heart-solid.svg'
-
 import SpecialsCarousel from './components/SpecialsCarousel';
 
 import Car from './components/svgs/drawing-car.jsx'
@@ -56,7 +39,7 @@ export default async function Page({ params }) {
   let specialsData;
   let cateringImage;
 
-    const pageId = params.pageId || 149; // Default to 149 if no ID is provided
+  const pageId = params.pageId || 149; // Default to 149 if no ID is provided
   try {
     data = await fetchPageData(pageId);
     const popularMenuItems = data.acf.popular_menu_items || [];
