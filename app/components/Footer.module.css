@@ -35,8 +35,9 @@
     order: 1;
   }
 }
-.columns h3 {
+.columns h4 {
   margin-bottom: 0;
+  font-size: clamp(1.1rem, 1vw, 0.11rem);
 }
 .columns p {
   margin-top: 0;
@@ -83,7 +84,6 @@
 .footerMenu {
   display: flex;
   gap: 3rem;
-  margin-top: 1rem;
 }
 .footerMenu ul {
   margin-bottom: 4.5rem;

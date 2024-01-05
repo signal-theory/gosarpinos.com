@@ -402,7 +402,7 @@ input {
   }
 }
 button[type="submit"] {
-  background-color: var(--lightgreen-color);
+  background-color: var(--green-color);
   white-space: nowrap;
 }
 

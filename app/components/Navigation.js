@@ -117,6 +117,9 @@ export default function Navigation() {
           aria-expanded={toggleMenu}
           aria-haspopup="true"
           aria-controls="mobilemenu"
+          aria-label="Toggle mobile navigation menu"
+          aria-labelledby="mobilemenu"
+          role="button"
           onClick={handleMobile}>
           <span aria-hidden="true">&#x2630;</span>
         </button>

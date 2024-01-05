@@ -1,0 +1,88 @@
+.container {
+  margin: 8rem 0;
+}
+.animation {
+  position: relative;
+  width: 100%;
+  height: 90vw;
+  min-height: 300px;
+}
+@media screen and (min-width: 632px) {
+  .animation {
+    min-height: 400px;
+    height: 100%;
+  }
+}
+.shadow {
+  position: absolute;
+  width: 125%;
+  padding-top: 85%;
+  top: 6%;
+  left: -40%;
+  background: rgba(2, 2, 2, 0.5);
+  border-radius: 100%;
+  filter: blur(19px);
+}
+.animation img {
+  position: absolute;
+}
+.pizzaImg {
+  position: absolute;
+  width: 95%;
+  top: 2%;
+  left: -4%;
+  height: auto;
+}
+.rellaxDiv {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.basilLeaf1 {
+  transform: translateY(-30%);
+  top: 0;
+  left: 33.5%;
+  width: 34%;
+  height: auto;
+}
+
+.basilLeaf2 {
+  transform: translateY(12%);
+  top: 0;
+  left: 15%;
+  width: 26%;
+  height: auto;
+}
+.basilLeaf3 {
+  transform: translateY(101%);
+  top: 0;
+  left: 43%;
+  width: 31%;
+  height: auto;
+}
+.basilLeaf4 {
+  transform: translateY(60%);
+  top: 0;
+  left: 64%;
+  width: 34%;
+  height: auto;
+}
+.basilLeaf5 {
+  transform: translateY(82%) scaleX(-1);
+  top: 0;
+  left: 2.5%;
+  width: 36%;
+  height: auto;
+}
+.basilLeaf6 {
+  transform: translateY(13%) scaleX(-1);
+  top: 0;
+  left: -4%;
+  width: 25%;
+  height: auto;
+}
+.content {
+  box-sizing: border-box;
+  padding-right: 3rem;
+  max-width: calc(500px + 3rem);
+}

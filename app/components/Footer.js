@@ -99,7 +99,7 @@ export default function Footer() {
           <div className={styles.order1}>
             <div className={styles.footerMenu}>
               <div>
-                <h6>Our Menu</h6>
+                <h4>Our Menu</h4>
                 <ul>
                   <li><Link href="/">Full Menu</Link></li>
                   <li><Link href="/">Vegan Menu</Link></li>
@@ -108,7 +108,7 @@ export default function Footer() {
                   <li><Link href="/">Franchise</Link></li>
                   <li><Link href="/">Ingredients & Allergens</Link></li>
                 </ul>
-                <h6>Customer Service</h6>
+                <h4>Customer Service</h4>
                 <ul>
                   <li><Link href="/">Loyalty Program</Link></li>
                   <li><Link href="/">Gift Cards</Link></li>
@@ -119,11 +119,11 @@ export default function Footer() {
                 </ul>
               </div>
               <div>
-                <h6>Catering</h6>
+                <h4>Catering</h4>
                 <ul>
                   <li><Link href="/">Catering Menu</Link></li>
                 </ul>
-                <h6>About Us</h6>
+                <h4>About Us</h4>
                 <ul>
                   <li><Link href="/">Careers</Link></li>
                   <li><Link href="/">Franchising Information</Link></li>
@@ -131,13 +131,13 @@ export default function Footer() {
                   <li><Link href="/">Sarpino&apos;s Publication</Link></li>
                   <li><Link href="/">Mobile App</Link></li>
                 </ul>
-                <h6>Contact Us</h6>
+                <h4>Contact Us</h4>
                 <ul>
                   <li>Phone: 847.374.6300</li>
                   <li>Fax: 866.630.8595</li>
                   <li>Email: us@gosarpinos.com</li>
                 </ul>
-                <h6>Address</h6>
+                <h4>Address</h4>
                 <ul>
                   <li>200 Tri State International, Suite 550 <br/>Lincolnshire, IL 60069</li>
                 </ul>
