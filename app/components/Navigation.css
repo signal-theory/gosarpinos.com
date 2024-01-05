@@ -1,8 +1,3 @@
-:root {
-  --navbar-width: calc(90% - 20px);
-  --mobilemenu-width: calc(93% - 20px);
-  --navbar-padding: 10px;
-}
 nav.main-navigation {
   top: 0;
   position: fixed;
@@ -30,14 +25,11 @@ nav.main-navigation li.item.button.heart a::before {
   height: 16px;
   margin-right: 7px;
   top: 3px;
-  background: url("../../public/heart-solid.svg") no-repeat center center;
+  background: url("/heart-solid.svg") no-repeat center center;
   background-size: contain;
   transition: transform 0.2s ease-in-out;
   animation: heartbeat 2s ease-in-out infinite;
 }
-/* nav.main-navigation li.item.button.heart a:hover::before {
-  transform: scale(1.3);
-} */
 
 nav.main-navigation li.item {
   order: 3;
@@ -64,7 +56,7 @@ nav.main-navigation .has-submenu > a::after {
   height: 10px;
   width: 10px;
   margin-left: 5px;
-  background: url("../../public/arrow-right.svg") no-repeat center center;
+  background: url("/arrow-right.svg") no-repeat center center;
   background-size: contain;
 }
 nav.main-navigation .has-submenu > a.active::after {
@@ -73,6 +65,7 @@ nav.main-navigation .has-submenu > a.active::after {
 nav.main-navigation .subitem a {
   padding: 10px 15px;
 }
+/* mobilemenu */
 @media all and (max-width: 1200px) {
   .navbar {
     display: flex;
@@ -109,6 +102,14 @@ nav.main-navigation .subitem a {
     max-width: 1300px;
     background-color: var(--green-color);
     border-radius: 32px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+  }
+  ul.mobilemenu.active {
+    display: flex;
   }
   ul.mobilemenu,
   ul.submenu {
@@ -121,17 +122,6 @@ nav.main-navigation .subitem a {
   li.item:not(.button) a:hover,
   li.item a:hover::after {
     color: #ccc;
-  }
-  /* Mobile menu */
-  ul.mobilemenu {
-    display: none;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-  }
-  ul.mobilemenu.active {
-    display: flex;
   }
   ul.mobilemenu li a {
     display: inline-block;
@@ -153,8 +143,11 @@ nav.main-navigation .subitem a {
     margin-bottom: 10px;
   }
 }
-
+/*  desktopmenu */
 @media all and (min-width: 1200px) {
+  ul.mobilemenu {
+    display: none;
+  }
   .navbar,
   .navbar-dropdowns {
     display: flex;
@@ -174,6 +167,9 @@ nav.main-navigation .subitem a {
   .navbar .logo img {
     width: 100%;
     height: 100%;
+  }
+  .hamburger {
+    display: none;
   }
   ul.desktopmenu,
   ul.desktoplinks {

@@ -8,22 +8,22 @@ import './styles/page.css';
 import './styles/animate.css';
 import './styles/menu.css';
 
-import olivesImg from '../public/olives.svg'
-import tomatoesCutImg from '../public/tomatoes-cut.svg'
-import garlicImg from '../public/garlic-bulb.svg'
-import heroPizzaImg from '../public/pizza-hero.webp'
-import onionsImg from '../public/onions-sliced.webp'
-import heartGreenOutlineImg from '../public/heart-green-outline.svg'
-import peppercornsImg from '../public/peppercorns-two.svg'
-import heartTanOutlineImg from '../public/heart-tan-outline.svg'
-import tomatoesFreshCutImg from '../public/tomatoes-cut.webp'
-import heartGreenFill from '../public/heart-green-fill.svg'
-import basilImg_1 from '../public/basil-leaf-1.webp'
-import tomatoWholeSliceImg from '../public/tomato-whole-and-slice.svg'
-import basilImg_2 from '../public/basil-leaf-2.webp'
-import basilImg_3 from '../public/basil-leaf-3.webp'
+// import olivesImg from 'olives.svg'
+// import tomatoesCutImg from 'tomatoes-cut.svg'
+// import garlicImg from 'garlic-bulb.svg'
+// import heroPizzaImg from 'pizza-hero.webp'
+// import onionsImg from 'onions-sliced.webp'
+// import heartGreenOutlineImg from 'heart-green-outline.svg'
+// import peppercornsImg from 'peppercorns-two.svg'
+// import heartTanOutlineImg from 'heart-tan-outline.svg'
+// import tomatoesFreshCutImg from 'tomatoes-cut.webp'
+// import heartGreenFill from 'heart-green-fill.svg'
+// import basilImg_1 from 'basil-leaf-1.webp'
+// import tomatoWholeSliceImg from 'tomato-whole-and-slice.svg'
+// import basilImg_2 from 'basil-leaf-2.webp'
+// import basilImg_3 from 'basil-leaf-3.webp'
 
-import heartSolid from '../public/heart-solid.svg'
+// import heartSolid from 'heart-solid.svg'
 
 import SpecialsCarousel from './components/SpecialsCarousel';
 
@@ -86,22 +86,22 @@ export default async function Page({ params }) {
       <section className="homepage-hero">
         <div className="hero-container">
           <div className="homepage-pizza-animation">
-            <Image src={olivesImg}  alt="olives" className="olives" />
-            <Image src={tomatoesCutImg} alt="cut tomatoes" className="tomatoes-cut" />
-            <Image src={garlicImg} alt="garlic" className="garlic-bulb" />
-            <Image src={heroPizzaImg} alt="pizza" className="pizza" 
-              priority="true" placeholder="blur" />
-            <Image src={onionsImg} alt="sliced onions" className="onions" />
-            <Image src={heartGreenOutlineImg} alt="green outline heart" className="heart-green-outline-1" />
-            <Image src={peppercornsImg} alt="peppercorns" className="peppercorns" />
-            <Image src={heartTanOutlineImg} alt="tan heart outline" className="heart-tan-outline" />
-            <Image src={tomatoesFreshCutImg} alt="cut tomatoes" className="tomatoes-fresh-cut" />
-            <Image src={heartGreenFill} alt= "green fill heart" className="heart-green-fill" />
-            <Image src={basilImg_1} alt="basil leaf" className="basil-leaf-1" />
-            <Image src={heartGreenOutlineImg} alt= "green outline heart" className="heart-green-outline-2" />
-            <Image src={tomatoWholeSliceImg} alt="sliced tomatoes" className="tomato-whole-and-slice" />
-            <Image src={basilImg_2} alt="basil leaf" className="basil-leaf-2" />
-            <Image src={basilImg_3} alt="basil leaf" className="basil-leaf-3" />
+            <Image src={"/olives.svg"} width={100} height={100} alt="olives" className="olives" />
+            <Image src={"/tomatoes-cut.svg"} width={150} height={150} alt="cut tomatoes" className="tomatoes-cut" />
+            <Image src={'/garlic-bulb.svg'} width={100} height={100} alt="garlic" className="garlic-bulb" />
+            <Image src={'/pizza-hero.webp'} width={650} height={650} alt="pizza" className="pizza" 
+              priority="true" />
+            <Image src={'/onions-sliced.webp'} width={200} height={200} alt="sliced onions" className="onions" />
+            <Image src={'/heart-green-outline.svg'} width={60} height={60} alt="green outline heart" className="heart-green-outline-1" />
+            <Image src={'/peppercorns-two.svg'} width={60} height={60} alt="peppercorns" className="peppercorns" />
+            <Image src={'/heart-tan-outline.svg'} width={60} height={60} alt="tan heart outline" className="heart-tan-outline" />
+            <Image src={'/tomatoes-cut.webp'} width={100} height={100} alt="cut tomatoes" className="tomatoes-fresh-cut" />
+            <Image src={'/heart-green-fill.svg'} width={60} height={60} alt= "green fill heart" className="heart-green-fill" />
+            <Image src={'/basil-leaf-1.webp'} width={100} height={100} alt="basil leaf" className="basil-leaf-1" />
+            <Image src={'/heart-green-outline.svg'} width={100} height={100} alt= "green outline heart" className="heart-green-outline-2" />
+            <Image src={'/tomato-whole-and-slice.svg'} width={200} height={200} alt="sliced tomatoes" className="tomato-whole-and-slice" />
+            <Image src={'/basil-leaf-2.webp'} width={100} height={100} alt="basil leaf" className="basil-leaf-2" />
+            <Image src={'/basil-leaf-3.webp'} width={100} height={100} alt="basil leaf" className="basil-leaf-3" />
           </div>
           <div className="homepage-content">
             <div dangerouslySetInnerHTML={{ __html: data?.content.rendered }} style={{ margin: '4rem 0 2rem' }} />

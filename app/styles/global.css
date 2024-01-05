@@ -1,4 +1,17 @@
 @import url("https://use.typekit.net/nqr0nlo.css");
+/* 
+Museo Sans
+font-family: museo-sans, sans-serif;
+font-weight: 500; */
+/* 
+Museo Slab
+font-family: museo-slab, serif;
+font-weight: 300;
+font-weight: 700; */
+/* 
+Nexa Rust Sans Black 2
+font-family: nexa-rust-sans-black-2, sans-serif;
+font-weight: 900; */
 :root {
   font-family: museo-sans, Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 500;
@@ -34,6 +47,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Navbar */
+  --navbar-width: calc(90% - 20px);
+  --mobilemenu-width: calc(93% - 20px);
+  --navbar-padding: 10px;
 }
 .daytime-background-color {
   background: var(--bkg-redGradient);
@@ -105,6 +123,23 @@ body {
     "footer";
 }
 
+/* Adobe Font Loading */
+.wf-loading {
+  /* styles to use when web fonts are loading */
+  filter: blur(0.5rem);
+  opacity: 0;
+}
+.wf-active {
+  /* styles to use when web fonts are active */
+  filter: blur(0);
+  opacity: 1;
+}
+.wf-inactive {
+  /* styles to use when web fonts are inactive */
+  filter: blur(0);
+  opacity: 1;
+}
+
 #root > nav {
   grid-area: nav;
 }
@@ -136,3 +171,268 @@ a:focus {
   color: #11177f;
 }
 */
+.viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+.viewport.innerhero {
+  padding-top: calc(106px + 2rem);
+}
+.viewport.fullhero {
+  padding: 0;
+}
+.page-container {
+  width: calc(95% - 40px);
+  padding: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+.responsive-column-container {
+  display: grid;
+  gap: 2rem;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.responsive-twothirds-column-container,
+.responsive-three-column-container {
+  display: grid;
+  gap: 2rem;
+  margin: 0 auto;
+  grid-template-columns: 1fr;
+}
+.responsive-twothirds-column-container .content,
+.responsive-column-container .content {
+  padding: 0 2rem;
+}
+@media screen and (min-width: 767px) {
+  .responsive-three-column-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+  .responsive-three-column-container.menupage-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .responsive-twothirds-column-container {
+    grid-template-columns: 3fr 2fr;
+  }
+  .responsive-twothirds-column-container .content,
+  .responsive-column-container .content {
+    width: calc(80% - 2rem);
+  }
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1 1 auto;
+}
+
+/* Heading styles */
+h1,
+h2,
+h3,
+h5,
+h6 {
+  font-family: nexa-rust-sans-black-2, Impact, Haettenschweiler,
+    "Arial Narrow Bold", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  line-height: 1.1;
+  margin: 0 0 0.5em 0;
+}
+h4 {
+  font-family: museo-slab, Cambria, Cochin, Georgia, Times, "Times New Roman",
+    serif;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.1;
+  margin: 0 0 0.5em 0;
+}
+h6 {
+  font-family: museo-slab, Cambria, Cochin, Georgia, Times, "Times New Roman",
+    serif;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.1;
+  margin: 0 0 0.5em 0;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 8.5vw, 3.5rem);
+  margin: 0;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+h3 {
+  font-size: clamp(1.37rem, 3.5vw, 1.875rem);
+}
+
+h4 {
+  font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+}
+h5 {
+  font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+}
+h6 {
+  font-size: clamp(1.1rem, 1.5vw, 1rem);
+}
+
+/* HTML elements */
+button,
+a.btn {
+  display: inline-block;
+  border-radius: 2rem;
+  border: 2px solid #ffffff;
+  padding: 1.5em 1.5em 1.3em;
+  line-height: 0;
+  font-size: 0.875em;
+  font-weight: 500;
+  font-family: nexa-rust-sans-black-2, sans-serif;
+  color: #ffffff;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+button,
+a.primary-btn {
+  background-color: var(--red-color);
+}
+a.secondary-btn {
+  background-color: var(--green-color);
+}
+a.tertiary-btn {
+  background-color: var(--darkred-color);
+}
+button span,
+a.btn span {
+  position: relative;
+  display: block;
+  animation: btn-roll-out 0.3s forwards;
+}
+button:hover span,
+a.btn:hover span {
+  animation: btn-roll 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+@keyframes btn-roll {
+  0% {
+    top: 0;
+    opacity: 1;
+  }
+  59% {
+    top: 40px;
+    opacity: 1;
+  }
+  60% {
+    top: 40px;
+    opacity: 0;
+  }
+  61% {
+    top: -40px;
+    opacity: 0;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes btn-roll-out {
+  0% {
+    top: 0;
+    opacity: 1;
+  }
+  59% {
+    top: -40px;
+    opacity: 1;
+  }
+  60% {
+    top: -40px;
+    opacity: 0;
+  }
+  61% {
+    top: 40px;
+    opacity: 0;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+nav:not(article menu),
+ol:not(article ol),
+ul:not(article ul) {
+  list-style: none;
+}
+nav,
+ol,
+ul {
+  padding-left: 0;
+}
+label {
+  display: flex;
+}
+input {
+  padding: 9px 20px;
+  align-items: center;
+  border-radius: 200px;
+  border: 2px solid #ffffff;
+  background: var(--cream-color);
+  font-family: museo-sans, Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+@media screen and (max-width: 400px) {
+  input {
+    width: 100%;
+    display: block;
+  }
+}
+button[type="submit"] {
+  background-color: var(--lightgreen-color);
+  white-space: nowrap;
+}
+
+/* Helper classes */
+.display-flex {
+  display: flex;
+}
+.text-align-center {
+  text-align: center;
+}
+.flex-align-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.image-fill-container {
+  position: relative;
+  padding-bottom: 60%;
+}
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+}

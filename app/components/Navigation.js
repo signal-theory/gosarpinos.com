@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { fetchPageData, fetchMediaData } from '../lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
-import '../styles/navigation.css';
+import './Navigation.css';
 
 import logo from '../../public/sarpinos-logo.svg'
 
@@ -35,7 +35,8 @@ export default function Navigation() {
   }, []);
 
 
-  // handle menu dropdowns
+
+  // handle desktopmenu dropdowns
   const [activeMenus, setActiveMenus] = useState({});
   const myRef1 = useRef(null);
   const myRef2 = useRef(null);
@@ -56,6 +57,51 @@ export default function Navigation() {
     });
   };
 
+  // handle mobile menu
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const handleMobile = () => {
+    setToggleMenu(!toggleMenu);
+  };
+
+  const [activeMobileMenus, setActiveMobileMenus] = useState({});
+  const handleMobileSubmenu = (menu) => {
+    setActiveMobileMenus(prevState => {
+      // Create a new state object with all menus inactive
+      const newState = Object.keys(prevState).reduce((acc, key) => {
+        acc[key] = false;
+        return acc;
+      }, {});
+
+      // Set the clicked menu to active
+      newState[menu] = true;
+
+      return newState;
+    });
+  };
+
+  // close menu dropdowns when clicking outside of them
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if ((myRef1.current && !myRef1.current.contains(event.target)) &&
+        (myRef2.current && !myRef2.current.contains(event.target)) &&
+        (myRef3.current && !myRef3.current.contains(event.target))) {
+        setActiveMenus(prevState => {
+          const newState = Object.keys(prevState).reduce((acc, key) => {
+            acc[key] = false;
+            return acc;
+          }, {});
+          return newState;
+        });
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+  
   return (
     <nav className="main-navigation">
       <div className="navbar">
@@ -65,21 +111,29 @@ export default function Navigation() {
           alt="Sarpino&apos;s Pizzeria Logo"
            />
         </Link>
+         <button
+          className={`hamburger hamburger--squeeze ${toggleMenu ? 'is-active' : ''}`}
+          aria-expanded={toggleMenu}
+          aria-haspopup="true"
+          aria-controls="mobilemenu"
+          onClick={handleMobile}>
+          <span aria-hidden="true">&#x2630;</span>
+        </button>
         <ul className="desktopmenu">
           <li className="item has-submenu">
             <a
-              className={`${activeMenus['About'] ? 'active' : ''}`}
+              className={`${activeMobileMenus['About'] ? 'active' : ''}`}
               onClick={() => handleSubmenu('About')}>About</a>
           </li>
           <li className="item has-submenu">
             <a
-              className={`${activeMenus['Menu'] ? 'active' : ''}`}
+              className={`${activeMobileMenus['Menu'] ? 'active' : ''}`}
               onClick={() => handleSubmenu('Menu')}>Menu</a>
           </li>
           <li className="item"><Link href="/">Catering</Link></li>
           <li className="item has-submenu">
             <a
-              className={`${activeMenus['Locations'] ? 'active' : ''}`}
+              className={`${activeMobileMenus['Locations'] ? 'active' : ''}`}
               onClick={() => handleSubmenu('Locations')}>Find Locations</a>
           </li>
         </ul>
@@ -156,6 +210,27 @@ export default function Navigation() {
           <li className="subitem"><Link href="/" onClick={() => handleSubmenu('Locations')}>Search Sarpino&apos;s Locations</Link></li>
         </ul>
       </div>
+      <ul className={`mobilemenu ${toggleMenu ? 'active' : ''}`}>
+        <li className="item has-submenu"><a tabIndex="0" className={`${activeMobileMenus['About'] ? 'active' : ''}`} onClick={() => handleMobileSubmenu('About')}>About</a>
+          <ul className={`item submenu ${activeMobileMenus['About'] ? 'active' : ''}`}>
+            <li className="subitem"><Link href="/about/company" onClick={handleMobile}>Company Info</Link></li>
+            <li className="subitem"><Link href="/about/why-sarpinos" onClick={handleMobile}>Why Sarpino's?</Link></li>
+            <li className="subitem"><Link href="/about/blog" onClick={handleMobile}>Sarpino's Blog</Link></li>
+          </ul>
+        </li>
+        <li className="item has-submenu"><a tabIndex="0" className={`${activeMobileMenus['Menu'] ? 'active' : ''}`} onClick={() => handleMobileSubmenu('Menu')}>Menu</a>
+          <ul className={`item submenu ${activeMobileMenus['Menu'] ? 'active' : ''}`}>
+            <li className="subitem"><Link href="/menu/national-specials" onClick={handleMobile}>National Specials</Link></li>
+            <li className="subitem"><Link href="/menu/build-your-own" onClick={handleMobile}>Build Your Own</Link></li>
+            <li className="subitem"><Link href="/menu/sarpinos-specialty-pizza" onClick={handleMobile}>Specialty Pizza</Link></li>
+            <li className="subitem"><Link href="/menu/calzones" onClick={handleMobile}>Calzones</Link></li>
+          </ul>
+        </li>
+        <li className="item"><Link href="/catering" onClick={handleMobile}>Catering</Link></li>
+        <li className="item"><Link href="/locations" onClick={handleMobile}>Find Locations</Link></li>
+        <li className="item button heart"><a href="/loyalty" onClick={handleMobile}>Loyalty Sign-In</a></li>
+      </ul>
+      
     </nav>
   );
 }

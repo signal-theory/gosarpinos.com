@@ -1,12 +1,151 @@
 import Link from 'next/link';
-import '../styles/footer.css';
+import Image from 'next/image';
+import styles from './Footer.module.css';
+
 export default function Footer() {
   return (
-   <footer>
-      <ul>
-        <li><Link href="/">Home</Link></li>
-        {/* Add other Footer links here */}
-      </ul>
+    <footer className={styles.footer}>
+      <div style={{width: '100%'}}>
+        <div className={styles.columns}>
+          <div className={styles.order2}>
+            <h3>Get our newsletter</h3>
+            <p>See the latest updates, deals and information from Sarpino&apos;s.</p>
+            <form className={styles.emailSignUp} name="contact" method="POST" data-netlify="true" action="/pages/success">
+              <p>
+                <label><span className="screen-reader-text">Email Address</span> <input placeholder="Email Address" type="email" name="email" /></label>
+              </p>
+              <p>
+                <button type="submit">Sign Up</button>
+              </p>
+            </form>
+
+            <h3>DOWNLOAD <br/>OUR MOBILE APP</h3>
+            <p style={{maxWidth: '290px'}}>Get $10 off your next order by earning loyalty points while enjoying our delicious pizzas. </p>
+            <div className={styles.appStoreLinks}>
+              <div>
+                <Link href="https://apps.apple.com/us/app/sarpinos-pizzeria/id1479489789">
+                  <Image 
+                    src={"/icon-app-store.png"} 
+                    alt="App Store" 
+                    width={136} 
+                    height={40}
+                    style={{paddingBottom: '1rem'}}
+                    />
+                  </Link>
+                <Link href="https://play.google.com/store/apps/details?id=com.sarpinos">
+                <Image 
+                    src={"/icon-google-play.png"} 
+                    alt="App Store" 
+                    width={136} 
+                    height={40}
+                    />
+                </Link>
+              </div>
+
+              <Image 
+                src={"/qr-code-app.png"}
+                alt="Scan the QR Code"
+                width={78}
+                height={97}
+                className={styles.qrCode}
+                />
+            </div>
+            <div style={{display: 'flex', margin: '3rem 0'}}>
+              <Image
+                src={"/sarpinos-heart.svg"}
+                width={66}
+                height={58}
+                alt="Sarpino's Heart"
+                />
+              <div style={{paddingLeft: '2rem'}}>
+                <p>Follow Us</p>
+                <div className={styles.iconLinks}>
+                  <Link href="https://www.facebook.com/SarpinosPizzeria/">
+                    <Image
+                      src={"/icon-facebook.svg"}
+                      width={20}
+                      height={20}
+                      alt="Facebook"
+                      />
+                  </Link>
+                  <Link href="https://www.instagram.com/sarpinos_pizzeria/">
+                    <Image
+                      src={"/icon-instagram.svg"}
+                      width={20}
+                      height={20}
+                      alt="Instagram"
+                      />
+                  </Link>
+                  <Link href="https://x.com/sarpinos_pizza">
+                    <Image
+                      src={"/icon-x.svg"}
+                      width={20}
+                      height={20}
+                      alt="Twitter"
+                      />
+                  </Link>
+                  <Link href="https://www.youtube.com/company/sarpinos-pizzeria/">
+                    <Image
+                      src={"/icon-youtube.svg"}
+                      width={20}
+                      height={20}
+                      alt="LinkedIn"
+                      />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={styles.order1}>
+            <div className={styles.footerMenu}>
+              <div>
+                <h6>Our Menu</h6>
+                <ul>
+                  <li><Link href="/">Full Menu</Link></li>
+                  <li><Link href="/">Vegan Menu</Link></li>
+                  <li><Link href="/">Gluten-Free Menu</Link></li>
+                  <li><Link href="/">Catering</Link></li>
+                  <li><Link href="/">Franchise</Link></li>
+                  <li><Link href="/">Ingredients & Allergens</Link></li>
+                </ul>
+                <h6>Customer Service</h6>
+                <ul>
+                  <li><Link href="/">Loyalty Program</Link></li>
+                  <li><Link href="/">Gift Cards</Link></li>
+                  <li><Link href="/">Location Finder</Link></li>
+                  <li><Link href="/">Rate Us</Link></li>
+                  <li><Link href="/">Safety</Link></li>
+                  <li><Link href="/">Site Map</Link></li>
+                </ul>
+              </div>
+              <div>
+                <h6>Catering</h6>
+                <ul>
+                  <li><Link href="/">Catering Menu</Link></li>
+                </ul>
+                <h6>About Us</h6>
+                <ul>
+                  <li><Link href="/">Careers</Link></li>
+                  <li><Link href="/">Franchising Information</Link></li>
+                  <li><Link href="/">Location Finder</Link></li>
+                  <li><Link href="/">Sarpino&apos;s Publication</Link></li>
+                  <li><Link href="/">Mobile App</Link></li>
+                </ul>
+                <h6>Contact Us</h6>
+                <ul>
+                  <li>Phone: 847.374.6300</li>
+                  <li>Fax: 866.630.8595</li>
+                  <li>Email: us@gosarpinos.com</li>
+                </ul>
+                <h6>Address</h6>
+                <ul>
+                  <li>200 Tri State International, Suite 550 <br/>Lincolnshire, IL 60069</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 }

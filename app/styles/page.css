@@ -229,7 +229,7 @@
 
 /* national specials */
 .homepage-specials {
-  background-image: url("../../public/homepage-bkg-illustrations-black.webp");
+  background-image: url("/homepage-bkg-illustrations-black.webp");
   background-repeat: no-repeat;
   background-size: cover;
 }
