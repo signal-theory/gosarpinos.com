@@ -27,8 +27,8 @@ const Hero = ({ data, heroImage }) => {
           <div className={styles.animation}>
             <div className={styles.shadow}></div>
             <Image
-              src={heroImage.sourceUrl}
-              alt={heroImage.altText}
+              src="/company-pizza-hero.webp"
+              alt="Pizza with tomato, spinach and cheese"
               width={750}
               height={641}
               className={styles.pizzaImg}

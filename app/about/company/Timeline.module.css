@@ -2,13 +2,13 @@
   margin: 2rem 0;
 }
 
-.rellaxDiv {
+/* .rellaxDiv {
   display: none;
-}
+} */
 
 .animation {
   position: relative;
-  min-height: 500px;
+  min-height: 400px;
   height: 90vw;
 }
 .shadow {
@@ -21,19 +21,55 @@
   border-radius: 100%;
   filter: blur(19px);
 }
-.pizzaImg {
+.animation img {
   position: absolute;
+}
+.pizzaImg {
   width: 100%;
   top: 0;
   right: 0;
   height: auto;
 }
+.pepperoni1 {
+  top: 20%;
+  left: -6.5%;
+  width: 23%;
+  height: auto;
+}
+
+.pepperoni2 {
+  top: 0;
+  left: 45%;
+  width: 17%;
+  height: auto;
+}
+.pepperoni3 {
+  top: -7%;
+  left: 21%;
+  width: 14%;
+  height: auto;
+}
+.pepperoni4 {
+  top: -19%;
+  left: 44%;
+  width: 20%;
+  height: auto;
+}
+.pepperoni5 {
+  top: 10%;
+  left: 57%;
+  width: 22%;
+  height: auto;
+}
+.pepperoni6 {
+  top: -3%;
+  left: -61%;
+  width: 21%;
+  height: auto;
+}
 @media screen and (min-width: 632px) {
   .animation {
     height: 100%;
-  }
-  .animation img {
-    position: absolute;
   }
   .pizzaImg {
     position: absolute;
@@ -46,6 +82,7 @@
     position: relative;
     top: 0;
     left: 0;
+    display: block;
   }
   .pepperoni1 {
     transform: translateY(-90%);
@@ -93,6 +130,32 @@
 }
 .content {
   box-sizing: border-box;
-  padding: 0 3rem;
-  max-width: calc(500px + 3rem);
+  padding: 0 2rem 2rem;
+  max-width: calc(500px + 4rem);
+  margin: 0 0 0 auto;
+}
+.timeline {
+  display: flex;
+}
+.timeline h4 {
+  margin: 0;
+  padding: 2rem 2rem 0;
+  font-size: clamp(1.1rem, 1.5vw, 1rem);
+}
+.timelineYear {
+  flex: 0 0 100px;
+  text-align: right;
+  padding-right: 2rem;
+}
+.timelineInfo {
+  flex: 1;
+  padding-left: 2rem;
+  border-left: 2px solid #c2b598;
+}
+.timelineInfo h4 {
+  padding-left: 0;
+  color: var(--red-color);
+}
+.timelineInfo p {
+  margin: 0 0 2rem;
 }

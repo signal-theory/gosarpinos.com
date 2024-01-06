@@ -187,8 +187,8 @@ a:focus {
   padding: 0;
 }
 .page-container {
-  width: calc(95% - 40px);
-  padding: 20px;
+  width: calc(85% - 4rem);
+  padding: 2rem;
   max-width: 1300px;
   margin: 0 auto;
   border-radius: 10px;

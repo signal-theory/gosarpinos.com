@@ -96,7 +96,7 @@ export default async function Page({ params }) {
       </section>
       <section className="viewport homepage-items" style={{ padding: 0 }}>
         <div className="page-container cream-color text-align-center">
-          <h2 style={{ marginTop: '2rem' }}>{data.acf.popular_items_headline}</h2>
+          <h2 style={{ paddingTop: '2rem' }}>{data.acf.popular_items_headline}</h2>
           <div className="responsive-three-column-container">
             {menuItemsWithImages.map((item, index) => {
               const url = new URL(item.link.url);

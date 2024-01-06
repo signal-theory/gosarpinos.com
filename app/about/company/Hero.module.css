@@ -1,5 +1,5 @@
 .container {
-  margin: 8rem 0 10rem;
+  margin: calc(4rem + 5vw) 0;
 }
 .animation {
   position: relative;
@@ -83,6 +83,6 @@
 }
 .content {
   box-sizing: border-box;
-  padding-right: 3rem;
-  max-width: calc(500px + 3rem);
+  padding: 0 2rem;
+  max-width: calc(500px + 4rem);
 }
