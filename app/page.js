@@ -7,11 +7,11 @@ import Image from 'next/image';
 import './styles/page.css';
 import './styles/menu.css';
 
+import OrderBtn from './components/OrderBtn'
+import CalloutWhy from './components/CalloutWhy';
 import SpecialsCarousel from './components/SpecialsCarousel';
 
-import Car from './components/svgs/drawing-car.jsx'
-import Moon from './components/svgs/drawing-moon.jsx'
-import Calendar from './components/svgs/drawing-calendar.jsx'
+
 
 export async function generateMetadata({ params }) {
   const pageId = params.pageId || 149; // default to 149 if no ID is provided
@@ -88,7 +88,9 @@ export default async function Page({ params }) {
           </div>
           <div className="homepage-content">
             <div dangerouslySetInnerHTML={{ __html: data?.content.rendered }} style={{ margin: '4rem 0 2rem' }} />
-            <Link href="" className="btn tertiary-btn glow"><span>Order Online</span></Link>
+            <div className="btn-slide">
+              <OrderBtn />
+            </div>
           </div>
         </div>
       </section>
@@ -147,7 +149,12 @@ export default async function Page({ params }) {
           <Link href="/" className="btn secondary-btn"><span>See More Specials</span></Link>
         </div>
       </section>
-      <section className="viewport green-color">
+      <div className="catering-animation">
+         <Image src={'/heart-tan-outline.svg'} width={60} height={60} className="heart-tan-outline" alt="tan outline heart" />
+        <Image src={'/heart-green-fill.svg'} width={60} height={60} className="heart-green-fill" alt="green fill heart" />
+         <Image src={'/heart-green-outline.svg'} width={60} height={60} className="heart-green-outline" alt="green outline heart" />
+      </div>
+      <section className="viewport catering green-color">
         <div className="page-container cream-color">
           <div className="responsive-twothirds-column-container">
             <div className="image-fill-container">
@@ -168,24 +175,7 @@ export default async function Page({ params }) {
         </div>
       </section>
       <section className="viewport nighttime-background-color" style={{ paddingTop: 0 }}>
-        <div className="page-container cream-outline text-align-center">
-          <h2 style={{ margin: '3rem 0' }}>WHY SARPINO&apos;S?</h2>
-          <div className="responsive-three-column-container" style={{ margin: '3rem 0 0' }}>
-            <div className="grid-item">
-              <Car />
-              <h2 style={{ padding: '1.5rem 0' }}>Free <br />Delivery</h2>
-            </div>
-            <div className="grid-item">
-              <Moon />
-              <h2 style={{ padding: '1.5rem 0' }}>Open <br />Late</h2>
-            </div>
-            <div className="grid-item">
-              <Calendar />
-              <h2 style={{ padding: '1.5rem 0' }}>Open <br />365 Days</h2>
-            </div>
-          </div>
-          <Link href="/" className="btn primary-btn" style={{ marginBottom: '2rem' }}><span>About Us</span></Link>
-        </div>
+       <CalloutWhy />
         <div className="page-container text-align-center" style={{ marginTop: '2rem' }}>
           <h2>Sarpino&apos;s On Social</h2>
           <p style={{ maxWidth: '347px', margin: '0 auto' }}>Pizza pics, cheesy captions and saucy posts. Follow us on Instagram and Facebook.</p>

@@ -1,6 +1,8 @@
 import { METADATABASE_API_URL } from '../../lib/constants';
 import { fetchMetadata, fetchPageData, fetchACFImage } from '../../lib/utils'; // Adjust the path as necessary
-import CompanyHero from '../../components/about/company/CompanyHero';
+import Hero from './Hero';
+import Ingredients from './Ingredients';
+import Timeline from './Timeline';
 
 const pageId = 49;
 export async function generateMetadata() {
@@ -31,13 +33,15 @@ export default async function Company({ params }) {
     }
   } catch (error) {
     console.error("Error in Page component:", error);
-    // companyImage = null; // Set default or handle error
   }
 
   return (
     <>
-    <CompanyHero data={data} heroImage={heroImage}
-    />
+    <div className="cream-color">
+      <Hero data={data} heroImage={heroImage}/>
+      <Ingredients data={data} />
+      <Timeline data={data} />
+    </div>
     </>
   );
 }

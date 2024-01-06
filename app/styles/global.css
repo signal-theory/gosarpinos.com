@@ -122,7 +122,10 @@ body {
     "main"
     "footer";
 }
-
+main {
+  width: 100%;
+  overflow: hidden;
+}
 /* Adobe Font Loading */
 .wf-loading {
   /* styles to use when web fonts are loading */
@@ -174,7 +177,6 @@ a:focus {
 .viewport {
   position: relative;
   width: 100%;
-  overflow: hidden;
   margin: 0 auto;
   padding: 2rem 0;
 }

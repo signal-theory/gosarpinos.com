@@ -15,11 +15,13 @@
   position: absolute;
   width: 92%;
   height: 95%;
-  top: 6%;
-  left: -5%;
+  top: 3%;
+  left: -2%;
   background: rgba(105, 2, 2, 0.5);
   border-radius: 860.214px;
   filter: blur(19px);
+  opacity: 0;
+  animation: fadeIn 3s forwards;
 }
 /*pizza animation */
 .homepage-pizza-animation {
@@ -54,9 +56,10 @@
 .homepage-hero p {
   display: none;
 }
-.homepage-hero .btn {
+.homepage-hero .btn-slide {
+  margin: 0 auto;
   opacity: 0;
-  animation: fadeIn 0.6s ease-in-out forwards 0.6s;
+  animation: fadeIn 0.6s ease-in-out forwards 0.75s;
 }
 
 @media screen and (min-width: 767px) {
@@ -144,8 +147,8 @@
 }
 .homepage-pizza-animation .pizza {
   width: 95%;
-  top: 2%;
-  left: -4%;
+  top: 0;
+  left: 0;
   height: auto;
   animation: pizza-rotate 9s ease-in-out infinite;
 }
@@ -340,4 +343,40 @@
 }
 .carousel-dot.active {
   background-color: var(--green-color);
+}
+
+/* catering */
+.catering-animation {
+  position: relative;
+}
+
+.catering-animation .heart-tan-outline {
+  position: absolute;
+  display: block;
+  top: -30px;
+  left: 66%;
+  width: 75px;
+  height: 86px;
+  animation: heartZoomUpDown 2.5s ease-in-out infinite 2s;
+  z-index: 97;
+}
+.catering-animation .heart-green-fill {
+  position: absolute;
+  display: block;
+  top: 3px;
+  left: 73%;
+  width: 79px;
+  height: 91px;
+  animation: heartSlideUpDown 5s cubic-bezier(0.7, -0.01, 0.76, 1.03) infinite;
+  z-index: 98;
+}
+.catering-animation .heart-green-outline {
+  position: absolute;
+  display: block;
+  top: -20px;
+  left: 80%;
+  width: 85px;
+  height: 86px;
+  animation: heartSlideUpDown 3s cubic-bezier(0.7, -0.09, 0.79, 1.07) infinite;
+  z-index: 99;
 }

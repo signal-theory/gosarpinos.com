@@ -1,5 +1,5 @@
 .container {
-  margin: 8rem 0;
+  margin: 8rem 0 10rem;
 }
 .animation {
   position: relative;
@@ -16,9 +16,9 @@
 .shadow {
   position: absolute;
   width: 125%;
-  padding-top: 85%;
-  top: 6%;
-  left: -40%;
+  padding-top: 80%;
+  top: 3%;
+  left: -45%;
   background: rgba(2, 2, 2, 0.5);
   border-radius: 100%;
   filter: blur(19px);
@@ -28,7 +28,7 @@
 }
 .pizzaImg {
   position: absolute;
-  width: 95%;
+  width: 90%;
   top: 2%;
   left: -4%;
   height: auto;

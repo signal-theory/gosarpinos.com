@@ -1,0 +1,98 @@
+.container {
+  margin: 2rem 0;
+}
+
+.rellaxDiv {
+  display: none;
+}
+
+.animation {
+  position: relative;
+  min-height: 500px;
+  height: 90vw;
+}
+.shadow {
+  position: absolute;
+  width: 125%;
+  padding-top: 80%;
+  top: 3%;
+  right: -25%;
+  background: rgba(2, 2, 2, 0.5);
+  border-radius: 100%;
+  filter: blur(19px);
+}
+.pizzaImg {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  right: 0;
+  height: auto;
+}
+@media screen and (min-width: 632px) {
+  .animation {
+    height: 100%;
+  }
+  .animation img {
+    position: absolute;
+  }
+  .pizzaImg {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+    height: auto;
+  }
+  .rellaxDiv {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+  .pepperoni1 {
+    transform: translateY(-90%);
+    top: 0;
+    left: -6.5%;
+    width: 23%;
+    height: auto;
+  }
+
+  .pepperoni2 {
+    transform: translateY(-102%);
+    top: 0;
+    left: 25%;
+    width: 17%;
+    height: auto;
+  }
+  .pepperoni3 {
+    transform: translateY(-81%);
+    top: 0;
+    left: 43%;
+    width: 14%;
+    height: auto;
+  }
+  .pepperoni4 {
+    transform: translateY(-296%);
+    top: 0;
+    left: 44%;
+    width: 20%;
+    height: auto;
+  }
+  .pepperoni5 {
+    transform: translateY(-142%);
+    top: 0;
+    left: 64.5%;
+    width: 22%;
+    height: auto;
+  }
+  .pepperoni6 {
+    transform: translateY(-93%);
+    top: 0;
+    left: -4%;
+    width: 21%;
+    height: auto;
+  }
+}
+.content {
+  box-sizing: border-box;
+  padding: 0 3rem;
+  max-width: calc(500px + 3rem);
+}

@@ -1,0 +1,9 @@
+.ingredients {
+  padding: 5rem 2rem;
+  background-image: url("/homepage-bkg-illustrations-black.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.ingredients h3 {
+  margin: 2rem 0 1rem;
+}
