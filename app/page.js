@@ -175,7 +175,11 @@ export default async function Page({ params }) {
         </div>
       </section>
       <section className="viewport nighttime-background-color" style={{ paddingTop: 0 }}>
-       <CalloutWhy />
+        <h2 style={{ margin: '3rem 0' }}>WHY SARPINO&apos;S?</h2>
+        <CalloutWhy
+          containerClasses={'page-container cream-outline text-align-center'}
+        />
+        <Link href="/about/company" className="btn primary-btn" style={{ marginBottom: '2rem' }}><span>About Us</span></Link>
         <div className="page-container text-align-center" style={{ marginTop: '2rem' }}>
           <h2>Sarpino&apos;s On Social</h2>
           <p style={{ maxWidth: '347px', margin: '0 auto' }}>Pizza pics, cheesy captions and saucy posts. Follow us on Instagram and Facebook.</p>

@@ -1,0 +1,20 @@
+import CalloutWhy from '../../components/CalloutWhy'
+
+const Hero = ({ data, heroImage }) => {
+  return (
+    <>
+    <section className="viewport innerhero cream-color">
+        <div className="page-container">
+          <div className="content text-align-center">
+            <div dangerouslySetInnerHTML={{ __html: data.content.rendered }} />
+          </div>
+          <CalloutWhy
+            containerClasses={'full-page-container text-align-center'}
+            gridClasses={'daytime-background-color'} />
+        </div>
+      </section>
+    </>
+  )
+}
+
+export default Hero;
