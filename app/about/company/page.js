@@ -3,6 +3,7 @@ import { fetchMetadata, fetchPageData, fetchACFImage } from '../../lib/utils'; /
 import Hero from './Hero';
 import Ingredients from './Ingredients';
 import Timeline from './Timeline';
+import Franchise from './Franchise';
 
 const pageId = 49;
 export async function generateMetadata() {
@@ -41,6 +42,7 @@ export default async function Company({ params }) {
       <Hero data={data} heroImage={heroImage}/>
       <Ingredients data={data} />
       <Timeline data={data} />
+      <Franchise />
     </div>
     </>
   );

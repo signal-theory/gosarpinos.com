@@ -10,7 +10,7 @@ nav.main-navigation a {
   text-decoration: none;
   display: inline-block;
   white-space: nowrap;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 nav.main-navigation li.item {
@@ -127,6 +127,7 @@ nav.main-navigation .subitem a {
     display: inline-block;
     padding: 5px 20px;
     border-radius: 20px;
+    font-size: 1.2rem;
   }
   ul.mobilemenu li a.active {
     background-color: #043326;
