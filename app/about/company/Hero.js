@@ -9,6 +9,7 @@ const Hero = ({ data, heroImage }) => {
    useEffect(() => {
     if (window.innerWidth > 768) {
       import('rellax').then(({ default: Rellax }) => {
+        new Rellax('.rellax0');
         new Rellax('.rellax1');
         new Rellax('.rellax2');
         new Rellax('.rellax3');
@@ -25,7 +26,7 @@ const Hero = ({ data, heroImage }) => {
       <div className={`full-page-container ${styles.container}`}>
         <div className="responsive-column-container">
           <div className={styles.animation}>
-            <div className={styles.shadow}></div>
+            <div className={`fade-in rellax0 ${styles.shadow}`} data-rellax-speed="1"></div>
             <Image
               src="/company-pizza-hero.webp"
               alt="Pizza with tomato, spinach and cheese"
