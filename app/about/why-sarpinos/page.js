@@ -23,7 +23,7 @@ export async function generateMetadata() {
 }
 
  
-export default async function WhySarpinos({ params }) {
+export default async function Page({ params }) {
   let data;
   let fullWidthImage;
   let experienceImage;

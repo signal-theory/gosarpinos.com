@@ -23,9 +23,8 @@ export async function generateMetadata() {
 }
 
  
-export default async function Company({ params }) {
+export default async function Page({ params }) {
   let data;
-  let heroImage;
 
   try {
     data = await fetchPageData(pageId);

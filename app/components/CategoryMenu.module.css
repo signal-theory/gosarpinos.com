@@ -1,0 +1,27 @@
+/* category filter menu */
+.categoryFilter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin: 2rem auto 1rem;
+}
+@media screen and (min-width: 767px) {
+  .categoryFilter {
+    flex-direction: row;
+  }
+}
+.categoryFilter button {
+  margin: 0 0.5rem;
+  background-color: transparent;
+  border: 1px solid var(--red-color);
+  color: var(--red-color);
+  font-family: museo-sans, Verdana, Geneva, Tahoma, sans-serif;
+  padding: 0 2rem;
+  line-height: 40px;
+  font-size: 0.9375rem;
+}
+.categoryFilter button.active {
+  background-color: var(--red-color);
+  color: var(--cream-color);
+}

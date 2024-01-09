@@ -15,6 +15,7 @@ const Timeline = ({ data }) => {
         new Rellax('.rellax10');
         new Rellax('.rellax11');
         new Rellax('.rellax12');
+        new Rellax('.rellax13');
       });
     }
   }, []);
@@ -39,7 +40,7 @@ const Timeline = ({ data }) => {
             </div>
           </div>
           <div className={styles.animation}>
-            <div className={styles.shadow}></div>
+            <div className={`fade-in rellax13 ${styles.shadow}`} data-rellax-speed="1"></div>
             <Image src="/pepperoniPizza.webp"
               width={750}
               height={581}

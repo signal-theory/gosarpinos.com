@@ -210,6 +210,15 @@ a:focus {
 .responsive-column-container .content {
   padding: 0 2rem;
 }
+.responsive-equal-height-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+  grid-auto-rows: minmax(16rem, auto);
+}
+.responsive-equal-height-container .grid-box {
+  display: flex;
+}
 @media screen and (min-width: 767px) {
   .responsive-three-column-container {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
@@ -269,6 +278,8 @@ h1 {
   margin: 0;
 }
 
+.page-container h1,
+.full-page-container h1,
 h2 {
   font-size: clamp(1.5rem, 5vw, 2.5rem);
 }
@@ -367,6 +378,12 @@ a.btn:hover span {
     top: 0;
     opacity: 1;
   }
+}
+figure.wp-block-image {
+  margin: 4rem auto;
+}
+figure img {
+  border-radius: 10px;
 }
 
 img {
