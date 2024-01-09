@@ -10,13 +10,14 @@ export default function Footer() {
           <div className={styles.order2}>
             <h3>Get our newsletter</h3>
             <p>See the latest updates, deals and information from Sarpino&apos;s.</p>
-            <form className={styles.emailSignUp} name="contact" method="POST" data-netlify="true" action="/pages/success">
+            <form className={styles.emailSignUp} name="signup" method="POST" data-netlify="true" action="/success">
               <p>
                 <label><span className="screen-reader-text">Email Address</span> <input placeholder="Email Address" type="email" name="email" /></label>
               </p>
               <p>
                 <button type="submit">Sign Up</button>
               </p>
+              <input type="hidden" name="form-name" value="signup"></input>
             </form>
 
             <h3>DOWNLOAD <br/>OUR MOBILE APP</h3>
