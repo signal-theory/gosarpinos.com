@@ -87,15 +87,15 @@ export async function fetchRelatedPosts(categoryId) {
   }
 }
 
-
 // utils fetchPageData
 export async function fetchPageData(pageId) {
-  const res = await fetch(`${PAGES_API_URL}/${pageId}`);
+  const res = await fetch(`${PAGES_API_URL}/${pageId}?_embed`);
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
   return res.json();
 }
+
 
 // utils fetchCPTData
 export async function fetchCPTData(cptName) {

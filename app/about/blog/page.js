@@ -2,7 +2,7 @@
 import { METADATABASE_API_URL } from '../../lib/constants';
 import { fetchMetadata, fetchPageData, fetchPostData } from '../../lib/utils'; // Adjust the path as necessary
 import Link from 'next/link';
-import BlogHero from './BlogHero';
+import BlogFeatured from './BlogFeatured';
 import BlogContent from './BlogContent';
 
 const pageId = 278;
@@ -56,7 +56,7 @@ export default async function Page() {
           {/* Render the featured post */}
           {mostRecentFeaturedPost && (
           <Link href={`/about/blog/${mostRecentFeaturedPost.slug}`}>
-            <BlogHero
+            <BlogFeatured
               post={mostRecentFeaturedPost}
               featuredImage={mostRecentFeaturedPost._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}
             />

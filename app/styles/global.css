@@ -316,6 +316,7 @@ a.btn {
   color: #ffffff;
   cursor: pointer;
   overflow: hidden;
+  text-decoration: none;
 }
 
 button,

@@ -1,0 +1,68 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.menuThumb a {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+.hoverImage {
+  position: absolute;
+}
+.image {
+  display: block;
+  position: relative;
+}
+.image,
+.hoverImage {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  overflow: hidden;
+  z-index: 999;
+
+  -webkit-transition: opacity 0.5s ease;
+  -o-transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
+}
+.menuThumb a:hover .image {
+  opacity: 0;
+}
+
+.label {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.title {
+  margin: 2rem 0 0.5rem;
+  text-align: left;
+  font-size: 1.45rem;
+}
+
+.caption {
+  flex: 1 1 auto;
+}
+@media screen and (max-width: 767px) {
+  .caption {
+    text-align: center;
+  }
+}
+.links {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0;
+}
+.link {
+  margin-left: 1.5rem;
+  font-size: 0.88rem;
+}

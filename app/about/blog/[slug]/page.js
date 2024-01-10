@@ -1,10 +1,8 @@
 // app/about/blog/[slug]/page.js
 import { fetchPostBySlug, getCategoryNamesByIds, fetchRelatedPosts } from '../../../lib/utils';
 import Image from 'next/image';
-import Link from 'next/link';
-import BlogCard from '../BlogCard';
 import BlogRelated from '../BlogRelated';
-import BlogShare from '../BlogShare';
+import ShareThis from '../../../components/ShareThis';
 import styles from './Single.module.css';
 
 
@@ -73,11 +71,18 @@ export default async function Page({ params }) {
             )}
           </div> 
           {/* Post Content */}
-          <div className={styles.content} dangerouslySetInnerHTML={{ __html: post?.content?.rendered }} />
+          <div 
+            className={styles.content} 
+            dangerouslySetInnerHTML={{ __html: post?.content?.rendered }} 
+          />
           {/* Share This Post */}
-          <BlogShare post={post} />
+          <ShareThis 
+            headline="Share This Story" 
+            post={post} 
+            />
           {/* Related Posts */}
-          <BlogRelated relatedPosts={relatedPosts} />
+          <BlogRelated 
+            relatedPosts={relatedPosts} />
         </div>
       </section>
     </div>

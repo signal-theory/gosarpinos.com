@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Image from 'next/image';
-import styles from '../../components/Footer.module.css'
+import styles from '../components/Footer.module.css'
 
-const BlogShare = ({ post }) => {
+const ShareThis = ({ headline, post }) => {
   return (
     <div className="text-align-center">
-      <h3>Share this story</h3>
+      <h3>{headline}</h3>
        <div className={styles.iconLinks} style={{justifyContent: 'center', margin: '1rem auto 8rem'}}>
         <Link href={`https://www.facebook.com/sharer/sharer.php?u=${post.link}`}>
             <Image
@@ -36,4 +36,4 @@ const BlogShare = ({ post }) => {
   );
 }
 
-export default BlogShare;
+export default ShareThis;

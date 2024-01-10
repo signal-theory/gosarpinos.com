@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import styles from './BlogHero.module.css';
+import styles from './BlogFeatured.module.css';
 
-const BlogHero = ({ post, featuredImage }) => {
+const BlogFeatured = ({ post, featuredImage }) => {
 
   return (
     <>
@@ -38,4 +38,4 @@ const BlogHero = ({ post, featuredImage }) => {
   );
 }
 
-export default BlogHero;
+export default BlogFeatured;

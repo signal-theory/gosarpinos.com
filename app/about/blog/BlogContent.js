@@ -4,32 +4,39 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import BlogCard from './BlogCard';
 import CategoryMenu from '../../components/CategoryMenu';
+import { fetchCategories } from '../../lib/utils';
+
 
 const BlogContent = ({ initialPosts }) => {
 
   const [selectedCategory, setSelectedCategory] = useState('All');
-  // Initialize filteredPosts with initialPosts or an empty array if initialPosts is undefined
   const [filteredPosts, setFilteredPosts] = useState(initialPosts || []);
-
-  const categoryMapping = {
-    'All': null, // Assuming 'All' means no specific category filter
-    'Blog': 8,
-    'News': 14,
-    'Featured': 15,
-    'Recipes': 17,
-    // ... other categories
-  };
+  const [categories, setCategories] = useState([]); // New state for categories
 
   useEffect(() => {
-    const categoryId = categoryMapping[selectedCategory]; // Get category ID
+    // Fetch categories and set state
+    const fetchAndSetCategories = async () => {
+      const fetchedCategories = await fetchCategories();
+      setCategories(fetchedCategories);
+    };
 
-    if (selectedCategory === 'All' || !categoryId) {
-      setFilteredPosts(initialPosts);
-    } else {
-      const filtered = initialPosts.filter(post => post.categories.includes(categoryId));
-      setFilteredPosts(filtered);
-    }
-  }, [selectedCategory, initialPosts]);
+    fetchAndSetCategories();
+  }, []);
+
+  useEffect(() => {
+  // Find the category object that matches the selectedCategory name
+  const selectedCategoryObject = categories.find(cat => cat.name === selectedCategory);
+
+  // Use the ID of the found category, or null if 'All' or not found
+  const categoryId = selectedCategoryObject ? selectedCategoryObject.id : null;
+
+  if (selectedCategory === 'All' || !categoryId) {
+    setFilteredPosts(initialPosts);
+  } else {
+    const filtered = initialPosts.filter(post => post.categories.includes(categoryId));
+    setFilteredPosts(filtered);
+  }
+}, [selectedCategory, initialPosts, categories]);
 
 
   return (
@@ -37,7 +44,7 @@ const BlogContent = ({ initialPosts }) => {
       <CategoryMenu
         selectionTitle="Sort by:"
         selectedCategory={selectedCategory}
-        availableTerms={Object.keys(categoryMapping)}
+        categories={categories}
         onCategorySelect={setSelectedCategory}
       />
 
