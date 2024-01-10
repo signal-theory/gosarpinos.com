@@ -3,6 +3,8 @@ import { METADATABASE_API_URL } from '../../lib/constants';
 import { fetchMetadata, fetchPageData, fetchCPTData } from '../../lib/utils';
 import MenuHeader from '../MenuHeader';
 import MenuContent from '../MenuContent';
+import CalloutMenu from '../../components/CalloutMenu';
+import CalloutMobileApp from '../../components/CalloutMobileApp';
 
 const pageId = 34;
 const postType = 'pizza';
@@ -32,7 +34,6 @@ export default async function Page() {
   } catch (error) {
     console.error("Error in Page component:", error);
   }
-console.log(data);
 
   return (
     <>
@@ -49,6 +50,12 @@ console.log(data);
           <MenuContent posts={posts} postType="sarpinos-specialty-pizza" />
         </div>
       </section>
+      <section className="viewport cream-color">
+        <CalloutMenu />
+      </section>
+      <scetion className="viewport gray-color">
+        <CalloutMobileApp />
+      </scetion>
     </div>
     </>
   );

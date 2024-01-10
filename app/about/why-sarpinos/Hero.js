@@ -10,7 +10,7 @@ const Hero = ({ data, heroImage }) => {
           </div>
           <CalloutWhy
             containerClasses={'full-page-container text-align-center'}
-            gridClasses={'daytime-background-color'} />
+            gridClasses={'red-gradient'} />
         </div>
       </section>
     </>

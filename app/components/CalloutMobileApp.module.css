@@ -1,0 +1,28 @@
+.bkg {
+  background-image: url("/pizza-background-callout-vertical.jpg");
+  background-size: cover;
+}
+.bkgImage {
+  display: none;
+}
+.callout {
+  width: 90%;
+  position: relative;
+  margin: 0 auto;
+  padding-top: calc(40vw + 50px);
+}
+@media screen and (min-width: 768px) {
+  .bkg {
+    background-image: none;
+  }
+  .bkgImage {
+    display: block;
+  }
+  .callout {
+    width: 45%;
+    position: relative;
+    right: 0;
+    margin: 0 0 0 auto;
+    padding-top: 0;
+  }
+}

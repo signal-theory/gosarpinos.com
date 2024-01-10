@@ -34,7 +34,7 @@ export default function Footer() {
                     />
                   </Link>
                 <Link href="https://play.google.com/store/apps/details?id=com.sarpinos">
-                <Image 
+                  <Image 
                     src={"/icon-google-play.png"} 
                     alt="App Store" 
                     width={136} 

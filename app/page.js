@@ -150,9 +150,9 @@ export default async function Page({ params }) {
         </div>
       </section>
       <div className="catering-animation">
-         <Image src={'/heart-tan-outline.svg'} width={60} height={60} className="heart-tan-outline" alt="tan outline heart" />
+        <Image src={'/heart-tan-outline.svg'} width={60} height={60} className="heart-tan-outline" alt="tan outline heart" />
         <Image src={'/heart-green-fill.svg'} width={60} height={60} className="heart-green-fill" alt="green fill heart" />
-         <Image src={'/heart-green-outline.svg'} width={60} height={60} className="heart-green-outline" alt="green outline heart" />
+        <Image src={'/heart-green-outline.svg'} width={60} height={60} className="heart-green-outline" alt="green outline heart" />
       </div>
       <section className="viewport catering green-color">
         <div className="page-container cream-color">

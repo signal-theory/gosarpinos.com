@@ -4,6 +4,9 @@ import OrderBtn from '../components/OrderBtn';
 import styles from './MenuCard.module.css';
 
 const MenuCard = ({ post, postType, hoverImage, hoverAlt, featuredImage, featuredAlt }) => {
+
+
+
   const url = `/menu/${postType}/${post.slug}`;
   return (
     <>
