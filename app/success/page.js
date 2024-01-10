@@ -87,7 +87,7 @@ export default async function Page({ params }) {
             <Image src={'/basil-leaf-3.webp'} width={100} height={100} alt="basil leaf" className="basil-leaf-3" />
           </div>
           <div className="homepage-content">
-            <div style={{ margin: '4rem 0 2rem' }}>THANKS FOR SIGNING UP</div>
+            <h1 style={{ margin: '4rem 0 2rem' }}>THANKS FOR SIGNING UP</h1>
             <div className="btn-slide">
               <OrderBtn />
             </div>

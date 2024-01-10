@@ -1,12 +1,9 @@
 // about.blog.page.js
 import { METADATABASE_API_URL } from '../../lib/constants';
 import { fetchMetadata, fetchPageData, fetchPostData } from '../../lib/utils'; // Adjust the path as necessary
-
 import Link from 'next/link';
 import BlogHero from './BlogHero';
-import BlogCard from'./BlogCard';
-
-import CategoryMenu from '../../components/CategoryMenu';
+import BlogContent from './BlogContent';
 
 const pageId = 278;
 export async function generateMetadata() {
@@ -24,9 +21,8 @@ export async function generateMetadata() {
     // Add other metadata properties if needed
   };
 }
-
  
-export default async function Page({ params }) {
+export default async function Page() {
   let data;
   let posts;
 
@@ -37,16 +33,17 @@ export default async function Page({ params }) {
     console.error("Error in Page component:", error);
   }
 
- // Separate the featured post
-  const featuredPost = posts.find(post => post.categories.includes(15));
-  const remainingPosts = posts.filter(post => !post.categories.includes(15));
+  // Separate the featured post
+  const featuredCategoryId = 15;
+  // Filter posts to get only those in the "Featured" category, then sort by date
+  const featuredPosts = posts.filter(post => post.categories.includes(featuredCategoryId));
+  const sortedFeaturedPosts = featuredPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  // Create a state variable to track the selected category
-  const availableTerms = ['All' , 'News', 'Pizza', 'Recipes'];
+  // Get the most recent featured post
+  const mostRecentFeaturedPost = sortedFeaturedPosts[0];
 
-  // const filteredPosts = selectedCategory 
-  //   ? remainingPosts.filter(post => post.categories.includes(selectedCategory))
-  //   : remainingPosts;
+  // Filter out the most recent featured post from all posts
+  const nonFeaturedPosts = posts.filter(post => post !== mostRecentFeaturedPost);
 
   return (
     <>
@@ -57,36 +54,15 @@ export default async function Page({ params }) {
             <div dangerouslySetInnerHTML={{ __html: data?.content.rendered }} />
           </div>
           {/* Render the featured post */}
-          {featuredPost && (
-            <Link href={`/about/blog/${featuredPost.slug}`}>
-              <BlogHero
-                post={featuredPost}
-                featuredImage={featuredPost._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}
-              />
-            </Link>
-          )}
-          {/* Render the category selector */}
-          <CategoryMenu
-            selectionTitle="Sort by:"
-            selectedCategory={"All"}
-            availableTerms={availableTerms}
-            // onCategorySelect={setSelectedCategory}
+          {mostRecentFeaturedPost && (
+          <Link href={`/about/blog/${mostRecentFeaturedPost.slug}`}>
+            <BlogHero
+              post={mostRecentFeaturedPost}
+              featuredImage={mostRecentFeaturedPost._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}
             />
-          <div className="responsive-equal-height-container">
-            {/* Render the remaining posts */}
-            {remainingPosts.map((post, index) => {
-              const featuredImageUrl = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg';
-
-              return (
-                <Link className='grid-box' key={index} href={`/about/blog/${post.slug}`}>
-                  <BlogCard
-                    post={post}
-                    featuredImage={featuredImageUrl}
-                  />
-                </Link>
-              );
-            })}
-          </div>
+          </Link>
+        )}
+          <BlogContent initialPosts={nonFeaturedPosts} />
         </div>
       </section>
     </div>

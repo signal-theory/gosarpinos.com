@@ -39,6 +39,53 @@ export async function fetchPostBySlug(slug) {
 
   return post;
 }
+export async function fetchCategories() {
+  try {
+    const response = await fetch(`${CPT_API_URL}/categories`);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    return [];
+  }
+}
+
+export async function getCategoryNamesByIds(categoryIds) {
+  const categories = await fetchCategories();
+  const categoryMap = categories.reduce((map, category) => {
+    map[category.id] = category.name;
+    return map;
+  }, {});
+
+  return categoryIds.map(catId => categoryMap[catId]).filter(name => name);
+}
+
+export async function fetchRelatedPosts(categoryId) {
+  // Adjust the URL and logic to fetch posts by category
+  //const response = await fetch(`${POSTS_API_URL}?category=${categoryId}&_embed`);
+
+ try {
+    const url = `${POSTS_API_URL}?category=${categoryId}&_embed`;
+
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`API call failed: ${response.status}`);
+    }
+
+    const relatedPosts = await response.json();
+
+    if (relatedPosts) {
+      relatedPosts.featuredImage = relatedPosts._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg';
+    }
+
+    return relatedPosts;
+  } catch (error) {
+    console.error("Error fetching related posts:", error);
+    return [];
+  }
+}
 
 
 // utils fetchPageData

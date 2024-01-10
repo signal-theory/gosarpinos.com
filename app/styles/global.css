@@ -187,7 +187,7 @@ a:focus {
   padding: 0;
 }
 .page-container {
-  width: calc(85% - 4rem);
+  width: calc(95% - 4rem);
   padding: 2rem;
   max-width: 1300px;
   margin: 0 auto;
@@ -212,9 +212,8 @@ a:focus {
 }
 .responsive-equal-height-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   grid-gap: 2rem;
-  grid-auto-rows: minmax(16rem, auto);
 }
 .responsive-equal-height-container .grid-box {
   display: flex;
@@ -232,6 +231,11 @@ a:focus {
   .responsive-twothirds-column-container .content,
   .responsive-column-container .content {
     width: calc(80% - 2rem);
+  }
+
+  .responsive-equal-height-container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(16rem, auto);
   }
 }
 

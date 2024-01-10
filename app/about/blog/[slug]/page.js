@@ -1,10 +1,16 @@
 // app/about/blog/[slug]/page.js
-import { fetchPostBySlug } from '../../../lib/utils';
+import { fetchPostBySlug, getCategoryNamesByIds, fetchRelatedPosts } from '../../../lib/utils';
 import Image from 'next/image';
+import Link from 'next/link';
+import BlogCard from '../BlogCard';
+import BlogRelated from '../BlogRelated';
+import BlogShare from '../BlogShare';
 import styles from './Single.module.css';
+
 
 export default async function Page({ params }) {
   let post;
+  let relatedPosts = [];
   
   try {
     post = await fetchPostBySlug(params.slug);
@@ -12,6 +18,32 @@ export default async function Page({ params }) {
     console.error("Error fetching post data:", error);
     // Handle the error appropriately
   }
+    
+  
+  let categoryNames = [];
+  if (post.categories) {
+    categoryNames = await getCategoryNamesByIds(post.categories);
+  }
+  
+  try {
+    post = await fetchPostBySlug(params.slug);
+
+    if (post && post.categories) {
+      // Fetch category names
+      categoryNames = await getCategoryNamesByIds(post.categories);
+
+      // Fetch related posts for the first category
+      const fetchedRelatedPosts = await fetchRelatedPosts(post.categories[0]);
+      if (Array.isArray(fetchedRelatedPosts)) {  // Ensure fetchedRelatedPosts is an array
+        relatedPosts = fetchedRelatedPosts;
+        // const featuredImageUrl = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg';
+      }
+    }
+  } catch (error) {
+    console.error("Error fetching post data:", error);
+  }
+  const featuredImageUrl = relatedPosts._embedded?.['wp:featuredmedia']?.source_url || '/default-image.jpg';
+
 
   // Return JSX with the post data
   return (
@@ -21,7 +53,9 @@ export default async function Page({ params }) {
           <div className="text-align-center">
             <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: post?.title?.rendered }} />
             <p className={styles.date}>
-              {post?.date && new Date(post.date).toLocaleDateString("en-US", {
+               {categoryNames && categoryNames.map((name, index) => (
+                <span key={index}>{name}</span>
+              ))} | {post?.date && new Date(post.date).toLocaleDateString("en-US", {
                 day: "numeric",
                 month: "long",
                 year: "numeric",
@@ -37,8 +71,13 @@ export default async function Page({ params }) {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             )}
-          </div>
+          </div> 
+          {/* Post Content */}
           <div className={styles.content} dangerouslySetInnerHTML={{ __html: post?.content?.rendered }} />
+          {/* Share This Post */}
+          <BlogShare post={post} />
+          {/* Related Posts */}
+          <BlogRelated relatedPosts={relatedPosts} />
         </div>
       </section>
     </div>
