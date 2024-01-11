@@ -53,12 +53,9 @@ export default async function Page() {
             categoryTitle={'Sort ' + postType} />
         </div>
       </section>
-      <section className="viewport cream-color">
-        <CalloutMenu />
-      </section>
-      <section className="viewport gray-color">
-        <CalloutMobileApp />
-      </section>
+      
+      <CalloutMenu />
+      <CalloutMobileApp />
     </div>
     </>
   );

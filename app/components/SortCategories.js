@@ -1,6 +1,6 @@
-import styles from './CategoryMenu.module.css';
+import styles from './SortCategories.module.css';
 
-const CategoryMenu = ({ selectionTitle, categories, selectedCategory, onCategorySelect }) => {
+const SortCategories = ({ selectionTitle, categories, selectedCategory, onCategorySelect }) => {
   const handleCategorySelect = (option) => {
     onCategorySelect(option); // Call the function passed as a prop
   };
@@ -28,4 +28,4 @@ const CategoryMenu = ({ selectionTitle, categories, selectedCategory, onCategory
   );
 };
 
-export default CategoryMenu;
+export default SortCategories;

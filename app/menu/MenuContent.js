@@ -1,36 +1,19 @@
 // about/menu/MenuContent.js
 'use client';
-import { useSearchParams } from 'next/navigation'
 import React, { useState, useEffect } from 'react';
 import MenuCard from './MenuCard';
-import CategoryMenu from '../components/CategoryMenu';
+import SortCategories from '../components/SortCategories';
 import { fetchACFImage } from '../lib/utils';
 
 
 const MenuContent = ({ posts, postType, categoryTitle }) => {
-  const searchParams = useSearchParams()
-  const urlParams = searchParams.get('selectedCategory')
-
-  const initialCategory = urlParams || 'All';
-  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
-
-
-  const [categories, setCategories] = useState([]); // New state for categories
   const [filteredPosts, setFilteredPosts] = useState(posts || []);
 
+  const [categories, setCategories] = useState([]); // New state for categories
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
-  // Function to fetch images for posts
-  const fetchImagesForPosts = async (postsToProcess) => {
+  const fetchImages = async (postsToProcess) => {
     return await Promise.all(postsToProcess.map(async post => {
-      const mainImage = post.acf.main_image ? await fetchACFImage(post.acf.main_image).catch(() => null) : null;
-      const hoverImage = post.acf.hover_image ? await fetchACFImage(post.acf.hover_image).catch(() => null) : null;
-      return { ...post, mainImage, hoverImage };
-    }));
-  };
-
-  useEffect(() => {
-    const fetchImages = async () => {
-    const postsWithImages = await Promise.all(posts.map(async post => {
       const mainImage = post.acf.main_image ? await fetchACFImage(post.acf.main_image).catch(e => {
         console.error(`Error fetching main image: ${e}`);
         return null;
@@ -42,15 +25,13 @@ const MenuContent = ({ posts, postType, categoryTitle }) => {
       
       return { ...post, mainImage, hoverImage };
     }));
-
-    setFilteredPosts(postsWithImages);
   };
 
+  useEffect(() => {
     if (posts) {
-      fetchImages();
+      fetchImages(posts).then(setFilteredPosts);
     }
   }, [posts]);
-
 
   useEffect(() => {
     // Extract unique categories from posts
@@ -65,13 +46,12 @@ const MenuContent = ({ posts, postType, categoryTitle }) => {
       : posts.filter(post => post.acf.menu_category?.includes(selectedCategory));
 
     // Fetch images for filtered posts
-    fetchImagesForPosts(filtered).then(setFilteredPosts);
+    fetchImages(filtered).then(setFilteredPosts);
   }, [selectedCategory, posts]);
-
 
   return (
     <>
-      {categories.length > 0 && <CategoryMenu
+      {categories.length > 0 && <SortCategories
         selectionTitle={categoryTitle}
         selectedCategory={selectedCategory}
         categories={categories}

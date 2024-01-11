@@ -2,7 +2,7 @@
 import { METADATABASE_API_URL } from '../../lib/constants';
 import { fetchMetadata, fetchPageData, fetchCPTData } from '../../lib/utils';
 import MenuHeader from '../MenuHeader';
-import MenuContent from '../MenuContent';
+import GFContent from '../GFContent';
 import CalloutMenu from '../../components/CalloutMenu';
 import CalloutMobileApp from '../../components/CalloutMobileApp';
 
@@ -47,18 +47,15 @@ export default async function Page() {
              pageContent={data.content.rendered}
             />
           {/* Render the menu posts */}
-          <MenuContent 
+          <GFContent 
             posts={posts} 
             postType={postType}
-            categoryTitle='Sort Gluten-Free Menu' />
+            categoryTitle='Sort Gluten Free Menu' />
         </div>
       </section>
-      <section className="viewport cream-color">
-        <CalloutMenu />
-      </section>
-      <section className="viewport gray-color">
-        <CalloutMobileApp />
-      </section>
+      
+      <CalloutMenu />
+      <CalloutMobileApp />
     </div>
     </>
   );

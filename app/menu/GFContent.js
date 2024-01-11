@@ -1,4 +1,4 @@
-// about/menu/VeganContent.js
+// about/menu/GFContent.js
 'use client';
 import React, { useState, useEffect } from 'react';
 import MenuCard from './MenuCard';
@@ -6,15 +6,15 @@ import SortPosts from '../components/SortPosts';
 import { fetchACFImage } from '../lib/utils';
 
 
-const VeganContent = ({ posts, postType, categoryTitle }) => {
+const GFContent = ({ posts, postType, categoryTitle }) => {
   const [filteredPosts, setFilteredPosts] = useState([]);
 
   const [categories, setCategories] = useState([]); // New state for categories
-  const [selectedCategory, setSelectedCategory] = useState('Vegan');
+  const [selectedCategory, setSelectedCategory] = useState('Gluten Free');
 
   const fetchImages = async (postsToProcess) => {
 
-    const veganPosts = postsToProcess.filter(post => post.acf.menu_category?.includes('Vegan'));
+    const veganPosts = postsToProcess.filter(post => post.acf.menu_category?.includes('Gluten Free'));
     return await Promise.all(veganPosts.map(async post => {
       const mainImage = post.acf.main_image ? await fetchACFImage(post.acf.main_image).catch(e => {
         console.error(`Error fetching main image: ${e}`);
@@ -44,8 +44,8 @@ const VeganContent = ({ posts, postType, categoryTitle }) => {
   useEffect(() => {
   // Filter posts based on selected post type and check for "vegan" category
   const filtered = selectedCategory === 'All'
-    ? posts.filter(post => post.acf.menu_category?.includes('Vegan'))
-    : posts.filter(post => post.type === selectedCategory && post.acf.menu_category?.includes('Vegan'));
+    ? posts.filter(post => post.acf.menu_category?.includes('Gluten Free'))
+    : posts.filter(post => post.type === selectedCategory && post.acf.menu_category?.includes('Gluten Free'));
 
   // Fetch images for filtered posts
   fetchImages(filtered).then(setFilteredPosts);
@@ -80,4 +80,4 @@ const VeganContent = ({ posts, postType, categoryTitle }) => {
   );
 };
 
-export default VeganContent;
+export default GFContent;
