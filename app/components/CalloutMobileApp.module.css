@@ -1,6 +1,7 @@
 .bkg {
   background-image: url("/pizza-background-callout-vertical.jpg");
   background-size: cover;
+  padding: calc(2vw + 2rem) 0;
 }
 .bkgImage {
   display: none;
@@ -9,14 +10,22 @@
   width: 90%;
   position: relative;
   margin: 0 auto;
-  padding-top: calc(40vw + 50px);
+  padding-top: calc(30vw + 20px);
 }
+.column {
+  padding: 0 1rem;
+}
+.coupon {
+  display: none;
+}
+
 @media screen and (min-width: 768px) {
   .bkg {
     background-image: none;
   }
   .bkgImage {
     display: block;
+    object-fit: cover;
   }
   .callout {
     width: 45%;
@@ -24,5 +33,8 @@
     right: 0;
     margin: 0 0 0 auto;
     padding-top: 0;
+  }
+  .coupon {
+    display: block;
   }
 }

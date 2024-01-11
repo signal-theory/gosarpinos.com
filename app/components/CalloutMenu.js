@@ -12,8 +12,8 @@ const MenuCallout = () => {
           </h3>
         </div>
         <div className={styles.buttons}>
-          <Link href="/" className={`${styles.button} btn primary-btn`}>See our vegan menu</Link>
-          <Link href="/" className={`${styles.button} btn grayscale-outline-btn`}>See our Gluten-free menu</Link>
+          <Link href="/menu/sarpinos-specialty-pizza?selectedTerm=Vegan" className={`${styles.button} btn primary-btn`}>See our vegan menu</Link>
+          <Link href="/menu/sarpinos-specialty-pizza?selectedTerm=Gluten Free" className={`${styles.button} btn grayscale-outline-btn`}>See our Gluten-free menu</Link>
         </div>
       </div>
       <Image src={'/heart-red-fill.svg'} width={30} height={30} className={styles.redFillHeart} alt="red fill heart" />

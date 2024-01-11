@@ -54,7 +54,7 @@ export default async function Page({ params }) {
       };
     }));
 
-    specialsData = await fetchCPTData('specials');
+    specialsData = await fetchCPTData(['specials']);
     cateringImage = await fetchACFImage(data.acf.catering_image);
 
   } catch (error) {

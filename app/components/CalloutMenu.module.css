@@ -26,7 +26,7 @@
   position: absolute;
   top: 13%;
   left: 42%;
-  animation: heartZoomUpDown 4s infinite;
+  animation: heartZoomUpDown 5s infinite;
 }
 .redOutlineHeart {
   position: absolute;
@@ -75,23 +75,23 @@
 }
 @keyframes heartSlideUpDown {
   0% {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
   60% {
-    transform: translateY(12px);
+    transform: translateY(12px) scale(1.2);
   }
   100% {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 @keyframes heartZoomUpDown {
   0% {
-    transform: translateY(0);
+    transform: translateY(0) scale(1.2);
   }
   60% {
-    transform: translateY(22px);
+    transform: translateY(22px) scale(1);
   }
   100% {
-    transform: translateY(0);
+    transform: translateY(0) scale(1.2);
   }
 }

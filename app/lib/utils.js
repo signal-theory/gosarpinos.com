@@ -98,17 +98,20 @@ export async function fetchPageData(pageId) {
 
 
 // utils fetchCPTData
-export async function fetchCPTData(cptName) {
-  const res = await fetch(`${CPT_API_URL}/${cptName}`, {
-    headers: {
-      'Accept': 'application/json'
+// utils.js
+export async function fetchCPTData(cptNames) {
+  const data = await Promise.all(cptNames.map(async (cptName) => {
+    const res = await fetch(`${CPT_API_URL}/${cptName}`, {
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    if (!res.ok) {
+      throw new Error(`Failed to fetch data for CPT: ${cptName}`);
     }
-  });
-  if (!res.ok) {
-    throw new Error(`Failed to fetch data for CPT: ${cptName}`);
-  }
-
-  return res.json();
+    return res.json();
+  }));
+  return data.flat();
 }
 
 // utils/fetchMetadata.js

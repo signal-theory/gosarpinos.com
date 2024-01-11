@@ -1,7 +1,7 @@
 import Image from 'next/image';
 const MenuHeader = ({ featuredImage, featuredImageAlt, pageTitle, pageContent }) => {
   return (
-    <div className="responsive-column-container" style={{margin: '1em 0'}}>
+    <div className="responsive-column-container" style={{margin: '1em 0 2em'}}>
       <div>
        {featuredImage && (
           <Image
@@ -14,7 +14,7 @@ const MenuHeader = ({ featuredImage, featuredImageAlt, pageTitle, pageContent })
         )}
       </div>
       <div className='flex-align-center'>
-        <h2 dangerouslySetInnerHTML={{ __html: pageTitle }} />
+        <h2 style={{margin: '0 auto 0 0'}} dangerouslySetInnerHTML={{ __html: pageTitle }} />
         <div dangerouslySetInnerHTML={{ __html: pageContent }} />
       </div>
     </div>

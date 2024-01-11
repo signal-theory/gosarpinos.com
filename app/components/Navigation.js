@@ -1,4 +1,5 @@
-'use client';
+'use client'
+
 import React, { useState, useEffect, useRef } from 'react';
 import { fetchPageData, fetchMediaData } from '../lib/utils';
 import Link from 'next/link';
@@ -9,6 +10,7 @@ import './Navigation.css';
 import logo from '../../public/sarpinos-logo.svg'
 
 export default function Navigation() {
+
   const [featuredImages, setFeaturedImages] = useState({});
   useEffect(() => {
     const pageIds = [91, 34, 170];
@@ -34,7 +36,6 @@ export default function Navigation() {
       }
     });
   }, []);
-
 
 
   // handle desktopmenu dropdowns
@@ -160,7 +161,7 @@ export default function Navigation() {
           <li className="subitem has-submenu with-thumbs">
             <ul>
               <li className="subitem">
-                <Link href="//menu/build-your-own" onClick={() => handleSubmenu('Menu')}>
+                <Link href="/menu/build-your-own" onClick={() => handleSubmenu('Menu')}>
                   {featuredImages[91] && (
                     <Image 
                       className="featured-image" 
@@ -187,7 +188,10 @@ export default function Navigation() {
                 </Link>
               </li>
               <li className="subitem">
-                <Link href="//menu/sarpinos-specialty-pizza?selectedTerm=Vegan" onClick={() => handleSubmenu('Menu')}>
+                <Link 
+                  href="/menu/vegan-pizza" 
+                  onClick={() => {  handleSubmenu('Menu');}}
+                >
                   {featuredImages[170] && (
                     <Image 
                       className="featured-image" 
@@ -205,7 +209,7 @@ export default function Navigation() {
             <ul>
               <li className="subitem"><Link href="/menu/sarpinos-specialty-pizza" onClick={() => handleSubmenu('Menu')}>Full Menu</Link></li>
               <li className="subitem"><Link href="/menu/vegan-menu" onClick={() => handleSubmenu('Menu')}>Vegan Menu</Link></li>
-              <li className="subitem"><Link href="/menu/sarpinos-specialty-pizza?selectedTerm=Gluten Free" onClick={() => handleSubmenu('Menu')}>Gluten-Free Menu</Link></li>
+              <li className="subitem"><Link href="/menu/gluten-free" onClick={() => handleSubmenu('Menu')}>Gluten-Free Menu</Link></li>
               <li className="subitem"><Link href="/menu/national-specials" onClick={() => handleSubmenu('Menu')}>Specials & Promotions</Link></li>
             </ul>
           </li>

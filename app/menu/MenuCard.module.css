@@ -7,6 +7,7 @@
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  margin-top: 2em;
 }
 
 .menuThumb a {
@@ -68,7 +69,7 @@
 .links {
   display: flex;
   align-items: center;
-  margin: 2rem 0;
+  margin: 1rem 0 2rem;
 }
 .link {
   margin-left: 1.5rem;

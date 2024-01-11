@@ -11,7 +11,7 @@ const CategoryMenu = ({ selectionTitle, categories, selectedCategory, onCategory
 
   return (
     <>
-      <h4 className="text-align-center" style={{ marginTop: '4rem' }}>{selectionTitle}</h4>
+      <h4 className={styles.title}>{selectionTitle}</h4>
       <div className={styles.categoryFilter}>
         {processedCategories.map((category, index) => (
           <button

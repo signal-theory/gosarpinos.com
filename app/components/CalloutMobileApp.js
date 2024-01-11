@@ -10,13 +10,12 @@ const CalloutMobileApp = () => {
         <Image 
           src="/pizza-background-callout.jpg"
           alt="Pizza Background"
-          layout="fill"
-          objectFit="cover"
+          fill
           className={styles.bkgImage}
           />
         <div className={styles.callout}>
           <div className="responsive-column-container">
-            <div style={{paddingRight: '2rem'}}>
+            <div className={styles.column}>
               <h3 className={styles.title}>
                 Order on our Mobile App
               </h3>
@@ -51,12 +50,13 @@ const CalloutMobileApp = () => {
                 />
             </div>
             </div>
-            <div>
+            <div className={styles.column}>
               <Image
                 src={"/mobile-order-coupon.webp"}
                 alt="Mobile Order Coupon"
                 width={200}
                 height={200}
+                className={styles.coupon}
               />
             </div>
           </div>

@@ -1,4 +1,4 @@
-// about/menu/MenuContent.js
+// about/menu/VeganContent.js
 'use client';
 import { useSearchParams } from 'next/navigation'
 import React, { useState, useEffect } from 'react';
@@ -15,9 +15,9 @@ const MenuContent = ({ posts, postType, categoryTitle }) => {
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
 
 
-  const [categories, setCategories] = useState([]); // New state for categories
+  const [categories, setCategories] = useState(''); // New state for categories
   const [filteredPosts, setFilteredPosts] = useState(posts || []);
-
+  const veganCategories = ['Pizza', 'Calzones', 'Salads', 'Pastas', 'Sandwiches', 'Breadsticks']
 
   // Function to fetch images for posts
   const fetchImagesForPosts = async (postsToProcess) => {
@@ -52,11 +52,11 @@ const MenuContent = ({ posts, postType, categoryTitle }) => {
   }, [posts]);
 
 
-  useEffect(() => {
-    // Extract unique categories from posts
-    const uniqueCategories = Array.from(new Set(posts.flatMap(post => post.acf.menu_category || [])));
-    setCategories(uniqueCategories.map(category => ({ name: category, id: category })));
-  }, [posts]);
+  // useEffect(() => {
+  //   // Extract unique categories from posts
+  //   const uniqueCategories = Array.from(new Set(posts.flatMap(post => post.acf.menu_category || [])));
+  //   setCategories(uniqueCategories.map(category => ({ name: category, id: category })));
+  // }, [posts]);
 
   useEffect(() => {
     // Filter posts based on selected category
@@ -71,10 +71,10 @@ const MenuContent = ({ posts, postType, categoryTitle }) => {
 
   return (
     <>
-      {categories.length > 0 && <CategoryMenu
+      {veganCategories.length > 0 && <CategoryMenu
         selectionTitle={categoryTitle}
         selectedCategory={selectedCategory}
-        categories={categories}
+        categories={veganCategories}
         onCategorySelect={setSelectedCategory}
       />}
 

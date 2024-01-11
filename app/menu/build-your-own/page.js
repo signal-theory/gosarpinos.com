@@ -1,4 +1,4 @@
-// /menu/pizza/page.js
+// /menu/build-your-own/page.js
 import { METADATABASE_API_URL } from '../../lib/constants';
 import { fetchMetadata, fetchPageData, fetchCPTData } from '../../lib/utils';
 import MenuHeader from '../MenuHeader';
@@ -6,8 +6,8 @@ import MenuContent from '../MenuContent';
 import CalloutMenu from '../../components/CalloutMenu';
 import CalloutMobileApp from '../../components/CalloutMobileApp';
 
-const pageId = 34;
-const postType = ['pizza'];
+const pageId = 91;
+const postType = ['build-your-own'];
 export async function generateMetadata() {
   const metadata = await fetchMetadata(pageId);
   
@@ -24,8 +24,6 @@ export async function generateMetadata() {
 }
  
 export default async function Page() {
-
-
   let data;
   let posts;
 
@@ -51,9 +49,8 @@ export default async function Page() {
           {/* Render the menu posts */}
           <MenuContent 
             posts={posts} 
-            postType="sarpinos-specialty-pizza"
-            categoryTitle="Sort Specialty Pizzas"
-            />
+            postType={postType}
+            categoryTitle={'Sort ' + postType} />
         </div>
       </section>
       <section className="viewport cream-color">
