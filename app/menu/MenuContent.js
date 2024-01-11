@@ -1,19 +1,23 @@
 // about/menu/MenuContent.js
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import MenuCard from './MenuCard';
 import SortCategories from '../components/SortCategories';
 import { fetchACFImage } from '../lib/utils';
 
-
-const MenuContent = ({ posts, postType, categoryTitle }) => {
+// This component is used to include the SortCategories component that sorts post by category
+const MenuContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
   const [filteredPosts, setFilteredPosts] = useState(posts || []);
 
   const [categories, setCategories] = useState([]); // New state for categories
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState(filterPostsBy || 'All');
 
-  const fetchImages = async (postsToProcess) => {
-    return await Promise.all(postsToProcess.map(async post => {
+  const fetchImages = useCallback(async (postsToProcess) => {
+    let filterPosts = postsToProcess;
+    if (filterPostsBy === 'Vegan' || filterPostsBy === 'Gluten Free') {
+      filterPosts = postsToProcess.filter(post => post.acf.menu_category?.includes(filterPostsBy));
+    }
+    return await Promise.all(filterPosts.map(async post => {
       const mainImage = post.acf.main_image ? await fetchACFImage(post.acf.main_image).catch(e => {
         console.error(`Error fetching main image: ${e}`);
         return null;
@@ -25,13 +29,13 @@ const MenuContent = ({ posts, postType, categoryTitle }) => {
       
       return { ...post, mainImage, hoverImage };
     }));
-  };
+  }, [filterPostsBy]);
 
   useEffect(() => {
     if (posts) {
       fetchImages(posts).then(setFilteredPosts);
     }
-  }, [posts]);
+  }, [posts, fetchImages]);
 
   useEffect(() => {
     // Extract unique categories from posts
@@ -47,7 +51,7 @@ const MenuContent = ({ posts, postType, categoryTitle }) => {
 
     // Fetch images for filtered posts
     fetchImages(filtered).then(setFilteredPosts);
-  }, [selectedCategory, posts]);
+  }, [selectedCategory, posts, fetchImages]);
 
   return (
     <>

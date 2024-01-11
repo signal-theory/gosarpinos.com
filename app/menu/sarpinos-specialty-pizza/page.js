@@ -50,7 +50,7 @@ export default async function Page() {
             />
           {/* Render the menu posts */}
           <MenuContent 
-            posts={posts} 
+            posts={posts}
             postType="sarpinos-specialty-pizza"
             categoryTitle="Sort Specialty Pizzas"
             />

@@ -1,21 +1,23 @@
-// about/menu/VeganContent.js
+// about/menu/PostContent.js
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import MenuCard from './MenuCard';
 import SortPosts from '../components/SortPosts';
 import { fetchACFImage } from '../lib/utils';
 
-
-const VeganContent = ({ posts, postType, categoryTitle }) => {
+// This component is used to include the SortPosts component that sorts by post type
+const PostContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
   const [filteredPosts, setFilteredPosts] = useState([]);
 
   const [categories, setCategories] = useState([]); // New state for categories
-  const [selectedCategory, setSelectedCategory] = useState('Vegan');
+  const [selectedCategory, setSelectedCategory] = useState(filterPostsBy || 'All');
 
-  const fetchImages = async (postsToProcess) => {
-
-    const veganPosts = postsToProcess.filter(post => post.acf.menu_category?.includes('Vegan'));
-    return await Promise.all(veganPosts.map(async post => {
+  const fetchImages =  useCallback(async (postsToProcess) => {
+    let filterPosts = postsToProcess;
+    if (filterPostsBy === 'Vegan' || filterPostsBy === 'Gluten Free') {
+      filterPosts = postsToProcess.filter(post => post.acf.menu_category?.includes(filterPostsBy));
+    }
+    return await Promise.all(filterPosts.map(async post => {
       const mainImage = post.acf.main_image ? await fetchACFImage(post.acf.main_image).catch(e => {
         console.error(`Error fetching main image: ${e}`);
         return null;
@@ -27,13 +29,13 @@ const VeganContent = ({ posts, postType, categoryTitle }) => {
       
       return { ...post, mainImage, hoverImage };
     }));
-  };
+  }, [filterPostsBy]);
 
   useEffect(() => {
     if (posts) {
       fetchImages(posts).then(setFilteredPosts);
     }
-  }, [posts]);
+  }, [posts, fetchImages]);
   
   useEffect(() => {
     // Set these as your categories
@@ -44,12 +46,12 @@ const VeganContent = ({ posts, postType, categoryTitle }) => {
   useEffect(() => {
   // Filter posts based on selected post type and check for "vegan" category
   const filtered = selectedCategory === 'All'
-    ? posts.filter(post => post.acf.menu_category?.includes('Vegan'))
-    : posts.filter(post => post.type === selectedCategory && post.acf.menu_category?.includes('Vegan'));
+    ? posts.filter(post => post.acf.menu_category?.includes(filterPostsBy))
+    : posts.filter(post => post.type === selectedCategory && post.acf.menu_category?.includes(filterPostsBy));
 
   // Fetch images for filtered posts
   fetchImages(filtered).then(setFilteredPosts);
-}, [selectedCategory, posts]);
+}, [selectedCategory, posts, fetchImages, filterPostsBy]);
 
 
   return (
@@ -80,4 +82,4 @@ const VeganContent = ({ posts, postType, categoryTitle }) => {
   );
 };
 
-export default VeganContent;
+export default PostContent;

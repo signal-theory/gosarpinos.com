@@ -50,7 +50,8 @@ export default async function Page() {
           <MenuContent 
             posts={posts} 
             postType={postType}
-            categoryTitle='Sort Vegan Pizza' />
+            categoryTitle='Sort Vegan Pizza'
+            filterPostsBy='Vegan' />
         </div>
       </section>
       
