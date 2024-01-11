@@ -38,7 +38,7 @@ const GFContent = ({ posts, postType, categoryTitle }) => {
   useEffect(() => {
     // Set these as your categories
     setCategories(postType.map(postType => ({ type: postType })));
-  }, [posts]);
+  }, [posts, postType]);
 
 
   useEffect(() => {

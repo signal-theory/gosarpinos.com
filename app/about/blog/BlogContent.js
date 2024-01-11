@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import BlogCard from './BlogCard';
-import CategoryMenu from '../../components/CategoryMenu';
+import SortCategories from '../../components/SortCategories';
 import { fetchCategories } from '../../lib/utils';
 
 
@@ -41,7 +41,7 @@ const BlogContent = ({ initialPosts }) => {
 
   return (
     <>
-      <CategoryMenu
+      <SortCategories
         selectionTitle="Sort by:"
         selectedCategory={selectedCategory}
         categories={categories}
