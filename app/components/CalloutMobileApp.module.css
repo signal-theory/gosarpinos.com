@@ -2,6 +2,7 @@
   background-image: url("/pizza-background-callout-vertical.jpg");
   background-size: cover;
   padding: calc(2vw + 2rem) 0;
+  color: var(--cream-color);
 }
 .bkgImage {
   display: none;

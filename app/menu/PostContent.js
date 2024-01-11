@@ -7,8 +7,9 @@ import { fetchACFImage } from '../lib/utils';
 
 // This component is used to include the SortPosts component that sorts by post type
 const PostContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
+  
+  const [loading, setLoading] = useState(true);
   const [filteredPosts, setFilteredPosts] = useState([]);
-
   const [categories, setCategories] = useState([]); // New state for categories
   const [selectedCategory, setSelectedCategory] = useState(filterPostsBy || 'All');
 
@@ -31,9 +32,14 @@ const PostContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
     }));
   }, [filterPostsBy]);
 
-  useEffect(() => {
+ useEffect(() => {
+    setLoading(true);
     if (posts) {
-      fetchImages(posts).then(setFilteredPosts);
+      const shuffledPosts = [...posts].sort(() => Math.random() - 0.5);
+      fetchImages(shuffledPosts).then(posts => {
+        setFilteredPosts(posts);
+        setLoading(false);
+      });
     }
   }, [posts, fetchImages]);
   
@@ -44,14 +50,19 @@ const PostContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
 
 
   useEffect(() => {
-  // Filter posts based on selected post type and check for "vegan" category
-  const filtered = selectedCategory === 'All'
-    ? posts.filter(post => post.acf.menu_category?.includes(filterPostsBy))
-    : posts.filter(post => post.type === selectedCategory && post.acf.menu_category?.includes(filterPostsBy));
+    setLoading(true);
+    // Filter posts based on selected post type and check for {filterPostsBy} category
+    const filtered = selectedCategory === 'All'
+      ? posts.filter(post => post.acf.menu_category?.includes(filterPostsBy))
+      : posts.filter(post => post.type === selectedCategory && post.acf.menu_category?.includes(filterPostsBy));
 
-  // Fetch images for filtered posts
-  fetchImages(filtered).then(setFilteredPosts);
-}, [selectedCategory, posts, fetchImages, filterPostsBy]);
+    // Shuffle the filtered posts
+    const shuffledPosts = [...filtered].sort(() => Math.random() - 0.5);
+    fetchImages(shuffledPosts).then(posts => {
+        setFilteredPosts(posts);
+        setLoading(false);
+    });
+  }, [selectedCategory, posts, fetchImages, filterPostsBy]);
 
 
   return (
@@ -63,13 +74,16 @@ const PostContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
         onPostTypeSelect={setSelectedCategory}
       />}
 
+    {loading ? (
+        <div className="loading">Loading...</div>
+      ) : (
       <div className="responsive-equal-height-container">
         {filteredPosts.map((post, index) => {
           return (
               <MenuCard 
                 key={index}
                 post={post}
-                postType={postType}
+                postType={post.type}
                 hoverImage={post.hoverImage ? post.hoverImage.sourceUrl : null}
                 hoverAlt={post.hoverImage ? post.hoverImage.altText : ''}
                 featuredImage={post.mainImage ? post.mainImage.sourceUrl : null}
@@ -78,6 +92,7 @@ const PostContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
           )
         })}
       </div>
+      )}
     </>
   );
 };

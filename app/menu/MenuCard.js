@@ -12,7 +12,7 @@ const MenuCard = ({ post, postType, hoverImage, hoverAlt, featuredImage, feature
     <>
       <div className={styles.container}>
         <div className={styles.menuThumb}>
-         <Link href={url}>
+         <Link href={url} className='fade-in'>
           {hoverImage && (
             <Image
               alt={hoverAlt}

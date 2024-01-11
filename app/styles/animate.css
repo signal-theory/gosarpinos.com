@@ -8,7 +8,7 @@
 }
 .fade-in {
   opacity: 0;
-  animation: 3s fadeIn ease-in-out forwards;
+  animation: 1s fadeIn ease-in-out forwards;
 }
 
 @keyframes slideUpIn {

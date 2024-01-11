@@ -1,6 +1,47 @@
 import { POSTS_API_URL, PAGES_API_URL, CPT_API_URL, MEDIA_API_URL } from './constants';
 import he from 'he';
 
+// utils/fetchMetadata.js
+export async function fetchMetadata(pageId) {
+  const res = await fetch(`${PAGES_API_URL}/${pageId}`);
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch metadata');
+  }
+
+  const data = await res.json();
+  const yoastMetadata = data.yoast_head_json;
+  const ogImage = yoastMetadata.og_image ? yoastMetadata.og_image[0].url : null;
+
+
+  // Return only the title and description
+  return {
+    title: he.decode(yoastMetadata.title),
+    description: he.decode(yoastMetadata.description),
+    ogImage: ogImage
+    // You can add more fields here if needed
+  };
+}
+
+// utils/fetchCPTMetadataBySlug.js
+export async function fetchCPTMetadataBySlug(slug, cptName) {
+  const res = await fetch(`${CPT_API_URL}/${cptName}?slug=${slug}`);
+  console.log('api',` ${CPT_API_URL}/${cptName}?slug=${slug}`);
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch metadata');
+  }
+
+  const data = await res.json();
+  const yoastMetadata = data.yoast_head_json;
+  const ogImage = yoastMetadata && yoastMetadata.og_image ? yoastMetadata.og_image[0].url : null;
+
+  return {
+    title: yoastMetadata ? he.decode(yoastMetadata.title) : null,
+    description: yoastMetadata ? he.decode(yoastMetadata.description) : null,
+    ogImage: ogImage
+  };
+}
 // utils fetchPostData
 export async function fetchPostData() {
   try {
@@ -26,6 +67,7 @@ export async function fetchPostData() {
     return []; // Return an empty array in case of error
   }
 }
+
 // utils/fetchPostBySlug.js
 export async function fetchPostBySlug(slug) {
   const response = await fetch(`${POSTS_API_URL}?slug=${slug}&_embed`);
@@ -39,6 +81,7 @@ export async function fetchPostBySlug(slug) {
 
   return post;
 }
+
 export async function fetchCategories() {
   try {
     const response = await fetch(`${CPT_API_URL}/categories`);
@@ -114,26 +157,18 @@ export async function fetchCPTData(cptNames) {
   return data.flat();
 }
 
-// utils/fetchMetadata.js
-export async function fetchMetadata(pageId) {
-  const res = await fetch(`${PAGES_API_URL}/${pageId}`);
+// utils/fetchCPTBySlug.js
+export async function fetchCPTBySlug(slug, cptName) {
+  const response = await fetch(`${CPT_API_URL}/${cptName}?slug=${slug}&_embed`);
+  const posts = await response.json();
+  // Assuming only one post will be returned for a given slug
+  const post = posts[0] || null;
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch metadata');
+  if (post) {
+    post.featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg';
   }
 
-  const data = await res.json();
-  const yoastMetadata = data.yoast_head_json;
-  const ogImage = yoastMetadata.og_image ? yoastMetadata.og_image[0].url : null;
-
-
-  // Return only the title and description
-  return {
-    title: he.decode(yoastMetadata.title),
-    description: he.decode(yoastMetadata.description),
-    ogImage: ogImage
-    // You can add more fields here if needed
-  };
+  return post;
 }
 
 // utils fetchACFImage

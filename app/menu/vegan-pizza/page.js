@@ -49,7 +49,7 @@ export default async function Page() {
           {/* Render the menu posts */}
           <MenuContent 
             posts={posts} 
-            postType={postType}
+            postType="sarpinos-specialty-pizza"
             categoryTitle='Sort Vegan Pizza'
             filterPostsBy='Vegan' />
         </div>

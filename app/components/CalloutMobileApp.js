@@ -6,7 +6,7 @@ import stylesF from './Footer.module.css';
 const CalloutMobileApp = () => {
   return (
     <>
-      <section className={`viewport ${styles.bkg}`}>
+      <section className={`viewport gray-color ${styles.bkg}`}>
         <Image 
           src="/pizza-background-callout.jpg"
           alt="Pizza Background"

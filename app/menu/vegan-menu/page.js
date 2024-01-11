@@ -34,7 +34,6 @@ export default async function Page() {
   } catch (error) {
     console.error("Error in Page component:", error);
   }
-
   return (
     <>
     <div>

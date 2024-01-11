@@ -7,10 +7,11 @@ import { fetchACFImage } from '../lib/utils';
 
 // This component is used to include the SortCategories component that sorts post by category
 const MenuContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
+  
+  const [loading, setLoading] = useState(true);
   const [filteredPosts, setFilteredPosts] = useState(posts || []);
-
   const [categories, setCategories] = useState([]); // New state for categories
-  const [selectedCategory, setSelectedCategory] = useState(filterPostsBy || 'All');
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   const fetchImages = useCallback(async (postsToProcess) => {
     let filterPosts = postsToProcess;
@@ -32,8 +33,13 @@ const MenuContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
   }, [filterPostsBy]);
 
   useEffect(() => {
+    setLoading(true);
     if (posts) {
-      fetchImages(posts).then(setFilteredPosts);
+      const shuffledPosts = [...posts].sort(() => Math.random() - 0.5);
+      fetchImages(shuffledPosts).then(posts => {
+        setFilteredPosts(posts);
+        setLoading(false);
+      });
     }
   }, [posts, fetchImages]);
 
@@ -44,14 +50,21 @@ const MenuContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
   }, [posts]);
 
   useEffect(() => {
+    setLoading(true);
     // Filter posts based on selected category
     const filtered = selectedCategory === 'All'
       ? posts
       : posts.filter(post => post.acf.menu_category?.includes(selectedCategory));
 
-    // Fetch images for filtered posts
-    fetchImages(filtered).then(setFilteredPosts);
-  }, [selectedCategory, posts, fetchImages]);
+      // Shuffle the filtered posts
+      const shuffledPosts = [...filtered].sort(() => Math.random() - 0.5);
+
+      // Fetch images for shuffled posts
+      fetchImages(shuffledPosts).then(posts => {
+        setFilteredPosts(posts);
+        setLoading(false);
+      });
+    }, [selectedCategory, posts, fetchImages]);
 
   return (
     <>
@@ -61,8 +74,10 @@ const MenuContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
         categories={categories}
         onCategorySelect={setSelectedCategory}
       />}
-
-      <div className="responsive-equal-height-container">
+      {loading ? (
+        <div className="loading">Loading...</div>
+      ) : (
+      <div className="responsive-equal-height-container fade-in">
         {filteredPosts.map((post, index) => {
           return (
               <MenuCard 
@@ -77,6 +92,7 @@ const MenuContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
           )
         })}
       </div>
+      )}
     </>
   );
 };
