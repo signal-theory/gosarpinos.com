@@ -5,7 +5,7 @@ import styles from '../components/Footer.module.css'
 const ShareThis = ({ headline, post }) => {
   return (
     <div className="text-align-center">
-      <h3>{headline}</h3>
+      {headline && <h3>{headline}</h3>}
        <div className={styles.iconLinks} style={{justifyContent: 'center', margin: '1rem auto 8rem'}}>
         <Link href={`https://www.facebook.com/sharer/sharer.php?u=${post.link}`}>
             <Image

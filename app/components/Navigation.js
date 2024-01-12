@@ -228,10 +228,12 @@ export default function Navigation() {
         </li>
         <li className="item has-submenu"><a tabIndex="0" className={`${activeMobileMenus['Menu'] ? 'active' : ''}`} onClick={() => handleMobileSubmenu('Menu')}>Menu</a>
           <ul className={`item submenu ${activeMobileMenus['Menu'] ? 'active' : ''}`}>
-            <li className="subitem"><Link href="/menu/national-specials" onClick={handleMobile}>National Specials</Link></li>
-            <li className="subitem"><Link href="/menu/build-your-own" onClick={handleMobile}>Build Your Own</Link></li>
-            <li className="subitem"><Link href="/menu/sarpinos-specialty-pizza" onClick={handleMobile}>Specialty Pizza</Link></li>
-            <li className="subitem"><Link href="/menu/calzones" onClick={handleMobile}>Calzones</Link></li>
+             <li className="subitem"><Link href="/menu/sarpinos-specialty-pizza" onClick={handleMobile}>Full Menu</Link></li>
+             <li className="subitem"><Link href="/menu/build-your-own" onClick={handleMobile}>Build Your Own</Link></li>
+              <li className="subitem"><Link href="/menu/vegan-menu" onClick={handleMobile}>Vegan Menu</Link></li>
+              <li className="subitem"><Link href="/menu/gluten-free" onClick={handleMobile}>Gluten-Free Menu</Link></li>
+              <li className="subitem"><Link href="/menu/national-specials" onClick={handleMobile}>Specials & Promotions</Link></li>
+            
           </ul>
         </li>
         <li className="item"><Link href="/catering" onClick={handleMobile}>Catering</Link></li>

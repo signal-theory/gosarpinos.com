@@ -12,17 +12,19 @@ const SortCategories = ({ selectionTitle, categories, selectedCategory, onCatego
   return (
     <>
       <h4 className={styles.title}>{selectionTitle}</h4>
-      <div className={styles.categoryFilter}>
-        {processedCategories.map((category, index) => (
-          <button
-            onClick={() => handleCategorySelect(category.name)} // Assuming 'name' is the property for the category name
-            key={`term${index}`}
-            value={category.id} // Assuming 'id' is the property for the category ID
-            className={selectedCategory === category.name ? styles.active : ''}
-          >
-            {category.name}
-          </button>
-        ))}
+      <div className={styles.container}>
+        <div className={styles.categoryFilter}>
+          {processedCategories.map((category, index) => (
+            <button
+              onClick={() => handleCategorySelect(category.name)} // Assuming 'name' is the property for the category name
+              key={`term${index}`}
+              value={category.id} // Assuming 'id' is the property for the category ID
+              className={selectedCategory === category.name ? styles.active : ''}
+            >
+              {category.name}
+            </button>
+          ))}
+        </div>
       </div>
     </>
   );

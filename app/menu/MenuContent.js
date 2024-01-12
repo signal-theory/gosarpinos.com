@@ -52,7 +52,7 @@ const MenuContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
   useEffect(() => {
     setLoading(true);
     // Filter posts based on selected category
-    const filtered = selectedCategory === 'All'
+    const filtered = selectedCategory === `All ${postType}`
       ? posts
       : posts.filter(post => post.acf.menu_category?.includes(selectedCategory));
 
@@ -64,12 +64,13 @@ const MenuContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
         setFilteredPosts(posts);
         setLoading(false);
       });
-    }, [selectedCategory, posts, fetchImages]);
+    }, [selectedCategory, posts, fetchImages, postType]);
 
   return (
     <>
       {categories.length > 0 && <SortCategories
         selectionTitle={categoryTitle}
+        postType={postType}
         selectedCategory={selectedCategory}
         categories={categories}
         onCategorySelect={setSelectedCategory}

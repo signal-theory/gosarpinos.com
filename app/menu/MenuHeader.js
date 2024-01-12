@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import styles from './MenuHeader.module.css';
 const MenuHeader = ({ featuredImage, featuredImageAlt, pageTitle, pageContent }) => {
   return (
     <div className="responsive-column-container" style={{margin: '1em 0 2em'}}>
@@ -9,7 +10,8 @@ const MenuHeader = ({ featuredImage, featuredImageAlt, pageTitle, pageContent })
             src={featuredImage}
             width={650}
             height={400}
-            style={{objectFit: 'cover'}}
+            className={styles.image}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
             />
         )}
       </div>

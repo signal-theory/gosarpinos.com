@@ -48,6 +48,11 @@ font-weight: 900; */
     var(--green-color),
     var(--lightgreen-color)
   );
+  --museo-sans: museo-sans, Verdana, Geneva, Tahoma, sans-serif;
+  --museo-slab: museo-slab, Cambria, Cochin, Georgia, Times, "Times New Roman",
+    serif;
+  --nexa-rust: nexa-rust-sans-black-2, Impact, Haettenschweiler,
+    "Arial Narrow Bold", sans-serif;
 
   background-color: var(--bkg-color);
   /* background: var(--bkg-red-gradient); 
@@ -291,24 +296,21 @@ h2,
 h3,
 h5,
 h6 {
-  font-family: nexa-rust-sans-black-2, Impact, Haettenschweiler,
-    "Arial Narrow Bold", sans-serif;
+  font-family: var(--nexa-rust);
   font-weight: 900;
   font-style: normal;
   line-height: 1.1;
   margin: 0 0 0.5em 0;
 }
 h4 {
-  font-family: museo-slab, Cambria, Cochin, Georgia, Times, "Times New Roman",
-    serif;
-  font-weight: 700;
+  font-family: var(--museo-slab);
+  font-weight: 500;
   font-style: normal;
   line-height: 1.1;
   margin: 0 0 0.5em 0;
 }
 h6 {
-  font-family: museo-slab, Cambria, Cochin, Georgia, Times, "Times New Roman",
-    serif;
+  font-family: var(--museo-slab);
   font-weight: 700;
   font-style: normal;
   line-height: 1.1;
@@ -337,7 +339,7 @@ h5 {
   font-size: clamp(1.25rem, 3.5vw, 1.5rem);
 }
 h6 {
-  font-size: clamp(1.1rem, 1.5vw, 1rem);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
 }
 
 /* HTML elements */
@@ -350,7 +352,7 @@ a.btn {
   line-height: 0;
   font-size: 0.875em;
   font-weight: 500;
-  font-family: nexa-rust-sans-black-2, sans-serif;
+  font-family: var(--nexa-rust);
   color: #ffffff;
   cursor: pointer;
   overflow: hidden;
@@ -459,7 +461,7 @@ input {
   border-radius: 200px;
   border: 2px solid #ffffff;
   background: var(--cream-color);
-  font-family: museo-sans, Verdana, Geneva, Tahoma, sans-serif;
+  font-family: var(--museo-sans));
   font-weight: 500;
   font-style: normal;
 }

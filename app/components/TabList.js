@@ -1,14 +1,13 @@
-import React from 'react';
-
+import styles from './TabList.module.css';
 const TabList = ({ activeTab, tabs }) => (
-  <ul className="tab-list">
+  <ul className={styles.tabList}>
     {tabs.map((tab, index) => (
       <li
         key={index}
-        className={activeTab === tab.id ? "active" : ""}
+        className={`${styles.tabItem} ${activeTab === tab.id ? styles.active : ""}`}
         onClick={tab.handler}
       >
-        {tab.label}
+        <span>{tab.label}</span>
       </li>
     ))}
   </ul>

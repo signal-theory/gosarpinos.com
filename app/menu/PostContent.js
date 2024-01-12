@@ -6,7 +6,7 @@ import SortPosts from '../components/SortPosts';
 import { fetchACFImage } from '../lib/utils';
 
 // This component is used to include the SortPosts component that sorts by post type
-const PostContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
+const PostContent = ({ posts, pageSlug, postType, categoryTitle, filterPostsBy }) => {
   
   const [loading, setLoading] = useState(true);
   const [filteredPosts, setFilteredPosts] = useState([]);

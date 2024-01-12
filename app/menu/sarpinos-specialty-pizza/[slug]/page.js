@@ -4,15 +4,19 @@ import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchACFImage } from '../../../
 import { METADATABASE_API_URL } from '../../../lib/constants';
 import Image from 'next/image';
 import OrderBtn from '@/app/components/OrderBtn';
-import TabContent from '@/app/components/TabContent';
-import TabList from '@/app/components/TabList';
+import ShareToggle from '@/app/components/ShareToggle';
+import ItemTabs from '../../ItemTabs';
 import CalloutMobileApp from '@/app/components/CalloutMobileApp';
+import ItemInfo from '../../ItemInfo';
+import ItemAllergens from '../../ItemAllergens';
+import styles from './Single.module.css';
 
 export async function generateMetadata({params}) {
   console.log('Post ID:', params.slug); // Log the slug
   const metadata = await fetchCPTMetadataBySlug(params.slug, 'pizza');
   
   const metadataBase = METADATABASE_API_URL;
+
   
   return {
     metadataBase,
@@ -52,6 +56,12 @@ export default async function Page({ params }) {
   }
   console.log('Post FeaturedImage:', post.featuredImage);
 
+
+  const content = [
+    { id: 'tab1', component: <ItemInfo /> },
+    { id: 'tab2', component: <ItemAllergens /> },
+    // Add more content as needed
+  ];
   
   return (
     <>
@@ -72,13 +82,16 @@ export default async function Page({ params }) {
                 alt={mainImage.altText} 
                 width={612}
                 height={678}
-                style={{objectFit: 'cover'}}
+                className={styles.image}
               />
               </div>
               <div>
+                <ShareToggle post={post} /> 
                 <h1 dangerouslySetInnerHTML={{ __html: post?.title?.rendered }} />
                 <div dangerouslySetInnerHTML={{ __html: post?.content?.rendered }} />
                 <OrderBtn />
+                <ItemTabs
+                  content={content} />
               </div>
             </div>
           </div>
