@@ -32,7 +32,7 @@ const ItemInfo = () => {
     setActiveSize("size5");
     setMultiplier(3);
   };
-  const activeClass = styles.active;
+  
   return (
     <div className={styles.itemInfo}>
       <div className={styles.sizes}>

@@ -18,7 +18,7 @@ const MenuCard = ({ post, postType, hoverImage, hoverAlt, featuredImage, feature
               alt={hoverAlt}
               src={hoverImage}
               width={500}
-              height={300}
+              height={500}
               className={styles.hoverImage}
             />
           )}
@@ -27,14 +27,13 @@ const MenuCard = ({ post, postType, hoverImage, hoverAlt, featuredImage, feature
               alt={featuredAlt}
               src={featuredImage}
               width={500}
-              height={300}
+              height={500}
               className={styles.image}
             />
           )}
         </Link>
         </div>
         <div className={styles.label}>
-          
           <h2 className={styles.title} dangerouslySetInnerHTML={{ __html: post?.title?.rendered }} />
           <p
             className={styles.caption}

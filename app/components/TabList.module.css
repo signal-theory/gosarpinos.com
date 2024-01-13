@@ -5,6 +5,9 @@
   margin: 1rem auto;
   border-bottom: 1px solid var(--green-color);
 }
+.tabList.greenTabs {
+  border-bottom: 1px solid var(--cream-color);
+}
 .tabItem {
   font-family: var(--museo-slab), serif;
   font-weight: 300;
@@ -28,4 +31,8 @@
   height: 3px;
   border-radius: 3px;
   background-color: var(--green-color);
+}
+
+.greenTabs .tabItem.active::after {
+  background-color: var(--cream-color);
 }

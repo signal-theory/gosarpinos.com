@@ -1,6 +1,6 @@
 import styles from './TabList.module.css';
-const TabList = ({ activeTab, tabs }) => (
-  <ul className={styles.tabList}>
+const TabList = ({ activeTab, tabs, bkgVariant }) => (
+  <ul className={`${styles.tabList}  ${bkgVariant === "green" ? styles.greenTabs : ""}`}>
     {tabs.map((tab, index) => (
       <li
         key={index}

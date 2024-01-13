@@ -3,7 +3,7 @@ import {useState} from 'react';
 import TabList from "../components/TabList";
 import TabContent from "../components/TabContent";
 
-const ItemTabs = ({content}) => {
+const ItemTabs = ({bkgVariant, tab1, tab2, content}) => {
 
   const [activeTab, setActiveTab] = useState("tab1");
   //  Functions to handle Tab Switching
@@ -17,14 +17,15 @@ const ItemTabs = ({content}) => {
   };
 
   const tabs = [
-    { id: 'tab1', label: 'Nutritional Info', handler: handleTab1 },
-    { id: 'tab2', label: 'Allergens', handler: handleTab2 },
+    { id: 'tab1', label: tab1, handler: handleTab1 },
+    { id: 'tab2', label: tab2, handler: handleTab2 },
     // Add more tabs as needed
   ];
 
   return (
     <div className="tab-container">
       <TabList
+        bkgVariant={bkgVariant}
         activeTab={activeTab}
         tabs={tabs} />
       <TabContent

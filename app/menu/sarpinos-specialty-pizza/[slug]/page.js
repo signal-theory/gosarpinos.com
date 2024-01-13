@@ -11,9 +11,10 @@ import ItemInfo from '../../ItemInfo';
 import ItemAllergens from '../../ItemAllergens';
 import styles from './Single.module.css';
 
+const postType = 'pizza';
 export async function generateMetadata({params}) {
   console.log('Post ID:', params.slug); // Log the slug
-  const metadata = await fetchCPTMetadataBySlug(params.slug, 'pizza');
+  const metadata = await fetchCPTMetadataBySlug(params.slug, postType);
   
   const metadataBase = METADATABASE_API_URL;
 
@@ -36,7 +37,7 @@ export default async function Page({ params }) {
   let hoverImage;
 
   try {
-    post = await fetchCPTBySlug(params.slug, 'pizza');
+    post = await fetchCPTBySlug(params.slug, postType);
     
     mainImage = post?.acf.main_image ? await fetchACFImage(post?.acf.main_image).catch(e => {
       console.error(`Error fetching main image: ${e}`);
@@ -57,12 +58,12 @@ export default async function Page({ params }) {
   console.log('Post FeaturedImage:', post.featuredImage);
 
 
+  
   const content = [
     { id: 'tab1', component: <ItemInfo /> },
     { id: 'tab2', component: <ItemAllergens /> },
     // Add more content as needed
   ];
-  
   return (
     <>
      <Head>
@@ -91,6 +92,8 @@ export default async function Page({ params }) {
                 <div dangerouslySetInnerHTML={{ __html: post?.content?.rendered }} />
                 <OrderBtn />
                 <ItemTabs
+                  tab1="Nutritional Info"
+                  tab2="Allergens"
                   content={content} />
               </div>
             </div>
