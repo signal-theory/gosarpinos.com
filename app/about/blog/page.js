@@ -22,7 +22,7 @@ export async function generateMetadata() {
   };
 }
  
-export default async function Page() {
+export default async function Page({params}) {
   let data;
   let posts;
 

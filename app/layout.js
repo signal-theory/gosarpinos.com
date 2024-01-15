@@ -7,7 +7,6 @@ import './styles/global.css'
 import './styles/animate.css';
 
 
-
 export default function RootLayout({ children }) {
  return (
     <html lang="en">

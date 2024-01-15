@@ -13,11 +13,10 @@ import styles from './Single.module.css';
 
 const postType = 'calzones';
 export async function generateMetadata({params}) {
-  console.log('Post ID:', params.slug); // Log the slug
-  const metadata = await fetchCPTMetadataBySlug(params.slug, postType);
+  const postId = params.slug;
+  const metadata = await fetchCPTMetadataBySlug(postId, postType);
   
   const metadataBase = METADATABASE_API_URL;
-
   
   return {
     metadataBase,
@@ -25,7 +24,8 @@ export async function generateMetadata({params}) {
     description: metadata.description,
     openGraph: {
       images: metadata.ogImage ? [{ url: metadata.ogImage }] : []
-    }
+    },
+    // Add other metadata properties if needed
   };
 }
 

@@ -1,7 +1,6 @@
 // app/menu/[cptName]/[slug]/page.js
-import Head from 'next/head';
-import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchACFImage } from '../../../lib/utils';
 import { METADATABASE_API_URL } from '../../../lib/constants';
+import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchACFImage } from '../../../lib/utils';
 import Image from 'next/image';
 import OrderBtn from '@/app/components/OrderBtn';
 import ShareToggle from '@/app/components/ShareToggle';
@@ -13,11 +12,10 @@ import styles from './Single.module.css';
 
 const postType = 'pizza';
 export async function generateMetadata({params}) {
-  console.log('Post ID:', params.slug); // Log the slug
-  const metadata = await fetchCPTMetadataBySlug(params.slug, postType);
+  const postId = params.slug;
+  const metadata = await fetchCPTMetadataBySlug(postId, postType);
   
   const metadataBase = METADATABASE_API_URL;
-
   
   return {
     metadataBase,
@@ -25,14 +23,14 @@ export async function generateMetadata({params}) {
     description: metadata.description,
     openGraph: {
       images: metadata.ogImage ? [{ url: metadata.ogImage }] : []
-    }
+    },
+    // Add other metadata properties if needed
   };
 }
 
 export default async function Page({ params }) {
 
   let post;
-  let metadata;
   let mainImage;
   let hoverImage;
 
@@ -66,13 +64,7 @@ export default async function Page({ params }) {
   ];
   return (
     <>
-     <Head>
-        <title>{metadata?.title}</title>
-        <meta name="description" content={metadata?.description} />
-        {metadata?.openGraph?.images.map((image, index) => (
-          <meta key={index} property="og:image" content={image.url} />
-        ))}
-      </Head>
+    
       <div className="cream-color">
         <section className="viewport innerhero">
           <div className="page-container">

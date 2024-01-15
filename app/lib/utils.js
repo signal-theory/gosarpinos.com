@@ -3,8 +3,10 @@ import he from 'he';
 
 // utils/fetchMetadata.js
 export async function fetchMetadata(pageId) {
-  const res = await fetch(`${PAGES_API_URL}/${pageId}`);
+  
+  const url = `${PAGES_API_URL}/${pageId}`;
 
+  const res = await fetch(url);
   if (!res.ok) {
     throw new Error('Failed to fetch metadata');
   }
@@ -12,7 +14,6 @@ export async function fetchMetadata(pageId) {
   const data = await res.json();
   const yoastMetadata = data.yoast_head_json;
   const ogImage = yoastMetadata.og_image ? yoastMetadata.og_image[0].url : null;
-
 
   // Return only the title and description
   return {
@@ -23,22 +24,52 @@ export async function fetchMetadata(pageId) {
   };
 }
 
-// utils/fetchCPTMetadataBySlug.js
-export async function fetchCPTMetadataBySlug(slug, cptName) {
-  const res = await fetch(`${CPT_API_URL}/${cptName}?slug=${slug}`);
-  console.log('api',` ${CPT_API_URL}/${cptName}?slug=${slug}`);
+// utils/fetchMetadataPost.js
+export async function fetchMetadataPost(postId) {
+  const url = `${POSTS_API_URL}?slug=${postId}`;
+
+  const res = await fetch(url);
 
   if (!res.ok) {
     throw new Error('Failed to fetch metadata');
   }
 
   const data = await res.json();
-  const yoastMetadata = data.yoast_head_json;
-  const ogImage = yoastMetadata && yoastMetadata.og_image ? yoastMetadata.og_image[0].url : null;
+  const yoastMetadata = data[0]?.yoast_head_json; // Access the first item of the array
+  let ogImage = null;
+  if (yoastMetadata && yoastMetadata.og_image) {
+    ogImage = yoastMetadata.og_image[0].url;
+  }
 
+  // Return only the title and description
   return {
-    title: yoastMetadata ? he.decode(yoastMetadata.title) : null,
-    description: yoastMetadata ? he.decode(yoastMetadata.description) : null,
+    title: yoastMetadata && yoastMetadata.title ? he.decode(yoastMetadata.title) : null,
+    description: yoastMetadata && yoastMetadata.og_description ? he.decode(yoastMetadata.og_description) : null,
+    ogImage: ogImage
+  };
+}
+
+// utils/fetchCPTMetadataBySlug.js
+export async function fetchCPTMetadataBySlug(slug, cptName) {
+  const url = `${CPT_API_URL}/${cptName}?slug=${slug}`;
+
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch metadata');
+  }
+
+  const data = await res.json();
+  const yoastMetadata = data[0]?.yoast_head_json; // Access the first item of the array
+  let ogImage = null;
+  if (yoastMetadata && yoastMetadata.og_image) {
+    ogImage = yoastMetadata.og_image[0].url;
+  }
+
+  // Return only the title and description
+  return {
+    title: yoastMetadata && yoastMetadata.title ? he.decode(yoastMetadata.title) : null,
+    description: yoastMetadata && yoastMetadata.og_description ? he.decode(yoastMetadata.og_description) : null,
     ogImage: ogImage
   };
 }

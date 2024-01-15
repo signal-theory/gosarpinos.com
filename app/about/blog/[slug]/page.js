@@ -1,10 +1,27 @@
 // app/about/blog/[slug]/page.js
-import { fetchPostBySlug, getCategoryNamesByIds, fetchRelatedPosts } from '../../../lib/utils';
+import { METADATABASE_API_URL } from '../../../lib/constants';
+import { fetchMetadataPost, fetchPostBySlug, getCategoryNamesByIds, fetchRelatedPosts } from '../../../lib/utils';
 import Image from 'next/image';
 import BlogRelated from '../BlogRelated';
 import ShareThis from '../../../components/ShareThis';
 import styles from './Single.module.css';
 
+export async function generateMetadata({ params }) {
+  const postId = params.slug;
+  const metadata = await fetchMetadataPost(postId);
+  
+  const metadataBase = METADATABASE_API_URL;
+  
+  return {
+    metadataBase,
+    title: metadata.title,
+    description: metadata.description,
+    openGraph: {
+      images: metadata.ogImage ? [{ url: metadata.ogImage }] : []
+    },
+    // Add other metadata properties if needed
+  };
+}
 
 export default async function Page({ params }) {
   let post;
@@ -16,7 +33,6 @@ export default async function Page({ params }) {
     console.error("Error fetching post data:", error);
     // Handle the error appropriately
   }
-    
   
   let categoryNames = [];
   if (post.categories) {
