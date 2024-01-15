@@ -1,5 +1,4 @@
 // app/menu/[cptName]/[slug]/page.js
-import Head from 'next/head';
 import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchACFImage } from '../../../lib/utils';
 import { METADATABASE_API_URL } from '../../../lib/constants';
 import Image from 'next/image';
@@ -32,7 +31,6 @@ export async function generateMetadata({params}) {
 export default async function Page({ params }) {
 
   let post;
-  let metadata;
   let mainImage;
   let hoverImage;
 
@@ -66,13 +64,7 @@ export default async function Page({ params }) {
   
   return (
     <>
-     <Head>
-        <title>{metadata?.title}</title>
-        <meta name="description" content={metadata?.description} />
-        {metadata?.openGraph?.images.map((image, index) => (
-          <meta key={index} property="og:image" content={image.url} />
-        ))}
-      </Head>
+    
       <div className="cream-color">
         <section className="viewport innerhero">
           <div className="page-container">

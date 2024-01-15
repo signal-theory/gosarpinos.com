@@ -1,7 +1,7 @@
 import { POSTS_API_URL, PAGES_API_URL, CPT_API_URL, MEDIA_API_URL } from './constants';
 import he from 'he';
 
-// utils/fetchMetadata.js
+// utils/fetchMetadata
 export async function fetchMetadata(pageId) {
   
   const url = `${PAGES_API_URL}/${pageId}`;
@@ -24,7 +24,7 @@ export async function fetchMetadata(pageId) {
   };
 }
 
-// utils/fetchMetadataPost.js
+// utils/fetchMetadataPost
 export async function fetchMetadataPost(postId) {
   const url = `${POSTS_API_URL}?slug=${postId}`;
 
@@ -41,6 +41,7 @@ export async function fetchMetadataPost(postId) {
     ogImage = yoastMetadata.og_image[0].url;
   }
 
+console.log('yoastMetadata:', data[0]?.yoast_head_json);
   // Return only the title and description
   return {
     title: yoastMetadata && yoastMetadata.title ? he.decode(yoastMetadata.title) : null,
@@ -49,7 +50,7 @@ export async function fetchMetadataPost(postId) {
   };
 }
 
-// utils/fetchCPTMetadataBySlug.js
+// utils/fetchCPTMetadataBySlug
 export async function fetchCPTMetadataBySlug(slug, cptName) {
   const url = `${CPT_API_URL}/${cptName}?slug=${slug}`;
 
@@ -61,9 +62,17 @@ export async function fetchCPTMetadataBySlug(slug, cptName) {
 
   const data = await res.json();
   const yoastMetadata = data[0]?.yoast_head_json; // Access the first item of the array
+  const mainImageId = data[0]?.acf?.main_image; // Access the main_image field
+
   let ogImage = null;
-  if (yoastMetadata && yoastMetadata.og_image) {
-    ogImage = yoastMetadata.og_image[0].url;
+  if (yoastMetadata && yoastMetadata.og_image && yoastMetadata.og_image.length > 0) {
+    ogImage = yoastMetadata.og_image[0].source_url;
+  }
+
+  // If main_image is available, use it as ogImage
+  if (mainImageId) {
+    const mainImageData = await fetchACFImage(mainImageId);
+    ogImage = mainImageData.sourceUrl;
   }
 
   // Return only the title and description
@@ -73,6 +82,7 @@ export async function fetchCPTMetadataBySlug(slug, cptName) {
     ogImage: ogImage
   };
 }
+
 // utils fetchPostData
 export async function fetchPostData() {
   try {
@@ -99,7 +109,7 @@ export async function fetchPostData() {
   }
 }
 
-// utils/fetchPostBySlug.js
+// utils/fetchPostBySlug
 export async function fetchPostBySlug(slug) {
   const response = await fetch(`${POSTS_API_URL}?slug=${slug}&_embed`);
   const posts = await response.json();
@@ -188,7 +198,7 @@ export async function fetchCPTData(cptNames) {
   return data.flat();
 }
 
-// utils/fetchCPTBySlug.js
+// utils/fetchCPTBySlug
 export async function fetchCPTBySlug(slug, cptName) {
   const response = await fetch(`${CPT_API_URL}/${cptName}?slug=${slug}&_embed`);
   const posts = await response.json();
