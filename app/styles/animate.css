@@ -11,6 +11,10 @@
   animation: 1s fadeIn ease-in-out forwards;
 }
 
+.fade-in-slow {
+  opacity: 0;
+  animation: 4s fadeIn ease-in-out forwards 1s;
+}
 @keyframes slideUpIn {
   0% {
     opacity: 0;

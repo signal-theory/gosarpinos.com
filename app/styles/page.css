@@ -21,12 +21,12 @@
   border-radius: 860.214px;
   filter: blur(19px);
   opacity: 0;
-  animation: fadeIn 3s forwards;
+  animation: fadeIn 3s forwards 2s;
 }
 /*pizza animation */
 .homepage-pizza-animation {
   position: absolute;
-  top: 110px;
+  top: 130px;
   width: 300px;
   height: 300px;
   left: 50%;
@@ -39,7 +39,7 @@
   position: relative;
   text-align: center;
   margin: 0 auto;
-  padding: 320px 2rem 2rem;
+  padding: 370px 2rem 2rem;
 }
 .homepage-hero h1 {
   opacity: 0;
@@ -109,7 +109,7 @@
   .homepage-pizza-animation {
     width: 650px;
     height: 650px;
-    top: 153px;
+    top: 165px;
     left: 50%;
     transform: translate(-90%, 0);
   }

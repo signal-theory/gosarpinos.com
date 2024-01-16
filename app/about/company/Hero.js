@@ -26,7 +26,7 @@ const Hero = ({ data, heroImage }) => {
       <div className={`full-page-container ${styles.container}`}>
         <div className="responsive-column-container">
           <div className={styles.animation}>
-            <div className={`fade-in rellax0 ${styles.shadow}`} data-rellax-speed="1"></div>
+            <div className={`fade-in-slow rellax0 ${styles.shadow}`} data-rellax-speed="1"></div>
             <Image
               src="/company-pizza-hero.webp"
               alt="Pizza with tomato, spinach and cheese"
