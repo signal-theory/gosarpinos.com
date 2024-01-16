@@ -52,7 +52,7 @@ const MenuContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
   useEffect(() => {
     setLoading(true);
     // Filter posts based on selected category
-    const filtered = selectedCategory === `All ${postType}`
+    const filtered = selectedCategory === `All`
       ? posts
       : posts.filter(post => post.acf.menu_category?.includes(selectedCategory));
 

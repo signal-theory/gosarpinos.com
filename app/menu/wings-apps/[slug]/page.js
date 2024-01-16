@@ -1,6 +1,6 @@
-// app/menu/sarpinos-specialty-pizza/[slug]/page.js
-import { METADATABASE_API_URL } from '../../../lib/constants';
+// app/menu/wings-apps/[slug]/page.js
 import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchACFImage } from '../../../lib/utils';
+import { METADATABASE_API_URL } from '../../../lib/constants';
 import Image from 'next/image';
 import MenuNavigation from '../../MenuNavigation';
 import OrderBtn from '@/app/components/OrderBtn';
@@ -11,7 +11,7 @@ import ItemInfo from '../../ItemInfo';
 import ItemAllergens from '../../ItemAllergens';
 import styles from './Single.module.css';
 
-const postType = 'pizza';
+const postType = 'wings-apps';
 export async function generateMetadata({params}) {
   const postId = params.slug;
   const metadata = await fetchCPTMetadataBySlug(postId, postType);
@@ -51,19 +51,18 @@ export default async function Page({ params }) {
   console.log('Post FeaturedImage:', post.featuredImage);
 
 
-  
   const content = [
     { id: 'tab1', component: <ItemInfo /> },
     { id: 'tab2', component: <ItemAllergens /> },
     // Add more content as needed
   ];
+  
   return (
     <>
-    
       <div className="cream-color">
-      <MenuNavigation
-        mode="dark"
-        activeItem="pizza" />
+        <MenuNavigation
+          mode="dark"
+          activeItem="wings-app" />
         <section className="viewport">
           <div className="page-container">
             <div className="responsive-column-container">
@@ -89,7 +88,7 @@ export default async function Page({ params }) {
             </div>
           </div>
         </section>
-      <CalloutMobileApp />
+        <CalloutMobileApp />
       </div>
     </>
   );

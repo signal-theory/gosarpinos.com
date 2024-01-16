@@ -151,7 +151,7 @@ export default function Navigation() {
           </li>
         </ul>
       </div>
-      <div className={`navbar-dropdowns ${activeMenus['Locations'] ? 'locations-active' : ''}`}>
+      <div className={`navbar-dropdowns ${Object.values(activeMenus).some(value => value) ? 'dropdown-active' : ''}`}>
         <ul ref={myRef1} className={`item submenu about ${activeMenus['About'] ? 'active' : ''}`}>
           <li className="subitem"><Link href="/about/company" onClick={() => handleSubmenu('About')}>Company Info</Link></li>
           <li className="subitem"><Link href="/about/why-sarpinos" onClick={() => handleSubmenu('About')}>Why Sarpino&apos;s?</Link></li>
@@ -208,8 +208,8 @@ export default function Navigation() {
           <li className="subitem has-submenu without-thumbs">
             <ul>
               <li className="subitem"><Link href="/menu/sarpinos-specialty-pizza" onClick={() => handleSubmenu('Menu')}>Full Menu</Link></li>
+              <li className="subitem"><Link href="/menu/build-your-own" onClick={() => handleSubmenu('Menu')}>Build Your Own</Link></li>
               <li className="subitem"><Link href="/menu/vegan-menu" onClick={() => handleSubmenu('Menu')}>Vegan Menu</Link></li>
-              <li className="subitem"><Link href="/menu/gluten-free" onClick={() => handleSubmenu('Menu')}>Gluten-Free Menu</Link></li>
               <li className="subitem"><Link href="/menu/national-specials" onClick={() => handleSubmenu('Menu')}>Specials & Promotions</Link></li>
             </ul>
           </li>
@@ -231,7 +231,6 @@ export default function Navigation() {
              <li className="subitem"><Link href="/menu/sarpinos-specialty-pizza" onClick={handleMobile}>Full Menu</Link></li>
              <li className="subitem"><Link href="/menu/build-your-own" onClick={handleMobile}>Build Your Own</Link></li>
               <li className="subitem"><Link href="/menu/vegan-menu" onClick={handleMobile}>Vegan Menu</Link></li>
-              <li className="subitem"><Link href="/menu/gluten-free" onClick={handleMobile}>Gluten-Free Menu</Link></li>
               <li className="subitem"><Link href="/menu/national-specials" onClick={handleMobile}>Specials & Promotions</Link></li>
             
           </ul>

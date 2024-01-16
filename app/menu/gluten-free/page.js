@@ -1,6 +1,7 @@
 // /menu/gluten-free/page.js
 import { METADATABASE_API_URL } from '../../lib/constants';
 import { fetchMetadata, fetchPageData, fetchCPTData } from '../../lib/utils';
+import MenuNavigation from '../MenuNavigation';
 import MenuHeader from '../MenuHeader';
 import PostContent from '../PostContent';
 import CalloutMenu from '../../components/CalloutMenu';
@@ -37,8 +38,10 @@ export default async function Page() {
 
   return (
     <>
-    <div>
-      <section className="viewport innerhero">
+      <MenuNavigation
+        mode="light"
+        activeItem="pizza" />
+      <section className="viewport">
         <div className="page-container cream-color">
           <MenuHeader
             featuredImage={data._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}
@@ -57,7 +60,6 @@ export default async function Page() {
       
       <CalloutMenu />
       <CalloutMobileApp />
-    </div>
     </>
   );
 }

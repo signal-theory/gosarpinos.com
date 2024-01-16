@@ -1,6 +1,7 @@
 // /menu/pizza/page.js
 import { METADATABASE_API_URL } from '../../lib/constants';
 import { fetchMetadata, fetchPageData, fetchCPTData } from '../../lib/utils';
+import MenuNavigation from '../MenuNavigation';
 import MenuHeader from '../MenuHeader';
 import MenuContent from '../MenuContent';
 import CalloutMenu from '../../components/CalloutMenu';
@@ -39,12 +40,14 @@ export default async function Page() {
 
   return (
     <>
-    <div>
-      <section className="viewport innerhero">
+      <MenuNavigation
+        mode="light"
+        activeItem="pizza" />
+      <section className="viewport">
         <div className="page-container cream-color">
           <MenuHeader
             featuredImage={data._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}
-             featuredImageAlt='alt' 
+            featuredImageAlt={data._embedded?.['wp:featuredmedia']?.[0]?.alt_text || 'fresh pizza'} 
              pageTitle={data.title.rendered} 
              pageContent={data.content.rendered}
             />
@@ -59,7 +62,6 @@ export default async function Page() {
      
       <CalloutMenu />
       <CalloutMobileApp />
-    </div>
     </>
   );
 }

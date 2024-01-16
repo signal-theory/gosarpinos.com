@@ -11,6 +11,8 @@ nav.main-navigation a {
   display: inline-block;
   white-space: nowrap;
   font-size: 1rem;
+  font-family: var(--museo-slab);
+  font-weight: 700;
 }
 
 nav.main-navigation li.item {
@@ -151,6 +153,7 @@ nav.main-navigation .subitem a {
   }
   .navbar,
   .navbar-dropdowns {
+    position: relative;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -160,6 +163,7 @@ nav.main-navigation .subitem a {
     max-width: 1300px;
     background-color: var(--green-color);
     border-radius: 50px;
+    z-index: 1;
   }
   .navbar .logo {
     width: 171px;
@@ -198,7 +202,7 @@ nav.main-navigation .subitem a {
 
   .navbar-dropdowns {
     position: absolute;
-    top: 70px;
+    top: 0;
     max-width: 1300px;
     left: 50%;
     transform: translateX(-50%);
@@ -207,6 +211,10 @@ nav.main-navigation .subitem a {
     justify-content: flex-start; /* override */
     flex-wrap: nowrap; /* override */
     padding: 0; /* override */
+    z-index: 0;
+  }
+  .navbar-dropdowns.dropdown-active {
+    top: 70px;
   }
   .navbar-dropdowns::before {
     content: "";

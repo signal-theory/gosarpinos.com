@@ -1,6 +1,7 @@
 // /menu/national-specials/page.js
 import { METADATABASE_API_URL } from '../../lib/constants';
 import { fetchMetadata, fetchPageData, fetchCPTData } from '../../lib/utils';
+import MenuNavigation from '../MenuNavigation';
 import MenuHeader from '../MenuHeader';
 import MenuContent from '../MenuContent';
 import CalloutMenu from '../../components/CalloutMenu';
@@ -37,15 +38,15 @@ export default async function Page() {
 
   return (
     <>
-    <div>
-      <section className="viewport innerhero">
-        <div className="page-container cream-color">
-          <MenuHeader
-            featuredImage={data._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}
-             featuredImageAlt='alt' 
-             pageTitle={data.title.rendered} 
-             pageContent={data.content.rendered}
-            />
+      <MenuNavigation
+        mode="light"
+        activeItem="specials" />
+      <section className="viewport">
+        <div className="page-container">
+          <div className='flex-align-center text-align-center'>
+            <h2 dangerouslySetInnerHTML={{ __html: data.title.rendered }} />
+            <div style={{maxWidth: '500px'}} dangerouslySetInnerHTML={{ __html: data.content.rendered }} />
+          </div>
           {/* Render the menu posts */}
           <MenuContent 
             posts={posts} 
@@ -56,7 +57,6 @@ export default async function Page() {
      
       <CalloutMenu />
       <CalloutMobileApp />
-    </div>
     </>
   );
 }

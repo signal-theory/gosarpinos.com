@@ -1,6 +1,6 @@
-// app/menu/sarpinos-specialty-pizza/[slug]/page.js
-import { METADATABASE_API_URL } from '../../../lib/constants';
+// app/menu/desserts/[slug]/page.js
 import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchACFImage } from '../../../lib/utils';
+import { METADATABASE_API_URL } from '../../../lib/constants';
 import Image from 'next/image';
 import MenuNavigation from '../../MenuNavigation';
 import OrderBtn from '@/app/components/OrderBtn';
@@ -11,7 +11,7 @@ import ItemInfo from '../../ItemInfo';
 import ItemAllergens from '../../ItemAllergens';
 import styles from './Single.module.css';
 
-const postType = 'pizza';
+const postType = 'desserts';
 export async function generateMetadata({params}) {
   const postId = params.slug;
   const metadata = await fetchCPTMetadataBySlug(postId, postType);
@@ -51,45 +51,44 @@ export default async function Page({ params }) {
   console.log('Post FeaturedImage:', post.featuredImage);
 
 
-  
   const content = [
     { id: 'tab1', component: <ItemInfo /> },
     { id: 'tab2', component: <ItemAllergens /> },
     // Add more content as needed
   ];
+  
   return (
     <>
-    
       <div className="cream-color">
-      <MenuNavigation
-        mode="dark"
-        activeItem="pizza" />
-        <section className="viewport">
-          <div className="page-container">
-            <div className="responsive-column-container">
-              <div>
-               <Image 
-                src={mainImage.sourceUrl} 
-                alt={mainImage.altText} 
-                width={612}
-                height={678}
-                className={styles.image}
-              />
-              </div>
-              <div>
-                <ShareToggle post={post} /> 
-                <h1 dangerouslySetInnerHTML={{ __html: post?.title?.rendered }} />
-                <div dangerouslySetInnerHTML={{ __html: post?.content?.rendered }} />
-                <OrderBtn />
-                <ItemTabs
-                  tab1="Nutritional Info"
-                  tab2="Allergens"
-                  content={content} />
+        <MenuNavigation
+          mode="dark"
+          activeItem="desserts" />
+          <section className="viewport">
+            <div className="page-container">
+              <div className="responsive-column-container">
+                <div>
+                <Image 
+                  src={mainImage.sourceUrl} 
+                  alt={mainImage.altText} 
+                  width={612}
+                  height={678}
+                  className={styles.image}
+                />
+                </div>
+                <div>
+                  <ShareToggle post={post} /> 
+                  <h1 dangerouslySetInnerHTML={{ __html: post?.title?.rendered }} />
+                  <div dangerouslySetInnerHTML={{ __html: post?.content?.rendered }} />
+                  <OrderBtn />
+                  <ItemTabs
+                    tab1="Nutritional Info"
+                    tab2="Allergens"
+                    content={content} />
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-      <CalloutMobileApp />
+          </section>
+        <CalloutMobileApp />
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-// /menu/calzones/page.js
+// /menu/desserts/page.js
 import { METADATABASE_API_URL } from '../../lib/constants';
 import { fetchMetadata, fetchPageData, fetchCPTData } from '../../lib/utils';
 import MenuNavigation from '../MenuNavigation';
@@ -7,8 +7,8 @@ import MenuContent from '../MenuContent';
 import CalloutMenu from '../../components/CalloutMenu';
 import CalloutMobileApp from '../../components/CalloutMobileApp';
 
-const pageId = 94;
-const postType = ['calzones'];
+const pageId = 107;
+const postType = ['desserts'];
 export async function generateMetadata() {
   const metadata = await fetchMetadata(pageId);
   
@@ -40,12 +40,12 @@ export default async function Page() {
     <>
       <MenuNavigation
         mode="light"
-        activeItem="calzones" />
+        activeItem="desserts" />
       <section className="viewport">
         <div className="page-container cream-color">
           <MenuHeader
             featuredImage={data._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}
-            featuredImageAlt={data._embedded?.['wp:featuredmedia']?.[0]?.alt_text || 'fresh calzones'} 
+            featuredImageAlt={data._embedded?.['wp:featuredmedia']?.[0]?.alt_text || 'fresh desserts'} 
              pageTitle={data.title.rendered} 
              pageContent={data.content.rendered}
             />

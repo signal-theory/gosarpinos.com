@@ -2,6 +2,7 @@
 import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchACFImage } from '../../../lib/utils';
 import { METADATABASE_API_URL } from '../../../lib/constants';
 import CalloutMobileApp from '@/app/components/CalloutMobileApp';
+import MenuNavigation from '../../MenuNavigation';
 import styles from './Single.module.css';
 import ItemTabs from '../../ItemTabs';
 import BYOContent1 from '../BYOContent1';
@@ -50,7 +51,10 @@ export default async function Page({ params }) {
     <>
      
       <div className="cream-color">
-        <section className="viewport innerhero">
+        <MenuNavigation
+          mode="dark"
+          activeItem="build-your-own" />
+        <section className="viewport">
           <div className="page-container">
             <div className={styles.container}>
               <div className={styles.content}>

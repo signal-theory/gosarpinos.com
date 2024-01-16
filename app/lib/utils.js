@@ -3,7 +3,6 @@ import he from 'he';
 
 // utils/fetchMetadata
 export async function fetchMetadata(pageId) {
-  
   const url = `${PAGES_API_URL}/${pageId}`;
 
   const res = await fetch(url);
@@ -17,8 +16,8 @@ export async function fetchMetadata(pageId) {
 
   // Return only the title and description
   return {
-    title: he.decode(yoastMetadata.title),
-    description: he.decode(yoastMetadata.description),
+    title: yoastMetadata.title ? he.decode(yoastMetadata.title) : 'Default Title',
+    description: yoastMetadata.description ? he.decode(yoastMetadata.description) : 'Default Description',
     ogImage: ogImage
     // You can add more fields here if needed
   };
@@ -182,7 +181,6 @@ export async function fetchPageData(pageId) {
 
 
 // utils fetchCPTData
-// utils.js
 export async function fetchCPTData(cptNames) {
   const data = await Promise.all(cptNames.map(async (cptName) => {
     const res = await fetch(`${CPT_API_URL}/${cptName}`, {

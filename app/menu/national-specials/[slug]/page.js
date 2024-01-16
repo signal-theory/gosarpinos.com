@@ -1,6 +1,7 @@
 // app/about/blog/[slug]/page.js
 import { fetchPostBySlug } from '../../../lib/utils';
 import Image from 'next/image';
+import MenuNavigation from '../../MenuNavigation';
 import styles from './Single.module.css';
 
 
@@ -18,7 +19,10 @@ export default async function Page({ params }) {
   // Return JSX with the post data
   return (
     <div className="cream-color">
-      <section className="viewport innerhero">
+      <MenuNavigation
+        mode="dark"
+        activeItem="specials" />
+      <section className="viewport">
         <div className="page-container">
           <div className="text-align-center">
             {/* <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: post?.title?.rendered }} /> */}
