@@ -41,7 +41,7 @@ export default async function Page() {
       <MenuNavigation
         mode="light"
         activeItem="pizza" />
-      <section className="viewport">
+      <section className="viewport innermenu">
         <div className="page-container cream-color">
           <MenuHeader
             featuredImage={data._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}

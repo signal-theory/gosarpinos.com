@@ -54,7 +54,7 @@ export default async function Page({ params }) {
         <MenuNavigation
           mode="dark"
           activeItem="build-your-own" />
-        <section className="viewport">
+        <section className="viewport innermenu">
           <div className="page-container">
             <div className={styles.container}>
               <div className={styles.content}>

@@ -63,7 +63,7 @@ export default async function Page({ params }) {
         <MenuNavigation
           mode="dark"
           activeItem="calzones" />
-          <section className="viewport">
+          <section className="viewport innermenu">
             <div className="page-container">
               <div className="responsive-column-container">
                 <div>

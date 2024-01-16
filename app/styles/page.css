@@ -244,6 +244,7 @@
 .homepage-specials {
   background-image: url("/homepage-bkg-illustrations-black.webp");
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
 }
 /* carousel */

@@ -2,8 +2,7 @@
 import { METADATABASE_API_URL } from '../../lib/constants';
 import { fetchMetadata, fetchPageData, fetchCPTData } from '../../lib/utils';
 import MenuNavigation from '../MenuNavigation';
-import MenuHeader from '../MenuHeader';
-import MenuContent from '../MenuContent';
+import SpecialsContent from './SpecialsContent';
 import CalloutMenu from '../../components/CalloutMenu';
 import CalloutMobileApp from '../../components/CalloutMobileApp';
 
@@ -41,14 +40,14 @@ export default async function Page() {
       <MenuNavigation
         mode="light"
         activeItem="specials" />
-      <section className="viewport">
+      <section className="viewport innermenu specials-background">
         <div className="page-container">
           <div className='flex-align-center text-align-center'>
             <h2 dangerouslySetInnerHTML={{ __html: data.title.rendered }} />
             <div style={{maxWidth: '500px'}} dangerouslySetInnerHTML={{ __html: data.content.rendered }} />
           </div>
           {/* Render the menu posts */}
-          <MenuContent 
+          <SpecialsContent 
             posts={posts} 
             postType={postType}
             categoryTitle={'Sort ' + postType} />

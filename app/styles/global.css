@@ -30,8 +30,8 @@ font-weight: 900; */
   --bkg-color: var(--red-color);
   --bkg-red-gradient: linear-gradient(
     180deg,
-    var(--darkred-color) 0px,
-    var(--red-color) 800px
+    var(--darkred-color) 193px,
+    var(--red-color) 700px
   );
   --red-gradient: linear-gradient(
     180deg,
@@ -40,8 +40,8 @@ font-weight: 900; */
   );
   --bkg-green-gradient: linear-gradient(
     180deg,
-    var(--green-color) 0px,
-    var(--lightgreen-color) 800px
+    var(--green-color) 193px,
+    var(--lightgreen-color) 700px
   );
   --green-gradient: linear-gradient(
     180deg,
@@ -220,6 +220,9 @@ a:focus {
 .viewport.innerhero {
   padding-top: calc(106px + 2rem);
 }
+.viewport.innermenu {
+  padding-top: calc(193px + 2rem);
+}
 .viewport.fullhero {
   padding: 0;
 }
@@ -289,6 +292,16 @@ a:focus {
   align-items: center;
   flex: 1 1 auto;
 }
+
+
+.specials-background {
+  background-image: url("/specials-bkg-illustrations-black.webp");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100%;
+}
+
+
 
 /* Heading styles */
 h1,
