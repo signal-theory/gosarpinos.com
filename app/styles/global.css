@@ -239,6 +239,12 @@ a:focus {
   margin: 0 auto;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
+.responsive-lg-column-container {
+  display: grid;
+  gap: 2rem;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
 .responsive-twothirds-column-container,
 .responsive-three-column-container {
   display: grid;
@@ -297,7 +303,7 @@ a:focus {
 .specials-background {
   background-image: url("/specials-bkg-illustrations-black.webp");
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: center top 193px;
   background-size: 100%;
 }
 

@@ -50,7 +50,7 @@ const SpecialsContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
       {loading ? (
         <div className="loading">Loading...</div>
       ) : (
-      <div className="responsive-equal-height-container fade-in" style={{gridGap: '1rem'}}>
+      <div className="responsive-lg-column-container fade-in">
         {filteredPosts.map((post, index) => {
           return (
               <SpecialsCard 

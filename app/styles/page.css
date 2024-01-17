@@ -30,7 +30,8 @@
   width: 300px;
   height: 300px;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-47%, 0);
+  transition: all 0.2s ease-in-out;
 }
 .homepage-pizza-animation span {
   display: block !important;

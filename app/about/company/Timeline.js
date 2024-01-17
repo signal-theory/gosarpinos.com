@@ -20,7 +20,7 @@ const Timeline = ({ data }) => {
     }
   }, []);
 
-  const timeline = data.acf?.timeline || [];;
+  const timeline = data.acf?.timeline || [];
 
   return (
     <section className={`viewport`}>

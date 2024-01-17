@@ -5,7 +5,7 @@ nav.main-navigation {
   z-index: 99999;
 }
 
-nav.main-navigation a {
+nav.main-navigation a:not(.primary-btn) {
   color: white;
   text-decoration: none;
   display: inline-block;

@@ -102,16 +102,15 @@ export default function Footer() {
               <div>
                 <h4>Our Menu</h4>
                 <ul>
-                  <li><Link href="/">Full Menu</Link></li>
-                  <li><Link href="/">Vegan Menu</Link></li>
-                  <li><Link href="/">Gluten-Free Menu</Link></li>
-                  <li><Link href="/">Catering</Link></li>
-                  <li><Link href="/">Franchise</Link></li>
+                  <li><Link href="/menu/sarpinos-specialty-pizza">Full Menu</Link></li>
+                  <li><Link href="/menu/vegan-menu">Vegan Menu</Link></li>
+                  <li><Link href="/catering">Catering</Link></li>
+                  <li><Link href="https://sarpinosfranchise.com/">Franchise</Link></li>
                   <li><Link href="/">Ingredients & Allergens</Link></li>
                 </ul>
                 <h4>Customer Service</h4>
                 <ul>
-                  <li><Link href="/">Loyalty Program</Link></li>
+                  <li><Link href="/loyalty-program">Loyalty Program</Link></li>
                   <li><Link href="/">Gift Cards</Link></li>
                   <li><Link href="/">Location Finder</Link></li>
                   <li><Link href="/">Rate Us</Link></li>
@@ -122,15 +121,15 @@ export default function Footer() {
               <div>
                 <h4>Catering</h4>
                 <ul>
-                  <li><Link href="/">Catering Menu</Link></li>
+                  <li><Link href="/catering">Catering Menu</Link></li>
                 </ul>
                 <h4>About Us</h4>
                 <ul>
-                  <li><Link href="/">Careers</Link></li>
-                  <li><Link href="/">Franchising Information</Link></li>
+                  <li><Link href="https://jobs.gosarpinos.com/">Careers</Link></li>
+                  <li><Link href="https://sarpinosfranchise.com/">Franchising Information</Link></li>
                   <li><Link href="/">Location Finder</Link></li>
                   <li><Link href="/">Sarpino&apos;s Publication</Link></li>
-                  <li><Link href="/">Mobile App</Link></li>
+                  <li><Link href="/download-pizza-app">Mobile App</Link></li>
                 </ul>
                 <h4>Contact Us</h4>
                 <ul>

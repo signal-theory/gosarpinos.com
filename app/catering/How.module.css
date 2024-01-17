@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.headline {
+  max-width: 300px;
+  text-align: center;
+  flex-shrink: 1;
+}
+.headline h2 {
+  margin: 0;
+}
+.steps {
+  display: inline-flex;
+  margin: 0;
+  flex-shrink: 0;
+}
+.steps li {
+  width: calc(200px - 3rem);
+  height: 200px;
+  padding: 0 1.5rem;
+  margin: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  text-align: center;
+  list-style: none;
+  border-radius: 100%;
+  background: var(--red-color);
+}
+p.title {
+  font-family: var(--museo-slab);
+  flex-shrink: 0;
+  margin: 2rem 0 1.5rem;
+}
+p.step {
+  font-family: var(--nexa-rust);
+  font-size: clamp(1.1rem, 3.4vw, 1.35rem);
+  line-height: 1.1;
+  margin: 0;
+}

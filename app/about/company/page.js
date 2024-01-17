@@ -1,5 +1,5 @@
 import { METADATABASE_API_URL } from '../../lib/constants';
-import { fetchMetadata, fetchPageData, fetchACFImage } from '../../lib/utils'; // Adjust the path as necessary
+import { fetchMetadata, fetchPageData } from '../../lib/utils'; // Adjust the path as necessary
 import Hero from './Hero';
 import Ingredients from './Ingredients';
 import Timeline from './Timeline';
