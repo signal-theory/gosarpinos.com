@@ -91,6 +91,15 @@ font-weight: 900; */
   background-color: var(--red-color);
   color: white;
 }
+.half-darkred-color:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-color: var(--darkred-color);
+}
 .red-outline {
   border: 2px solid var(--red-color);
 }
@@ -151,7 +160,6 @@ body {
 }
 main {
   width: 100%;
-  overflow: hidden;
 }
 /* Adobe Font Loading */
 .wf-loading {
@@ -215,7 +223,7 @@ a:focus {
   position: relative;
   width: 100%;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 2rem 0 3rem;
 }
 .viewport.innerhero {
   padding-top: calc(106px + 2rem);
@@ -227,7 +235,8 @@ a:focus {
   padding: 0;
 }
 .page-container {
-  width: calc(95% - 4rem);
+  position: relative;
+  width: calc(92% - 4rem);
   padding: 2rem;
   max-width: 1300px;
   margin: 0 auto;
@@ -256,7 +265,8 @@ a:focus {
 .responsive-column-container .content {
   padding: 0 2rem;
 }
-.responsive-equal-height-container {
+.responsive-equal-height-container,
+.responsive-unlimited-equal-height-container {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 2rem;
@@ -283,6 +293,10 @@ a:focus {
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: minmax(16rem, auto);
   }
+  .responsive-unlimited-equal-height-container {
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    grid-auto-rows: minmax(16rem, auto);
+  }
 }
 @media screen and (min-width: 1023px) {
   .responsive-equal-height-container {
@@ -299,15 +313,12 @@ a:focus {
   flex: 1 1 auto;
 }
 
-
 .specials-background {
   background-image: url("/specials-bkg-illustrations-black.webp");
   background-repeat: no-repeat;
   background-position: center top 193px;
   background-size: 100%;
 }
-
-
 
 /* Heading styles */
 h1,
@@ -376,6 +387,13 @@ a.btn {
   cursor: pointer;
   overflow: hidden;
   text-decoration: none;
+}
+@media screen and (max-width: 425px) {
+  button,
+  a.btn {
+    line-height: 1;
+    padding: 1em 1.5em 0.8em;
+  }
 }
 
 button,
@@ -474,13 +492,15 @@ ul {
 label {
   display: flex;
 }
-input {
+input,
+select,
+textarea {
   padding: 9px 20px;
   align-items: center;
   border-radius: 200px;
   border: 2px solid #ffffff;
   background: var(--cream-color);
-  font-family: var(--museo-sans));
+  font-family: var(--museo-sans);
   font-weight: 500;
   font-style: normal;
 }
@@ -497,6 +517,9 @@ button[type="submit"] {
 }
 
 /* Helper classes */
+.hidden {
+  display: none; /* hide from bots */
+}
 .display-flex {
   display: flex;
 }

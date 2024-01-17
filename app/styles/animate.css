@@ -26,7 +26,8 @@
   }
 }
 .slide-up-in {
-  animation: 1s slideUpIn ease-in-out forwards;
+  opacity: 0;
+  animation: 1s slideUpIn cubic-bezier(0.07, 0.66, 0.49, 1.01) forwards;
 }
 
 @keyframes glowPulse {
@@ -64,6 +65,9 @@
     transform: scale(1);
   }
 }
+.heartbeat {
+  animation: heartbeat 2s infinite;
+}
 @keyframes pizza-wobble {
   0% {
     transform: rotate(0deg) translate(0, 0);
@@ -80,6 +84,9 @@
   100% {
     transform: rotate(0deg) translate(0, 0);
   }
+}
+.wobble {
+  animation: pizza-wobble 1s infinite;
 }
 
 @keyframes pizza-rotate {
@@ -99,6 +106,9 @@
     transform: rotate(0deg) trasnlate(0, 0);
   }
 }
+.rotate {
+  animation: pizza-rotate 1s infinite;
+}
 @keyframes pizza-triangle-rotate {
   0% {
     transform: rotate(0deg) translate(0, 0);
@@ -115,6 +125,9 @@
   100% {
     transform: rotate(0deg) trasnlate(0, 0);
   }
+}
+.triangle-rotate {
+  animation: pizza-triangle-rotate 1s infinite;
 }
 @keyframes pizza-heartbeat-rotate {
   0% {
@@ -136,6 +149,9 @@
     transform: scale(1) rotate(0deg);
   }
 }
+.heartbeat-rotate {
+  animation: pizza-heartbeat-rotate 2s infinite;
+}
 @keyframes pizza-heartbeat-pulse {
   0% {
     transform: scale(1);
@@ -146,6 +162,9 @@
   100% {
     transform: scale(1);
   }
+}
+.heartbeat-pulse {
+  animation: pizza-heartbeat-pulse 2s infinite;
 }
 
 @keyframes pizza-wobble-sweep {
@@ -165,6 +184,9 @@
     transform: rotate(0deg) translate(0, 0);
   }
 }
+.wobble-sweep {
+  animation: pizza-wobble-sweep 3s infinite;
+}
 
 @keyframes pizza-slide {
   0% {
@@ -180,6 +202,9 @@
     transform: rotate(0deg) translate(0, 0);
   }
 }
+.slide {
+  animation: pizza-slide 3s infinite;
+}
 @keyframes heartSlideUpDown {
   0% {
     transform: translateY(0);
@@ -191,6 +216,10 @@
     transform: translateY(0);
   }
 }
+.slide-up-down {
+  animation: heartSlideUpDown 3s infinite;
+}
+
 @keyframes heartZoomUpDown {
   0% {
     transform: translateY(0);
@@ -201,4 +230,7 @@
   100% {
     transform: translateY(0);
   }
+}
+.zoom-up-down {
+  animation: heartZoomUpDown 3s infinite;
 }

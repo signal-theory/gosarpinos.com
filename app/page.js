@@ -16,9 +16,9 @@ import SpecialsCarousel from './components/SpecialsCarousel';
 export async function generateMetadata({ params }) {
   const pageId = params.pageId || 149; // default to 149 if no ID is provided
   const metadata = await fetchMetadata(pageId);
-  
+
   const metadataBase = METADATABASE_API_URL;
-  
+
   return {
     metadataBase,
     title: metadata.title,
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
- 
+
 export default async function Page({ params }) {
 
   let data;
@@ -72,22 +72,22 @@ export default async function Page({ params }) {
             <Image src={"/olives.svg"} width={100} height={100} alt="olives" className="olives" />
             <Image src={"/tomatoes-cut.svg"} width={150} height={150} alt="cut tomatoes" className="tomatoes-cut" />
             <Image src={'/garlic-bulb.svg'} width={100} height={100} alt="garlic" className="garlic-bulb" />
-            <Image src={'/pizza-hero.webp'} width={600} height={600} alt="pizza" className="pizza" 
+            <Image src={'/pizza-hero.webp'} width={600} height={600} alt="pizza" className="pizza"
               priority="true" />
             <Image src={'/onions-sliced.webp'} width={180} height={180} alt="sliced onions" className="onions" />
             <Image src={'/heart-green-outline.svg'} width={60} height={60} alt="green outline heart" className="heart-green-outline-1" />
             <Image src={'/peppercorns-two.svg'} width={60} height={60} alt="peppercorns" className="peppercorns" />
             <Image src={'/heart-tan-outline.svg'} width={60} height={60} alt="tan heart outline" className="heart-tan-outline" />
             <Image src={'/tomatoes-cut.webp'} width={100} height={100} alt="cut tomatoes" className="tomatoes-fresh-cut" />
-            <Image src={'/heart-green-fill.svg'} width={60} height={60} alt= "green fill heart" className="heart-green-fill" />
+            <Image src={'/heart-green-fill.svg'} width={60} height={60} alt="green fill heart" className="heart-green-fill" />
             <Image src={'/basil-leaf-1.webp'} width={100} height={100} alt="basil leaf" className="basil-leaf-1" />
-            <Image src={'/heart-green-outline.svg'} width={100} height={100} alt= "green outline heart" className="heart-green-outline-2" />
+            <Image src={'/heart-green-outline.svg'} width={100} height={100} alt="green outline heart" className="heart-green-outline-2" />
             <Image src={'/tomato-whole-and-slice.svg'} width={200} height={200} alt="sliced tomatoes" className="tomato-whole-and-slice" />
             <Image src={'/basil-leaf-2.webp'} width={100} height={100} alt="basil leaf" className="basil-leaf-2" />
             <Image src={'/basil-leaf-3.webp'} width={100} height={100} alt="basil leaf" className="basil-leaf-3" />
           </div>
           <div className="homepage-content">
-            <div dangerouslySetInnerHTML={{ __html: data?.content.rendered }} style={{ margin: '4rem 0 2rem' }} />
+            <div dangerouslySetInnerHTML={{ __html: data?.content.rendered || '' }} style={{ margin: '4rem 0 2rem' }} />
             <div className="btn-slide">
               <OrderBtn />
             </div>
@@ -105,29 +105,29 @@ export default async function Page({ params }) {
                 <div key={index} className="menupage-item">
                   <div className="menupage-thumbnail">
                     <Link href={path}>
-                      <Image 
+                      <Image
                         src={item.hoverImage.sourceUrl}
                         alt={item.hoverImage.altText}
                         className="mask hover-image"
                         width={100}
                         height={100}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                      <Image 
+                      />
+                      <Image
                         src={item.image.sourceUrl}
                         alt={item.image.altText}
                         className="mask main-image"
                         width={100}
                         height={100}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
+                      />
                     </Link>
                   </div>
                   <div className="menupage-label" style={{ alignItems: 'center' }}>
                     <h3><Link href={path}>{item.title}</Link></h3>
-                    <div className="menupage-caption" dangerouslySetInnerHTML={{ __html: item.description }} />
+                    <div className="menupage-caption" dangerouslySetInnerHTML={{ __html: item.description || '' }} />
                     <Link className="btn primary-btn" href={path}><span>{item.title}</span></Link>
-                    </div>
+                  </div>
                 </div>
               )
             })}
@@ -144,7 +144,7 @@ export default async function Page({ params }) {
             </div>
           </div>
           <div style={{ margin: '2rem 0' }}>
-            
+
           </div>
           <Link href="/" className="btn secondary-btn"><span>See More Specials</span></Link>
         </div>

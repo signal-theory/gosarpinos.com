@@ -10,7 +10,13 @@ export default function Footer() {
           <div className={styles.order2}>
             <h3>Get our newsletter</h3>
             <p>See the latest updates, deals and information from Sarpino&apos;s.</p>
-            <form className={styles.emailSignUp} name="signup" method="POST" data-netlify="true" action="/success">
+            <form className={styles.emailSignUp} name="signup" method="POST" data-netlify="true" action="/success"
+  netlify-honeypot="bot-field">
+            <p className="hidden">
+              <label>
+                Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
+              </label>
+            </p>
               <p>
                 <label><span className="screen-reader-text">Email Address</span> <input placeholder="Email Address" type="email" name="email" /></label>
               </p>

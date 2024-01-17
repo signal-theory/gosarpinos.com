@@ -12,12 +12,12 @@ import ItemAllergens from '../../ItemAllergens';
 import styles from './Single.module.css';
 
 const postType = 'pizza';
-export async function generateMetadata({params}) {
+export async function generateMetadata({ params }) {
   const postId = params.slug;
   const metadata = await fetchCPTMetadataBySlug(postId, postType);
-  
+
   const metadataBase = METADATABASE_API_URL;
-  
+
   return {
     metadataBase,
     title: metadata.title,
@@ -36,7 +36,7 @@ export default async function Page({ params }) {
 
   try {
     post = await fetchCPTBySlug(params.slug, postType);
-    
+
     mainImage = post?.acf.main_image ? await fetchACFImage(post?.acf.main_image).catch(e => {
       console.error(`Error fetching main image: ${e}`);
       return null;
@@ -51,7 +51,7 @@ export default async function Page({ params }) {
   console.log('Post FeaturedImage:', post.featuredImage);
 
 
-  
+
   const content = [
     { id: 'tab1', component: <ItemInfo /> },
     { id: 'tab2', component: <ItemAllergens /> },
@@ -59,27 +59,27 @@ export default async function Page({ params }) {
   ];
   return (
     <>
-    
+
       <div className="cream-color">
-      <MenuNavigation
-        mode="dark"
-        activeItem="pizza" />
+        <MenuNavigation
+          mode="dark"
+          activeItem="pizza" />
         <section className="viewport innermenu">
           <div className="page-container">
             <div className="responsive-column-container">
               <div>
-               <Image 
-                src={mainImage.sourceUrl} 
-                alt={mainImage.altText} 
-                width={612}
-                height={678}
-                className={styles.image}
-              />
+                <Image
+                  src={mainImage.sourceUrl}
+                  alt={mainImage.altText}
+                  width={612}
+                  height={678}
+                  className={styles.image}
+                />
               </div>
               <div>
-                <ShareToggle post={post} /> 
-                <h1 dangerouslySetInnerHTML={{ __html: post?.title?.rendered }} />
-                <div dangerouslySetInnerHTML={{ __html: post?.content?.rendered }} />
+                <ShareToggle post={post} />
+                <h1 dangerouslySetInnerHTML={{ __html: post?.title?.rendered || '' }} />
+                <div dangerouslySetInnerHTML={{ __html: post?.content?.rendered || '' }} />
                 <OrderBtn />
                 <ItemTabs
                   tab1="Nutritional Info"
@@ -89,7 +89,7 @@ export default async function Page({ params }) {
             </div>
           </div>
         </section>
-      <CalloutMobileApp />
+        <CalloutMobileApp />
       </div>
     </>
   );

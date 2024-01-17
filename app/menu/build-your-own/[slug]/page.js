@@ -9,12 +9,12 @@ import BYOContent1 from '../BYOContent1';
 import BYOContent2 from '../BYOContent2';
 
 const postType = 'build-your-own';
-export async function generateMetadata({params}) {
+export async function generateMetadata({ params }) {
   const postId = params.slug;
   const metadata = await fetchCPTMetadataBySlug(postId, postType);
-  
+
   const metadataBase = METADATABASE_API_URL;
-  
+
   return {
     metadataBase,
     title: metadata.title,
@@ -32,8 +32,8 @@ export default async function Page({ params }) {
 
   try {
     post = await fetchCPTBySlug(params.slug, postType);
-    
-    
+
+
 
     post = { ...post };
 
@@ -41,7 +41,7 @@ export default async function Page({ params }) {
     console.error("Error fetching post data:", error);
     // Handle the error appropriately
   }
-  
+
   const content = [
     { id: 'tab1', component: <BYOContent1 /> },
     { id: 'tab2', component: <BYOContent2 /> },
@@ -49,7 +49,7 @@ export default async function Page({ params }) {
   ];
   return (
     <>
-     
+
       <div className="cream-color">
         <MenuNavigation
           mode="dark"
@@ -58,8 +58,8 @@ export default async function Page({ params }) {
           <div className="page-container">
             <div className={styles.container}>
               <div className={styles.content}>
-                <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-                <div className={styles.content} dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+                <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: post.title.rendered || '' }} />
+                <div className={styles.content} dangerouslySetInnerHTML={{ __html: post.content.rendered || '' }} />
 
                 <ItemTabs
                   bkgVariant="green"
@@ -70,7 +70,7 @@ export default async function Page({ params }) {
             </div>
           </div>
         </section>
-      <CalloutMobileApp />
+        <CalloutMobileApp />
       </div>
     </>
   );

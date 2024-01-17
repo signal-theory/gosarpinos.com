@@ -9,9 +9,9 @@ import styles from './Single.module.css';
 export async function generateMetadata({ params }) {
   const postId = params.slug;
   const metadata = await fetchMetadataPost(postId);
-  
+
   const metadataBase = METADATABASE_API_URL;
-  
+
   return {
     metadataBase,
     title: metadata.title,
@@ -26,19 +26,19 @@ export async function generateMetadata({ params }) {
 export default async function Page({ params }) {
   let post;
   let relatedPosts = [];
-  
+
   try {
     post = await fetchPostBySlug(params.slug);
   } catch (error) {
     console.error("Error fetching post data:", error);
     // Handle the error appropriately
   }
-  
+
   let categoryNames = [];
   if (post.categories) {
     categoryNames = await getCategoryNamesByIds(post.categories);
   }
-  
+
   try {
     post = await fetchPostBySlug(params.slug);
 
@@ -65,9 +65,9 @@ export default async function Page({ params }) {
       <section className="viewport innerhero">
         <div className="page-container">
           <div className="text-align-center">
-            <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: post?.title?.rendered }} />
+            <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: post?.title?.rendered || '' }} />
             <p className={styles.date}>
-               {categoryNames && categoryNames.map((name, index) => (
+              {categoryNames && categoryNames.map((name, index) => (
                 <span key={index}>{name}</span>
               ))} | {post?.date && new Date(post.date).toLocaleDateString("en-US", {
                 day: "numeric",
@@ -85,19 +85,19 @@ export default async function Page({ params }) {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             )}
-          </div> 
+          </div>
           {/* Post Content */}
-          <div 
-            className={styles.content} 
-            dangerouslySetInnerHTML={{ __html: post?.content?.rendered }} 
+          <div
+            className={styles.content}
+            dangerouslySetInnerHTML={{ __html: post?.content?.rendered || '' }}
           />
           {/* Share This Post */}
-          <ShareThis 
-            headline="Share This Story" 
-            post={post} 
-            />
+          <ShareThis
+            headline="Share This Story"
+            post={post}
+          />
           {/* Related Posts */}
-          <BlogRelated 
+          <BlogRelated
             relatedPosts={relatedPosts} />
         </div>
       </section>

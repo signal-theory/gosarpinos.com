@@ -7,15 +7,15 @@ const SpecialsCard = ({ acfTitle, postTitle, category }) => {
     <>
       <div className={styles.specials}>
         <div className={styles.specialsItem}>
-          <Image 
-            src={'/circle-outline-1.svg'} 
-            alt="" 
+          <Image
+            src={'/circle-outline-1.svg'}
+            alt=""
             width={200}
             height={200}
-            className={styles.specialsBkg} 
+            className={styles.specialsBkg}
           />
           <div className={styles.item}>
-            <h3 className={styles.title} dangerouslySetInnerHTML={{ __html: acfTitle }} />
+            <h3 className={styles.title} dangerouslySetInnerHTML={{ __html: acfTitle || '' }} />
             <p>with code</p>
             <h3 className={styles.code}>{postTitle}</h3>
           </div>

@@ -12,32 +12,32 @@ const MenuCard = ({ post, postType, hoverImage, hoverAlt, featuredImage, feature
     <>
       <div className={styles.container}>
         <div className={styles.menuThumb}>
-         <Link href={url} className='fade-in'>
-          {hoverImage && (
-            <Image
-              alt={hoverAlt}
-              src={hoverImage}
-              width={500}
-              height={500}
-              className={styles.hoverImage}
-            />
-          )}
-          {featuredImage && (
-            <Image
-              alt={featuredAlt}
-              src={featuredImage}
-              width={500}
-              height={500}
-              className={styles.image}
-            />
-          )}
-        </Link>
+          <Link href={url} className='fade-in'>
+            {hoverImage && (
+              <Image
+                alt={hoverAlt}
+                src={hoverImage}
+                width={500}
+                height={500}
+                className={styles.hoverImage}
+              />
+            )}
+            {featuredImage && (
+              <Image
+                alt={featuredAlt}
+                src={featuredImage}
+                width={500}
+                height={500}
+                className={styles.image}
+              />
+            )}
+          </Link>
         </div>
         <div className={styles.label}>
-          <h2 className={styles.title} dangerouslySetInnerHTML={{ __html: post?.title?.rendered }} />
+          <h2 className={styles.title} dangerouslySetInnerHTML={{ __html: post?.title?.rendered || '' }} />
           <p
             className={styles.caption}
-            dangerouslySetInnerHTML={{  __html: post.acf.caption }}
+            dangerouslySetInnerHTML={{ __html: post.acf.caption || '' }}
           />
           <p className={styles.links}>
             <OrderBtn />
