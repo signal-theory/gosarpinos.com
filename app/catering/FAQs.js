@@ -2,12 +2,11 @@
 import { useState } from 'react';
 import styles from './FAQs.module.css';
 const FAQs = ({ data }) => {
-  const headline = data.acf.faqs_headline;
   const faqs = data.acf?.faqs || [];
   const [activeIndex, setActiveIndex] = useState(null);
   return (
     <div className={`page-container ${styles.container}`}>
-      {headline && <h2 className={styles.headline} dangerouslySetInnerHTML={{ __html: headline || 'FAQs' }} />}
+      <h2 className={styles.headline} dangerouslySetInnerHTML={{ __html: data.acf.faqs_headline || 'FAQs' }} />
       <div className={styles.faqs}>
         {faqs.map((faq, index) => {
           const title = faq.title;
