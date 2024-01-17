@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import styles from './FAQs.module.css';
 const FAQs = ({ data }) => {
-  const faqs = data.acf.faqs || [];
+  const faqs = data.acf?.faqs || [];
   const [activeIndex, setActiveIndex] = useState(null);
   return (
     <div className={`page-container ${styles.container}`}>
