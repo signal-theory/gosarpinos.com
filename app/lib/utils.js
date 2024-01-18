@@ -40,7 +40,7 @@ export async function fetchMetadataPost(postId) {
     ogImage = yoastMetadata.og_image[0].url;
   }
 
-console.log('yoastMetadata:', data[0]?.yoast_head_json);
+  // console.log('yoastMetadata:', data[0]?.yoast_head_json);
   // Return only the title and description
   return {
     title: yoastMetadata && yoastMetadata.title ? he.decode(yoastMetadata.title) : null,
@@ -149,7 +149,7 @@ export async function fetchRelatedPosts(categoryId) {
   // Adjust the URL and logic to fetch posts by category
   //const response = await fetch(`${POSTS_API_URL}?category=${categoryId}&_embed`);
 
- try {
+  try {
     const url = `${POSTS_API_URL}?category=${categoryId}&_embed`;
 
     const response = await fetch(url);

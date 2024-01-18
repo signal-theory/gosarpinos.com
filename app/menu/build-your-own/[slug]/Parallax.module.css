@@ -20,23 +20,23 @@
 @media screen and (min-width: 1150px) {
   .image1 {
     /* onion */
-    top: -22vh;
+    top: 22vh;
     left: 50%;
-    margin-left: -620px;
+    margin-left: -640px;
     width: calc(3vw + 140px);
   }
 
   .image2 {
     /* basil */
-    top: 15vh;
+    top: 65vh;
     left: 50%;
-    margin-left: -650px;
+    margin-left: -660px;
     width: calc(4vw + 170px);
   }
 
   .image3 {
     /* tomato */
-    top: -9vh;
+    top: 21vh;
     left: 50%;
     margin-left: 250px;
     width: calc(4vw + 180px);
@@ -44,7 +44,7 @@
 
   .image4 {
     /* mushroom */
-    top: 9vh;
+    top: 39vh;
     left: 50%;
     margin-left: 400px;
     width: calc(4vw + 200px);
@@ -52,7 +52,7 @@
 
   .image5 {
     /* pepperoni */
-    top: 53vh;
+    top: 73vh;
     left: 50%;
     margin-left: 380px;
     width: calc(4vw + 190px);
@@ -60,15 +60,15 @@
 
   .image6 {
     /* olive */
-    top: 65vh;
+    top: 95vh;
     left: 50%;
-    margin-left: -720px;
+    margin-left: -730px;
     width: calc(4vw + 320px);
   }
 
   .image7 {
     /* basil */
-    top: 107vh;
+    top: 137vh;
     left: 50%;
     margin-left: 370px;
     width: calc(4vw + 130px);
