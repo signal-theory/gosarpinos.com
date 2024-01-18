@@ -5,8 +5,9 @@ import CalloutMobileApp from '@/app/components/CalloutMobileApp';
 import MenuNavigation from '../../MenuNavigation';
 import styles from './Single.module.css';
 import ItemTabs from '../../ItemTabs';
-import BYOContent1 from '../BYOContent1';
-import BYOContent2 from '../BYOContent2';
+import BYOContent1 from './BYOContent1';
+import BYOContent2 from './BYOContent2';
+import Parallax from './Parallax';
 
 const postType = 'build-your-own';
 export async function generateMetadata({ params }) {
@@ -41,12 +42,12 @@ export default async function Page({ params }) {
     console.error("Error fetching post data:", error);
     // Handle the error appropriately
   }
-
   const content = [
-    { id: 'tab1', component: <BYOContent1 /> },
-    { id: 'tab2', component: <BYOContent2 /> },
+    { id: 'tab1', component: <BYOContent1 data={post} /> },
+    { id: 'tab2', component: <BYOContent2 data={post} /> },
     // Add more content as needed
   ];
+
   return (
     <>
 
@@ -55,20 +56,19 @@ export default async function Page({ params }) {
           mode="dark"
           activeItem="build-your-own" />
         <section className="viewport innermenu">
-          <div className="page-container">
-            <div className={styles.container}>
-              <div className={styles.content}>
-                <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: post.title.rendered || '' }} />
-                <div className={styles.content} dangerouslySetInnerHTML={{ __html: post.content.rendered || '' }} />
+          <div className={`page-container ${styles.container}`}>
+            <div className={styles.content}>
+              <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: post.title.rendered || '' }} />
+              <div dangerouslySetInnerHTML={{ __html: post.content.rendered || '' }} />
 
-                <ItemTabs
-                  bkgVariant="green"
-                  tab1="Ingredients"
-                  tab2="Sauces"
-                  content={content} />
-              </div>
+              <ItemTabs
+                bkgVariant="green"
+                tab1="Ingredients"
+                tab2="Sauces"
+                content={content} />
             </div>
           </div>
+          <Parallax />
         </section>
         <CalloutMobileApp />
       </div>

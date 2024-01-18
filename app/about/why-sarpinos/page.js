@@ -8,9 +8,9 @@ import Experience from './Experience';
 const pageId = 60;
 export async function generateMetadata() {
   const metadata = await fetchMetadata(pageId);
-  
+
   const metadataBase = METADATABASE_API_URL;
-  
+
   return {
     metadataBase,
     title: metadata.title,
@@ -22,7 +22,7 @@ export async function generateMetadata() {
   };
 }
 
- 
+
 export default async function Page({ params }) {
   let data;
   let fullWidthImage;
@@ -38,12 +38,12 @@ export default async function Page({ params }) {
 
   return (
     <>
-    <div className="cream-color">
-      <Hero data={data}/>
-      <Columns data={data}/>
-      <FullWidth data={data} fullWidthImage={fullWidthImage}/>
-      <Experience data={data} experienceImage={experienceImage}/>
-    </div>
+      <div className="cream-color">
+        <Hero data={data} />
+        <Columns data={data} />
+        <FullWidth data={data} fullWidthImage={fullWidthImage} />
+        <Experience data={data} experienceImage={experienceImage} />
+      </div>
     </>
   );
 }

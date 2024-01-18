@@ -5,19 +5,30 @@ import styles from './Timeline.module.css';
 import { useEffect } from 'react';
 
 const Timeline = ({ data }) => {
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        import('rellax').then(({ default: Rellax }) => {
+          new Rellax('.rellax7');
+          new Rellax('.rellax8');
+          new Rellax('.rellax9');
+          new Rellax('.rellax10');
+          new Rellax('.rellax11');
+          new Rellax('.rellax12');
+          new Rellax('.rellax13');
+          new Rellax('.rellax14');
+        });
+      }
+    };
 
-   useEffect(() => {
-     if (typeof window !== 'undefined' && window.innerWidth > 768) {
-      import('rellax').then(({ default: Rellax }) => {
-        new Rellax('.rellax7');
-        new Rellax('.rellax8');
-        new Rellax('.rellax9');
-        new Rellax('.rellax10');
-        new Rellax('.rellax11');
-        new Rellax('.rellax12');
-        new Rellax('.rellax13');
-      });
-    }
+    // Call the function once on component mount
+    handleResize();
+
+    // Add the event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup function to remove the event listener when the component unmounts
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const timeline = data.acf?.timeline || [];
@@ -26,7 +37,7 @@ const Timeline = ({ data }) => {
     <section className={`viewport`}>
       <div className={`full-page-container ${styles.container}`}>
         <div className="responsive-column-container">
-          <div className={`${styles.content}`}>
+          {timeline && <div className={`${styles.content}`}>
             <div className={styles.innerHeroText}>
               {timeline.map((item, index) => (
                 <div key={index} className={styles.timeline}>
@@ -38,7 +49,7 @@ const Timeline = ({ data }) => {
                 </div>
               ))}
             </div>
-          </div>
+          </div>}
           <div className={styles.animation}>
             <div className={`fade-in rellax13 ${styles.shadow}`} data-rellax-speed="1"></div>
             <Image src="/pepperoniPizza.webp"

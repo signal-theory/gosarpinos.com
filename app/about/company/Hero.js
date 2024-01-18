@@ -7,17 +7,28 @@ import { useEffect } from 'react';
 
 const Hero = ({ data, heroImage }) => {
   useEffect(() => {
-    if (window.innerWidth > 768) {
-      import('rellax').then(({ default: Rellax }) => {
-        new Rellax('.rellax0');
-        new Rellax('.rellax1');
-        new Rellax('.rellax2');
-        new Rellax('.rellax3');
-        new Rellax('.rellax4');
-        new Rellax('.rellax5');
-        new Rellax('.rellax6');
-      });
-    }
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        import('rellax').then(({ default: Rellax }) => {
+          new Rellax('.rellax0');
+          new Rellax('.rellax1');
+          new Rellax('.rellax2');
+          new Rellax('.rellax3');
+          new Rellax('.rellax4');
+          new Rellax('.rellax5');
+          new Rellax('.rellax6');
+        });
+      }
+    };
+
+    // Call the function once on component mount
+    handleResize();
+
+    // Add the event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup function to remove the event listener when the component unmounts
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (

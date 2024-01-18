@@ -6,7 +6,7 @@ import SortSpecials from './SortSpecials';
 
 // This component is used to include the SortSpecials component that sorts post by category
 const SpecialsContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
-  
+
   const [loading, setLoading] = useState(true);
   const [filteredPosts, setFilteredPosts] = useState(posts || []);
   const [categories, setCategories] = useState([]); // New state for categories
@@ -16,8 +16,8 @@ const SpecialsContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
   useEffect(() => {
     setLoading(true);
     if (posts) {
-        setFilteredPosts(posts);
-        setLoading(false);
+      setFilteredPosts(posts);
+      setLoading(false);
     }
   }, [posts]);
 
@@ -34,9 +34,9 @@ const SpecialsContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
       ? posts
       : posts.filter(post => post.acf.menu_category?.includes(selectedCategory));
 
-        setFilteredPosts(filtered);
-        setLoading(false);
-    }, [selectedCategory, posts, postType]);
+    setFilteredPosts(filtered);
+    setLoading(false);
+  }, [selectedCategory, posts, postType]);
 
   return (
     <>
@@ -50,19 +50,19 @@ const SpecialsContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
       {loading ? (
         <div className="loading">Loading...</div>
       ) : (
-      <div className="responsive-lg-column-container fade-in">
-        {filteredPosts.map((post, index) => {
-          return (
-              <SpecialsCard 
+        <div className="responsive-equal-height-container fade-in" style={{ gridGap: '0' }}>
+          {filteredPosts.map((post, index) => {
+            return (
+              <SpecialsCard
                 key={index}
                 post={post}
                 acfTitle={post.acf.title_of_special}
                 postTitle={post.title.rendered}
                 category={post.acf.menu_category}
               />
-          )
-        })}
-      </div>
+            )
+          })}
+        </div>
       )}
     </>
   );

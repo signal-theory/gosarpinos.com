@@ -4,8 +4,8 @@
 .specialsItem {
   position: relative;
   overflow: hidden;
-  width: calc(400px - ((var(--gutter) / 2 * 1.5) * 2));
-  height: calc(400px - ((var(--gutter) / 2 * 1.5) * 2));
+  width: 400px;
+  height: 400px;
   max-width: 100%;
   scroll-snap-align: start;
   padding: calc(var(--gutter) / 2 * 1.5);
@@ -16,6 +16,19 @@
   border-radius: 8px;
   text-align: center;
   margin: 0 auto;
+  transition: all 0.3s ease-in-out;
+}
+@media screen and (max-width: 1324px) {
+  .specialsItem {
+    width: 350px;
+    height: 350px;
+  }
+}
+@media screen and (max-width: 1115px) {
+  .specialsItem {
+    width: 300px;
+    height: 300px;
+  }
 }
 .specialsItem .specialsBkg {
   position: absolute;

@@ -21,9 +21,6 @@
   display: inline-block;
   padding: 0 1rem;
 }
-.tabItem.active span {
-  font-weight: 500;
-}
 .tabItem.active::after {
   content: "";
   display: block;

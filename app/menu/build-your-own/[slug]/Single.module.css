@@ -6,12 +6,12 @@
   background-color: var(--green-color);
   margin: 0 auto;
   max-width: 1000px;
-  width: 90%;
   color: var(--cream-color);
-  padding: 5rem 0;
+  padding-top: calc(3vw + 2.5rem);
+  padding-bottom: calc(3vw + 2.5rem);
 }
 .content {
-  margin: 0 auto;
+  margin: 0 auto 0 0;
   max-width: 700px;
-  width: 100%;
+  padding: 0 calc(3vw + 1.5rem);
 }

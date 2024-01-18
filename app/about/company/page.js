@@ -8,9 +8,9 @@ import Franchise from './Franchise';
 const pageId = 49;
 export async function generateMetadata() {
   const metadata = await fetchMetadata(pageId);
-  
+
   const metadataBase = METADATABASE_API_URL;
-  
+
   return {
     metadataBase,
     title: metadata.title,
@@ -22,25 +22,25 @@ export async function generateMetadata() {
   };
 }
 
- 
+
 export default async function Page({ params }) {
   let data;
 
   try {
     data = await fetchPageData(pageId);
-    
+
   } catch (error) {
     console.error("Error in Page component:", error);
   }
 
   return (
     <>
-    <div className="cream-color">
-      <Hero data={data} />
-      <Ingredients data={data} />
-      <Timeline data={data} />
-      <Franchise />
-    </div>
+      <div className="cream-color" style={{ overflow: 'hidden' }}>
+        <Hero data={data} />
+        <Ingredients data={data} />
+        <Timeline data={data} />
+        <Franchise />
+      </div>
     </>
   );
 }

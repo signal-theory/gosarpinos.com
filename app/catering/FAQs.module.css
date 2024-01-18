@@ -15,6 +15,10 @@ h4.title {
   display: flex;
   justify-content: space-between;
   margin: 0;
+  cursor: pointer;
+}
+h4.title:hover {
+  background-color: rgba(0, 0, 0, 0.01);
 }
 .description {
   padding: 0 0 2rem;

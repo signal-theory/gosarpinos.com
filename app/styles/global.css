@@ -227,17 +227,19 @@ a:focus {
 }
 .viewport.innerhero {
   padding-top: calc(106px + 2rem);
+  overflow: hidden;
 }
 .viewport.innermenu {
   padding-top: calc(193px + 2rem);
+  overflow: hidden;
 }
 .viewport.fullhero {
   padding: 0;
 }
 .page-container {
   position: relative;
-  width: calc(92% - 4rem);
-  padding: 2rem;
+  width: calc(90% - 2rem);
+  padding: 1rem;
   max-width: 1300px;
   margin: 0 auto;
   border-radius: 10px;
