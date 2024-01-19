@@ -6,14 +6,14 @@ const MenuCallout = () => {
   return (
     <section className="viewport cream-color">
       <div className="page-container">
-        <div className="responsive-column-container" style={{margin: '4em 0'}}>
+        <div className="responsive-column-container" style={{ margin: '4em 0' }}>
           <div>
             <h3 className={styles.title}>
               Hungry for Our Vegan Menu?
             </h3>
           </div>
           <div className={styles.buttons}>
-            <Link href="/menu/vegan-menu" className={`${styles.button} btn primary-btn`}>See our vegan menu</Link>
+            <Link href="/vegan-menu/vegan-pizza" className={`${styles.button} btn primary-btn`}>See our vegan menu</Link>
           </div>
         </div>
         <Image src={'/heart-red-fill.svg'} width={30} height={30} className={styles.redFillHeart} alt="red fill heart" />
