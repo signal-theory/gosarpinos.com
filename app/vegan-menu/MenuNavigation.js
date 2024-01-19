@@ -17,6 +17,7 @@ export default function MenuNavigation({ mode, activeItem }) {
   const subnav = [
     { id: "specials", label: "National Specials", handler: handleNav("specials"), href: "/menu/national-specials" },
     { id: "build-your-own", label: "Build Your Own", handler: handleNav("build-your-own"), href: "/menu/build-your-own" },
+    { id: "vegan-menu", label: "Vegan", handler: handleNav("vegan-menu"), href: "/vegan-menu/vegan-pizza" },
     { id: "pizza", label: "Pizza", handler: handleNav("sarpinos-specialty-pizza"), href: "/vegan-menu/vegan-pizza" },
     { id: "deep-dish", label: "Deep Dish", handler: handleNav("deep-dish-pizza"), href: "/vegan-menu/vegan-deep-dish-pizza" },
     { id: "calzones", label: "Calzones", handler: handleNav("calzones"), href: "/vegan-menu/vegan-calzones" },
@@ -36,7 +37,7 @@ export default function MenuNavigation({ mode, activeItem }) {
           <li key={index}>
             <Link
               href={nav.href}
-              className={`${styles.navItem} ${activeNav === nav.id ? styles.active : ""}`}
+              className={`${styles.navItem} ${activeNav === nav.id ? styles.active : ""} ${nav.id === "vegan-menu" ? styles.vegan : ""}`}
               onClick={nav.handler}>{nav.label}</Link>
           </li>
         ))}
