@@ -26,7 +26,7 @@ export default function MenuNavigation({ mode, activeItem }) {
     { id: "pastas", label: "Pastas", handler: handleNav("pastas"), href: "/vegan-menu/vegan-pastas" },
     { id: "breadsticks", label: "Breadsticks", handler: handleNav("breadsticks"), href: "/vegan-menu/vegan-breadsticks" },
     { id: "desserts", label: "Desserts", handler: handleNav("desserts"), href: "/vegan-menu/vegan-desserts" },
-    { id: "extras", label: "Extras", handler: handleNav(), href: "/vegan-menu/vegan-extras" }
+    { id: "extras", label: "Extras", handler: handleNav("extras"), href: "/vegan-menu/vegan-extras" }
   ];
 
 

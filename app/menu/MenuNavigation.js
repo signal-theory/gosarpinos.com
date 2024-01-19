@@ -27,7 +27,7 @@ export default function MenuNavigation({ mode, activeItem }) {
     { id: "pastas", label: "Pastas", handler: handleNav("pastas"), href: "/menu/pastas" },
     { id: "breadsticks", label: "Breadsticks", handler: handleNav("breadsticks"), href: "/menu/breadsticks" },
     { id: "desserts", label: "Desserts", handler: handleNav("desserts"), href: "/menu/desserts" },
-    { id: "extras", label: "Extras", handler: handleNav(), href: "/menu/extras" }
+    { id: "extras", label: "Extras", handler: handleNav("extras"), href: "/menu/extras" }
   ];
 
 
