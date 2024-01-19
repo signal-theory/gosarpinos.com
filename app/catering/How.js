@@ -17,8 +17,7 @@ const How = ({ data }) => {
                   {item.step}
                 </p>
               </div>
-              <div key={`arrow${index}`} className={styles.arrow}>
-              </div>
+              <div className={styles.arrow} />
             </li>
           ))}
         </ul>

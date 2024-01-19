@@ -1,6 +1,8 @@
 import { METADATABASE_API_URL } from '../lib/constants';
-import { fetchMetadata, fetchPageData } from '../lib/utils'; // Adjust the path as necessary
+import { fetchMetadata, fetchPageData, fetchACFImage } from '../lib/utils'; // Adjust the path as necessary
 import Hero from './Hero';
+import Earn from './Earn';
+import CalloutLoyalty from '../components/CalloutLoyalty';
 
 const pageId = 111;
 export async function generateMetadata() {
@@ -22,9 +24,16 @@ export async function generateMetadata() {
 
 export default async function Page({ params }) {
   let data;
+  let mainImage;
 
   try {
     data = await fetchPageData(pageId);
+    mainImage = data?.acf.main_image ? await fetchACFImage(data?.acf.main_image).catch(e => {
+      console.error(`Error fetching main image: ${e}`);
+      return null;
+    }) : null;
+
+    data = { ...data, mainImage };
 
   } catch (error) {
     console.error("Error in Page component:", error);
@@ -32,11 +41,16 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <section className="viewport innerhero cream-color">
-        <div className="page-container">
-          <Hero data={data} />
+      <section className="viewport cream-color">
+        <div className="page-container" style={{ paddingTop: 0 }}>
+          <Hero
+            data={data}
+            mainImage={mainImage} />
+          <Earn
+            data={data} />
         </div>
       </section>
+      <CalloutLoyalty />
     </>
   );
 }

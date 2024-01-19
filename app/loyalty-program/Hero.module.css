@@ -1,0 +1,21 @@
+@media screen and (min-width: 738px) {
+  .textCol {
+    padding: calc(7vw + 2rem) 0 2rem;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+.title {
+  text-align: center;
+  color: var(--red-color);
+}
+.image {
+  margin: 49px auto 0 0;
+  height: auto;
+  max-width: 600px;
+  width: 100%;
+}
+.imageCol {
+  position: relative;
+}
