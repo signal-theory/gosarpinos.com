@@ -5,7 +5,7 @@
   width: 100%;
   color: var(--cream-color);
   font-size: 85%;
-  padding: calc(5vw + 25px) calc(5vw + 15px);
+  padding: calc(5vw + 25px) calc(5vw + 15px) calc(1vw + 25px);
 }
 @media screen and (min-width: 1240px) {
   .footer {

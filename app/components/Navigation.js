@@ -108,12 +108,12 @@ export default function Navigation() {
     <nav className="main-navigation">
       <div className="navbar">
         <Link href="/" className="logo" title="Go to Sarpino&apos;s Home page">
-          <Image 
-          src={logo} 
-          alt="Sarpino&apos;s Pizzeria Logo"
-           />
+          <Image
+            src={logo}
+            alt="Sarpino&apos;s Pizzeria Logo"
+          />
         </Link>
-         <button
+        <button
           className={`hamburger hamburger--squeeze ${toggleMenu ? 'is-active' : ''}`}
           aria-expanded={toggleMenu}
           aria-haspopup="true"
@@ -144,7 +144,7 @@ export default function Navigation() {
         </ul>
         <ul className="desktoplinks">
           <li className="item button heart">
-            <Link href="/loyalty">Loyalty Sign-In</Link>
+            <Link href="/loyalty-program">Loyalty Sign-In</Link>
           </li>
           <li className="item button">
             <OrderBtn />
@@ -163,9 +163,9 @@ export default function Navigation() {
               <li className="subitem">
                 <Link href="/menu/build-your-own" onClick={() => handleSubmenu('Menu')}>
                   {featuredImages[91] && (
-                    <Image 
-                      className="featured-image" 
-                      src={featuredImages[91].url} 
+                    <Image
+                      className="featured-image"
+                      src={featuredImages[91].url}
                       alt={featuredImages[91].alt}
                       width={191}
                       height={43}
@@ -177,9 +177,9 @@ export default function Navigation() {
               <li className="subitem">
                 <Link href="/menu/sarpinos-specialty-pizza" onClick={() => handleSubmenu('Menu')}>
                   {featuredImages[34] && (
-                    <Image 
-                      className="featured-image" 
-                      src={featuredImages[34].url} 
+                    <Image
+                      className="featured-image"
+                      src={featuredImages[34].url}
                       alt={featuredImages[34].alt}
                       width={191}
                       height={43} />
@@ -188,14 +188,14 @@ export default function Navigation() {
                 </Link>
               </li>
               <li className="subitem">
-                <Link 
-                  href="/menu/vegan-pizza" 
-                  onClick={() => {  handleSubmenu('Menu');}}
+                <Link
+                  href="/menu/vegan-pizza"
+                  onClick={() => { handleSubmenu('Menu'); }}
                 >
                   {featuredImages[170] && (
-                    <Image 
-                      className="featured-image" 
-                      src={featuredImages[170].url} 
+                    <Image
+                      className="featured-image"
+                      src={featuredImages[170].url}
                       alt={featuredImages[170].alt}
                       width={191}
                       height={43} />
@@ -228,18 +228,18 @@ export default function Navigation() {
         </li>
         <li className="item has-submenu"><a tabIndex="0" className={`${activeMobileMenus['Menu'] ? 'active' : ''}`} onClick={() => handleMobileSubmenu('Menu')}>Menu</a>
           <ul className={`item submenu ${activeMobileMenus['Menu'] ? 'active' : ''}`}>
-             <li className="subitem"><Link href="/menu/sarpinos-specialty-pizza" onClick={handleMobile}>Full Menu</Link></li>
-             <li className="subitem"><Link href="/menu/build-your-own" onClick={handleMobile}>Build Your Own</Link></li>
-              <li className="subitem"><Link href="/menu/vegan-menu" onClick={handleMobile}>Vegan Menu</Link></li>
-              <li className="subitem"><Link href="/menu/national-specials" onClick={handleMobile}>Specials & Promotions</Link></li>
-            
+            <li className="subitem"><Link href="/menu/sarpinos-specialty-pizza" onClick={handleMobile}>Full Menu</Link></li>
+            <li className="subitem"><Link href="/menu/build-your-own" onClick={handleMobile}>Build Your Own</Link></li>
+            <li className="subitem"><Link href="/menu/vegan-menu" onClick={handleMobile}>Vegan Menu</Link></li>
+            <li className="subitem"><Link href="/menu/national-specials" onClick={handleMobile}>Specials & Promotions</Link></li>
+
           </ul>
         </li>
         <li className="item"><Link href="/catering" onClick={handleMobile}>Catering</Link></li>
         <li className="item"><Link href="/locations" onClick={handleMobile}>Find Locations</Link></li>
         <li className="item button heart"><a href="/loyalty" onClick={handleMobile}>Loyalty Sign-In</a></li>
       </ul>
-      
+
     </nav>
   );
 }
