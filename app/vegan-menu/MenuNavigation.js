@@ -17,16 +17,15 @@ export default function MenuNavigation({ mode, activeItem }) {
   const subnav = [
     { id: "specials", label: "National Specials", handler: handleNav("specials"), href: "/menu/national-specials" },
     { id: "build-your-own", label: "Build Your Own", handler: handleNav("build-your-own"), href: "/menu/build-your-own" },
-    { id: "pizza", label: "Pizza", handler: handleNav("sarpinos-specialty-pizza"), href: "/menu/sarpinos-specialty-pizza" },
-    { id: "deep-dish", label: "Deep Dish", handler: handleNav("deep-dish"), href: "/menu/deep-dish-pizza" },
-    { id: "calzones", label: "Calzones", handler: handleNav("calzones"), href: "/menu/calzones" },
-    { id: "wings-apps", label: "Wings & Appetizers", handler: handleNav("wings-apps"), href: "/menu/wings-apps" },
-    { id: "salads", label: "Salads", handler: handleNav("salads"), href: "/menu/salads" },
-    { id: "sandwiches", label: "Sandwiches", handler: handleNav("sandwiches"), href: "/menu/sandwiches" },
-    { id: "pastas", label: "Pastas", handler: handleNav("pastas"), href: "/menu/pastas" },
-    { id: "breadsticks", label: "Breadsticks", handler: handleNav("breadsticks"), href: "/menu/breadsticks" },
-    { id: "desserts", label: "Desserts", handler: handleNav("desserts"), href: "/menu/desserts" },
-    { id: "extras", label: "Extras", handler: handleNav(), href: "/menu/extras" }
+    { id: "pizza", label: "Pizza", handler: handleNav("sarpinos-specialty-pizza"), href: "/vegan-menu/vegan-pizza" },
+    { id: "deep-dish", label: "Deep Dish", handler: handleNav("deep-dish-pizza"), href: "/vegan-menu/vegan-deep-dish-pizza" },
+    { id: "calzones", label: "Calzones", handler: handleNav("calzones"), href: "/vegan-menu/vegan-calzones" },
+    { id: "salads", label: "Salads", handler: handleNav("salads"), href: "/vegan-menu/vegan-salads" },
+    { id: "sandwiches", label: "Sandwiches", handler: handleNav("sandwiches"), href: "/vegan-menu/vegan-sandwiches" },
+    { id: "pastas", label: "Pastas", handler: handleNav("pastas"), href: "/vegan-menu/vegan-pastas" },
+    { id: "breadsticks", label: "Breadsticks", handler: handleNav("breadsticks"), href: "/vegan-menu/vegan-breadsticks" },
+    { id: "desserts", label: "Desserts", handler: handleNav("desserts"), href: "/vegan-menu/vegan-desserts" },
+    { id: "extras", label: "Extras", handler: handleNav(), href: "/vegan-menu/vegan-extras" }
   ];
 
 

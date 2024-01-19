@@ -1,0 +1,63 @@
+nav.light,
+nav.dark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  padding: calc(106px + 1.5rem) 0 1rem;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+nav.light {
+  background-color: var(--darkred-color);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+nav.dark {
+  background-color: var(--cream-color);
+  border-bottom: 1px solid #c2b59b;
+}
+.menuNavigation {
+  display: inline-flex;
+  margin: 0;
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.menuNavigation::-webkit-scrollbar {
+  display: none;
+}
+
+.navItem {
+  display: inline-block;
+  border-radius: 2rem;
+  font-weight: 500;
+  font-family: var(--museo-slab);
+  font-weight: 700;
+  color: var(--cream-color);
+  overflow: hidden;
+  text-decoration: none;
+  margin: 0 0.25rem;
+  background-color: transparent;
+  border: none;
+  padding: 0 1rem;
+  line-height: 40px;
+  font-size: 0.9375rem;
+}
+.navItem.active {
+  background-color: var(--green-color);
+  color: var(--cream-color);
+}
+.light .navItem {
+  color: var(--cream-color);
+}
+.dark .navItem {
+  color: var(--green-color);
+}
+.dark .navItem.active {
+  color: var(--cream-color);
+}
