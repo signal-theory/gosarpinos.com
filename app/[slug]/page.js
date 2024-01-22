@@ -1,6 +1,6 @@
 import { METADATABASE_API_URL } from '../lib/constants';
 import { fetchMiscMetadata, fetchMiscData } from '../lib/utils'; // Adjust the path as necessary
-
+import Link from 'next/link';
 import styles from './Page.module.css';
 
 export async function generateMetadata({ params }) {
@@ -43,7 +43,15 @@ export default async function Page({ params }) {
   }
   // If data is null or undefined, render a 404 page
   if (!data) {
-    return <h1>404</h1>;
+    return <section className="viewport innerhero">
+      <div className="page-container cream-color">
+        <div className={`text-align-center ${styles.miscContent}`}>
+          <h1 className={styles.title}>SO SORRY!</h1>
+          <p>The page you&apos;re looking for cannot be found.</p>
+          <Link className="btn primary-btn" href="/"><span>GO TO THE HOMEPAGE</span></Link>
+        </div>
+      </div>
+    </section>;
   }
   return (
     <>
