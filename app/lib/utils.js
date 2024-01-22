@@ -22,7 +22,33 @@ export async function fetchMetadata(pageId) {
     // You can add more fields here if needed
   };
 }
+// utils/fetchMiscMetadata
+export async function fetchMiscMetadata(slug) {
+  const url = `${PAGES_API_URL}?slug=${slug}`;
 
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error('Failed to fetch metadata');
+  }
+
+  const data = await res.json();
+  const pageData = data[0]; // Get the first page that matches the slug
+
+  if (!pageData) {
+    return null; // Return null if no page matches the slug
+  }
+
+  const yoastMetadata = pageData.yoast_head_json;
+  const ogImage = yoastMetadata.og_image ? yoastMetadata.og_image[0].url : null;
+
+  // Return only the title and description
+  return {
+    title: yoastMetadata.title ? he.decode(yoastMetadata.title) : 'Default Title',
+    description: yoastMetadata.description ? he.decode(yoastMetadata.description) : 'Default Description',
+    ogImage: ogImage
+    // You can add more fields here if needed
+  };
+}
 // utils/fetchMetadataPost
 export async function fetchMetadataPost(postId) {
   const url = `${POSTS_API_URL}?slug=${postId}`;
@@ -179,6 +205,15 @@ export async function fetchPageData(pageId) {
   return res.json();
 }
 
+// utils/fetchMiscData
+export async function fetchMiscData(slug) {
+  const res = await fetch(`${PAGES_API_URL}?slug=${slug}`);
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+  const data = await res.json();
+  return data[0]; // Return the first page that matches the slug
+}
 
 // utils fetchCPTData
 export async function fetchCPTData(cptNames) {
