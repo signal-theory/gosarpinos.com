@@ -215,7 +215,7 @@ export default function Navigation() {
           </li>
         </ul>
         <ul ref={myRef3} className={`item submenu ${activeMenus['Locations'] ? 'active' : ''}`}>
-          <li className="subitem"><Link href="/locations" onClick={() => handleSubmenu('Locations')}>Search Sarpino&apos;s Locations</Link></li>
+          <li className="subitem"><Link href="/pizza-delivery" onClick={() => handleSubmenu('Locations')}>Search Sarpino&apos;s Locations</Link></li>
         </ul>
       </div>
       <ul className={`mobilemenu ${toggleMenu ? 'active' : ''}`}>
@@ -236,7 +236,7 @@ export default function Navigation() {
           </ul>
         </li>
         <li className="item"><Link href="/catering" onClick={handleMobile}>Catering</Link></li>
-        <li className="item"><Link href="/locations" onClick={handleMobile}>Find Locations</Link></li>
+        <li className="item"><Link href="/pizza-delivery" onClick={handleMobile}>Find Locations</Link></li>
         <li className="item button heart"><a href="/loyalty" onClick={handleMobile}>Loyalty Sign-In</a></li>
       </ul>
 

@@ -575,3 +575,32 @@ button[type="submit"] {
   width: 1px;
   word-wrap: normal !important;
 }
+
+/* GOOGLE MAPS */
+.gw-style {
+  font-family: var(--museo-sans) !important;
+}
+.gm-style-iw {
+  background-color: var(--red-color) !important;
+  max-width: 320px !important;
+  min-width: 250px !important;
+  color: white;
+  font-size: 15px !important;
+}
+.gm-style-iw-d {
+  overflow: hidden !important;
+  padding: 10px !important;
+  width: calc(100% - 20px) !important;
+  height: 100%;
+}
+.gm-ui-hover-effect {
+  top: 0 !important;
+  right: 0 !important;
+}
+.gm-ui-hover-effect > span {
+  mask-image: url("/icon-close.svg") !important;
+  background-color: white;
+}
+.gm-style-iw-tc::after {
+  background-color: var(--red-color) !important;
+}
