@@ -5,7 +5,7 @@ import MenuCard from './MenuCard';
 import { fetchACFImage } from '../lib/utils';
 
 // This component is used to include the SortPosts component that sorts by post type
-const PostContent = ({ posts, filterPostsBy }) => {
+const PostContent = ({ posts, menuSlug, postTypeSlug, filterPostsBy }) => {
 
   const [loading, setLoading] = useState(true);
   const [filteredPosts, setFilteredPosts] = useState([]);
@@ -53,7 +53,8 @@ const PostContent = ({ posts, filterPostsBy }) => {
               <MenuCard
                 key={index}
                 post={post}
-                postType={post.type}
+                postTypeSlug={postTypeSlug}
+                menuSlug={menuSlug}
                 hoverImage={post.hoverImage ? post.hoverImage.sourceUrl : null}
                 hoverAlt={post.hoverImage ? post.hoverImage.altText : ''}
                 featuredImage={post.mainImage ? post.mainImage.sourceUrl : null}

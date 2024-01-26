@@ -52,7 +52,8 @@ export default async function Page() {
           {/* Render the menu posts */}
           <PostContent
             posts={posts}
-            postType={postType}
+            postTypeSlug="vegan-pastas"
+            menuSlug="vegan-menu"
             filterPostsBy='Vegan' />
         </div>
       </section>

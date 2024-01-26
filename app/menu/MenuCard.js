@@ -3,11 +3,11 @@ import Link from 'next/link';
 import OrderBtn from '../components/OrderBtn';
 import styles from './MenuCard.module.css';
 
-const MenuCard = ({ post, postType, hoverImage, hoverAlt, featuredImage, featuredAlt }) => {
+const MenuCard = ({ post, postTypeSlug, menuSlug, hoverImage, hoverAlt, featuredImage, featuredAlt }) => {
 
+  const whichMenu = menuSlug === 'vegan-menu' ? 'vegan-menu' : 'menu';
 
-
-  const url = `/menu/${postType}/${post.slug}`;
+  const url = `/${whichMenu}/${postTypeSlug}/${post.slug}`;
   return (
     <>
       <div className={styles.container}>

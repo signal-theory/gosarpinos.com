@@ -52,7 +52,7 @@ export default async function Page() {
           {/* Render the menu posts */}
           <MenuContent
             posts={posts}
-            postType={postType}
+            postTypeSlug={postType}
             categoryTitle='Sort Deep Dish Pizza' />
         </div>
       </section>

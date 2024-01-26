@@ -6,8 +6,8 @@ import SortCategories from '../components/SortCategories';
 import { fetchACFImage } from '../lib/utils';
 
 // This component is used to include the SortCategories component that sorts post by category
-const MenuContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
-  
+const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
+
   const [loading, setLoading] = useState(true);
   const [filteredPosts, setFilteredPosts] = useState(posts || []);
   const [categories, setCategories] = useState([]); // New state for categories
@@ -27,7 +27,7 @@ const MenuContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
         console.error(`Error fetching hover image: ${e}`);
         return null;
       }) : null;
-      
+
       return { ...post, mainImage, hoverImage };
     }));
   }, [filterPostsBy]);
@@ -56,21 +56,21 @@ const MenuContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
       ? posts
       : posts.filter(post => post.acf.menu_category?.includes(selectedCategory));
 
-      // Shuffle the filtered posts
-      const shuffledPosts = [...filtered].sort(() => Math.random() - 0.5);
+    // Shuffle the filtered posts
+    const shuffledPosts = [...filtered].sort(() => Math.random() - 0.5);
 
-      // Fetch images for shuffled posts
-      fetchImages(shuffledPosts).then(posts => {
-        setFilteredPosts(posts);
-        setLoading(false);
-      });
-    }, [selectedCategory, posts, fetchImages, postType]);
+    // Fetch images for shuffled posts
+    fetchImages(shuffledPosts).then(posts => {
+      setFilteredPosts(posts);
+      setLoading(false);
+    });
+  }, [selectedCategory, posts, fetchImages, postTypeSlug]);
 
   return (
     <>
       {categories.length > 0 && <SortCategories
         selectionTitle={categoryTitle}
-        postType={postType}
+        postType={postTypeSlug}
         selectedCategory={selectedCategory}
         categories={categories}
         onCategorySelect={setSelectedCategory}
@@ -78,21 +78,21 @@ const MenuContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
       {loading ? (
         <div className="loading">Loading...</div>
       ) : (
-      <div className="responsive-equal-height-container fade-in">
-        {filteredPosts.map((post, index) => {
-          return (
-              <MenuCard 
+        <div className="responsive-equal-height-container fade-in">
+          {filteredPosts.map((post, index) => {
+            return (
+              <MenuCard
                 key={index}
                 post={post}
-                postType={postType}
+                postTypeSlug={postTypeSlug}
                 hoverImage={post.hoverImage ? post.hoverImage.sourceUrl : null}
                 hoverAlt={post.hoverImage ? post.hoverImage.altText : ''}
                 featuredImage={post.mainImage ? post.mainImage.sourceUrl : null}
                 featuredAlt={post.mainImage ? post.mainImage.altText : ''}
               />
-          )
-        })}
-      </div>
+            )
+          })}
+        </div>
       )}
     </>
   );

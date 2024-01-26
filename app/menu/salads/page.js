@@ -11,9 +11,9 @@ const pageId = 98;
 const postType = ['salads'];
 export async function generateMetadata() {
   const metadata = await fetchMetadata(pageId);
-  
+
   const metadataBase = METADATABASE_API_URL;
-  
+
   return {
     metadataBase,
     title: metadata.title,
@@ -23,7 +23,7 @@ export async function generateMetadata() {
     }
   };
 }
- 
+
 export default async function Page() {
 
 
@@ -33,7 +33,7 @@ export default async function Page() {
   try {
     data = await fetchPageData(pageId);
     posts = await fetchCPTData(postType);
-     
+
   } catch (error) {
     console.error("Error in Page component:", error);
   }
@@ -47,18 +47,18 @@ export default async function Page() {
         <div className="page-container cream-color">
           <MenuHeader
             featuredImage={data._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}
-            featuredImageAlt={data._embedded?.['wp:featuredmedia']?.[0]?.alt_text || 'fresh salads'} 
-            pageTitle={data.title.rendered} 
+            featuredImageAlt={data._embedded?.['wp:featuredmedia']?.[0]?.alt_text || 'fresh salads'}
+            pageTitle={data.title.rendered}
             pageContent={data.content.rendered}
-            />
+          />
           {/* Render the menu posts */}
-          <MenuContent 
+          <MenuContent
             posts={posts}
-            postType={postType}
+            postTypeSlug={postType}
             categoryTitle={'Sort ' + postType} />
         </div>
       </section>
-     
+
       <CalloutMenu />
       <CalloutMobileApp />
     </>
