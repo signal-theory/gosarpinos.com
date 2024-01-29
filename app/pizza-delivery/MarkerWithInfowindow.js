@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import styles from './Map.module.css';
 import {
-  Marker,
+  AdvancedMarker,
   InfoWindow,
   useAdvancedMarkerRef
 } from '@vis.gl/react-google-maps';
@@ -14,7 +14,7 @@ const MarkerWithInfowindow = () => {
 
   return (
     <>
-      <Marker
+      <AdvancedMarker
         ref={markerRef}
         onClick={() => setInfowindowOpen(true)}
         position={{ lat: 28, lng: -82 }}
