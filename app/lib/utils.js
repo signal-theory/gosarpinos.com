@@ -273,3 +273,14 @@ export async function fetchMediaData(mediaId, size = 'full') {
   };
 }
 
+// utils/fetchLocations
+export async function fetchLocations() {
+  const url = `${CPT_API_URL}/locations`;
+
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error('Failed to fetch locations');
+  }
+
+  return await res.json();
+}
