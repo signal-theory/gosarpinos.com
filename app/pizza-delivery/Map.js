@@ -12,10 +12,10 @@ const MapHero = () => {
         <div className={styles.map}>
           <APIProvider apiKey={globalThis.NEXT_PUBLIC_GOOGLEMAPS_API_KEY ?? (process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY)}>
             <Map
-              styles={mapstyle}
+              mapId={'4726a23fb5e9ce49'}
               zoom={6}
               // scrollwheel={false}
-              center={{ lat: 41, lng: -87 }}
+              center={{ lat: 41, lng: -94 }}
               gestureHandling={'greedy'}
               disableDefaultUI={true}
             >

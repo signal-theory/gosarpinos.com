@@ -4,9 +4,9 @@ import { fetchLocations } from '../lib/utils'; // Import the fetchLocations func
 
 import styles from './Map.module.css';
 import {
-  Marker,
+  AdvancedMarker,
   InfoWindow,
-  useAdvancedMarkerRef
+  Pin,
 } from '@vis.gl/react-google-maps';
 import Link from 'next/link';
 
@@ -29,12 +29,13 @@ const MarkerWithInfowindow = () => {
     <>
       {locations.map((location, index) => (
         <React.Fragment key={index}>
-          <Marker
+          <AdvancedMarker
             ref={markerRefs.current[index]}
             onClick={() => setOpenInfoWindowIndex(index)}
             position={{ lat: parseFloat(location.acf.latitude), lng: parseFloat(location.acf.longitude) }}
-            title={location.acf.name}
-          />
+            title={location.acf.name}>
+            <Pin><img src="/sarpinos-heart.svg" alt="map icon" /></Pin>
+          </AdvancedMarker>
           {openInfoWindowIndex === index && (
             <InfoWindow
               className={styles.infoWindow}
