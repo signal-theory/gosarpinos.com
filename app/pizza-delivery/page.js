@@ -1,5 +1,5 @@
 import { METADATABASE_API_URL } from '../lib/constants';
-import { fetchMetadata, fetchPageData, fetchACFImage } from '../lib/utils'; // Adjust the path as necessary
+import { fetchMetadata } from '../lib/utils'; // Adjust the path as necessary
 import MapHero from './Map';
 
 const pageId = 214;
@@ -15,15 +15,11 @@ export async function generateMetadata() {
     openGraph: {
       images: metadata.ogImage ? [{ url: metadata.ogImage }] : []
     },
-    // Add other metadata properties if needed
   };
 }
 
 
 export default async function Page({ params }) {
 
-  return (
-    <><MapHero /></>
-
-  );
+  return <MapHero />;
 }

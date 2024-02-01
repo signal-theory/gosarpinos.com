@@ -1,8 +1,7 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
-import { fetchLocations } from '../lib/utils'; // Import the fetchLocations function
 
-import styles from './Map.module.css';
+import styleInfo from './MarkerInfo.module.css';
 import {
   AdvancedMarker,
   InfoWindow,
@@ -10,41 +9,35 @@ import {
 } from '@vis.gl/react-google-maps';
 import Link from 'next/link';
 
-const MarkerWithInfowindow = () => {
-  const [locations, setLocations] = useState([]);
-  const [openInfoWindowIndex, setOpenInfoWindowIndex] = useState(null);
+const MarkerWithInfowindow = ({ locations, openInfoWindowId, setOpenInfoWindowId }) => {
   const markerRefs = useRef([]); // Create a ref for the markerRefs array
 
-  useEffect(() => {
-    const getLocations = async () => {
-      const locationsData = await fetchLocations();
-      setLocations(locationsData);
-      markerRefs.current = locationsData.map((_, i) => markerRefs.current[i] ?? React.createRef()); // Create a new ref for each location
-    };
 
-    getLocations();
-  }, []);
+  useEffect(() => {
+    markerRefs.current = locations.map((_, i) => markerRefs.current[i] ?? React.createRef()); // Create a new ref for each location
+  }, [locations]);
+
 
   return (
     <>
       {locations.map((location, index) => (
-        <React.Fragment key={index}>
+        <React.Fragment key={location.id}>
           <AdvancedMarker
             ref={markerRefs.current[index]}
-            onClick={() => setOpenInfoWindowIndex(index)}
+            onClick={() => setOpenInfoWindowId(location.id)}
             position={{ lat: parseFloat(location.acf.latitude), lng: parseFloat(location.acf.longitude) }}
             title={location.acf.name}>
             <Pin><img src="/sarpinos-heart.svg" alt="map icon" /></Pin>
           </AdvancedMarker>
-          {openInfoWindowIndex === index && (
+          {openInfoWindowId === location.id && (
             <InfoWindow
-              className={styles.infoWindow}
-              anchor={markerRefs.current[index].current} // Use the current marker ref as the anchor
+              className={styleInfo.infoWindow}
+              anchor={markerRefs.current[index]?.current}  // Use the current marker ref as the anchor
               maxWidth={200}
-              onCloseClick={() => setOpenInfoWindowIndex(null)}
+              onCloseClick={() => setOpenInfoWindowId(null)}
             >
-              <h5 className={styles.iwTitle}>{location.acf.name}</h5>
-              <p className={styles.iwAddress}>
+              <h5 className={styleInfo.iwTitle}>{location.acf.name}</h5>
+              <p className={styleInfo.iwAddress}>
                 {location.acf.address}<br />
                 {location.acf.city}, {location.acf.state} {location.acf.zip}
               </p>

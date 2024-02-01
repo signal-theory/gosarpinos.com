@@ -1,0 +1,19 @@
+.listItem {
+  padding: 2rem 0 1rem;
+  font-family: var(--museo-slab);
+  border-bottom: 1px dashed var(--gray2-color);
+}
+.listTitle {
+  cursor: pointer;
+}
+@media screen and (min-width: 900px) {
+  .listColumns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+}
+.listItem a.textLink {
+  text-decoration: underline;
+}
