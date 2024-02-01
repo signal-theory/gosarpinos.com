@@ -8,6 +8,11 @@
 .tabList.greenTabs {
   border-bottom: 1px solid var(--cream-color);
 }
+.tabList.locationTabs {
+  border-bottom: none;
+  grid-template-columns: none;
+  display: flex;
+}
 .tabItem {
   font-family: var(--museo-slab), serif;
   font-weight: 300;
@@ -17,9 +22,16 @@
   margin: 1rem 0 0 0;
   cursor: pointer;
 }
+.tabList.locationTabs .tabItem {
+  color: var(--gray3-color);
+  margin: 1rem calc(1vw) 0;
+}
 .tabItem span {
   display: inline-block;
   padding: 0 1rem;
+}
+.tabList.locationTabs .tabItem.active {
+  color: var(--lightgreen-color);
 }
 .tabItem.active::after {
   content: "";
@@ -29,7 +41,9 @@
   border-radius: 3px;
   background-color: var(--green-color);
 }
-
+.tabList.locationTabs .tabItem.active::after {
+  background-color: var(--lightgreen-color);
+}
 .greenTabs .tabItem.active::after {
   background-color: var(--cream-color);
 }

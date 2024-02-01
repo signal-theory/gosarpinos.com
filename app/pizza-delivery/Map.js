@@ -9,7 +9,7 @@ import MarkerWithInfowindow from './MarkerWithInfowindow';
 import Header from './Header';
 import List from './List';
 
-const MapHero = () => {
+const MapHero = ({ posts }) => {
   //const [filteredLocations, setFilteredLocations] = useState([]);
   const [openInfoWindowId, setOpenInfoWindowId] = useState(null); // Store the ID instead of the index
   const [userLocation, setUserLocation] = useState(null);
@@ -108,7 +108,7 @@ const MapHero = () => {
         <div className={styles.list}>
           <div className={styles.listContainer}>
             <Header getUserLocation={getUserLocation} search={search} debouncedSearch={debouncedSearch} filteredLocations={filteredLocations} />
-            <List locations={filteredLocations} openInfoWindowId={openInfoWindowId} setOpenInfoWindowId={setOpenInfoWindowId} />
+            <List posts={posts} locations={filteredLocations} openInfoWindowId={openInfoWindowId} setOpenInfoWindowId={setOpenInfoWindowId} />
           </div>
         </div>
       </div>

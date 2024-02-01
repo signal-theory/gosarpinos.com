@@ -1,0 +1,16 @@
+.hero {
+  position: relative;
+  min-height: 461px;
+  display: flex;
+  align-items: center;
+}
+.heroImage {
+  object-fit: cover;
+  width: 100%;
+  position: absolute;
+}
+.heroContent {
+  position: relative;
+  color: white;
+  padding-top: 120px;
+}
