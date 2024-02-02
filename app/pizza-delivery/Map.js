@@ -7,35 +7,21 @@ import { geocode, calculateDistance } from '../lib/geocode';
 import styles from './Map.module.css';
 import MarkerWithInfowindow from './MarkerWithInfowindow';
 import Header from './Header';
+import SearchPanel from './SearchPanel';
 import List from './List';
 
 const MapHero = ({ posts }) => {
-  //const [filteredLocations, setFilteredLocations] = useState([]);
+  const [selectedLocation, setSelectedLocation] = useState('');
   const [openInfoWindowId, setOpenInfoWindowId] = useState(null); // Store the ID instead of the index
   const [userLocation, setUserLocation] = useState(null);
   const [locations, setLocations] = useState([]);
   const [search, setSearch] = useState('');
-  const [searchInput, setSearchInput] = useState(null);
   const [mapCenter, setMapCenter] = useState({ lat: 41, lng: -94 }); // Initial map center
   const [mapZoom, setMapZoom] = useState(6); // Initial zoom level
   const searchInputRef = useRef(null); // Create a reference to the input field
   const markerRefs = useRef([]); // Create a reference for markerRefs
 
-  const debouncedSearch = useRef(debounce(async (searchValue) => {
-    setSearch(searchValue);
-    try {
-      const searchLocation = await geocode(searchValue);
-      console.log(`Coordinates for search location: ${JSON.stringify(searchLocation)}`);
-    } catch (error) {
-      console.error(`Failed to geocode search input: ${error}`);
-    }
-  }, 300)).current;
 
-  useEffect(() => {
-    if (searchInputRef.current) {
-      searchInputRef.current.focus(); // Set the focus back to the input field
-    }
-  }, [search]);
 
   useEffect(() => {
     if (userLocation) {
@@ -55,20 +41,22 @@ const MapHero = ({ posts }) => {
     getLocations();
   }, []);
 
-  const filteredLocations = locations.filter(location =>
-    (location.acf.name.toLowerCase().includes(search.toLowerCase()) ||
-      location.acf.address.toLowerCase().includes(search.toLowerCase()) ||
-      location.acf.city.toLowerCase().includes(search.toLowerCase()) ||
-      (location.acf.zip && String(location.acf.zip).includes(search))) &&
-    (!userLocation || calculateDistance(userLocation, { lat: location.acf.latitude, lng: location.acf.longitude }) <= 40000)
-  );
+  const filteredLocations = locations.filter(location => {
+    const fullAddress = location.acf.name + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip;
+    if (selectedLocation) {
+      return fullAddress.toLowerCase() === selectedLocation.toLowerCase();
+    } else if (userLocation) {
+      return calculateDistance(userLocation, { lat: location.acf.latitude, lng: location.acf.longitude }) <= 40000;
+    }
+    return true;
+  });
 
   const getUserLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
         setUserLocation({ lat: latitude, lng: longitude });
-        setSearch(''); // Clear the search field
+        setSelectedLocation(''); // Clear the selected location
       }, (error) => {
         console.error("Error occurred while getting user's location: ", error);
       });
@@ -91,7 +79,9 @@ const MapHero = ({ posts }) => {
     <section className={styles.mapContainer}>
       <div className="responsive-column-container cream-color" style={{ height: '100%' }}>
         <div className={styles.map}>
-          <APIProvider apiKey={globalThis.NEXT_PUBLIC_GOOGLEMAPS_API_KEY ?? (process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY)}>
+          <APIProvider
+            apiKey={globalThis.NEXT_PUBLIC_GOOGLEMAPS_API_KEY ?? (process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY)}
+            libraries={['places']}>
             <Map
               mapId={'4726a23fb5e9ce49'}
               zoom={mapZoom}
@@ -107,7 +97,8 @@ const MapHero = ({ posts }) => {
         </div>
         <div className={styles.list}>
           <div className={styles.listContainer}>
-            <Header getUserLocation={getUserLocation} search={search} debouncedSearch={debouncedSearch} filteredLocations={filteredLocations} />
+            <SearchPanel getUserLocation={getUserLocation} selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} locations={locations} />
+            <Header filteredLocations={filteredLocations} />
             <List posts={posts} locations={filteredLocations} openInfoWindowId={openInfoWindowId} setOpenInfoWindowId={setOpenInfoWindowId} />
           </div>
         </div>

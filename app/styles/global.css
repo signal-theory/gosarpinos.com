@@ -608,3 +608,6 @@ button[type="submit"] {
 .gm-style-iw-tc::after {
   background-color: var(--red-color) !important;
 }
+.pac-container {
+  z-index: 1000; /* Adjust as necessary */
+}
