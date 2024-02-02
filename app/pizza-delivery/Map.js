@@ -21,8 +21,27 @@ const MapHero = ({ posts }) => {
   const searchInputRef = useRef(null); // Create a reference to the input field
   const markerRefs = useRef([]); // Create a reference for markerRefs
 
+  // refocus the center of the map whenever an Autcomplete selectedLocation is set
+  useEffect(() => {
+    const geocodeLocation = async () => {
+      if (selectedLocation) {
+        const coordinates = await geocode(selectedLocation);
+        if (coordinates) {
+          setMapCenter(coordinates);
+          setMapZoom(10); // Adjust zoom level as needed
+          // Find the selected location and open its InfoWindow
+          const selected = locations.find(location => location.acf.name + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip === selectedLocation);
+          if (selected) {
+            setOpenInfoWindowId(selected.id);
+          }
+        }
+      }
+    };
 
+    geocodeLocation();
+  }, [selectedLocation]);
 
+  // refocus the center of the map whenever the user's location is set
   useEffect(() => {
     if (userLocation) {
       setMapCenter(userLocation);
@@ -30,9 +49,13 @@ const MapHero = ({ posts }) => {
     }
   }, [userLocation]);
 
+  // refocus the center of the map whenever the list of locations is clicked
   useEffect(() => {
     const getLocations = async () => {
       const locationsData = await fetchLocations();
+      locationsData.forEach((location, index) => {
+        location.id = index;
+      });
       setLocations(locationsData);
       // Initialize markerRefs array
       markerRefs.current = locationsData.map((_, i) => markerRefs.current[i] ?? React.createRef());
@@ -41,6 +64,9 @@ const MapHero = ({ posts }) => {
     getLocations();
   }, []);
 
+  // check if selectedLocation is not empty, 
+  // then filter by selectedLocation, 
+  // otherwise filter by userLocation
   const filteredLocations = locations.filter(location => {
     const fullAddress = location.acf.name + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip;
     if (selectedLocation) {
@@ -51,6 +77,7 @@ const MapHero = ({ posts }) => {
     return true;
   });
 
+  // Get Current Location function
   const getUserLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -65,6 +92,7 @@ const MapHero = ({ posts }) => {
     }
   };
 
+  // Fetch the Locations
   useEffect(() => {
     const fetchLocationsData = async () => {
       const locationsData = await fetchLocations();
