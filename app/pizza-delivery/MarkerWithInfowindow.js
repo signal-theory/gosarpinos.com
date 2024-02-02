@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 import styleInfo from './MarkerInfo.module.css';
 import {
@@ -27,7 +28,13 @@ const MarkerWithInfowindow = ({ locations, openInfoWindowId, setOpenInfoWindowId
             onClick={() => setOpenInfoWindowId(location.id)}
             position={{ lat: parseFloat(location.acf.latitude), lng: parseFloat(location.acf.longitude) }}
             title={location.acf.name}>
-            <Pin><img src="/sarpinos-heart.svg" alt="map icon" /></Pin>
+            <Pin>
+              <Image
+                src="/sarpinos-heart.svg"
+                alt="map icon"
+                width={57}
+                height={50} />
+            </Pin>
           </AdvancedMarker>
           {openInfoWindowId === location.id && (
             <InfoWindow

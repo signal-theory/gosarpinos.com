@@ -29,11 +29,11 @@ const StoreInfo = ({ post }) => {
         <p>Look no further than your local Sarpino&apos;s.
           We offer specialty pizza with the freshest of ingredients. Our menu is full of gourmet pizza options born from Italian tradition. We also provide numerous vegan/gluten free pizza options because everyone deserves great pizza in their life.
 
-          Vegan pizza doesn&apos;t mean less flavor. Our vegan pizza place uses fresh ingredients from trusted brands such as Daiya Cheese, Beyond Meat, and Field Roast to ensure maximum flavor. We encourage you to try all our different vegan pizza options in Sarpino's Pizzeria [neighborhood]. We can even accommodate new creations, so feel free to order a customized vegan pizza today!</p>
+          Vegan pizza doesn&apos;t mean less flavor. Our vegan pizza place uses fresh ingredients from trusted brands such as Daiya Cheese, Beyond Meat, and Field Roast to ensure maximum flavor. We encourage you to try all our different vegan pizza options in Sarpino&apos;s Pizzeria [neighborhood]. We can even accommodate new creations, so feel free to order a customized vegan pizza today!</p>
       </div>
       <div className={styles.content}>
         <h5>The Only Choice for Free Delivery in[neighborhood].</h5>
-        <p>We take pizza and food delivery to the next level. You get fast, free food delivery, even if it’s a late night. There is no minimum order and you can take your time while using our online menu. And of course, you can always count on getting delicious pizza from Sarpino&apos;s (LOCATION).</p>
+        <p>We take pizza and food delivery to the next level. You get fast, free food delivery, even if it&apos;s a late night. There is no minimum order and you can take your time while using our online menu. And of course, you can always count on getting delicious pizza from Sarpino&apos;s (LOCATION).</p>
       </div>
     </>
   );

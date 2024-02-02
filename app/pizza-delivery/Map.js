@@ -39,7 +39,7 @@ const MapHero = ({ posts }) => {
     };
 
     geocodeLocation();
-  }, [selectedLocation]);
+  }, [selectedLocation, locations]);
 
   // refocus the center of the map whenever the user's location is set
   useEffect(() => {
