@@ -2,22 +2,25 @@ import React from 'react';
 import { useRouter } from 'next/navigation'
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import styles from './SearchPanel.module.css';
+import styles from '../pizza-delivery/SearchPanel.module.css';
 
-const SearchPanel = ({ id, locations, getUserLocation, selectedLocation, setSelectedLocation }) => {
+const NavigationSearchPanel = ({ locations, getUserLocation, selectedLocation, setSelectedLocation, handleSubmenu }) => {
   const router = useRouter();
 
   const handleLocationSelect = (location) => {
     setSelectedLocation(location);
     router.push(`/pizza-delivery?location=${encodeURIComponent(location)}`);
+    handleSubmenu('Locations'); // Close the submenu
   };
 
   const handleUseCurrentLocation = async () => {
     await getUserLocation();
     router.push('/pizza-delivery');
+    handleSubmenu('Locations'); // Close the submenu
   };
 
-  const locationNames = locations.map(location => location.acf.name + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip);
+  const locationNames = locations ? locations.map(location => location.acf.name + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip) : [];
+
   return (
     <div className={styles.listSearch}>
       <button className={styles.searchBtn} onClick={handleUseCurrentLocation}>Use Current Location</button>
@@ -25,7 +28,7 @@ const SearchPanel = ({ id, locations, getUserLocation, selectedLocation, setSele
 
       <Autocomplete
         disablePortal
-        id={id}
+        id="autocomplete-navigation"
         options={locationNames}
         value={selectedLocation || null}
         onChange={(event, newValue) => {
@@ -64,9 +67,16 @@ const SearchPanel = ({ id, locations, getUserLocation, selectedLocation, setSele
         }}
         renderInput={(params) => <TextField {...params} label="Search" />}
       />
+      <button className={styles.goBtn}
+        onClick={() => {
+          handleLocationSelect(selectedLocation || '');
+        }}
+      >
+        <span className='screen-reader-text'>Go</span>
+      </button>
     </div>
 
   );
 }
 
-export default SearchPanel;
+export default NavigationSearchPanel;

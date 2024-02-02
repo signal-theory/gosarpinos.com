@@ -21,9 +21,17 @@ const StoreInfo = ({ post }) => {
     groupedDays.push(currentGroup);
 
     return groupedDays.map(group => {
-      const openTime = moment(post.acf[group[0] + '_open'], 'HH:mm:ss').format('h:mm a');
-      const closeTime = moment(post.acf[group[0] + '_close'], 'HH:mm:ss').format('h:mm a');
+      const openTimeValue = post.acf[group[0] + '_open'];
+      const closeTimeValue = post.acf[group[0] + '_close'];
+
+      if (!openTimeValue || !closeTimeValue) {
+        return '<p>Hours not available</p>';
+      }
+
+      const openTime = moment(openTimeValue, 'HH:mm:ss').format('h:mm a');
+      const closeTime = moment(closeTimeValue, 'HH:mm:ss').format('h:mm a');
       const hours = openTime + ' - ' + closeTime;
+
       if (group.length === 1) {
         return '<p><strong>' + (group[0].charAt(0).toUpperCase() + group[0].slice(1)) + '</strong><br/> ' + hours + '</p>';
       } else {
@@ -54,8 +62,8 @@ const StoreInfo = ({ post }) => {
           Vegan pizza doesn&apos;t mean less flavor. Our vegan pizza place uses fresh ingredients from trusted brands such as Daiya Cheese, Beyond Meat, and Field Roast to ensure maximum flavor. We encourage you to try all our different vegan pizza options in Sarpino&apos;s Pizzeria [neighborhood]. We can even accommodate new creations, so feel free to order a customized vegan pizza today!</p>
       </div>
       <div className={styles.content}>
-        <h5>The Only Choice for Free Delivery in[neighborhood].</h5>
-        <p>We take pizza and food delivery to the next level. You get fast, free food delivery, even if it&apos;s a late night. There is no minimum order and you can take your time while using our online menu. And of course, you can always count on getting delicious pizza from Sarpino&apos;s (LOCATION).</p>
+        <h5>The Only Choice for Free Delivery in [neighborhood].</h5>
+        <p>We take pizza and food delivery to the next level. You get fast, free food delivery, even if it&apos;s a late night. There is no minimum order and you can take your time while using our online menu. And of course, you can always count on getting delicious pizza from {post.acf.name}.</p>
       </div>
     </>
   );

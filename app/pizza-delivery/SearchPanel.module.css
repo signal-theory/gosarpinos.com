@@ -31,3 +31,9 @@
   background: white url("/zoom-icon.svg") no-repeat right 1rem center;
   padding: 0.65rem 2.5rem 0.65rem 1rem;
 }
+
+.goBtn {
+  border: none;
+  background: transparent url("/zoom-icon.svg") no-repeat center;
+  padding: 1rem;
+}

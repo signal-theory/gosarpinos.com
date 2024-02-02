@@ -1,18 +1,21 @@
 'use client'
-
+import { usePathname } from 'next/navigation'
 import React, { useState, useEffect, useRef } from 'react';
 import { fetchPageData, fetchMediaData } from '../lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 import OrderBtn from './OrderBtn';
 import './Navigation.css';
-import SearchPanel from '../pizza-delivery/SearchPanel';
+import NavigationSearchPanel from './NavigationSearchPanel';
+import { useLocation } from '../components/useLocation';
 
 
-import logo from '../../public/sarpinos-logo.svg'
+// import logo from '../../public/sarpinos-logo.svg'
 
 export default function Navigation() {
+  const pathname = usePathname()
 
+  const { getUserLocation, selectedLocation, setSelectedLocation, locations } = useLocation();
   const [featuredImages, setFeaturedImages] = useState({});
   useEffect(() => {
     const pageIds = [91, 34, 170];
@@ -111,7 +114,9 @@ export default function Navigation() {
       <div className="navbar">
         <Link href="/" className="logo" title="Go to Sarpino&apos;s Home page">
           <Image
-            src={logo}
+            src={'/sarpinos-logo.svg'}
+            width={165}
+            height={50}
             alt="Sarpino&apos;s Pizzeria Logo"
           />
         </Link>
@@ -216,12 +221,39 @@ export default function Navigation() {
             </ul>
           </li>
         </ul>
-        <ul ref={myRef3} className={`item submenu ${activeMenus['Locations'] ? 'active' : ''}`}>
-          <li className="subitem">
-            {/* <SearchPanel locations={locations} getUserLocation={getUserLocation} selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} /> */}
+        {pathname !== '/pizza-delivery' && (<ul ref={myRef3} className={`item submenu locations ${activeMenus['Locations'] ? 'active' : ''}`}>
+          <li className="subitem has-submenu without-thumbs">
+            <ul>
+              <li className="subitem">
+                <Link href="/pizza-delivery" onClick={() => handleSubmenu('Locations')}>Search Sarpino&apos;s Locations</Link>
+              </li>
+
+              <li className="subitem">
+                <NavigationSearchPanel
+                  getUserLocation={getUserLocation}
+                  selectedLocation={selectedLocation}
+                  setSelectedLocation={setSelectedLocation}
+                  locations={locations}
+                  handleSubmenu={handleSubmenu}
+                />
+              </li>
+            </ul>
           </li>
-          <li className="subitem"><Link href="/pizza-delivery" onClick={() => handleSubmenu('Locations')}>Search Sarpino&apos;s Locations</Link></li>
-        </ul>
+          {/* <li className="subitem has-submenu">
+            <ul>
+              <li>
+                <Link href="/pizza-delivery" onClick={() => handleSubmenu('Locations')}>Search By Area</Link>
+              </li>
+              <li>
+                <ul>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                </ul>
+              </li>
+            </ul>
+          </li> */}
+        </ul>)}
       </div>
       <ul className={`mobilemenu ${toggleMenu ? 'active' : ''}`}>
         <li className="item has-submenu"><a tabIndex="0" className={`${activeMobileMenus['About'] ? 'active' : ''}`} onClick={() => handleMobileSubmenu('About')}>About</a>

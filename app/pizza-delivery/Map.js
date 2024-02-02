@@ -1,4 +1,6 @@
 'use client';
+import { useRouter } from 'next/navigation'
+import { useLocation } from '../components/useLocation';
 import React, { useState, useEffect, useRef } from 'react';
 import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import { fetchLocations } from '../lib/utils';
@@ -10,13 +12,20 @@ import SearchPanel from './SearchPanel';
 import List from './List';
 
 const MapHero = ({ posts }) => {
-  const [selectedLocation, setSelectedLocation] = useState('');
-  const [openInfoWindowId, setOpenInfoWindowId] = useState(null); // Store the ID instead of the index
-  const [userLocation, setUserLocation] = useState(null);
-  const [locations, setLocations] = useState([]);
+  const router = useRouter();
+  const { selectedLocation, setSelectedLocation, userLocation, setUserLocation, locations, setLocations, getUserLocation } = useLocation();
   const [mapCenter, setMapCenter] = useState({ lat: 41, lng: -94 }); // Initial map center
   const [mapZoom, setMapZoom] = useState(6); // Initial zoom level
   const markerRefs = useRef([]); // Create a reference for markerRefs
+  const [openInfoWindowId, setOpenInfoWindowId] = useState(null); // Store the ID instead of the index
+
+
+  // Get the selected location from the URL query parameters
+  useEffect(() => {
+    if (router.query && router.query.location) {
+      setSelectedLocation(decodeURIComponent(router.query.location));
+    }
+  }, [router.query]);
 
   // refocus the center of the map whenever an Autcomplete selectedLocation is set
   useEffect(() => {
@@ -32,8 +41,6 @@ const MapHero = ({ posts }) => {
             setOpenInfoWindowId(selected.id);
           }
         }
-        // Save selectedLocation to localStorage
-        localStorage.setItem('selectedLocation', selectedLocation);
       }
     };
 
@@ -45,8 +52,6 @@ const MapHero = ({ posts }) => {
     if (userLocation) {
       setMapCenter(userLocation);
       setMapZoom(10);
-      // Save userLocation to localStorage
-      localStorage.setItem('userLocation', JSON.stringify(userLocation));
     }
   }, [userLocation]);
 
@@ -78,44 +83,6 @@ const MapHero = ({ posts }) => {
     return true;
   });
 
-  // Get Current Location function
-  const getUserLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
-        setUserLocation({ lat: latitude, lng: longitude });
-        setSelectedLocation(''); // Clear the selected location
-      }, (error) => {
-        console.error("Error occurred while getting user's location: ", error);
-      });
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
-  };
-
-  // On component mount
-  useEffect(() => {
-    // Retrieve saved locations from localStorage
-    const savedSelectedLocation = localStorage.getItem('selectedLocation');
-    const savedUserLocation = JSON.parse(localStorage.getItem('userLocation'));
-
-    if (savedSelectedLocation) {
-      setSelectedLocation(savedSelectedLocation);
-    }
-    if (savedUserLocation) {
-      setUserLocation(savedUserLocation);
-    }
-
-    // Fetch locations
-    const fetchLocationsData = async () => {
-      const locationsData = await fetchLocations();
-      setLocations(locationsData);
-    };
-
-    fetchLocationsData();
-  }, []);
-
-
   return (
     <section className={styles.mapContainer}>
       <div className="responsive-column-container cream-color" style={{ height: '100%' }}>
@@ -138,7 +105,12 @@ const MapHero = ({ posts }) => {
         </div>
         <div className={styles.list}>
           <div className={styles.listContainer}>
-            <SearchPanel getUserLocation={getUserLocation} selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} locations={locations} />
+            <SearchPanel
+              id="autocomplete-map"
+              getUserLocation={getUserLocation}
+              selectedLocation={selectedLocation}
+              setSelectedLocation={setSelectedLocation}
+              locations={locations} />
             <Header filteredLocations={filteredLocations} />
             <List posts={posts} locations={filteredLocations} openInfoWindowId={openInfoWindowId} setOpenInfoWindowId={setOpenInfoWindowId} />
           </div>

@@ -411,16 +411,27 @@ a.primary-btn,
 .wp-block-button {
   background-color: var(--red-color);
 }
+button.secondary-btn,
 a.secondary-btn {
   background-color: var(--green-color);
 }
+button.tertiary-btn,
 a.tertiary-btn {
   background-color: var(--darkred-color);
 }
+button.grayscale-btn,
 a.grayscale-btn {
   background-color: var(--gray2-color);
 }
+button.outline-btn,
+a.outline-btn {
+  background-color: transparent;
+  border-color: white;
+  color: white;
+}
+button.grayscale-outline-btn,
 a.grayscale-outline-btn {
+  background-color: transparent;
   border-color: var(--gray2-color);
   color: var(--gray2-color);
 }
