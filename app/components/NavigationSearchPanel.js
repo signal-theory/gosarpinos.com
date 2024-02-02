@@ -3,12 +3,14 @@ import { useRouter } from 'next/navigation'
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import styles from '../pizza-delivery/SearchPanel.module.css';
+import he from 'he';
 
 const NavigationSearchPanel = ({ locations, getUserLocation, selectedLocation, setSelectedLocation, handleSubmenu }) => {
   const router = useRouter();
 
   const handleLocationSelect = (location) => {
     setSelectedLocation(location);
+    // localStorage.setItem('selectedCity', location.acf.name); // Save the city to local storage
     router.push(`/pizza-delivery?location=${encodeURIComponent(location)}`);
     handleSubmenu('Locations'); // Close the submenu
   };
@@ -19,7 +21,7 @@ const NavigationSearchPanel = ({ locations, getUserLocation, selectedLocation, s
     handleSubmenu('Locations'); // Close the submenu
   };
 
-  const locationNames = locations ? locations.map(location => location.acf.name + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip) : [];
+  const locationNames = locations ? locations.map(location => he.decode(location.title.rendered) + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip) : [];
 
   return (
     <div className={styles.listSearch}>
@@ -32,6 +34,10 @@ const NavigationSearchPanel = ({ locations, getUserLocation, selectedLocation, s
         options={locationNames}
         value={selectedLocation || null}
         onChange={(event, newValue) => {
+          if (!newValue) {
+            localStorage.removeItem('selectedLocation');
+            localStorage.removeItem('selectedCity');
+          }
           handleLocationSelect(newValue || '');
         }}
         sx={{
@@ -51,18 +57,19 @@ const NavigationSearchPanel = ({ locations, getUserLocation, selectedLocation, s
             fontFamily: 'museo-slab, Cambria, Cochin',
             fontSize: '0.875rem',
             transform: 'translate(20px, 12px) scale(1)',
+            color: 'black',
+            padding: '0 0.5rem'
           },
           '& .MuiInputLabel-root.Mui-focused': {
-            transform: 'translate(14px, -9px) scale(1)',
-            fontSize: '0.7rem',
+            transform: 'translate(14px, -18px) scale(0)',
+            fontSize: '0',
           },
           '& .MuiFormLabel-filled': {
-            transform: 'translate(14px, -9px) scale(1)',
-            fontSize: '0.7rem',
+            transform: 'translate(14px, -18px) scale(0)',
+            fontSize: '0',
           },
           '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#ee3124',
-            borderWidth: '2px',
+            border: 'none',
           },
         }}
         renderInput={(params) => <TextField {...params} label="Search" />}

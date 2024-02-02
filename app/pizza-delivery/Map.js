@@ -10,6 +10,7 @@ import MarkerWithInfowindow from './MarkerWithInfowindow';
 import Header from './Header';
 import SearchPanel from './SearchPanel';
 import List from './List';
+import he from 'he';
 
 const MapHero = ({ posts }) => {
   const router = useRouter();
@@ -36,7 +37,7 @@ const MapHero = ({ posts }) => {
           setMapCenter(coordinates);
           setMapZoom(10);
           // Find the selected location and open its InfoWindow
-          const selected = locations.find(location => location.acf.name + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip === selectedLocation);
+          const selected = locations.find(location => he.decode(location.title.rendered) + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip === selectedLocation);
           if (selected) {
             setOpenInfoWindowId(selected.id);
           }
@@ -74,7 +75,7 @@ const MapHero = ({ posts }) => {
   // then filter by selectedLocation, 
   // otherwise filter by userLocation
   const filteredLocations = locations.filter(location => {
-    const fullAddress = location.acf.name + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip;
+    const fullAddress = he.decode(location.title.rendered) + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip;
     if (selectedLocation) {
       return fullAddress.toLowerCase() === selectedLocation.toLowerCase();
     } else if (userLocation) {

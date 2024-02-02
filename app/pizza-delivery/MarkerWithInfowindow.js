@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useRef, memo } from 'react';
 import Image from 'next/image';
+import he from 'he';
 
 import styleInfo from './MarkerInfo.module.css';
 import {
@@ -27,7 +28,7 @@ const MarkerWithInfowindow = memo(({ locations, openInfoWindowId, setOpenInfoWin
             ref={markerRefs.current[index]}
             onClick={() => setOpenInfoWindowId(location.id)}
             position={{ lat: parseFloat(location.acf.latitude), lng: parseFloat(location.acf.longitude) }}
-            title={location.acf.name}>
+            title={he.decode(he.decode(location.title.rendered))}>
             <Pin>
               <Image
                 src="/sarpinos-heart.svg"
@@ -43,7 +44,7 @@ const MarkerWithInfowindow = memo(({ locations, openInfoWindowId, setOpenInfoWin
               maxWidth={200}
               onCloseClick={() => setOpenInfoWindowId(null)}
             >
-              <h5 className={styleInfo.iwTitle}>{location.acf.name}</h5>
+              <h5 className={styleInfo.iwTitle}>{he.decode(location.title.rendered)}</h5>
               <p className={styleInfo.iwAddress}>
                 {location.acf.address}<br />
                 {location.acf.city}, {location.acf.state} {location.acf.zip}

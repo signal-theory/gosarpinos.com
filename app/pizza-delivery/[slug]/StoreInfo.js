@@ -1,9 +1,11 @@
 import styles from './StoreInfo.module.css';
 import Link from 'next/link';
+import Image from 'next/image';
 import moment from 'moment';
 
 
 const StoreInfo = ({ post }) => {
+  const careers = post?.acf?.careers || ['careers list'];
   const groupDays = () => {
     const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     let groupedDays = [];
@@ -43,14 +45,14 @@ const StoreInfo = ({ post }) => {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.address}>
-          <p><strong>{post.acf.phone_number}</strong></p>
-          <p>{post.acf.address}<br />
-            {post.acf.city}, {post.acf.zip}
+        <div className={styles.column1}>
+          <p><strong>{post.acf.phone_number || 'phone number'}</strong></p>
+          <p>{post.acf.address || 'address'}<br />
+            {post.acf.city}, {post.acf.state} {post.acf.zip}
           </p>
           <Link className="text-link" href={`https://www.google.com/maps?saddr=Your+Location&daddr=${post.acf.name}`} target="_blank">Directions</Link>
         </div>
-        <div className={styles.hours}>
+        <div className={styles.column2}>
           <p dangerouslySetInnerHTML={{ __html: groupDays() }}></p>
         </div>
       </div>
@@ -64,6 +66,33 @@ const StoreInfo = ({ post }) => {
       <div className={styles.content}>
         <h5>The Only Choice for Free Delivery in [neighborhood].</h5>
         <p>We take pizza and food delivery to the next level. You get fast, free food delivery, even if it&apos;s a late night. There is no minimum order and you can take your time while using our online menu. And of course, you can always count on getting delicious pizza from {post.acf.name}.</p>
+      </div>
+
+      <div className={styles.container2}>
+        <div className={styles.column1}>
+          <h5>MANAGER</h5>
+          <Image
+            className={styles.managerPhoto}
+            src={post.acf.managers_photo || '/default-manager.jpg'}
+            alt="manager"
+            width={80} height={80} />
+          <h5 className={styles.managerName}>{post.acf.manager_name || 'manager\'s name'}</h5>
+          {post.acf.managers_email && <Link
+            className={styles.managerEmail}
+            href={`mailto${post.acf.managers_email}`}>{post.acf.managers_email}</Link>
+            || <p className={styles.managerEmail}>manager@email.com</p>}
+
+        </div>
+        <div className={styles.column2}>
+          <h5>Currently Hiring</h5>
+          <div className={styles.careers}>
+            {careers.map((career, index) => (
+              <div key={index} className={styles.career}>
+                {career.position && <Link className={styles.jobLink} href="">{career.position}</Link> || <p className={styles.jobLink}>careers list</p>}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );

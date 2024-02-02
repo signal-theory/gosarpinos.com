@@ -8,6 +8,12 @@ export const useLocation = () => {
   const [locations, setLocations] = useState([]);
 
   useEffect(() => {
+    console.log('selectedLocation', localStorage.getItem('selectedLocation'));
+    console.log('selectedCity', localStorage.getItem('selectedCity'));
+    console.log('userLocation', localStorage.getItem('userLocation'));
+  }, []);
+
+  useEffect(() => {
     const savedSelectedLocation = localStorage.getItem('selectedLocation');
     const savedUserLocation = JSON.parse(localStorage.getItem('userLocation'));
 
@@ -29,6 +35,8 @@ export const useLocation = () => {
   useEffect(() => {
     if (selectedLocation) {
       localStorage.setItem('selectedLocation', selectedLocation);
+      const city = selectedLocation.split(', ')[0]; // Extract the city from the location string
+      localStorage.setItem('selectedCity', city); // Save the city to local storage
       localStorage.removeItem('userLocation'); // Clear the user location from local storage
     }
   }, [selectedLocation]);
@@ -37,6 +45,7 @@ export const useLocation = () => {
     if (userLocation) {
       localStorage.setItem('userLocation', JSON.stringify(userLocation));
       localStorage.removeItem('selectedLocation'); // Clear the selected location from local storage
+      localStorage.removeItem('selectedCity'); // Clear the selected city from local storage
     }
   }, [userLocation]);
 

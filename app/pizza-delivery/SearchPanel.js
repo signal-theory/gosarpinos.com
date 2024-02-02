@@ -3,12 +3,14 @@ import { useRouter } from 'next/navigation'
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import styles from './SearchPanel.module.css';
+import he from 'he';
 
 const SearchPanel = ({ id, locations, getUserLocation, selectedLocation, setSelectedLocation }) => {
   const router = useRouter();
 
   const handleLocationSelect = (location) => {
     setSelectedLocation(location);
+    // localStorage.setItem('selectedCity', location.acf.name); // Save the city to local storage
     router.push(`/pizza-delivery?location=${encodeURIComponent(location)}`);
   };
 
@@ -17,7 +19,7 @@ const SearchPanel = ({ id, locations, getUserLocation, selectedLocation, setSele
     router.push('/pizza-delivery');
   };
 
-  const locationNames = locations.map(location => location.acf.name + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip);
+  const locationNames = locations.map(location => he.decode(location.title.rendered) + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip);
   return (
     <div className={styles.listSearch}>
       <button className={styles.searchBtn} onClick={handleUseCurrentLocation}>Use Current Location</button>
@@ -29,6 +31,10 @@ const SearchPanel = ({ id, locations, getUserLocation, selectedLocation, setSele
         options={locationNames}
         value={selectedLocation || null}
         onChange={(event, newValue) => {
+          if (!newValue) {
+            localStorage.removeItem('selectedLocation');
+            localStorage.removeItem('selectedCity');
+          }
           handleLocationSelect(newValue || '');
         }}
         sx={{
