@@ -57,4 +57,6 @@ const MarkerWithInfowindow = memo(({ locations, openInfoWindowId, setOpenInfoWin
   );
 });
 
+MarkerWithInfowindow.displayName = 'MarkerWithInfowindow';
+
 export default MarkerWithInfowindow;

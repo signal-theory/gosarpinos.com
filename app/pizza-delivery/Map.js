@@ -25,7 +25,7 @@ const MapHero = ({ posts }) => {
     if (router.query && router.query.location) {
       setSelectedLocation(decodeURIComponent(router.query.location));
     }
-  }, [router.query]);
+  }, [router.query, setSelectedLocation]);
 
   // refocus the center of the map whenever an Autcomplete selectedLocation is set
   useEffect(() => {
@@ -68,7 +68,7 @@ const MapHero = ({ posts }) => {
     };
 
     getLocations();
-  }, []);
+  }, [setLocations]);
 
   // check if selectedLocation is not empty, 
   // then filter by selectedLocation, 
