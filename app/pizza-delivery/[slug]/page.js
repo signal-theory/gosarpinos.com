@@ -2,6 +2,9 @@ import { METADATABASE_API_URL } from '../../lib/constants';
 import { fetchCPTMetadataBySlug, fetchCPTBySlug } from '../../lib/utils'; // Adjust the path as necessary
 import Hero from './Hero';
 import ItemTabs from '../ItemTabs';
+import StoreInfo from './StoreInfo';
+import Feedback from './Feedback';
+import DeliveryArea from './DeliveryArea';
 
 const postType = 'locations';
 export async function generateMetadata({ params }) {
@@ -37,9 +40,9 @@ export default async function Page({ params }) {
 
 
   const content = [
-    { id: 'tab1', component: "1" },
-    { id: 'tab2', component: "2" },
-    { id: 'tab3', component: "3" },
+    { id: 'tab1', component: <StoreInfo post={post} /> },
+    { id: 'tab2', component: <Feedback post={post} /> },
+    { id: 'tab3', component: <DeliveryArea post={post} /> },
     // Add more content as needed
   ];
   return (

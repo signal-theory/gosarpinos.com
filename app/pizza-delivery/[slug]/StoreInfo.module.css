@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  margin: 1rem 0;
+  padding: 2rem 0;
+  grid-gap: 3vw;
+  max-width: 800px;
+}
+.address {
+  padding-right: 3vw;
+  border-right: 1px dashed var(--gray2-color);
+}
+.content {
+  margin: 3rem 0;
+  max-width: 800px;
+}

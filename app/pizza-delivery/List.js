@@ -14,7 +14,7 @@ const List = ({ posts, locations, openInfoWindowId, setOpenInfoWindowId }) => {
               <p>{location.acf.address}<br />
                 {location.acf.city}, {location.acf.state} {location.acf.zip}
               </p>
-              <Link className={styles.textLink} href="">Directions</Link>
+              <Link className="text-link" href="">Directions</Link>
             </div>
             <div>
               <p>{location.acf.phone || 'phone number'}</p>
@@ -23,8 +23,9 @@ const List = ({ posts, locations, openInfoWindowId, setOpenInfoWindowId }) => {
           </div>
 
         </li>
-      ))}
-    </ul>
+      ))
+      }
+    </ul >
   );
 };
 

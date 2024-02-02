@@ -1,0 +1,8 @@
+.container {
+  max-width: 800px;
+  margin: 4rem 0;
+  border-bottom: 1px dashed var(--gray3-color);
+}
+.title {
+  padding-top: 2rem;
+}

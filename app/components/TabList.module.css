@@ -12,6 +12,10 @@
   border-bottom: none;
   grid-template-columns: none;
   display: flex;
+  grid-gap: 3vw;
+}
+.tabList.locationTabs .tabItem {
+  font-size: clamp(0.9rem, 3vw, 1.6rem);
 }
 .tabItem {
   font-family: var(--museo-slab), serif;
@@ -24,11 +28,13 @@
 }
 .tabList.locationTabs .tabItem {
   color: var(--gray3-color);
-  margin: 1rem calc(1vw) 0;
 }
 .tabItem span {
   display: inline-block;
   padding: 0 1rem;
+}
+.tabList.locationTabs .tabItem span {
+  padding: 0;
 }
 .tabList.locationTabs .tabItem.active {
   color: var(--lightgreen-color);
