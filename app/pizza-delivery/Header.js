@@ -5,7 +5,7 @@ const Header = ({ filteredLocations }) => {
   return (
     <>
       <h3 className={styles.title}>
-        Free Pizza Delivery from {filteredLocations.length} Sarpino&apos;s Restaurants
+        Free Pizza Delivery from {filteredLocations.length > 1 ? filteredLocations.length : ''} Sarpino&apos;s Restaurants
       </h3>
     </>
   );

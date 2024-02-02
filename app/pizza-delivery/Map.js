@@ -1,5 +1,4 @@
 'use client';
-import { debounce } from 'lodash';
 import React, { useState, useEffect, useRef } from 'react';
 import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import { fetchLocations } from '../lib/utils';
@@ -15,10 +14,8 @@ const MapHero = ({ posts }) => {
   const [openInfoWindowId, setOpenInfoWindowId] = useState(null); // Store the ID instead of the index
   const [userLocation, setUserLocation] = useState(null);
   const [locations, setLocations] = useState([]);
-  const [search, setSearch] = useState('');
   const [mapCenter, setMapCenter] = useState({ lat: 41, lng: -94 }); // Initial map center
   const [mapZoom, setMapZoom] = useState(6); // Initial zoom level
-  const searchInputRef = useRef(null); // Create a reference to the input field
   const markerRefs = useRef([]); // Create a reference for markerRefs
 
   // refocus the center of the map whenever an Autcomplete selectedLocation is set
@@ -28,13 +25,15 @@ const MapHero = ({ posts }) => {
         const coordinates = await geocode(selectedLocation);
         if (coordinates) {
           setMapCenter(coordinates);
-          setMapZoom(10); // Adjust zoom level as needed
+          setMapZoom(10);
           // Find the selected location and open its InfoWindow
           const selected = locations.find(location => location.acf.name + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip === selectedLocation);
           if (selected) {
             setOpenInfoWindowId(selected.id);
           }
         }
+        // Save selectedLocation to localStorage
+        localStorage.setItem('selectedLocation', selectedLocation);
       }
     };
 
@@ -45,7 +44,9 @@ const MapHero = ({ posts }) => {
   useEffect(() => {
     if (userLocation) {
       setMapCenter(userLocation);
-      setMapZoom(10); // Adjust zoom level as needed
+      setMapZoom(10);
+      // Save userLocation to localStorage
+      localStorage.setItem('userLocation', JSON.stringify(userLocation));
     }
   }, [userLocation]);
 
@@ -92,8 +93,20 @@ const MapHero = ({ posts }) => {
     }
   };
 
-  // Fetch the Locations
+  // On component mount
   useEffect(() => {
+    // Retrieve saved locations from localStorage
+    const savedSelectedLocation = localStorage.getItem('selectedLocation');
+    const savedUserLocation = JSON.parse(localStorage.getItem('userLocation'));
+
+    if (savedSelectedLocation) {
+      setSelectedLocation(savedSelectedLocation);
+    }
+    if (savedUserLocation) {
+      setUserLocation(savedUserLocation);
+    }
+
+    // Fetch locations
     const fetchLocationsData = async () => {
       const locationsData = await fetchLocations();
       setLocations(locationsData);

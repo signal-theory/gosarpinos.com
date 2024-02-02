@@ -1,7 +1,37 @@
 import styles from './StoreInfo.module.css';
 import Link from 'next/link';
+import moment from 'moment';
+
 
 const StoreInfo = ({ post }) => {
+  const groupDays = () => {
+    const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    let groupedDays = [];
+    let currentGroup = [];
+
+    for (let i = 0; i < days.length; i++) {
+      if (i === 0 || (post.acf[days[i] + '_open'] === post.acf[days[i - 1] + '_open'] && post.acf[days[i] + '_close'] === post.acf[days[i - 1] + '_close'])) {
+        currentGroup.push(days[i]);
+      } else {
+        groupedDays.push(currentGroup);
+        currentGroup = [days[i]];
+      }
+    }
+
+    groupedDays.push(currentGroup);
+
+    return groupedDays.map(group => {
+      const openTime = moment(post.acf[group[0] + '_open'], 'HH:mm:ss').format('h:mm a');
+      const closeTime = moment(post.acf[group[0] + '_close'], 'HH:mm:ss').format('h:mm a');
+      const hours = openTime + ' - ' + closeTime;
+      if (group.length === 1) {
+        return '<p><strong>' + (group[0].charAt(0).toUpperCase() + group[0].slice(1)) + '</strong><br/> ' + hours + '</p>';
+      } else {
+        return '<p><strong>' + (group[0].charAt(0).toUpperCase() + group[0].slice(1)) + ' - ' + (group[group.length - 1].charAt(0).toUpperCase() + group[group.length - 1].slice(1)) + '</strong><br/> ' + hours + '</p>';
+      }
+    }).join('');
+  }
+
   return (
     <>
       <div className={styles.container}>
@@ -10,18 +40,10 @@ const StoreInfo = ({ post }) => {
           <p>{post.acf.address}<br />
             {post.acf.city}, {post.acf.zip}
           </p>
-          <Link className="text-link" href="">Directions</Link>
+          <Link className="text-link" href={`https://www.google.com/maps?saddr=Your+Location&daddr=${post.acf.name}`} target="_blank">Directions</Link>
         </div>
         <div className={styles.hours}>
-          <p>
-            <strong>Sunday</strong>  {post.acf.sunday_hours}<br />
-            <strong>Monday</strong>  {post.acf.monday_hours}<br />
-            <strong>Tuesday</strong>  {post.acf.tuesday_hours}<br />
-            <strong>Wednesday</strong>  {post.acf.wednesday_hours}<br />
-            <strong>Thursday</strong>  {post.acf.thursday_hours}<br />
-            <strong>Friday</strong>  {post.acf.friday_hours}<br />
-            <strong>Saturday</strong>  {post.acf.saturday_hours}<br />
-          </p>
+          <p dangerouslySetInnerHTML={{ __html: groupDays() }}></p>
         </div>
       </div>
       <div className={styles.content}>

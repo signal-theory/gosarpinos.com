@@ -1,8 +1,8 @@
 import styles from './List.module.css';
 import Link from 'next/link';
 
-const List = ({ posts, locations, openInfoWindowId, setOpenInfoWindowId }) => {
 
+const List = ({ posts, locations, openInfoWindowId, setOpenInfoWindowId }) => {
   return (
     <ul>
       {locations.map((location, index) => (
@@ -14,7 +14,7 @@ const List = ({ posts, locations, openInfoWindowId, setOpenInfoWindowId }) => {
               <p>{location.acf.address}<br />
                 {location.acf.city}, {location.acf.state} {location.acf.zip}
               </p>
-              <Link className="text-link" href="">Directions</Link>
+              <Link className="text-link" href={`https://www.google.com/maps?saddr=Your+Location&daddr=${location.acf.name}`} target="_blank">Directions</Link>
             </div>
             <div>
               <p>{location.acf.phone || 'phone number'}</p>

@@ -18,6 +18,8 @@ const Hero = ({ post }) => {
         <h1 className={styles.heroTitle}>{he.decode(post.title.rendered)}</h1>
         <h4>OPEN NOW &bull; 10AM-2AM</h4>
         <OrderBtn />&nbsp;&nbsp;&nbsp; <Link className='btn primary-btn' href=""><span>Rate us</span></Link>
+        <br />
+        <Link className={styles.pinBtn} href="/pizza-delivery/">Other Pizza Near Me</Link>
       </div>
     </section>
   );

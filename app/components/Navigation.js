@@ -6,6 +6,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import OrderBtn from './OrderBtn';
 import './Navigation.css';
+import SearchPanel from '../pizza-delivery/SearchPanel';
+
 
 import logo from '../../public/sarpinos-logo.svg'
 
@@ -215,6 +217,9 @@ export default function Navigation() {
           </li>
         </ul>
         <ul ref={myRef3} className={`item submenu ${activeMenus['Locations'] ? 'active' : ''}`}>
+          <li className="subitem">
+            {/* <SearchPanel locations={locations} getUserLocation={getUserLocation} selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} /> */}
+          </li>
           <li className="subitem"><Link href="/pizza-delivery" onClick={() => handleSubmenu('Locations')}>Search Sarpino&apos;s Locations</Link></li>
         </ul>
       </div>
