@@ -8,13 +8,13 @@ import { geocode, calculateDistance } from '../lib/geocode';
 import styles from './Map.module.css';
 import MarkerWithInfowindow from './MarkerWithInfowindow';
 import Header from './Header';
-import SearchPanel from './SearchPanel';
+import SearchPanel from '../components/SearchPanel';
 import List from './List';
 import he from 'he';
 
 const MapHero = ({ posts }) => {
   const router = useRouter();
-  const { selectedLocation, setSelectedLocation, userLocation, setUserLocation, locations, setLocations, getUserLocation } = useLocation();
+  const { selectedLocation, setSelectedLocation, userLocation, setUserLocation, locations, setLocations, getUserLocation, setSelectedStore } = useLocation();
   const [mapCenter, setMapCenter] = useState({ lat: 41, lng: -94 }); // Initial map center
   const [mapZoom, setMapZoom] = useState(6); // Initial zoom level
   const markerRefs = useRef([]); // Create a reference for markerRefs
@@ -75,7 +75,7 @@ const MapHero = ({ posts }) => {
   // then filter by selectedLocation, 
   // otherwise filter by userLocation
   const filteredLocations = locations.filter(location => {
-    const fullAddress = he.decode(location.title.rendered) + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip;
+    const fullAddress = 'Sarpino\'s ' + location.acf.name + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip;
     if (selectedLocation) {
       return fullAddress.toLowerCase() === selectedLocation.toLowerCase();
     } else if (userLocation) {
@@ -111,9 +111,16 @@ const MapHero = ({ posts }) => {
               getUserLocation={getUserLocation}
               selectedLocation={selectedLocation}
               setSelectedLocation={setSelectedLocation}
+              setSelectedStore={setSelectedStore}
               locations={locations} />
             <Header filteredLocations={filteredLocations} />
-            <List posts={posts} locations={filteredLocations} openInfoWindowId={openInfoWindowId} setOpenInfoWindowId={setOpenInfoWindowId} />
+            <List
+              posts={posts}
+              locations={filteredLocations}
+              openInfoWindowId={openInfoWindowId}
+              setOpenInfoWindowId={setOpenInfoWindowId}
+              setSelectedStore={setSelectedStore}
+              setSelectedLocation={setSelectedLocation} />
           </div>
         </div>
       </div>

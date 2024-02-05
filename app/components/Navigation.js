@@ -6,16 +6,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import OrderBtn from './OrderBtn';
 import './Navigation.css';
-import NavigationSearchPanel from './NavigationSearchPanel';
+import SearchPanel from './SearchPanel';
 import { useLocation } from '../components/useLocation';
-
-
-// import logo from '../../public/sarpinos-logo.svg'
 
 export default function Navigation() {
   const pathname = usePathname()
 
-  const { getUserLocation, selectedLocation, setSelectedLocation, locations } = useLocation();
+  const { getUserLocation, selectedLocation, setSelectedLocation, locations, setSelectedStore } = useLocation();
   const [featuredImages, setFeaturedImages] = useState({});
   useEffect(() => {
     const pageIds = [91, 34, 170];
@@ -221,7 +218,7 @@ export default function Navigation() {
             </ul>
           </li>
         </ul>
-        {pathname !== '/pizza-delivery' && (<ul ref={myRef3} className={`item submenu locations ${activeMenus['Locations'] ? 'active' : ''}`}>
+        <ul ref={myRef3} className={`item submenu locations ${activeMenus['Locations'] ? 'active' : ''}`}>
           <li className="subitem has-submenu without-thumbs">
             <ul>
               <li className="subitem">
@@ -229,13 +226,13 @@ export default function Navigation() {
               </li>
 
               <li className="subitem">
-                <NavigationSearchPanel
+                <SearchPanel
+                  id="autocomplete-nav"
                   getUserLocation={getUserLocation}
                   selectedLocation={selectedLocation}
                   setSelectedLocation={setSelectedLocation}
-                  locations={locations}
-                  handleSubmenu={handleSubmenu}
-                />
+                  setSelectedStore={setSelectedStore}
+                  locations={locations} />
               </li>
             </ul>
           </li>
@@ -253,7 +250,7 @@ export default function Navigation() {
               </li>
             </ul>
           </li> */}
-        </ul>)}
+        </ul>
       </div>
       <ul className={`mobilemenu ${toggleMenu ? 'active' : ''}`}>
         <li className="item has-submenu"><a tabIndex="0" className={`${activeMobileMenus['About'] ? 'active' : ''}`} onClick={() => handleMobileSubmenu('About')}>About</a>

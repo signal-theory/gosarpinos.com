@@ -3,18 +3,32 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const OrderBtn = () => {
-  const [city, setCity] = useState('');
+  const [store, setStore] = useState('');
 
   useEffect(() => {
-    const selectedCity = localStorage.getItem('selectedCity');
-    if (selectedCity) {
-      setCity(selectedCity);
+    const selectedStore = localStorage.getItem('selectedStore');
+    if (selectedStore) {
+      setStore(selectedStore);
     }
+
+    const handleStorageChange = (e) => {
+      if (e.key === 'selectedStore') {
+        setStore(e.newValue);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
+
   return (
     <>
-      {city ?
-        <Link href={``} className="btn primary-btn glow"><span>Order Now</span></Link> :
+      {store ?
+        <Link href={`https://${store}.gosarpinos.com`} className="btn primary-btn glow"><span>Order Now</span></Link> :
         <Link href={''} className="btn primary-btn glow"><span>Order Now</span></Link>}
     </>
   );

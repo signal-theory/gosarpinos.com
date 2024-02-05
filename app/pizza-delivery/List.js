@@ -3,12 +3,17 @@ import Link from 'next/link';
 import he from 'he';
 
 
-const List = ({ posts, locations, openInfoWindowId, setOpenInfoWindowId }) => {
+const List = ({ locations, setOpenInfoWindowId, setSelectedStore, setSelectedLocation }) => {
+  const handleLocationSelect = (location) => {
+    setSelectedLocation('Sarpino\'s ' + location.acf.name + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip);
+    setSelectedStore(location.acf.name);
+    setOpenInfoWindowId(location.id);
+  };
   return (
     <ul>
       {locations.map((location, index) => (
         <li className={styles.listItem} key={location.id}>
-          <h5 className={styles.listTitle} onClick={() => setOpenInfoWindowId(location.id)}>{he.decode(location.title.rendered)}</h5>
+          <h5 className={styles.listTitle} onClick={() => handleLocationSelect(location)}>{he.decode(location.title.rendered)}</h5>
           <div className={styles.listColumns}>
             <div>
               <p><strong>Open Now &bull; Hours</strong></p>

@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useRef, memo } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import he from 'he';
 
 import styleInfo from './MarkerInfo.module.css';
@@ -9,7 +10,6 @@ import {
   InfoWindow,
   Pin,
 } from '@vis.gl/react-google-maps';
-import Link from 'next/link';
 
 const MarkerWithInfowindow = memo(({ locations, openInfoWindowId, setOpenInfoWindowId }) => {
   const markerRefs = useRef([]); // Create a ref for the markerRefs array
