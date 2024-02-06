@@ -34,7 +34,7 @@ const MarkerWithInfowindow = memo(({ locations, openInfoWindowId, setOpenInfoWin
             ref={markerRefs.current[index]}
             onClick={() => handleLocationSelect(location)}
             position={{ lat: parseFloat(location.acf.latitude), lng: parseFloat(location.acf.longitude) }}
-            title={he.decode(he.decode(location.title.rendered))}>
+            title={he.decode(location.title.rendered)}>
             <Pin>
               <Image
                 src="/sarpinos-heart.svg"

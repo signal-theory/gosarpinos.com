@@ -1,4 +1,5 @@
 'use client'
+import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { useLocation } from '../components/useLocation';
 import React, { useState, useEffect, useRef } from 'react';
@@ -10,7 +11,7 @@ import './Navigation.css';
 import SearchPanel from './SearchPanel';
 
 export default function Navigation() {
-
+  const pathname = usePathname();
   const router = useRouter();
   const { getUserLocation, selectedLocation, setSelectedLocation, locations, setSelectedStore } = useLocation();
 
@@ -226,7 +227,7 @@ export default function Navigation() {
             </ul>
           </li>
         </ul>
-        <ul ref={myRef3} className={`item submenu locations ${activeMenus['Locations'] ? 'active' : ''}`}>
+        {pathname !== '/pizza-delivery' && (<ul ref={myRef3} className={`item submenu locations ${activeMenus['Locations'] ? 'active' : ''}`}>
           <li className="subitem has-submenu without-thumbs">
             <ul>
               <li className="subitem">
@@ -258,7 +259,7 @@ export default function Navigation() {
               </li>
             </ul>
           </li> */}
-        </ul>
+        </ul>)}
       </div>
       <ul className={`mobilemenu ${toggleMenu ? 'active' : ''}`}>
         <li className="item has-submenu"><a tabIndex="0" className={`${activeMobileMenus['About'] ? 'active' : ''}`} onClick={() => handleMobileSubmenu('About')}>About</a>

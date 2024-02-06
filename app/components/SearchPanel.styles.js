@@ -5,6 +5,7 @@ export const StyledAutocomplete = styled('div')({
   '& .MuiInputBase-root': {
     backgroundColor: 'white',
     borderRadius: '100px',
+    border: '2px solid #ee3124',
     padding: '0.2rem 1rem 0.25rem 1rem',
     fontFamily: 'museo-slab, Cambria, Cochin',
     fontSize: '0.875rem',
@@ -35,5 +36,8 @@ export const StyledAutocomplete = styled('div')({
   '& .MuiOutlinedInput-notchedOutline': {
     borderColor: '#ee3124',
     borderWidth: '0',
+  },
+  '& .MuiInputBase-input': {
+    padding: '0 0 0 5px !important',
   },
 });

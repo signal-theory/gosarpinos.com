@@ -46,7 +46,7 @@ const MapHero = ({ posts }) => {
     };
 
     geocodeLocation();
-  }, [selectedLocation, locations]);
+  }, [selectedLocation, locations, openInfoWindowId]);
 
   // refocus the center of the map whenever the user's location is set
   useEffect(() => {
@@ -75,7 +75,7 @@ const MapHero = ({ posts }) => {
   // then filter by selectedLocation, 
   // otherwise filter by userLocation
   const filteredLocations = locations.filter(location => {
-    const fullAddress = 'Sarpino\'s ' + location.acf.name + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip;
+    const fullAddress = he.decode(location.title.rendered) + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip;
     if (selectedLocation) {
       return fullAddress.toLowerCase() === selectedLocation.toLowerCase();
     } else if (userLocation) {
@@ -108,6 +108,7 @@ const MapHero = ({ posts }) => {
           <div className={styles.listContainer}>
             <SearchPanel
               id="autocomplete-map"
+              theme="map"
               getUserLocation={getUserLocation}
               selectedLocation={selectedLocation}
               setSelectedLocation={setSelectedLocation}

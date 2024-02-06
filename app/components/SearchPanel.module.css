@@ -1,4 +1,5 @@
-.listSearch {
+.listSearch,
+.navSearch {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
@@ -7,14 +8,19 @@
   color: var(--red-color);
 }
 @media (max-width: 1050px) {
-  .listSearch {
+  .listSearch,
+  .navSearch {
     flex-direction: column;
     align-items: flex-start;
   }
 }
-.listSearch span {
+.listSearch span,
+.navSearch span {
   display: inline-block;
   padding: 0.25rem 0.5rem;
+  color: var(--green-color);
+}
+.navSearch span {
   color: white;
 }
 .searchBtn {

@@ -7,16 +7,12 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import styles from './SearchPanel.module.css';
 import { StyledAutocomplete } from './SearchPanel.styles';
+import he from 'he';
 
-const SearchPanel = ({ id, locations, getUserLocation, selectedLocation, setSelectedLocation }) => {
+const SearchPanel = ({ id, theme, locations, getUserLocation, selectedLocation, setSelectedLocation }) => {
   const router = useRouter();
   const { setStore } = useContext(StoreContext);
 
-  useEffect(() => {
-    if (selectedLocation) {
-      // router.push(`/pizza-delivery?location=${encodeURIComponent(selectedLocation)}`);
-    }
-  }, [selectedLocation]);
 
   const handleLocationSelect = (location) => {
     setSelectedLocation(location);
@@ -29,11 +25,11 @@ const SearchPanel = ({ id, locations, getUserLocation, selectedLocation, setSele
     router.push('/pizza-delivery');
   };
 
-  const locationNames = locations.map(location => 'Sarpino\'s ' + location.acf.name + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip);
+  const locationNames = locations.map(location => he.decode(location.title.rendered) + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip);
   const locationStore = locations.map(location => location.acf.name);
 
   return (
-    <div className={styles.listSearch}>
+    <div className={theme === "map" ? styles.listSearch : styles.navSearch}>
       <button className={styles.searchBtn} onClick={handleUseCurrentLocation}>Use Current Location</button>
       <span>-OR-</span>
       <StyledAutocomplete>
@@ -43,11 +39,14 @@ const SearchPanel = ({ id, locations, getUserLocation, selectedLocation, setSele
           options={locationNames}
           value={selectedLocation || null}
           onChange={(event, newValue) => {
-            if (!newValue) {
+            if (newValue) {
+              handleLocationSelect(newValue);
+            } else {
               localStorage.removeItem('selectedLocation');
               localStorage.removeItem('selectedStore');
+              setSelectedLocation(null);
+              setStore(null);
             }
-            handleLocationSelect(newValue || '');
           }}
           renderInput={(params) => <TextField {...params} label="Search" />}
         />

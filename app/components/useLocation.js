@@ -1,32 +1,29 @@
 import { useState, useEffect } from 'react';
-import { geocode, calculateDistance } from '../lib/geocode';
+import { useContext } from 'react';
+import { StoreContext } from './useStoreContext';
 import { fetchLocations } from '../lib/utils';
 
 export const useLocation = () => {
+  const { store, setStore } = useContext(StoreContext);
   const [selectedLocation, setSelectedLocation] = useState('');
-  const [selectedStore, setSelectedStore] = useState('');
   const [userLocation, setUserLocation] = useState(null);
   const [locations, setLocations] = useState([]);
 
-  // useEffect(() => {
-  //   console.log('selectedLocation', localStorage.getItem('selectedLocation'));
-  //   console.log('selectedStore', localStorage.getItem('selectedStore'));
-  //   console.log('userLocation', localStorage.getItem('userLocation'));
-  // }, []);
 
   useEffect(() => {
-    const savedSelectedLocation = localStorage.getItem('selectedLocation');
-    const savedUserLocation = JSON.parse(localStorage.getItem('userLocation'));
     const savedSelectedStore = localStorage.getItem('selectedStore');
+    if (savedSelectedStore) {
+      setStore(savedSelectedStore);
+    }
 
+    const savedSelectedLocation = localStorage.getItem('selectedLocation');
     if (savedSelectedLocation) {
       setSelectedLocation(savedSelectedLocation);
     }
+
+    const savedUserLocation = JSON.parse(localStorage.getItem('userLocation'));
     if (savedUserLocation) {
       setUserLocation(savedUserLocation);
-    }
-    if (savedSelectedStore) {
-      setSelectedStore(savedSelectedStore);
     }
 
     const fetchLocationsData = async () => {
@@ -35,26 +32,31 @@ export const useLocation = () => {
     };
 
     fetchLocationsData();
-  }, []);
+  }, [setStore, setSelectedLocation, setUserLocation, setLocations]);
 
+
+  useEffect(() => {
+    if (store) {
+      localStorage.setItem('selectedStore', store);
+    }
+  }, [store]);
 
   useEffect(() => {
     if (selectedLocation) {
       localStorage.setItem('selectedLocation', selectedLocation);
       localStorage.removeItem('userLocation'); // Clear the user location from local storage
     }
-
-    if (selectedStore) {
-      localStorage.setItem('selectedStore', selectedStore);
-      localStorage.removeItem('userLocation'); // Clear the user location from local storage
-    }
-  }, [selectedLocation, selectedStore]);
+  }, [selectedLocation]);
 
   useEffect(() => {
     if (userLocation) {
+      localStorage.removeItem('selectedStore');
+      setStore(null);
+      localStorage.removeItem('selectedLocation');
+      setSelectedLocation(null);
       localStorage.setItem('userLocation', JSON.stringify(userLocation));
     }
-  }, [userLocation]);
+  }, [userLocation, setStore, setSelectedLocation]);
 
   const getUserLocation = () => {
     if (navigator.geolocation) {
@@ -77,7 +79,7 @@ export const useLocation = () => {
     locations,
     setLocations,
     getUserLocation,
-    selectedStore,
-    setSelectedStore
+    selectedStore: store,
+    setSelectedStore: setStore
   };
 };
