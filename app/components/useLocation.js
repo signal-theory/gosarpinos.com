@@ -37,6 +37,10 @@ export const useLocation = () => {
   useEffect(() => {
     if (selectedLocation) {
       localStorage.setItem('selectedLocation', selectedLocation);
+      localStorage.removeItem('userLocation'); // Clear the user location from local storage
+    }
+
+    if (selectedStore) {
       localStorage.setItem('selectedStore', selectedStore);
       localStorage.removeItem('userLocation'); // Clear the user location from local storage
     }

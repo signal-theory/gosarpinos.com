@@ -1,5 +1,6 @@
 'use client'
-import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+import { useLocation } from '../components/useLocation';
 import React, { useState, useEffect, useRef } from 'react';
 import { fetchPageData, fetchMediaData } from '../lib/utils';
 import Link from 'next/link';
@@ -7,12 +8,19 @@ import Image from 'next/image';
 import OrderBtn from './OrderBtn';
 import './Navigation.css';
 import SearchPanel from './SearchPanel';
-import { useLocation } from '../components/useLocation';
 
 export default function Navigation() {
-  const pathname = usePathname()
 
+  const router = useRouter();
   const { getUserLocation, selectedLocation, setSelectedLocation, locations, setSelectedStore } = useLocation();
+
+  // Get the selected location from the URL query parameters
+  useEffect(() => {
+    if (router.query && router.query.location) {
+      setSelectedLocation(decodeURIComponent(router.query.location));
+    }
+  }, [router.query, setSelectedLocation]);
+
   const [featuredImages, setFeaturedImages] = useState({});
   useEffect(() => {
     const pageIds = [91, 34, 170];

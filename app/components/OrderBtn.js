@@ -1,29 +1,11 @@
 'use client';
-import { useState, useEffect } from "react";
+import { useContext } from 'react';
+import { StoreContext } from '../components/useStoreContext';
+
 import Link from "next/link";
 
 const OrderBtn = () => {
-  const [store, setStore] = useState('');
-
-  useEffect(() => {
-    const selectedStore = localStorage.getItem('selectedStore');
-    if (selectedStore) {
-      setStore(selectedStore);
-    }
-
-    const handleStorageChange = (e) => {
-      if (e.key === 'selectedStore') {
-        setStore(e.newValue);
-      }
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-
-    // Cleanup
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
-  }, []);
+  const { store } = useContext(StoreContext);
 
   return (
     <>

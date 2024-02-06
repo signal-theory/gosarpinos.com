@@ -1,16 +1,20 @@
 import React from 'react';
+import { useContext } from 'react';
+import { StoreContext } from '../components/useStoreContext';
+
 import { useRouter } from 'next/navigation'
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import styles from './SearchPanel.module.css';
 import { StyledAutocomplete } from './SearchPanel.styles';
 
-const SearchPanel = ({ id, locations, getUserLocation, selectedLocation, setSelectedLocation, setSelectedStore }) => {
+const SearchPanel = ({ id, locations, getUserLocation, selectedLocation, setSelectedLocation }) => {
   const router = useRouter();
+  const { setStore } = useContext(StoreContext);
 
   const handleLocationSelect = (location) => {
     setSelectedLocation(location);
-    setSelectedStore(locationStore[locationNames.indexOf(location)]);
+    setStore(locationStore[locationNames.indexOf(location)]);
     router.push(`/pizza-delivery?location=${encodeURIComponent(location)}`);
   };
 

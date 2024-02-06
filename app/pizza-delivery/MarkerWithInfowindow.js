@@ -1,9 +1,10 @@
 'use client';
+import { useContext } from 'react';
+import { StoreContext } from '../components/useStoreContext';
 import React, { useEffect, useRef, memo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import he from 'he';
-
 import styleInfo from './MarkerInfo.module.css';
 import {
   AdvancedMarker,
@@ -12,8 +13,13 @@ import {
 } from '@vis.gl/react-google-maps';
 
 const MarkerWithInfowindow = memo(({ locations, openInfoWindowId, setOpenInfoWindowId }) => {
-  const markerRefs = useRef([]); // Create a ref for the markerRefs array
+  const { setStore } = useContext(StoreContext);
+  const handleLocationSelect = (location) => {
+    setStore(location.acf.name);
+    setOpenInfoWindowId(location.id);
+  };
 
+  const markerRefs = useRef([]); // Create a ref for the markerRefs array
 
   useEffect(() => {
     markerRefs.current = locations.map((_, i) => markerRefs.current[i] ?? React.createRef()); // Create a new ref for each location
@@ -26,7 +32,7 @@ const MarkerWithInfowindow = memo(({ locations, openInfoWindowId, setOpenInfoWin
         <React.Fragment key={location.id}>
           <AdvancedMarker
             ref={markerRefs.current[index]}
-            onClick={() => setOpenInfoWindowId(location.id)}
+            onClick={() => handleLocationSelect(location)}
             position={{ lat: parseFloat(location.acf.latitude), lng: parseFloat(location.acf.longitude) }}
             title={he.decode(he.decode(location.title.rendered))}>
             <Pin>

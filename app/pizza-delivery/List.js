@@ -1,12 +1,15 @@
+import { useContext } from 'react';
+import { StoreContext } from '../components/useStoreContext';
 import styles from './List.module.css';
 import Link from 'next/link';
 import he from 'he';
 
 
-const List = ({ locations, setOpenInfoWindowId, setSelectedStore, setSelectedLocation }) => {
+const List = ({ locations, setOpenInfoWindowId, setSelectedLocation }) => {
+  const { setStore } = useContext(StoreContext);
   const handleLocationSelect = (location) => {
     setSelectedLocation('Sarpino\'s ' + location.acf.name + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip);
-    setSelectedStore(location.acf.name);
+    setStore(location.acf.name);
     setOpenInfoWindowId(location.id);
   };
   return (
