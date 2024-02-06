@@ -1,5 +1,5 @@
 import React from 'react';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { StoreContext } from '../components/useStoreContext';
 
 import { useRouter } from 'next/navigation'
@@ -11,6 +11,12 @@ import { StyledAutocomplete } from './SearchPanel.styles';
 const SearchPanel = ({ id, locations, getUserLocation, selectedLocation, setSelectedLocation }) => {
   const router = useRouter();
   const { setStore } = useContext(StoreContext);
+
+  useEffect(() => {
+    if (selectedLocation) {
+      router.push(`/pizza-delivery?location=${encodeURIComponent(selectedLocation)}`);
+    }
+  }, [selectedLocation]);
 
   const handleLocationSelect = (location) => {
     setSelectedLocation(location);
