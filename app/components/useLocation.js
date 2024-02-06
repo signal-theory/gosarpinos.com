@@ -17,12 +17,16 @@ export const useLocation = () => {
   useEffect(() => {
     const savedSelectedLocation = localStorage.getItem('selectedLocation');
     const savedUserLocation = JSON.parse(localStorage.getItem('userLocation'));
+    const savedSelectedStore = localStorage.getItem('selectedStore');
 
     if (savedSelectedLocation) {
       setSelectedLocation(savedSelectedLocation);
     }
     if (savedUserLocation) {
       setUserLocation(savedUserLocation);
+    }
+    if (savedSelectedStore) {
+      setSelectedStore(savedSelectedStore);
     }
 
     const fetchLocationsData = async () => {
@@ -49,8 +53,6 @@ export const useLocation = () => {
   useEffect(() => {
     if (userLocation) {
       localStorage.setItem('userLocation', JSON.stringify(userLocation));
-      localStorage.removeItem('selectedLocation'); // Clear the selected location from local storage
-      localStorage.removeItem('selectedStore'); // Clear the selected city from local storage
     }
   }, [userLocation]);
 
@@ -59,8 +61,6 @@ export const useLocation = () => {
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
         setUserLocation({ lat: latitude, lng: longitude });
-        setSelectedLocation(''); // Clear the selected location
-        setSelectedStore(''); // Clear the selected location
       }, (error) => {
         console.error("Error occurred while getting user's location: ", error);
       });

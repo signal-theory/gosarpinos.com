@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { StoreContext } from './useStoreContext';
 
 export const StoreProvider = ({ children }) => {
-  const [store, setStore] = useState('');
+  const [store, setStore] = useState(localStorage.getItem('selectedStore') || '');
 
   // Update localStorage whenever the store state changes
   useEffect(() => {

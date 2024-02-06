@@ -14,7 +14,7 @@ const SearchPanel = ({ id, locations, getUserLocation, selectedLocation, setSele
 
   useEffect(() => {
     if (selectedLocation) {
-      router.push(`/pizza-delivery?location=${encodeURIComponent(selectedLocation)}`);
+      // router.push(`/pizza-delivery?location=${encodeURIComponent(selectedLocation)}`);
     }
   }, [selectedLocation]);
 

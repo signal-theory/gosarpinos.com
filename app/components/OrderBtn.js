@@ -11,7 +11,7 @@ const OrderBtn = () => {
     <>
       {store ?
         <Link href={`https://${store}.gosarpinos.com`} className="btn primary-btn glow"><span>Order Now</span></Link> :
-        <Link href={''} className="btn primary-btn glow"><span>Order Now</span></Link>}
+        <Link href={'/pizza-delivery/'} className="btn primary-btn glow"><span>Order Now</span></Link>}
     </>
   );
 }
