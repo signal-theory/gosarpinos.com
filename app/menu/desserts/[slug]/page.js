@@ -67,7 +67,7 @@ export default async function Page({ params }) {
             <div className="responsive-column-container">
               <div>
                 <Image
-                  src={mainImage.sourceUrl}
+                  src={mainImage ? mainImage.sourceUrl : null}
                   alt={mainImage.altText}
                   width={612}
                   height={678}
