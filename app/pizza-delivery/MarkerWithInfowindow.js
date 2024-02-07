@@ -1,9 +1,7 @@
 'use client';
-import { useContext } from 'react';
+import React, { useContext, useEffect, useRef, memo } from 'react';
 import { StoreContext } from '../components/useStoreContext';
-import React, { useEffect, useRef, memo } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import he from 'he';
 import styleInfo from './MarkerInfo.module.css';
 import OrderBtn from '../components/OrderBtn';
@@ -13,12 +11,20 @@ import {
   Pin,
 } from '@vis.gl/react-google-maps';
 
-const MarkerWithInfowindow = memo(({ locations, openInfoWindowId, setOpenInfoWindowId }) => {
+const MarkerWithInfowindow = memo(({ locations, openInfoWindowId, setOpenInfoWindowId, store }) => {
+
   const { setStore } = useContext(StoreContext);
+
   const handleLocationSelect = (location) => {
     setStore(location.acf.name);
-    setOpenInfoWindowId(location.id);
   };
+
+  useEffect(() => {
+    const selectedLocation = locations.find(location => location.acf.name === store);
+    if (selectedLocation) {
+      setOpenInfoWindowId(selectedLocation.id);
+    }
+  }, [store, setOpenInfoWindowId, locations]);
 
   const markerRefs = useRef([]); // Create a ref for the markerRefs array
 

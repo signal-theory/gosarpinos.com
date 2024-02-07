@@ -2,8 +2,6 @@
 import { useContext, useState, useEffect } from 'react';
 import { StoreContext } from '../components/useStoreContext';
 
-import Link from "next/link";
-
 const OrderBtn = ({ btnColor }) => {
   const { store } = useContext(StoreContext);
   const [href, setHref] = useState('/pizza-delivery/');

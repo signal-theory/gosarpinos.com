@@ -1,19 +1,26 @@
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { StoreContext } from '../components/useStoreContext';
 import styles from './List.module.css';
 import Link from 'next/link';
 import he from 'he';
 
 
-const List = ({ locations, setOpenInfoWindowId, setSelectedLocation }) => {
+const List = ({ locations, setOpenInfoWindowId, store }) => {
 
   const { setStore } = useContext(StoreContext);
+
   const handleLocationSelect = (location) => {
-    // setSelectedLocation(he.decode(location.title.rendered) + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip);
     setStore(location.acf.name);
-    setOpenInfoWindowId(location.id);
   };
+
+  useEffect(() => {
+    const selectedLocation = locations.find(location => location.acf.name === store);
+    if (selectedLocation) {
+      setOpenInfoWindowId(selectedLocation.id);
+    }
+  }, [store, setOpenInfoWindowId, locations]);
+
   return (
     <ul>
       {locations.map((location, index) => (

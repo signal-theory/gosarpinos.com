@@ -1,7 +1,8 @@
 'use client';
 import { useRouter } from 'next/navigation'
 import { useLocation } from '../components/useLocation';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
+import { StoreContext } from '../components/useStoreContext';
 import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import { fetchLocations } from '../lib/utils';
 import { geocode, calculateDistance } from '../lib/geocode';
@@ -13,6 +14,7 @@ import List from './List';
 import he from 'he';
 
 const MapHero = ({ posts }) => {
+  const { store } = useContext(StoreContext);
   const router = useRouter();
   const { selectedLocation, setSelectedLocation, userLocation, setUserLocation, locations, setLocations, getUserLocation, setSelectedStore } = useLocation();
   const [mapCenter, setMapCenter] = useState({ lat: 41, lng: -94 }); // Initial map center
@@ -99,7 +101,11 @@ const MapHero = ({ posts }) => {
               gestureHandling={'greedy'}
               disableDefaultUI={true}
             >
-              <MarkerWithInfowindow locations={filteredLocations} openInfoWindowId={openInfoWindowId} setOpenInfoWindowId={setOpenInfoWindowId} />
+              <MarkerWithInfowindow
+                locations={filteredLocations}
+                openInfoWindowId={openInfoWindowId}
+                setOpenInfoWindowId={setOpenInfoWindowId}
+                store={store} />
 
             </Map>
           </APIProvider>
@@ -121,7 +127,8 @@ const MapHero = ({ posts }) => {
               openInfoWindowId={openInfoWindowId}
               setOpenInfoWindowId={setOpenInfoWindowId}
               setSelectedStore={setSelectedStore}
-              setSelectedLocation={setSelectedLocation} />
+              setSelectedLocation={setSelectedLocation}
+              store={store} />
           </div>
         </div>
       </div>
