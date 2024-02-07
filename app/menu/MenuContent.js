@@ -85,9 +85,9 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
                 key={index}
                 post={post}
                 postTypeSlug={postTypeSlug}
-                hoverImage={post.hoverImage ? post.hoverImage.sourceUrl : '/default-menu-hover.jpg'}
+                hoverImage={post.hoverImage ? post.hoverImage.sourceUrl : null}
                 hoverAlt={post.hoverImage ? post.hoverImage.altText : ''}
-                featuredImage={post.mainImage ? post.mainImage.sourceUrl : '/default-menu-image.jpg'}
+                featuredImage={post.mainImage ? post.mainImage.sourceUrl : null}
                 featuredAlt={post.mainImage ? post.mainImage.altText : ''}
               />
             )
