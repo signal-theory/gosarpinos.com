@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import he from 'he';
 import styleInfo from './MarkerInfo.module.css';
+import OrderBtn from '../components/OrderBtn';
 import {
   AdvancedMarker,
   InfoWindow,
@@ -55,7 +56,7 @@ const MarkerWithInfowindow = memo(({ locations, openInfoWindowId, setOpenInfoWin
                 {location.acf.address}<br />
                 {location.acf.city}, {location.acf.state} {location.acf.zip}
               </p>
-              <Link className='btn tertiary-btn' href=""><span>Order Now</span></Link>
+              <OrderBtn btnColor="dark" />
             </InfoWindow>
           )}
         </React.Fragment>

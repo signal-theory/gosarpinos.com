@@ -10,7 +10,7 @@ const List = ({ locations, setOpenInfoWindowId, setSelectedLocation }) => {
 
   const { setStore } = useContext(StoreContext);
   const handleLocationSelect = (location) => {
-    setSelectedLocation(he.decode(location.title.rendered) + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip);
+    // setSelectedLocation(he.decode(location.title.rendered) + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip);
     setStore(location.acf.name);
     setOpenInfoWindowId(location.id);
   };

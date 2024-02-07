@@ -1,18 +1,21 @@
 'use client';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { StoreContext } from '../components/useStoreContext';
 
 import Link from "next/link";
 
-const OrderBtn = () => {
+const OrderBtn = ({ btnColor }) => {
   const { store } = useContext(StoreContext);
+  const [href, setHref] = useState('/pizza-delivery/');
+
+  useEffect(() => {
+    if (store && store !== 'null') {
+      setHref(`https://${store}.gosarpinos.com/ordering/intro`);
+    }
+  }, [store]);
 
   return (
-    <>
-      {store && store !== 'null' ?
-        <Link href={`https://${store}.gosarpinos.com`} className="btn primary-btn glow"><span>Order Now</span></Link> :
-        <Link href={'/pizza-delivery/'} className="btn primary-btn glow"><span>Order Now</span></Link>}
-    </>
+    <a href={href} className={`btn glow ${btnColor === "dark" ? "tertiary-btn" : "primary-btn"}`}><span>Order Now</span></a>
   );
 }
 

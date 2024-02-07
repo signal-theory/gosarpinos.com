@@ -39,8 +39,13 @@
   padding: 0.65rem 2.5rem 0.65rem 1rem;
 }
 
-.goBtn {
+.goBtn,
+button[type="submit"].goBtn {
   border: none;
+  background-color: transparent;
   background: transparent url("/zoom-icon.svg") no-repeat center;
   padding: 1rem;
+}
+.listSearch .goBtn {
+  display: none;
 }

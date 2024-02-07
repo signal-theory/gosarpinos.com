@@ -79,7 +79,7 @@ const MapHero = ({ posts }) => {
     if (selectedLocation) {
       return fullAddress.toLowerCase() === selectedLocation.toLowerCase();
     } else if (userLocation) {
-      return calculateDistance(userLocation, { lat: location.acf.latitude, lng: location.acf.longitude }) <= 40000;
+      return calculateDistance(userLocation, { lat: location.acf.latitude, lng: location.acf.longitude }) <= 50000;
     }
     return true;
   });

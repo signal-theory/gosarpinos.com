@@ -24,6 +24,9 @@ const SearchPanel = ({ id, theme, locations, getUserLocation, selectedLocation, 
     await getUserLocation();
     router.push('/pizza-delivery');
   };
+  const handleSubmit = async () => {
+    router.push('/pizza-delivery');
+  };
 
   const locationNames = locations.map(location => he.decode(location.title.rendered) + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip);
   const locationStore = locations.map(location => location.acf.name);
@@ -51,6 +54,7 @@ const SearchPanel = ({ id, theme, locations, getUserLocation, selectedLocation, 
           renderInput={(params) => <TextField {...params} label="Search" />}
         />
       </StyledAutocomplete>
+      <button type="submit" className={styles.goBtn} onClick={() => router.push('/pizza-delivery')}><span className="screen-reader-text">Go</span></button>
     </div>
 
   );
