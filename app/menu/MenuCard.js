@@ -34,10 +34,10 @@ const MenuCard = ({ post, postTypeSlug, menuSlug, hoverImage, hoverAlt, featured
           </Link>
         </div>
         <div className={styles.label}>
-          <h2 className={styles.title} dangerouslySetInnerHTML={{ __html: post?.title?.rendered || '' }} />
+          <h2 className={styles.title}><Link className={styles.link} href={url}>{post?.title?.rendered || ''}</Link></h2>
           <p
             className={styles.caption}
-            dangerouslySetInnerHTML={{ __html: post.acf.caption || '' }}
+            dangerouslySetInnerHTML={{ __html: (post.acf.caption.split(' ').slice(0, 22).join(' ')) || 'Sarpino\'s traditional pan pizza baked to perfection and loaded with fresh ingredients.' }}
           />
           <p className={styles.links}>
             <OrderBtn />

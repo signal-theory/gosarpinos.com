@@ -1,124 +1,139 @@
 'use client';
-import {useState} from 'react';
+import React, { useState } from 'react';
 import styles from './ItemInfo.module.css';
 
-const ItemInfo = () => {
-
-  const [multiplier, setMultiplier] = useState(1);
+const ItemInfo = ({ post }) => {
   const [activeSize, setActiveSize] = useState("size1");
-  //  Functions to handle Size Switching
-  const handleSize1 = () => {
-    // update the state to Size1
-    setActiveSize("size1");
-    setMultiplier(1);
-  };
-  const handleSize2 = () => {
-    // update the state to Size2
-    setActiveSize("size2");
-    setMultiplier(1.5);
-  };
-  const handleSize3 = () => {
-    // update the state to Size2
-    setActiveSize("size3");
-    setMultiplier(2);
-  };
-  const handleSize4 = () => {
-    // update the state to Size2
-    setActiveSize("size4");
-    setMultiplier(2.5);
-  };
-  const handleSize5 = () => {
-    // update the state to Size2
-    setActiveSize("size5");
-    setMultiplier(3);
-  };
-  
+
+  // Check that post and post.acf are defined
+  if (!post || !post.acf || !post.acf.nutritional_info_by_size) {
+    return null;  // Or some fallback UI
+  }
+  const nutritional_info_by_size = post.acf.nutritional_info_by_size;
+
+  // Map over the nutritional_info_by_size array to generate the buttons
+  const sizeButtons = nutritional_info_by_size.map((size, index) => {
+    if (!size.size_label) {
+      return null; // Skip this iteration if size_label is empty
+    }
+    const sizeId = `size${index + 1}`;
+    const handleSize = () => {
+      setActiveSize(sizeId);
+    };
+
+    return (
+      <button
+        key={sizeId}
+        onClick={handleSize}
+        className={`${styles.sizeBtn} ${activeSize === sizeId ? styles.active : ""}`}
+      >
+        {size.size_label}
+      </button>
+    );
+  });
+
+  // Map over the nutritional_info_by_size array to generate the table rows
+  const sizeRows = nutritional_info_by_size.map((size, index) => {
+    if (!size.size_label) {
+      return null; // Skip this iteration if size_label is empty
+    }
+    const sizeId = `size${index + 1}`;
+
+    // Only render the row if it's the active size
+    if (activeSize === sizeId) {
+      return (
+        <React.Fragment key={sizeId}>
+          <tbody>
+            <tr>
+              <td className={styles.title}>CALORIES</td>
+              <td>{size.total_calories} Cals</td>
+            </tr>
+            <tr>
+              <td>Fat Cals</td>
+              <td>{size.fat_calories} Cals</td>
+            </tr>
+            <tr>
+              <td>Saturated Cals</td>
+              <td>{size.saturated_calories} Cals</td>
+            </tr><tr>
+              <th colSpan="2"><hr className={styles.hr} /></th>
+            </tr>
+            <tr>
+              <td className={styles.title}>TOTAL FAT</td>
+              <td>{size.total_fat} g</td>
+            </tr>
+            <tr>
+              <td>Saturated Fat</td>
+              <td>{size.saturated_fat} g</td>
+            </tr>
+            <tr>
+              <td>Trans Fat</td>
+              <td>{size.trans_fat} g</td>
+            </tr>
+            <tr>
+              <th colSpan="2"><hr className={styles.hr} /></th>
+            </tr>
+            <tr>
+              <td>Cholesterol</td>
+              <td>{size.cholesterol} mg</td>
+            </tr>
+            <tr>
+              <td>Sodium</td>
+              <td>{size.sodium} mg</td>
+            </tr>
+            <tr>
+              <th colSpan="2"><hr className={styles.hr} /></th>
+            </tr>
+            <tr>
+              <td className={styles.title}>Total Carbohydrates</td>
+              <td>{size.total_carbohydrate} g</td>
+            </tr>
+            <tr>
+              <td>Fiber</td>
+              <td>{size.fiber} g</td>
+            </tr>
+            <tr>
+              <td>Sugar</td>
+              <td>{size.sugar} g</td>
+            </tr>
+            <tr>
+              <th colSpan="2"><hr className={styles.hr} /></th>
+            </tr>
+            <tr>
+              <td>Protein</td>
+              <td>{size.protein} g</td>
+            </tr>
+            <tr>
+              <td>Vitamin A</td>
+              <td>{size.vitamin_a} IU</td>
+            </tr>
+            <tr>
+              <td>Vitamin C</td>
+              <td>{size.vitamin_c} mg</td>
+            </tr>
+            <tr>
+              <td>Calcium</td>
+              <td>{size.calcium} mg</td>
+            </tr>
+            <tr>
+              <td>Iron</td>
+              <td>{size.iron} mg</td>
+            </tr>
+          </tbody>
+        </React.Fragment>
+      );
+    }
+    return null;
+  });
+
+  // Render the table with the size rows
   return (
     <div className={styles.itemInfo}>
       <div className={styles.sizes}>
-        <button onClick={handleSize1} className={`${styles.sizeBtn} ${activeSize === "size1" ? styles.active : ""}`}>8&quot;</button>
-        <button onClick={handleSize2} className={`${styles.sizeBtn} ${activeSize === "size2" ? styles.active : ""}`}>10&quot;</button>
-        <button onClick={handleSize3} className={`${styles.sizeBtn} ${activeSize === "size3" ? styles.active : ""}`}>12&quot;</button>
-        <button onClick={handleSize4} className={`${styles.sizeBtn} ${activeSize === "size4" ? styles.active : ""}`}>14&quot;</button>
-        <button onClick={handleSize5} className={`${styles.sizeBtn} ${activeSize === "size5" ? styles.active : ""}`}>16&quot;</button>
+        {sizeButtons}
       </div>
       <table className={styles.table}>
-        <tr>
-          <td className={styles.title}>CALORIES</td>
-          <td>{(1028.27 * multiplier).toFixed(2)} Cals</td>
-        </tr>
-        <tr>
-          <td>Fat Cals</td>
-          <td>{(589.25 * multiplier).toFixed(2)} Cals</td>
-        </tr>
-        <tr>
-          <td>Saturated Cals</td>
-          <td>{(137.06 * multiplier).toFixed(2)} Cals</td>
-        </tr>
-        <tr>
-          <th colSpan="2"><hr className={styles.hr}/></th>
-        </tr>
-        <tr>
-          <td className={styles.title}>TOTAL FAT</td>
-          <td>{(65.36 * multiplier).toFixed(2)} g</td>
-        </tr>
-        <tr>
-          <td>Saturated Fat</td>
-          <td>{(15.23 * multiplier).toFixed(2)} g</td>
-        </tr>
-        <tr>
-          <td>Trans Fat</td>
-          <td>{(0 * multiplier).toFixed(2)} g</td>
-        </tr>
-        <tr>
-          <th colSpan="2"><hr className={styles.hr}/></th>
-        </tr>
-        <tr>
-          <td>Cholesterol</td>
-          <td>{(305.61 * multiplier).toFixed(2)} mg</td>
-        </tr>
-        <tr>
-          <td>Sodium</td>
-          <td>{(2701.42 * multiplier).toFixed(2)} mg</td>
-        </tr>
-        <tr>
-          <th colSpan="2"><hr className={styles.hr}/></th>
-        </tr>
-        <tr>
-          <td className={styles.title}>Total Carbohydrates</td>
-          <td>{(38.87 * multiplier).toFixed(2)} g</td>
-        </tr>
-        <tr>
-          <td>Fiber</td>
-          <td>{(5.34 * multiplier.toFixed(2))} g</td>
-        </tr>
-        <tr>
-          <td>Sugar</td>
-          <td>{(6.2 * multiplier).toFixed(2)} g</td>
-        </tr>
-        <tr>
-          <th colSpan="2"><hr className={styles.hr}/></th>
-        </tr>
-        <tr>
-          <td>Protein</td>
-          <td>{(65.56 * multiplier).toFixed(2)} g</td>
-        </tr>
-        <tr>
-          <td>Vitamin A</td>
-          <td>{(266.82).toFixed(2)} IU</td>
-        </tr>
-        <tr>
-          <td>Vitamin C</td>
-          <td>{(3.2 * multiplier).toFixed(2)} mg</td>
-        </tr>
-        <tr>
-          <td>Calcium</td>
-          <td>{(373.55 * multiplier).toFixed(2)} mg</td>
-        </tr>
-        <tr>
-          <td>Iron</td>
-          <td>{(8.64 * multiplier).toFixed(2)} mg</td>
-        </tr>
+        {sizeRows}
       </table>
     </div>
   );

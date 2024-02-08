@@ -51,8 +51,8 @@ export default async function Page({ params }) {
 
 
   const content = [
-    { id: 'tab1', component: <ItemInfo /> },
-    { id: 'tab2', component: <ItemAllergens /> },
+    { id: 'tab1', component: <ItemInfo post={post} /> },
+    { id: 'tab2', component: <ItemAllergens post={post} /> },
     // Add more content as needed
   ];
 

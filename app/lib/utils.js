@@ -136,7 +136,7 @@ export async function fetchPostData() {
 
 // utils/fetchPostBySlug
 export async function fetchPostBySlug(slug) {
-  const response = await fetch(`${POSTS_API_URL}?slug=${slug}&_embed`);
+  const response = await fetch(`${POSTS_API_URL}?slug=${slug}&_embed&per_page=100`);
   const posts = await response.json();
   // Assuming only one post will be returned for a given slug
   const post = posts[0] || null;
@@ -218,7 +218,7 @@ export async function fetchMiscData(slug) {
 // utils fetchCPTData
 export async function fetchCPTData(cptNames) {
   const data = await Promise.all(cptNames.map(async (cptName) => {
-    const res = await fetch(`${CPT_API_URL}/${cptName}`, {
+    const res = await fetch(`${CPT_API_URL}/${cptName}?per_page=100&order=asc&orderby=title`, {
       headers: {
         'Accept': 'application/json'
       }

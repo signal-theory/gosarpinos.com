@@ -12,6 +12,16 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
   const [filteredPosts, setFilteredPosts] = useState(posts || []);
   const [categories, setCategories] = useState([]); // New state for categories
   const [selectedCategory, setSelectedCategory] = useState('All');
+  useEffect(() => {
+    // Extract unique categories from posts
+    const uniqueCategories = Array.from(new Set(posts.flatMap(post => post.acf.menu_category || [])));
+    setCategories(uniqueCategories.map(category => ({ name: category, id: category })));
+
+    // If 'Specialty' category exists, set it as the selected category
+    if (uniqueCategories.includes('Specialty')) {
+      setSelectedCategory('Specialty');
+    }
+  }, [posts]);
 
   const fetchImages = useCallback(async (postsToProcess) => {
     let filterPosts = postsToProcess;
@@ -56,11 +66,8 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
       ? posts
       : posts.filter(post => post.acf.menu_category?.includes(selectedCategory));
 
-    // Shuffle the filtered posts
-    const shuffledPosts = [...filtered].sort(() => Math.random() - 0.5);
-
-    // Fetch images for shuffled posts
-    fetchImages(shuffledPosts).then(posts => {
+    // Fetch images for filtered posts
+    fetchImages(filtered).then(posts => {
       setFilteredPosts(posts);
       setLoading(false);
     });

@@ -68,6 +68,15 @@
   text-align: left;
   font-size: 1.45rem;
 }
+.title a {
+  color: inherit;
+  text-decoration: none;
+  font-size: inherit;
+  padding: 0;
+  margin: 0;
+  display: inline;
+  text-align: left;
+}
 
 .caption {
   flex: 1 1 auto;

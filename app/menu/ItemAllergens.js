@@ -16,10 +16,10 @@ import styles from './ItemAllergens.module.css';
 //   );
 // }
 
-const ItemAllergens = () => {
+const ItemAllergens = ({ post }) => {
   return (
     <div className={styles.allergens}>
-      Contains: Wheat, Milk, Soy, Egg
+      {post?.acf?.allergens || 'No allergens'}
     </div>
   )
 };
