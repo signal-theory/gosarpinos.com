@@ -89,7 +89,15 @@
     columns: 4 auto;
   }
 }
-
+.ingredientsList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ingredientsList:last-child .ingredientsContent {
+  border-bottom: 0;
+  padding-bottom: 4rem;
+}
 .sauces {
   columns: 2 auto;
   column-gap: calc(3vw + 1.5rem);

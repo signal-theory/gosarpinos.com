@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import OrderGiftCard from './OrderGiftCard'
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -117,8 +118,8 @@ export default function Footer() {
                 <h4>Customer Service</h4>
                 <ul>
                   <li><Link href="/loyalty-program">Loyalty Program</Link></li>
-                  <li><Link href="/">Gift Cards</Link></li>
-                  <li><Link href="/">Location Finder</Link></li>
+                  <li><OrderGiftCard /></li>
+                  <li><Link href="/pizza-delivery">Location Finder</Link></li>
                   <li><Link href="/">Rate Us</Link></li>
                   <li><Link href="/sitemap">Site Map</Link></li>
                 </ul>
@@ -132,7 +133,7 @@ export default function Footer() {
                 <ul>
                   <li><Link href="https://jobs.gosarpinos.com/">Careers</Link></li>
                   <li><Link href="https://sarpinosfranchise.com/">Franchising Information</Link></li>
-                  <li><Link href="/">Location Finder</Link></li>
+                  <li><Link href="/pizza-delivery">Location Finder</Link></li>
                   <li><Link href="/download-pizza-app">Mobile App</Link></li>
                 </ul>
                 <h4>Contact Us</h4>

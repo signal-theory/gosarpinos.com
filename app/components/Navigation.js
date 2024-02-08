@@ -24,7 +24,7 @@ export default function Navigation() {
 
   const [featuredImages, setFeaturedImages] = useState({});
   useEffect(() => {
-    const pageIds = [91, 34, 170];
+    const pageIds = [91, 34, 1022];
 
     pageIds.forEach(async (id) => {
       try {
@@ -205,11 +205,11 @@ export default function Navigation() {
                   href="/vegan-menu/vegan-pizza"
                   onClick={() => { handleSubmenu('Menu'); }}
                 >
-                  {featuredImages[170] && (
+                  {featuredImages[1022] && (
                     <Image
                       className="featured-image"
-                      src={featuredImages[170].url}
-                      alt={featuredImages[170].alt}
+                      src={featuredImages[1022].url}
+                      alt={featuredImages[1022].alt}
                       width={191}
                       height={43} />
                   )}

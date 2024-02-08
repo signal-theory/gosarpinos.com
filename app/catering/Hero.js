@@ -26,7 +26,7 @@ const Hero = ({ featuredImage, featuredImageAlt, data }) => {
         <div className='flex-align-center'>
           <div>
             <div dangerouslySetInnerHTML={{ __html: data.content.rendered || '' }} />
-            <Link href="/" className="btn primary-btn glow" style={{ margin: '1rem auto 1rem 0' }}><span>Contact Your local Sarpino&apos;s</span></Link>
+            <Link href="/pizza-delivery" className="btn primary-btn glow" style={{ margin: '1rem auto 1rem 0' }}><span>Contact Your local Sarpino&apos;s</span></Link>
             <p style={{ maxWidth: '255px' }}>{data.acf.description}</p>
           </div>
         </div>

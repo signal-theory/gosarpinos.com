@@ -8,6 +8,8 @@ import ItemTabs from '../../ItemTabs';
 import BYOContent1 from './BYOContent1';
 import BYOContent2 from './BYOContent2';
 import Parallax from './Parallax';
+import OrderBtn from '../../../components/OrderBtn';
+import Link from 'next/link';
 
 const postType = 'build-your-own';
 export async function generateMetadata({ params }) {
@@ -66,6 +68,10 @@ export default async function Page({ params }) {
                 tab1="Ingredients"
                 tab2="Sauces"
                 content={content} />
+              <div className="display-flex" style={{ alignItems: 'center' }}>
+                <OrderBtn />
+                <Link href="" className='text-link' style={{ paddingLeft: '2rem' }}>Allergen Info</Link>
+              </div>
             </div>
           </div>
           <Parallax />

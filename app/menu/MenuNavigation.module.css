@@ -1,5 +1,6 @@
 nav.light,
 nav.dark {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,10 +15,38 @@ nav.light {
   background-color: var(--darkred-color);
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
+nav.light::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: linear-gradient(
+    to right,
+    rgba(175, 15, 4, 0),
+    rgba(175, 15, 4, 1)
+  );
+}
 
 nav.dark {
   background-color: var(--cream-color);
   border-bottom: 1px solid #c2b59b;
+}
+nav.dark::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: linear-gradient(
+    to right,
+    rgba(243, 240, 235, 0),
+    rgba(243, 240, 235, 1)
+  );
 }
 .menuNavigation {
   display: inline-flex;
@@ -28,7 +57,6 @@ nav.dark {
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
-
 .menuLabel {
   padding-left: 1.5rem;
 }

@@ -89,7 +89,7 @@ export default async function Page({ params }) {
           <div className="homepage-content">
             <div dangerouslySetInnerHTML={{ __html: data?.content.rendered || '' }} style={{ margin: '4rem 0 2rem' }} />
             <div className="btn-slide">
-              <OrderBtn />
+              <OrderBtn btnColor="dark" />
             </div>
           </div>
         </div>
