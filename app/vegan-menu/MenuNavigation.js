@@ -1,12 +1,14 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import styles from './MenuNavigation.module.css'
+import Image from 'next/image'
+import styles from '../menu/MenuNavigation.module.css'
 
 export default function MenuNavigation({ mode, activeItem }) {
   const router = useRouter();
   const [activeNav, setActiveNav] = useState(activeItem);
+  const activeRef = useRef(null);
 
   //  Functions to handle nav Switching
   const handleNav = (navId, href) => (event) => {
@@ -15,12 +17,11 @@ export default function MenuNavigation({ mode, activeItem }) {
   };
 
   const subnav = [
-    { id: "specials", label: "National Specials", handler: handleNav("specials"), href: "/menu/national-specials" },
     { id: "build-your-own", label: "Build Your Own", handler: handleNav("build-your-own"), href: "/menu/build-your-own" },
-    { id: "vegan-menu", label: "Vegan", handler: handleNav("vegan-menu"), href: "/vegan-menu/vegan-pizza" },
     { id: "pizza", label: "Pizza", handler: handleNav("sarpinos-specialty-pizza"), href: "/vegan-menu/vegan-pizza" },
     { id: "deep-dish", label: "Deep Dish", handler: handleNav("deep-dish-pizza"), href: "/vegan-menu/vegan-deep-dish-pizza" },
     { id: "calzones", label: "Calzones", handler: handleNav("calzones"), href: "/vegan-menu/vegan-calzones" },
+    { id: "wings-apps", label: "Wings & Appetizers", handler: handleNav("wings-apps"), href: "/vegan-menu/vegan-wings-apps" },
     { id: "salads", label: "Salads", handler: handleNav("salads"), href: "/vegan-menu/vegan-salads" },
     { id: "sandwiches", label: "Sandwiches", handler: handleNav("sandwiches"), href: "/vegan-menu/vegan-sandwiches" },
     { id: "pastas", label: "Pastas", handler: handleNav("pastas"), href: "/vegan-menu/vegan-pastas" },
@@ -29,12 +30,29 @@ export default function MenuNavigation({ mode, activeItem }) {
     { id: "extras", label: "Extras", handler: handleNav("extras"), href: "/vegan-menu/vegan-extras" }
   ];
 
-
+  useEffect(() => {
+    if (activeRef.current) {
+      activeRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'start'
+      });
+    }
+  }, []);
   return (
     <nav className={mode === "light" ? `${styles.light}` : `${styles.dark}`}>
+      <div className={styles.menuLabel}>
+        <Image
+          className={styles.menuLabelVegan}
+          src="/menu-label-vegan.png"
+          alt="Vegan Menu"
+          width={150}
+          height={50}
+        />
+      </div>
       <ul className={styles.menuNavigation}>
         {subnav.map((nav, index) => (
-          <li key={index}>
+          <li key={index} ref={activeNav === nav.id ? activeRef : null}>
             <Link
               href={nav.href}
               className={`${styles.navItem} ${activeNav === nav.id ? styles.active : ""} ${nav.id === "vegan-menu" ? styles.vegan : ""}`}

@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import styles from './MenuNavigation.module.css'
 
 export default function MenuNavigation({ mode, activeItem }) {
@@ -15,9 +16,7 @@ export default function MenuNavigation({ mode, activeItem }) {
   };
 
   const subnav = [
-    { id: "specials", label: "National Specials", handler: handleNav("specials"), href: "/menu/national-specials" },
     { id: "build-your-own", label: "Build Your Own", handler: handleNav("build-your-own"), href: "/menu/build-your-own" },
-    { id: "vegan-menu", label: "Vegan", handler: handleNav("vegan-menu"), href: "/vegan-menu/vegan-pizza" },
     { id: "pizza", label: "Pizza", handler: handleNav("sarpinos-specialty-pizza"), href: "/menu/sarpinos-specialty-pizza" },
     { id: "deep-dish", label: "Deep Dish", handler: handleNav("deep-dish"), href: "/menu/deep-dish-pizza" },
     { id: "calzones", label: "Calzones", handler: handleNav("calzones"), href: "/menu/calzones" },
@@ -33,6 +32,15 @@ export default function MenuNavigation({ mode, activeItem }) {
 
   return (
     <nav className={mode === "light" ? `${styles.light}` : `${styles.dark}`}>
+      <div className={styles.menuLabel}>
+        <Image
+          className={styles.menuLabelFull}
+          src="/menu-label-full.png"
+          alt="Full Menu"
+          width={135}
+          height={50}
+        />
+      </div>
       <ul className={styles.menuNavigation}>
         {subnav.map((nav, index) => (
           <li key={index}>
