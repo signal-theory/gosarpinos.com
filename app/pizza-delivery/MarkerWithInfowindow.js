@@ -11,7 +11,7 @@ import {
   Pin,
 } from '@vis.gl/react-google-maps';
 
-const MarkerWithInfowindow = memo(({ locations, openInfoWindowId, setOpenInfoWindowId, store }) => {
+const MarkerWithInfowindow = memo(({ isLoading, locations, openInfoWindowId, setOpenInfoWindowId, store }) => {
 
   const { setStore } = useContext(StoreContext);
 
@@ -32,6 +32,7 @@ const MarkerWithInfowindow = memo(({ locations, openInfoWindowId, setOpenInfoWin
     markerRefs.current = locations.map((_, i) => markerRefs.current[i] ?? React.createRef()); // Create a new ref for each location
   }, [locations]);
 
+  const selectedLocation = locations.find(location => location.id === openInfoWindowId);
 
   return (
     <>
@@ -50,23 +51,23 @@ const MarkerWithInfowindow = memo(({ locations, openInfoWindowId, setOpenInfoWin
                 height={50} />
             </Pin>
           </AdvancedMarker>
-          {openInfoWindowId === location.id && (
-            <InfoWindow
-              className={styleInfo.infoWindow}
-              anchor={markerRefs.current[index]?.current}  // Use the current marker ref as the anchor
-              maxWidth={200}
-              onCloseClick={() => setOpenInfoWindowId(null)}
-            >
-              <h5 className={styleInfo.iwTitle}>{he.decode(location.title.rendered)}</h5>
-              <p className={styleInfo.iwAddress}>
-                {location.acf.address}<br />
-                {location.acf.city}, {location.acf.state} {location.acf.zip}
-              </p>
-              <OrderBtn btnColor="dark" />
-            </InfoWindow>
-          )}
         </React.Fragment>
       ))}
+      {(!isLoading && selectedLocation) && (
+        <InfoWindow
+          className={styleInfo.infoWindow}
+          anchor={markerRefs.current[locations.indexOf(selectedLocation)]?.current}  // Use the current marker ref as the anchor
+          maxWidth={200}
+          onCloseClick={() => setOpenInfoWindowId(null)}
+        >
+          <h5 className={styleInfo.iwTitle}>{he.decode(selectedLocation.title.rendered)}</h5>
+          <p className={styleInfo.iwAddress}>
+            {selectedLocation.acf.address}<br />
+            {selectedLocation.acf.city}, {selectedLocation.acf.state} {selectedLocation.acf.zip}
+          </p>
+          <OrderBtn btnColor="dark" />
+        </InfoWindow>
+      )}
     </>
   );
 });

@@ -22,6 +22,16 @@ const MapHero = ({ posts }) => {
   const markerRefs = useRef([]); // Create a reference for markerRefs
   const [openInfoWindowId, setOpenInfoWindowId] = useState(null); // Store the ID instead of the index
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate a delay before the map is ready
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // Get the selected location from the URL query parameters
   useEffect(() => {
@@ -42,13 +52,14 @@ const MapHero = ({ posts }) => {
           const selected = locations.find(location => he.decode(location.title.rendered) + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip === selectedLocation);
           if (selected) {
             setOpenInfoWindowId(selected.id);
+
           }
         }
       }
     };
 
     geocodeLocation();
-  }, [selectedLocation, locations, openInfoWindowId]);
+  }, [selectedLocation, locations]);
 
   // refocus the center of the map whenever the user's location is set
   useEffect(() => {
@@ -105,7 +116,8 @@ const MapHero = ({ posts }) => {
                 locations={filteredLocations}
                 openInfoWindowId={openInfoWindowId}
                 setOpenInfoWindowId={setOpenInfoWindowId}
-                store={store} />
+                store={store}
+                isLoading={isLoading} />
 
             </Map>
           </APIProvider>
