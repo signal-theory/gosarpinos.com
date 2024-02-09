@@ -275,7 +275,7 @@ export async function fetchMediaData(mediaId, size = 'full') {
 
 // utils/fetchLocations
 export async function fetchLocations() {
-  const url = `${CPT_API_URL}/locations?per_page=100`;
+  const url = `${CPT_API_URL}/locations?per_page=100&order=asc&orderby=title`;
 
   const res = await fetch(url);
   if (!res.ok) {

@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Hero.module.css';
+import LoginBtn from './LoginBtn';
+import SignupBtn from './SignupBtn';
 
 const Hero = ({ data, mainImage }) => {
 
@@ -11,8 +13,8 @@ const Hero = ({ data, mainImage }) => {
         <h2 className={styles.title} dangerouslySetInnerHTML={{ __html: data?.title.rendered || '' }} />
         <div dangerouslySetInnerHTML={{ __html: data?.content.rendered || '' }} />
         <div className='display-flex'>
-          <Link href="" className="btn primary-btn"><span>Log In</span></Link>
-          <Link href="" className="btn secondary-btn"><span>Sign Up</span></Link>
+          <LoginBtn />
+          <SignupBtn />
         </div>
       </div>
       <div className={`order1 ${styles.imageCol}`}>

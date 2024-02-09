@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import OrderBtn from '../components/OrderBtn';
 import styles from './MenuCard.module.css';
+import he from 'he';
 
 const MenuCard = ({ post, postTypeSlug, menuSlug, hoverImage, hoverAlt, featuredImage, featuredAlt }) => {
 
@@ -34,7 +35,7 @@ const MenuCard = ({ post, postTypeSlug, menuSlug, hoverImage, hoverAlt, featured
           </Link>
         </div>
         <div className={styles.label}>
-          <h2 className={styles.title}><Link className={styles.link} href={url}>{post?.title?.rendered || ''}</Link></h2>
+          <h2 className={styles.title}><Link className={styles.link} href={url}>{he.decode(post?.title?.rendered || '')}</Link></h2>
           <p
             className={styles.caption}
             dangerouslySetInnerHTML={{ __html: (post.acf.caption.split(' ').slice(0, 22).join(' ')) || 'Sarpino\'s traditional pan pizza baked to perfection and loaded with fresh ingredients.' }}
