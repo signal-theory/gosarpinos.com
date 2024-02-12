@@ -31,26 +31,28 @@ export default function MenuNavigation({ mode, activeItem }) {
 
 
   return (
-    <nav className={mode === "light" ? `${styles.light}` : `${styles.dark}`}>
-      <div className={styles.menuLabel}>
-        <Image
-          className={styles.menuLabelFull}
-          src="/menu-label-full.png"
-          alt="Full Menu"
-          width={135}
-          height={50}
-        />
-      </div>
-      <ul className={styles.menuNavigation}>
-        {subnav.map((nav, index) => (
-          <li key={index}>
-            <Link
-              href={nav.href}
-              className={`${styles.navItem} ${activeNav === nav.id ? styles.active : ""}`}
-              onClick={nav.handler}>{nav.label}</Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <>
+      <nav className={mode === "light" ? `${styles.light}` : `${styles.dark}`}>
+        <div className={styles.menuLabel}>
+          <Image
+            className={styles.menuLabelFull}
+            src="/menu-label-full.png"
+            alt="Full Menu"
+            width={135}
+            height={50}
+          />
+        </div>
+        <ul className={styles.menuNavigation}>
+          {subnav.map((nav, index) => (
+            <li key={index}>
+              <Link
+                href={nav.href}
+                className={`${styles.navItem} ${activeNav === nav.id ? styles.active : ""}`}
+                onClick={nav.handler}>{nav.label}</Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </>
   );
 }
