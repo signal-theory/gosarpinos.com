@@ -99,8 +99,6 @@ export default async function Page({ params }) {
           <h2 style={{ paddingTop: '2rem' }}>{data.acf.popular_items_headline}</h2>
           <div className="responsive-three-column-container">
             {menuItemsWithImages.map((item, index) => {
-              const url = new URL(item.link.url);
-              const path = url.pathname;
               return (
                 <div key={index} className="menupage-item">
                   <div className="menupage-thumbnail">
@@ -124,9 +122,9 @@ export default async function Page({ params }) {
                     </Link>
                   </div>
                   <div className="menupage-label" style={{ alignItems: 'center' }}>
-                    <h3><Link href={path}>{item.title}</Link></h3>
+                    <h3><Link href={item.link.url}>{item.title}</Link></h3>
                     <div className="menupage-caption" dangerouslySetInnerHTML={{ __html: item.description || '' }} />
-                    <Link className="btn primary-btn" href={path}><span>{item.title}</span></Link>
+                    <Link className="btn primary-btn" href={item.link.url}><span>{item.title}</span></Link>
                   </div>
                 </div>
               )
