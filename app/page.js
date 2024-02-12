@@ -146,7 +146,7 @@ export default async function Page({ params }) {
           <div style={{ margin: '2rem 0' }}>
 
           </div>
-          <Link href="/" className="btn secondary-btn"><span>See More Specials</span></Link>
+          <Link href="/menu/national-specials" className="btn secondary-btn"><span>See More Specials</span></Link>
         </div>
       </section>
       <div className="catering-animation">
@@ -169,7 +169,7 @@ export default async function Page({ params }) {
             <div className="content flex-align-center" style={{ alignItems: 'flex-start' }}>
               <h2>{data.acf.catering_headline}</h2>
               <p>{data.acf.catering_paragraph}</p>
-              <Link href="/" className="btn primary-btn"><span>Catering Info</span></Link>
+              <Link href="/catering" className="btn primary-btn"><span>Catering Info</span></Link>
             </div>
           </div>
         </div>
