@@ -29,7 +29,7 @@ export default async function Page({ params }) {
         <div className="page-container cream-color">
           <div className={`text-align-center ${styles.miscContent}`}>
             <h1 className="page-title">Welcome to the family!</h1>
-            <p>Thank you for choosing Sarpino's.</p>
+            <p>Thank you for choosing Sarpino&apos;s.</p>
             <Link className="btn primary-btn" href="/"><span>GO TO THE HOMEPAGE</span></Link>
 
           </div>
