@@ -182,7 +182,7 @@ export default async function Page({ params }) {
           <h2>Sarpino&apos;s On Social</h2>
           <p style={{ maxWidth: '347px', margin: '0 auto' }}>Pizza pics, cheesy captions and saucy posts. Follow us on Instagram and Facebook.</p>
           <div className="social-feed" style={{ margin: '6rem 0' }}>
-            INSTAGRAM FEED
+
           </div>
         </div>
       </section>
