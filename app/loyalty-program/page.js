@@ -3,6 +3,7 @@ import { fetchMetadata, fetchPageData, fetchACFImage } from '../lib/utils'; // A
 import Hero from './Hero';
 import Earn from './Earn';
 import CalloutLoyalty from '../components/CalloutLoyalty';
+import Breadcrumbs from '@/app/components/Breadcrumbs';
 
 const pageId = 111;
 export async function generateMetadata() {
@@ -40,8 +41,9 @@ export default async function Page({ params }) {
   }
 
   return (
-    <>
-      <section className="viewport cream-color">
+    <div className='cream-color'>
+      <Breadcrumbs style="nonmenu" />
+      <section className="viewport">
         <div className="page-container" style={{ paddingTop: 0 }}>
           <Hero
             data={data}
@@ -51,6 +53,6 @@ export default async function Page({ params }) {
         </div>
       </section>
       <CalloutLoyalty />
-    </>
+    </div>
   );
 }

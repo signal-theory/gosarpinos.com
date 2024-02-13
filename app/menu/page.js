@@ -1,14 +1,14 @@
-// /menu/vegan-menu/page.js
-import { METADATABASE_API_URL } from '../../lib/constants';
-import { fetchMetadata, fetchPageData, fetchCPTData } from '../../lib/utils';
-import MenuNavigation from '../MenuNavigation';
-import MenuHeader from '../../menu/MenuHeader';
-import MenuContent from '../../menu/MenuContent';
-import CalloutMenu from '../../components/CalloutMenu';
-import CalloutMobileApp from '../../components/CalloutMobileApp';
+// /menu/pizza/page.js
+import { METADATABASE_API_URL } from '../lib/constants';
+import { fetchMetadata, fetchPageData, fetchCPTData } from '../lib/utils';
+import MenuNavigation from './MenuNavigation';
+import MenuHeader from './MenuHeader';
+import MenuContent from './MenuContent';
+import CalloutMenu from '../components/CalloutMenu';
+import CalloutMobileApp from '../components/CalloutMobileApp';
 
-const pageId = 535;
-const postType = ['deep-dish'];
+const pageId = 34;
+const postType = ['pizza'];
 export async function generateMetadata() {
   const metadata = await fetchMetadata(pageId);
 
@@ -25,6 +25,8 @@ export async function generateMetadata() {
 }
 
 export default async function Page() {
+
+
   let data;
   let posts;
 
@@ -40,20 +42,21 @@ export default async function Page() {
     <>
       <MenuNavigation
         mode="light"
-        activeItem="deep-dish" />
+        activeItem="pizza" />
       <section className="viewport innermenu">
         <div className="page-container cream-color">
           <MenuHeader
             featuredImage={data._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}
-            featuredImageAlt='alt'
+            featuredImageAlt={data._embedded?.['wp:featuredmedia']?.[0]?.alt_text || 'fresh pizza'}
             pageTitle={data.title.rendered}
             pageContent={data.content.rendered}
           />
           {/* Render the menu posts */}
           <MenuContent
             posts={posts}
-            postTypeSlug="deep-dish-pizza"
-            categoryTitle='Sort Deep Dish Pizza' />
+            postTypeSlug="sarpinos-specialty-pizza"
+            categoryTitle="Sort Specialty Pizzas"
+          />
         </div>
       </section>
 

@@ -1,14 +1,14 @@
 // /menu/vegan-menu/page.js
-import { METADATABASE_API_URL } from '../../lib/constants';
-import { fetchMetadata, fetchPageData, fetchCPTData } from '../../lib/utils';
-import MenuNavigation from '../MenuNavigation';
-import MenuHeader from '../../menu/MenuHeader';
-import MenuContent from '../../menu/MenuContent';
-import CalloutMenu from '../../components/CalloutMenu';
-import CalloutMobileApp from '../../components/CalloutMobileApp';
+import { METADATABASE_API_URL } from '../lib/constants';
+import { fetchMetadata, fetchPageData, fetchCPTData } from '../lib/utils';
+import MenuNavigation from './MenuNavigation';
+import MenuHeader from '../menu/MenuHeader';
+import PostContent from '../menu/PostContent';
+import CalloutMenu from '../components/CalloutMenu';
+import CalloutMobileApp from '../components/CalloutMobileApp';
 
-const pageId = 535;
-const postType = ['deep-dish'];
+const pageId = 316;
+const postType = ['pizza'];
 export async function generateMetadata() {
   const metadata = await fetchMetadata(pageId);
 
@@ -40,7 +40,7 @@ export default async function Page() {
     <>
       <MenuNavigation
         mode="light"
-        activeItem="deep-dish" />
+        activeItem="pizza" />
       <section className="viewport innermenu">
         <div className="page-container cream-color">
           <MenuHeader
@@ -50,10 +50,11 @@ export default async function Page() {
             pageContent={data.content.rendered}
           />
           {/* Render the menu posts */}
-          <MenuContent
+          <PostContent
             posts={posts}
-            postTypeSlug="deep-dish-pizza"
-            categoryTitle='Sort Deep Dish Pizza' />
+            menuSlug="vegan-menu"
+            postTypeSlug="vegan-pizza"
+            filterPostsBy='Vegan' />
         </div>
       </section>
 

@@ -1,14 +1,14 @@
-// app/menu/sarpinos-specialty-pizza/[slug]/page.js
-import { METADATABASE_API_URL } from '../../../lib/constants';
-import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchACFImage } from '../../../lib/utils';
+// app/menu/pastas/[slug]/page.js
+import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchACFImage } from '@/app/lib/utils';
+import { METADATABASE_API_URL } from '@/app/lib/constants';
 import Image from 'next/image';
-import MenuNavigation from '../../MenuNavigation';
+import MenuNavigation from '../MenuNavigation';
 import OrderBtn from '@/app/components/OrderBtn';
 import ShareToggle from '@/app/components/ShareToggle';
-import ItemTabs from '../../ItemTabs';
 import CalloutMobileApp from '@/app/components/CalloutMobileApp';
-import ItemInfo from '../../ItemInfo';
-import ItemAllergens from '../../ItemAllergens';
+import ItemTabs from '../../menu/ItemTabs';
+import ItemInfo from '../../menu/ItemInfo';
+import ItemAllergens from '../../menu/ItemAllergens';
 import styles from './Single.module.css';
 
 const postType = 'pizza';
@@ -50,26 +50,25 @@ export default async function Page({ params }) {
   }
 
 
-
   const content = [
     { id: 'tab1', component: <ItemInfo post={post} /> },
     { id: 'tab2', component: <ItemAllergens post={post} /> },
     // Add more content as needed
   ];
+
   return (
     <>
-
       <div className="cream-color">
         <MenuNavigation
           mode="dark"
-          activeItem="pizza" />
+          activeItem="pastas" />
         <section className="viewport innermenu">
           <div className="page-container">
             <div className="responsive-column-container">
               <div>
                 <Image
-                  src={mainImage ? mainImage.sourceUrl : '/default-menu-image.jpg'}
-                  alt={mainImage ? mainImage.altText : 'specialty pizza'}
+                  src={mainImage.sourceUrl}
+                  alt={mainImage.altText}
                   width={612}
                   height={678}
                   className={styles.image}

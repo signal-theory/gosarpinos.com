@@ -7,6 +7,7 @@ import Info from './Info';
 import CalloutCatering from '../components/CalloutCatering';
 import CalloutWhy from '../components/CalloutWhy';
 import FAQs from './FAQs';
+import Breadcrumbs from '@/app/components/Breadcrumbs';
 
 const pageId = 109;
 export async function generateMetadata() {
@@ -39,7 +40,8 @@ export default async function Page({ params }) {
   return (
     <>
       <div className="cream-color">
-        <section className="viewport innerhero">
+        <Breadcrumbs style="nonmenu" />
+        <section className="viewport">
           <div className="page-container">
             <Hero
               featuredImage={data._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}

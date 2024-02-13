@@ -1,35 +1,40 @@
-import { useRouter } from 'next/navigation'
+'use client';
+import { usePathname } from "next/navigation"
 import Link from 'next/link'
+import styles from './Breadcrumbs.module.css'
 
-export default function Breadcrumbs() {
-  const router = useRouter();
-
-  // Check if router and router.pathname are defined
-  if (!router || !router.pathname) {
-    return null;
-  }
-
-  console.log('router.pathname:', router.pathname); // add this line
-
-  // split the current path
-  const pathParts = router.pathname.split('/').filter(x => x);
-
-  console.log('pathParts:', pathParts); // add this line
+const Breadcrumbs = ({ style }) => {
+  const pathname = usePathname();
+  const segments = pathname.split("/").filter((item) => item !== "");
 
   return (
-    <nav aria-label="breadcrumb">
-      <ol>
-        {pathParts.map((part, idx) => {
-          // build the link for this part
-          const link = '/' + pathParts.slice(0, idx + 1).join('/');
+    <nav aria-label="breadcrumbs" className={style === "nonmenu" ? styles.breadcrumbsNonmenu : styles.breadcrumbs}>
+      <ol className={styles.list}>
+        <li className={styles.item}><Link href="/">Home</Link></li>
+        {segments.map((segment, index) => {
+          const url = `/${segments.slice(0, index + 1).join("/")}`;
+          const isLast = index === segments.length - 1;
+
+          // Replace hyphens with spaces and capitalize each word
+          const displayName = segment
+            .replace(/-/g, ' ')
+            .replace(/\b\w/g, l => l.toUpperCase());
 
           return (
-            <li key={idx}>
-              <Link href={link}>{part}</Link>
+            <li key={segment} className={`${styles.item} ${isLast ? 'active' : ''}`}>
+              {isLast ? (
+                <span>{displayName}</span>
+              ) : (
+                <Link href={url}>
+                  {displayName}
+                </Link>
+              )}
             </li>
           );
         })}
       </ol>
     </nav>
   );
-}
+};
+
+export default Breadcrumbs;

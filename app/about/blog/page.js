@@ -4,6 +4,7 @@ import { fetchMetadata, fetchPageData, fetchPostData } from '../../lib/utils'; /
 import Link from 'next/link';
 import BlogFeatured from './BlogFeatured';
 import BlogContent from './BlogContent';
+import Breadcrumbs from '@/app/components/Breadcrumbs';
 
 const pageId = 278;
 export async function generateMetadata() {
@@ -48,7 +49,8 @@ export default async function Page({ params }) {
   return (
     <>
       <div className="cream-color">
-        <section className="viewport innerhero">
+        <Breadcrumbs style="nonmenu" />
+        <section className="viewport">
           <div className="page-container">
             <div className="content text-align-center">
               <div dangerouslySetInnerHTML={{ __html: data?.content.rendered || '' }} />

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import BlogRelated from '../BlogRelated';
 import ShareThis from '../../../components/ShareThis';
 import styles from './Single.module.css';
+import Breadcrumbs from '@/app/components/Breadcrumbs';
 
 export async function generateMetadata({ params }) {
   const postId = params.slug;
@@ -62,7 +63,8 @@ export default async function Page({ params }) {
   // Return JSX with the post data
   return (
     <div className="cream-color">
-      <section className="viewport innerhero">
+      <Breadcrumbs style="nonmenu" />
+      <section className="viewport">
         <div className="page-container">
           <div className="text-align-center">
             <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: post?.title?.rendered || '' }} />

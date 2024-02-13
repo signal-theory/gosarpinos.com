@@ -1,14 +1,14 @@
 // app/menu/sarpinos-specialty-pizza/[slug]/page.js
-import { METADATABASE_API_URL } from '../../../lib/constants';
-import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchACFImage } from '../../../lib/utils';
+import { METADATABASE_API_URL } from '@/app/lib/constants';
+import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchACFImage } from '@/app/lib/utils';
 import Image from 'next/image';
-import MenuNavigation from '../../MenuNavigation';
+import MenuNavigation from '../MenuNavigation';
 import OrderBtn from '@/app/components/OrderBtn';
 import ShareToggle from '@/app/components/ShareToggle';
-import ItemTabs from '../../ItemTabs';
+import ItemTabs from '../ItemTabs';
 import CalloutMobileApp from '@/app/components/CalloutMobileApp';
-import ItemInfo from '../../ItemInfo';
-import ItemAllergens from '../../ItemAllergens';
+import ItemInfo from '../ItemInfo';
+import ItemAllergens from '../ItemAllergens';
 import styles from './Single.module.css';
 
 const postType = 'pizza';

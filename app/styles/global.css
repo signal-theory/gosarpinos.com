@@ -239,7 +239,7 @@ a:focus {
   overflow: hidden;
 }
 .viewport.innermenu {
-  padding-top: calc(193px + 2rem);
+  /* padding-top: calc(193px + 2rem); */
   overflow: hidden;
 }
 .viewport.fullhero {

@@ -4,6 +4,7 @@ import Hero from './Hero';
 import Ingredients from './Ingredients';
 import Timeline from './Timeline';
 import Franchise from './Franchise';
+import Breadcrumbs from '@/app/components/Breadcrumbs';
 
 const pageId = 49;
 export async function generateMetadata() {
@@ -36,6 +37,7 @@ export default async function Page({ params }) {
   return (
     <>
       <div className="cream-color" style={{ overflow: 'hidden' }}>
+        <Breadcrumbs style="nonmenu" />
         <Hero data={data} />
         <Ingredients data={data} />
         <Timeline data={data} />

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../menu/MenuNavigation.module.css'
+import Breadcrumbs from '../components/Breadcrumbs'
 
 export default function MenuNavigation({ mode, activeItem }) {
   const router = useRouter();
@@ -40,26 +41,29 @@ export default function MenuNavigation({ mode, activeItem }) {
     }
   }, []);
   return (
-    <nav className={mode === "light" ? `${styles.light}` : `${styles.dark}`}>
-      <div className={styles.menuLabel}>
-        <Image
-          className={styles.menuLabelVegan}
-          src="/menu-label-vegan.png"
-          alt="Vegan Menu"
-          width={150}
-          height={50}
-        />
-      </div>
-      <ul className={styles.menuNavigation}>
-        {subnav.map((nav, index) => (
-          <li key={index} ref={activeNav === nav.id ? activeRef : null}>
-            <Link
-              href={nav.href}
-              className={`${styles.navItem} ${activeNav === nav.id ? styles.active : ""} ${nav.id === "vegan-menu" ? styles.vegan : ""}`}
-              onClick={nav.handler}>{nav.label}</Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <>
+      <nav className={mode === "light" ? `${styles.light}` : `${styles.dark}`}>
+        <div className={styles.menuLabel}>
+          <Image
+            className={styles.menuLabelVegan}
+            src="/menu-label-vegan.png"
+            alt="Vegan Menu"
+            width={150}
+            height={50}
+          />
+        </div>
+        <ul className={styles.menuNavigation}>
+          {subnav.map((nav, index) => (
+            <li key={index} ref={activeNav === nav.id ? activeRef : null}>
+              <Link
+                href={nav.href}
+                className={`${styles.navItem} ${activeNav === nav.id ? styles.active : ""} ${nav.id === "vegan-menu" ? styles.vegan : ""}`}
+                onClick={nav.handler}>{nav.label}</Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <Breadcrumbs />
+    </>
   );
 }

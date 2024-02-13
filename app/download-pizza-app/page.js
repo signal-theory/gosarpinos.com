@@ -2,6 +2,7 @@ import { METADATABASE_API_URL } from '../lib/constants';
 import { fetchMetadata, fetchPageData, fetchACFImage } from '../lib/utils'; // Adjust the path as necessary
 import Hero from './Hero';
 import Features from './Features';
+import Breadcrumbs from '@/app/components/Breadcrumbs';
 
 const pageId = 113;
 export async function generateMetadata() {
@@ -38,8 +39,9 @@ export default async function Page({ params }) {
     console.error("Error in Page component:", error);
   }
   return (
-    <>
-      <section className="viewport innerhero cream-color">
+    <div className='cream-color'>
+      <Breadcrumbs style="nonmenu" />
+      <section className="viewport">
         <div className="page-container">
           <Hero data={data}
             mainImage={mainImage} />
@@ -47,6 +49,6 @@ export default async function Page({ params }) {
           />
         </div>
       </section>
-    </>
+    </div>
   );
 }

@@ -33,7 +33,6 @@ export default async function Page({ params }) {
 
   let post;
   let mainImage;
-
   try {
     post = await fetchCPTBySlug(params.slug, postType);
 
@@ -67,8 +66,8 @@ export default async function Page({ params }) {
             <div className="responsive-column-container">
               <div>
                 <Image
-                  src={mainImage.sourceUrl}
-                  alt={mainImage.altText}
+                  src={mainImage ? mainImage.sourceUrl : '/default-menu-image.jpg'}
+                  alt={mainImage ? mainImage.altText : 'deep dish pizza'}
                   width={612}
                   height={678}
                   className={styles.image}

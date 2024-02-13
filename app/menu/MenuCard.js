@@ -38,10 +38,11 @@ const MenuCard = ({ post, postTypeSlug, menuSlug, hoverImage, hoverAlt, featured
         </div>
         <div className={styles.label}>
           <h2 className={styles.title}><Link className={styles.link} href={url}>{he.decode(post?.title?.rendered || '')}</Link></h2>
-          <p
-            className={styles.caption}
-            dangerouslySetInnerHTML={{ __html: (post.acf.caption.split(' ').slice(0, 22).join(' ')) || 'Sarpino\'s traditional pan pizza baked to perfection and loaded with fresh ingredients.' }}
-          />
+          <Link className={styles.caption} href={url}>
+            {post.acf.caption.length > 140
+              ? post.acf.caption.substring(0, 140) + '...'
+              : post.acf.caption || 'Sarpino\'s traditional pan pizza baked to perfection and loaded with fresh ingredients.'}
+          </Link>
           <p className={styles.links}>
             <OrderBtn />
             <Link className={styles.link} href={url}>More Info</Link>

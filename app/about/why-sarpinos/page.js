@@ -4,6 +4,7 @@ import Hero from './Hero';
 import Columns from './Columns';
 import FullWidth from './FullWidth.js';
 import Experience from './Experience';
+import Breadcrumbs from '@/app/components/Breadcrumbs';
 
 const pageId = 60;
 export async function generateMetadata() {
@@ -39,6 +40,7 @@ export default async function Page({ params }) {
   return (
     <>
       <div className="cream-color">
+        <Breadcrumbs style="nonmenu" />
         <Hero data={data} />
         <Columns data={data} />
         <FullWidth data={data} fullWidthImage={fullWidthImage} />

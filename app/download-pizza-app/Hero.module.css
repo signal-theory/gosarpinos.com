@@ -3,7 +3,7 @@
 }
 @media screen and (min-width: 738px) {
   .textCol {
-    padding: calc(7vw + 2rem) 0 2rem;
+    padding: calc(5vw + 1rem) 0 6rem;
     max-width: 500px;
   }
   .image {

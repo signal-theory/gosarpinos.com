@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './MenuNavigation.module.css'
+import Breadcrumbs from '../components/Breadcrumbs'
 
 export default function MenuNavigation({ mode, activeItem }) {
   const router = useRouter();
@@ -53,6 +54,7 @@ export default function MenuNavigation({ mode, activeItem }) {
           ))}
         </ul>
       </nav>
+      <Breadcrumbs />
     </>
   );
 }
