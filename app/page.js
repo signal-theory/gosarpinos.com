@@ -1,6 +1,6 @@
 // `app/page.js` is the UI for the `/` URL
 import { METADATABASE_API_URL } from './lib/constants';
-import { fetchMetadata, fetchPageData, fetchACFImage, fetchCPTData } from './lib/utils'; // Adjust the path as necessary
+import { fetchMetadata, fetchPageData, fetchACFImage, fetchCPTData } from './lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -102,7 +102,7 @@ export default async function Page({ params }) {
               return (
                 <div key={index} className="menupage-item">
                   <div className="menupage-thumbnail">
-                    <Link href={path}>
+                    <Link href={item.link.url}>
                       <Image
                         src={item.hoverImage.sourceUrl}
                         alt={item.hoverImage.altText}
