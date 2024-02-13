@@ -7,7 +7,7 @@ import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import { fetchLocations } from '../lib/utils';
 import { geocode, calculateDistance } from '../lib/geocode';
 import styles from './Map.module.css';
-import MarkerWithInfowindow from './MarkerWithInfowindow';
+import MarkerWithInfoWindow from './MarkerWithInfoWindow';
 import Header from './Header';
 import SearchPanel from '../components/SearchPanel';
 import List from './List';
@@ -23,6 +23,7 @@ const MapHero = ({ posts }) => {
   const [openInfoWindowId, setOpenInfoWindowId] = useState(null); // Store the ID instead of the index
 
   const [isLoading, setIsLoading] = useState(true);
+  const [infoWindowOpen, setInfoWindowOpen] = useState(true);
 
   useEffect(() => {
     // Simulate a delay before the map is ready
@@ -112,12 +113,14 @@ const MapHero = ({ posts }) => {
               gestureHandling={'greedy'}
               disableDefaultUI={true}
             >
-              <MarkerWithInfowindow
+              <MarkerWithInfoWindow
                 locations={filteredLocations}
                 openInfoWindowId={openInfoWindowId}
                 setOpenInfoWindowId={setOpenInfoWindowId}
                 store={store}
-                isLoading={isLoading} />
+                isLoading={isLoading}
+                infoWindowOpen={infoWindowOpen}
+                setInfoWindowOpen={setInfoWindowOpen} />
 
             </Map>
           </APIProvider>
@@ -131,7 +134,8 @@ const MapHero = ({ posts }) => {
               selectedLocation={selectedLocation}
               setSelectedLocation={setSelectedLocation}
               setSelectedStore={setSelectedStore}
-              locations={locations} />
+              locations={locations}
+              setInfoWindowOpen={setInfoWindowOpen} />
             <Header filteredLocations={filteredLocations} />
             <List
               posts={posts}
@@ -140,7 +144,9 @@ const MapHero = ({ posts }) => {
               setOpenInfoWindowId={setOpenInfoWindowId}
               setSelectedStore={setSelectedStore}
               setSelectedLocation={setSelectedLocation}
-              store={store} />
+              store={store}
+              infoWindowOpen={infoWindowOpen}
+              setInfoWindowOpen={setInfoWindowOpen} />
           </div>
         </div>
       </div>

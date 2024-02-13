@@ -9,7 +9,7 @@ import styles from './SearchPanel.module.css';
 import { StyledAutocomplete } from './SearchPanel.styles';
 import he from 'he';
 
-const SearchPanel = ({ id, theme, locations, getUserLocation, selectedLocation, setSelectedLocation }) => {
+const SearchPanel = ({ id, theme, locations, setInfoWindowOpen, getUserLocation, selectedLocation, setSelectedLocation }) => {
   const router = useRouter();
   const { setStore } = useContext(StoreContext);
 
@@ -18,13 +18,11 @@ const SearchPanel = ({ id, theme, locations, getUserLocation, selectedLocation, 
     setSelectedLocation(location);
     setStore(locationStore[locationNames.indexOf(location)]);
     router.push(`/pizza-delivery?location=${encodeURIComponent(location)}`);
+    setInfoWindowOpen(true);
   };
 
   const handleUseCurrentLocation = async () => {
     await getUserLocation();
-    router.push('/pizza-delivery');
-  };
-  const handleSubmit = async () => {
     router.push('/pizza-delivery');
   };
 

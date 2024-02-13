@@ -6,12 +6,13 @@ import Link from 'next/link';
 import he from 'he';
 
 
-const List = ({ locations, setOpenInfoWindowId, store }) => {
+const List = ({ locations, infoWindowOpen, setInfoWindowOpen, setOpenInfoWindowId, store }) => {
 
   const { setStore } = useContext(StoreContext);
 
   const handleLocationSelect = (location) => {
     setStore(location.acf.name);
+    setInfoWindowOpen(true);
   };
 
   useEffect(() => {

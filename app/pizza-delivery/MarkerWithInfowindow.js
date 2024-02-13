@@ -1,5 +1,5 @@
 'use client';
-import React, { useContext, useEffect, useRef, memo } from 'react';
+import React, { useContext, useState, useEffect, useRef, memo } from 'react';
 import { StoreContext } from '../components/useStoreContext';
 import Image from 'next/image';
 import he from 'he';
@@ -11,12 +11,18 @@ import {
   Pin,
 } from '@vis.gl/react-google-maps';
 
-const MarkerWithInfowindow = memo(({ isLoading, locations, openInfoWindowId, setOpenInfoWindowId, store }) => {
+const MarkerWithInfoWindow = memo(({ isLoading, locations, infoWindowOpen, setInfoWindowOpen, openInfoWindowId, setOpenInfoWindowId, store }) => {
 
   const { setStore } = useContext(StoreContext);
 
   const handleLocationSelect = (location) => {
     setStore(location.acf.name);
+    setInfoWindowOpen(true);
+  };
+
+  const handleWindowClose = () => {
+    setOpenInfoWindowId(null)
+    setInfoWindowOpen(false);
   };
 
   useEffect(() => {
@@ -53,12 +59,12 @@ const MarkerWithInfowindow = memo(({ isLoading, locations, openInfoWindowId, set
           </AdvancedMarker>
         </React.Fragment>
       ))}
-      {(!isLoading && selectedLocation) && (
+      {(!isLoading && infoWindowOpen && selectedLocation) && (
         <InfoWindow
           className={styleInfo.infoWindow}
           anchor={markerRefs.current[locations.indexOf(selectedLocation)]?.current}  // Use the current marker ref as the anchor
           maxWidth={200}
-          onCloseClick={() => setOpenInfoWindowId(null)}
+          onCloseClick={() => handleWindowClose(selectedLocation.id)}
         >
           <h5 className={styleInfo.iwTitle}>{he.decode(selectedLocation.title.rendered)}</h5>
           <p className={styleInfo.iwAddress}>
@@ -72,6 +78,6 @@ const MarkerWithInfowindow = memo(({ isLoading, locations, openInfoWindowId, set
   );
 });
 
-MarkerWithInfowindow.displayName = 'MarkerWithInfowindow';
+MarkerWithInfoWindow.displayName = 'MarkerWithInfoWindow';
 
-export default MarkerWithInfowindow;
+export default MarkerWithInfoWindow;

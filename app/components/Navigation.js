@@ -14,7 +14,7 @@ export default function Navigation() {
   const pathname = usePathname();
   const router = useRouter();
   const { getUserLocation, selectedLocation, setSelectedLocation, locations, setSelectedStore } = useLocation();
-
+  const [infoWindowOpen, setInfoWindowOpen] = useState(false);
   // Get the selected location from the URL query parameters
   useEffect(() => {
     if (router.query && router.query.location) {
@@ -241,7 +241,8 @@ export default function Navigation() {
                   selectedLocation={selectedLocation}
                   setSelectedLocation={setSelectedLocation}
                   setSelectedStore={setSelectedStore}
-                  locations={locations} />
+                  locations={locations}
+                  setInfoWindowOpen={setInfoWindowOpen} />
               </li>
             </ul>
           </li>
