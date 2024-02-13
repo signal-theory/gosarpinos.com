@@ -7,7 +7,7 @@ import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import { fetchLocations } from '../lib/utils';
 import { geocode, calculateDistance } from '../lib/geocode';
 import styles from './Map.module.css';
-import MarkerWithInfoWindow from './MarkerWithInfoWindow';
+import MarkerWithInfoWindow from './MarkerWithInfowindow';
 import Header from './Header';
 import SearchPanel from '../components/SearchPanel';
 import List from './List';
