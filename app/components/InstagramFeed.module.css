@@ -1,0 +1,77 @@
+.socialFeed {
+  grid-template-columns: 1fr;
+  grid-auto-rows: 1fr;
+  display: grid;
+  grid-gap: 20px;
+  margin: 0 auto;
+  max-width: 1300px;
+  align-items: stretch;
+}
+@media (min-width: 768px) {
+  .socialFeed {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;
+  }
+}
+.imageContainer {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.imageContainer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s;
+}
+.imageContainer:hover::after {
+  background: rgba(4, 28, 22, 0.8);
+}
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  font-size: 13px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  transform: translateY(10%);
+  transition: all 0.3s;
+  opacity: 0;
+  z-index: 111;
+}
+.overlay span {
+  display: flex;
+  align-items: center;
+}
+.handle {
+  font-size: calc(20px + 0.5vw);
+}
+
+@media (min-width: 768px) {
+  .handle {
+    font-size: calc(14px + 0.9vw);
+  }
+}
+.imageContainer:hover .overlay {
+  opacity: 1;
+  transform: translateY(0);
+}

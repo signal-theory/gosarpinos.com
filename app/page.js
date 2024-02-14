@@ -10,6 +10,7 @@ import './styles/menu.css';
 import OrderBtn from './components/OrderBtn'
 import CalloutWhy from './components/CalloutWhy';
 import SpecialsCarousel from './components/SpecialsCarousel';
+import InstagramFeed from './components/InstagramFeed';
 
 
 
@@ -37,8 +38,10 @@ export default async function Page({ params }) {
   let menuItemsWithImages;
   let specialsData;
   let cateringImage;
+  let socialImagesData;
 
   const pageId = params.pageId || 149; // Default to 149 if no ID is provided
+
   try {
     data = await fetchPageData(pageId);
     const popularMenuItems = data.acf.popular_menu_items || [];
@@ -57,11 +60,26 @@ export default async function Page({ params }) {
     specialsData = await fetchCPTData(['specials']);
     cateringImage = await fetchACFImage(data.acf.catering_image);
 
+    const socialImagesFeed = data.acf.social_images || [];
+    socialImagesData = await Promise.all(socialImagesFeed.map(async (item) => {
+      const image = await fetchACFImage(item.image);
+      return {
+        ...item,
+        image: image,
+      };
+    }));
   } catch (error) {
     console.error("Error in Page component:", error);
     // Handle the error appropriately
   }
 
+  // Select random images
+  function getRandomImages(images) {
+    const shuffled = images.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 3);
+  }
+
+  const randomImages = getRandomImages(socialImagesData);
 
   return (
     <>
@@ -181,9 +199,7 @@ export default async function Page({ params }) {
         <div className="page-container text-align-center" style={{ marginTop: '2rem' }}>
           <h2>Sarpino&apos;s On Social</h2>
           <p style={{ maxWidth: '347px', margin: '0 auto' }}>Pizza pics, cheesy captions and saucy posts. Follow us on Instagram and Facebook.</p>
-          <div className="social-feed" style={{ margin: '6rem 0' }}>
-
-          </div>
+          <InstagramFeed feed={randomImages} />
         </div>
       </section>
     </>
