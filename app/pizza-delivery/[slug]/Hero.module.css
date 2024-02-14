@@ -3,6 +3,7 @@
   min-height: 461px;
   display: flex;
   align-items: center;
+  background-color: #222;
 }
 .heroImage {
   object-fit: cover;
