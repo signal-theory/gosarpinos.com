@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './InstagramFeed.module.css';
 
 const InstagramFeed = ({ feed }) => {
@@ -8,7 +9,7 @@ const InstagramFeed = ({ feed }) => {
     <div className={styles.socialFeed} style={{ margin: '6rem 0' }}>
       {feed.map((item, index) => {
         return (
-          <div
+          <Link href="https://www.instagram.com/sarpinos_pizzeria/"
             key={index} className={styles.imageContainer}>
             <Image
               src={item.image.sourceUrl}
@@ -27,7 +28,7 @@ const InstagramFeed = ({ feed }) => {
               /></span>
               <span className={styles.handle}>@sarpinos_pizzeria</span>
             </div>
-          </div>
+          </Link>
         );
       }
       )}

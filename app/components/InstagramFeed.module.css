@@ -19,6 +19,7 @@
   padding-bottom: 100%;
   overflow: hidden;
   transition: all 0.3s;
+  border-radius: 3px;
 }
 .imageContainer::after {
   content: "";
