@@ -1,6 +1,7 @@
 import React from 'react';
-import { useContext, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { StoreContext } from '../components/useStoreContext';
+import { geocode, calculateDistance } from '../lib/geocode';
 
 import { useRouter } from 'next/navigation'
 import Autocomplete from '@mui/material/Autocomplete';
@@ -12,7 +13,8 @@ import he from 'he';
 const SearchPanel = ({ id, theme, locations, setInfoWindowOpen, getUserLocation, selectedLocation, setSelectedLocation }) => {
   const router = useRouter();
   const { setStore } = useContext(StoreContext);
-
+  const [inputValue, setInputValue] = useState('');
+  const options = useGooglePlacesAutocomplete(inputValue);
 
   const handleLocationSelect = (location) => {
     setSelectedLocation(location);
@@ -36,15 +38,20 @@ const SearchPanel = ({ id, theme, locations, setInfoWindowOpen, getUserLocation,
       <StyledAutocomplete>
         <Autocomplete
           disablePortal
+          noOptionsText="Enter City, State or Zip"
           id={id}
-          options={locationNames}
+          options={options.map((option) => option.description)}
           value={selectedLocation || null}
+          onInputChange={(event, newInputValue) => {
+            setInputValue(newInputValue);
+          }}
           onChange={(event, newValue) => {
             if (newValue) {
               handleLocationSelect(newValue);
             } else {
               localStorage.removeItem('selectedLocation');
               localStorage.removeItem('selectedStore');
+              localStorage.removeItem('userLocation');
               setSelectedLocation(null);
               setStore(null);
             }
@@ -59,3 +66,34 @@ const SearchPanel = ({ id, theme, locations, setInfoWindowOpen, getUserLocation,
 }
 
 export default SearchPanel;
+
+const useGooglePlacesAutocomplete = (inputValue) => {
+  const [options, setOptions] = useState([]);
+
+  useEffect(() => {
+    let active = true;
+
+    if (inputValue === '' || !window?.google?.maps?.places) {
+      setOptions([]);
+      return undefined;
+    }
+
+    const service = new window.google.maps.places.AutocompleteService();
+    service.getPlacePredictions({ input: inputValue }, (predictions, status) => {
+      if (status !== window.google.maps.places.PlacesServiceStatus.OK) {
+        console.error(`Failed to get place predictions: ${status}`);
+        return;
+      }
+
+      if (active) {
+        setOptions(predictions || []);
+      }
+    });
+
+    return () => {
+      active = false;
+    };
+  }, [inputValue]);
+
+  return options;
+};

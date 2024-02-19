@@ -18,12 +18,14 @@ const MapHero = ({ posts }) => {
   const router = useRouter();
   const { selectedLocation, setSelectedLocation, userLocation, setUserLocation, locations, setLocations, getUserLocation, setSelectedStore } = useLocation();
   const [mapCenter, setMapCenter] = useState({ lat: 41, lng: -94 }); // Initial map center
-  const [mapZoom, setMapZoom] = useState(6); // Initial zoom level
+  const [mapZoom, setMapZoom] = useState(5); // Initial zoom level
   const markerRefs = useRef([]); // Create a reference for markerRefs
   const [openInfoWindowId, setOpenInfoWindowId] = useState(null); // Store the ID instead of the index
 
   const [isLoading, setIsLoading] = useState(true);
   const [infoWindowOpen, setInfoWindowOpen] = useState(true);
+
+  const [selectedCoordinates, setSelectedCoordinates] = useState(null);
 
   useEffect(() => {
     // Simulate a delay before the map is ready
@@ -41,12 +43,13 @@ const MapHero = ({ posts }) => {
     }
   }, [router.query, setSelectedLocation]);
 
-  // refocus the center of the map whenever an Autcomplete selectedLocation is set
+
   useEffect(() => {
     const geocodeLocation = async () => {
       if (selectedLocation) {
         const coordinates = await geocode(selectedLocation);
         if (coordinates) {
+          setSelectedCoordinates(coordinates);
           setMapCenter(coordinates);
           setMapZoom(10);
           // Find the selected location and open its InfoWindow
@@ -55,12 +58,13 @@ const MapHero = ({ posts }) => {
             setOpenInfoWindowId(selected.id);
 
           }
+
         }
       }
     };
 
     geocodeLocation();
-  }, [selectedLocation, locations]);
+  }, [locations, selectedLocation]);
 
   // refocus the center of the map whenever the user's location is set
   useEffect(() => {
@@ -88,15 +92,23 @@ const MapHero = ({ posts }) => {
   // check if selectedLocation is not empty, 
   // then filter by selectedLocation, 
   // otherwise filter by userLocation
+
   const filteredLocations = locations.filter(location => {
-    const fullAddress = he.decode(location.title.rendered) + ', ' + location.acf.city + ', ' + location.acf.state + ' ' + location.acf.zip;
-    if (selectedLocation) {
-      return fullAddress.toLowerCase() === selectedLocation.toLowerCase();
+    if (selectedCoordinates) {
+      return calculateDistance(selectedCoordinates, { lat: location.acf.latitude, lng: location.acf.longitude }) <= 50000;
     } else if (userLocation) {
       return calculateDistance(userLocation, { lat: location.acf.latitude, lng: location.acf.longitude }) <= 50000;
     }
     return true;
   });
+
+  useEffect(() => {
+    if (!selectedLocation) {
+      setSelectedCoordinates(null);
+      setMapZoom(5);
+      setMapCenter({ lat: 41, lng: -94 });
+    }
+  }, [selectedLocation]);
 
   return (
     <section className={styles.mapContainer}>
@@ -143,6 +155,7 @@ const MapHero = ({ posts }) => {
               openInfoWindowId={openInfoWindowId}
               setOpenInfoWindowId={setOpenInfoWindowId}
               setSelectedStore={setSelectedStore}
+              selectedLocation={selectedLocation}
               setSelectedLocation={setSelectedLocation}
               store={store}
               infoWindowOpen={infoWindowOpen}
