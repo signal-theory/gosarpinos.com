@@ -82,25 +82,22 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
         categories={categories}
         onCategorySelect={setSelectedCategory}
       />}
-      {loading ? (
-        <div className="loading">Loading...</div>
-      ) : (
-        <div className="responsive-equal-height-container fade-in">
-          {filteredPosts.map((post, index) => {
-            return (
-              <MenuCard
-                key={index}
-                post={post}
-                postTypeSlug={postTypeSlug}
-                hoverImage={post.hoverImage ? post.hoverImage.sourceUrl : '/default-menu-hover.jpg'}
-                hoverAlt={post.hoverImage ? post.hoverImage.altText : ''}
-                featuredImage={post.mainImage ? post.mainImage.sourceUrl : '/default-menu-image.jpg'}
-                featuredAlt={post.mainImage ? post.mainImage.altText : ''}
-              />
-            )
-          })}
-        </div>
-      )}
+
+      <div className="responsive-equal-height-container fade-in">
+        {filteredPosts.map((post, index) => {
+          return (
+            <MenuCard
+              key={index}
+              post={post}
+              postTypeSlug={postTypeSlug}
+              hoverImage={post.hoverImage ? post.hoverImage.sourceUrl : '/default-menu-hover.jpg'}
+              hoverAlt={post.hoverImage ? post.hoverImage.altText : ''}
+              featuredImage={post.mainImage ? post.mainImage.sourceUrl : '/default-menu-image.jpg'}
+              featuredAlt={post.mainImage ? post.mainImage.altText : ''}
+            />
+          )
+        })}
+      </div>
     </>
   );
 };
