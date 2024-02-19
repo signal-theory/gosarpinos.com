@@ -3,6 +3,7 @@ import Navigation from './components/Navigation'
 import './styles/global.css'
 import './styles/animate.css';
 import { StoreProvider } from './components/useStoreProvider';
+import OrderBtn from './components/OrderBtn';
 
 
 export default function RootLayout({ children }) {
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
           <main className="daytime-background-color">
             {children}
           </main>
+          <OrderBtn theme="mobile" />
           <Footer />
         </StoreProvider>
       </body>

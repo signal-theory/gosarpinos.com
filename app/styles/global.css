@@ -408,7 +408,21 @@ a.btn,
     padding: 1em 1.5em 0.8em;
   }
 }
-
+button.mobile,
+a.mobile {
+  display: none;
+}
+@media screen and (max-width: 425px) {
+  button.mobile,
+  a.mobile {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    z-index: 99999;
+  }
+}
 button,
 a.primary-btn,
 .wp-block-button {
