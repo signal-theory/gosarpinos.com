@@ -4,7 +4,7 @@
 }
 .map {
   height: 100%;
-  min-height: 534px;
+  min-height: 400px;
 }
 .list {
   height: 100%;
@@ -14,8 +14,15 @@
   padding: 160px 1rem 1rem;
   max-width: 500px;
 }
-@media (max-width: 1050px) {
+@media (max-width: 631px) {
+  .mapContainer {
+    height: auto;
+  }
+  .list {
+    height: auto;
+    overflow-y: unset;
+  }
   .listContainer {
-    padding: 1rem;
+    padding: 1rem calc(3vw + 0.75rem);
   }
 }

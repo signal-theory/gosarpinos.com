@@ -1,7 +1,7 @@
 import { styled } from '@mui/system';
 
 export const StyledAutocomplete = styled('div')({
-  width: 200,
+  width: 215,
   '& .MuiInputBase-root': {
     backgroundColor: 'white',
     borderRadius: '100px',

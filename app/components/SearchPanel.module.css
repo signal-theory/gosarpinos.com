@@ -18,7 +18,7 @@
 .navSearch span {
   display: inline-block;
   padding: 0.25rem 0.5rem;
-  color: var(--green-color);
+  color: var(--red-color);
 }
 .navSearch span {
   color: white;
@@ -28,7 +28,9 @@
   font-weight: 700;
   background: var(--red-color) url("/get-current-location.svg") no-repeat right
     1rem center;
-  padding: 1.3rem 2.5rem 1.3rem 1.3rem;
+  padding: 0 2.5rem 0 1.3rem;
+  line-height: 42px;
+  height: 46px;
 }
 .inputBtn {
   font-family: var(--museo-slab);
