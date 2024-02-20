@@ -140,13 +140,18 @@
 }
 .timeline h4 {
   margin: 0;
-  padding: 2rem 2rem 0;
+  padding: 2rem calc(3vw + 0.5rem) 0 0;
   font-size: clamp(1.1rem, 1.5vw, 1rem);
 }
 .timelineYear {
-  flex: 0 0 100px;
+  flex: 0 0 70px;
   text-align: right;
   padding-right: 2rem;
+}
+@media screen and (min-width: 1024px) {
+  .timelineYear {
+    flex: 0 0 100px;
+  }
 }
 .timelineInfo {
   flex: 1;
