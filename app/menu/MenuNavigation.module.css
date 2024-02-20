@@ -27,6 +27,7 @@ nav.light::after {
     rgba(175, 15, 4, 0),
     rgba(175, 15, 4, 1)
   );
+  pointer-events: none;
 }
 
 nav.dark {
@@ -46,6 +47,7 @@ nav.dark::after {
     rgba(243, 240, 235, 0),
     rgba(243, 240, 235, 1)
   );
+  pointer-events: none;
 }
 .menuNavigation {
   display: inline-flex;
