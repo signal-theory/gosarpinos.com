@@ -10,6 +10,9 @@
   font-size: 13px;
   margin: 0 0 0.5rem 0;
 }
+.iwHours {
+  font-weight: 700;
+}
 .iwPhone {
   font-size: 15px;
   font-family: var(--museo-slab);

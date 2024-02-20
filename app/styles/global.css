@@ -622,7 +622,7 @@ button[type="submit"] {
 }
 .gm-style-iw-d {
   overflow: hidden !important;
-  padding: 10px !important;
+  padding: 15px 5px !important;
   width: calc(100% - 20px) !important;
   height: 100%;
 }

@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { checkOpenStatus } from '../../lib/checkOpenStatus';
 
 
+
 const Hero = ({ post }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentOpenTime, setCurrentOpenTime] = useState('');
@@ -34,7 +35,7 @@ const Hero = ({ post }) => {
       />
       <div className={`page-container ${styles.heroContent}`}>
         <h1 className={styles.heroTitle}>{he.decode(post.title.rendered)}</h1>
-        <h4>{isOpen ? `OPEN NOW: ${currentOpenTime} - ${currentCloseTime}` : `Opens at: ${nextOpenTime}`}</h4>
+        <h4>{isOpen ? `Open Now: ${currentOpenTime} - ${currentCloseTime}` : `Opens at: ${nextOpenTime}`}</h4>
         <OrderBtn />&nbsp;&nbsp;&nbsp; <Link className='btn primary-btn' href=""><span>Rate us</span></Link>
         <br />
         <Link className={styles.pinBtn} href="/pizza-delivery/">Other Pizza Near Me</Link>

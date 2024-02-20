@@ -1,12 +1,17 @@
 
-import { useContext, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { StoreContext } from '../components/useStoreContext';
 import styles from './List.module.css';
 import Link from 'next/link';
+import { checkOpenStatus } from '../lib/checkOpenStatus';
 import he from 'he';
 
 
 const List = ({ locations, filteredLocations, setInfoWindowOpen, setOpenInfoWindowId, store, selectedLocation, setSelectedLocation }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentOpenTime, setCurrentOpenTime] = useState('');
+  const [currentCloseTime, setCurrentCloseTime] = useState('');
+  const [nextOpenTime, setNextOpenTime] = useState('');
 
   const { setStore } = useContext(StoreContext);
 
@@ -19,6 +24,17 @@ const List = ({ locations, filteredLocations, setInfoWindowOpen, setOpenInfoWind
     setSelectedLocation(area);
     setStore(null);
   };
+
+  // Check the open status of each location
+  useEffect(() => {
+    filteredLocations.forEach(location => {
+      const status = checkOpenStatus(location);
+      location.isOpen = status.isOpen;
+      location.currentOpenTime = status.currentOpenTime;
+      location.currentCloseTime = status.currentCloseTime;
+      location.nextOpenTime = status.nextOpenTime;
+    });
+  }, [filteredLocations]);
 
   // Set the selected location's InfoWindow to open when the store is selected
   useEffect(() => {
@@ -40,7 +56,7 @@ const List = ({ locations, filteredLocations, setInfoWindowOpen, setOpenInfoWind
             <h5 className={styles.listTitle} onClick={() => handleLocationSelect(location)}>{he.decode(location.title.rendered)}</h5>
             <div className={styles.listColumns}>
               <div>
-                <p><strong>Open Now &bull; Hours</strong></p>
+                <p><strong>{location.isOpen ? `Open Now: ${location.currentOpenTime} - ${location.currentCloseTime}` : `Opens at: ${location.nextOpenTime}`}</strong></p>
                 <p>{location.acf.address}<br />
                   {location.acf.city}, {location.acf.state} {location.acf.zip}
                 </p>
