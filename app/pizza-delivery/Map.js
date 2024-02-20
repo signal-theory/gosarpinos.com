@@ -95,7 +95,7 @@ const MapHero = ({ posts }) => {
 
   const filteredLocations = locations.filter(location => {
     if (selectedCoordinates) {
-      return calculateDistance(selectedCoordinates, { lat: location.acf.latitude, lng: location.acf.longitude }) <= 50000;
+      return calculateDistance(selectedCoordinates, { lat: location.acf.latitude, lng: location.acf.longitude }) <= 90000;
     } else if (userLocation) {
       return calculateDistance(userLocation, { lat: location.acf.latitude, lng: location.acf.longitude }) <= 50000;
     }
@@ -151,7 +151,8 @@ const MapHero = ({ posts }) => {
             <Header filteredLocations={filteredLocations} />
             <List
               posts={posts}
-              locations={filteredLocations}
+              locations={locations}
+              filteredLocations={filteredLocations}
               openInfoWindowId={openInfoWindowId}
               setOpenInfoWindowId={setOpenInfoWindowId}
               setSelectedStore={setSelectedStore}

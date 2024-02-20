@@ -6,7 +6,7 @@ import Link from 'next/link';
 import he from 'he';
 
 
-const List = ({ locations, infoWindowOpen, setInfoWindowOpen, setOpenInfoWindowId, store, selectedLocation }) => {
+const List = ({ locations, filteredLocations, setInfoWindowOpen, setOpenInfoWindowId, store, selectedLocation, setSelectedLocation }) => {
 
   const { setStore } = useContext(StoreContext);
 
@@ -14,7 +14,13 @@ const List = ({ locations, infoWindowOpen, setInfoWindowOpen, setOpenInfoWindowI
     setStore(location.acf.name);
     setInfoWindowOpen(true);
   };
+  const handleMetroSelect = (area) => {
+    const filtered = locations.filter(location => location.acf.metro_area[0] === area);
+    setSelectedLocation(area);
+    setStore(null);
+  };
 
+  // Set the selected location's InfoWindow to open when the store is selected
   useEffect(() => {
     const selectedLocation = locations.find(location => location.acf.name === store);
     if (selectedLocation) {
@@ -22,10 +28,14 @@ const List = ({ locations, infoWindowOpen, setInfoWindowOpen, setOpenInfoWindowI
     }
   }, [store, setOpenInfoWindowId, locations]);
 
+  const metroAreas = [...new Set(locations.map(location =>
+    typeof location.acf.metro_area[0] === 'string' ? location.acf.metro_area[0].trim() : ''
+  ))];
+
   return (
     <ul>
-      {locations.length > 0 ? (
-        locations.map((location, index) => (
+      {filteredLocations.length > 0 ? (
+        filteredLocations.map((location, index) => (
           <li className={styles.listItem} key={location.id}>
             <h5 className={styles.listTitle} onClick={() => handleLocationSelect(location)}>{he.decode(location.title.rendered)}</h5>
             <div className={styles.listColumns}>
@@ -45,9 +55,18 @@ const List = ({ locations, infoWindowOpen, setInfoWindowOpen, setOpenInfoWindowI
           </li>
         ))
       ) : (
-        selectedLocation && <li>No nearby results found for {selectedLocation}</li>
+        <li>
+          {selectedLocation ? <h4>The closest Sarpino&apos;s store is more than 30 miles away. Try one of these metro areas:</h4> : <h4>No location selected, try one of these metro areas:</h4>}
+          <ul>
+            {metroAreas.map((area, index) => (
+              <li key={index}>
+                <button className={styles.areaBtn} onClick={() => handleMetroSelect(area)}>{area}</button>
+              </li>
+            ))}
+          </ul>
+        </li>
       )}
-    </ul >
+    </ul>
   );
 };
 

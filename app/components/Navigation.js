@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useLocation } from '../components/useLocation';
 import React, { useState, useEffect, useRef } from 'react';
 import { fetchPageData, fetchMediaData } from '../lib/utils';
+import { APIProvider } from '@vis.gl/react-google-maps';
 import Link from 'next/link';
 import Image from 'next/image';
 import OrderBtn from './OrderBtn';
@@ -235,14 +236,18 @@ export default function Navigation() {
               </li>
 
               <li className="subitem">
-                <SearchPanel
-                  id="autocomplete-nav"
-                  getUserLocation={getUserLocation}
-                  selectedLocation={selectedLocation}
-                  setSelectedLocation={setSelectedLocation}
-                  setSelectedStore={setSelectedStore}
-                  locations={locations}
-                  setInfoWindowOpen={setInfoWindowOpen} />
+                <APIProvider
+                  apiKey={globalThis.NEXT_PUBLIC_GOOGLEMAPS_API_KEY ?? (process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY)}
+                  libraries={['places']}
+                ><SearchPanel
+                    id="autocomplete-nav"
+                    getUserLocation={getUserLocation}
+                    selectedLocation={selectedLocation}
+                    setSelectedLocation={setSelectedLocation}
+                    setSelectedStore={setSelectedStore}
+                    locations={locations}
+                    setInfoWindowOpen={setInfoWindowOpen} />
+                </APIProvider>
               </li>
             </ul>
           </li>

@@ -9,7 +9,7 @@ const Hero = ({ post }) => {
     <section className={styles.hero}>
       <Image
         src="/location-hero-sarpinos.jpg"
-        alt={`Exterior view of ${he.decode(post.title.rendered)}`}
+        alt={`Exterior view of Sarpinos Location`}
         width={1366}
         height={509}
         className={styles.heroImage}
