@@ -64,8 +64,8 @@ const StoreInfo = ({ post }) => {
           Vegan pizza doesn&apos;t mean less flavor. Our vegan pizza place uses fresh ingredients from trusted brands such as Daiya Cheese, Beyond Meat, and Field Roast to ensure maximum flavor. We encourage you to try all our different vegan pizza options in Sarpino&apos;s Pizzeria {post.acf.city}. We can even accommodate new creations, so feel free to order a customized vegan pizza today!</p>
       </div>
       <div className={styles.content}>
-        <h5>The Only Choice for Free Delivery in {post.acf.city}.</h5>
-        <p>We take pizza and food delivery to the next level. You get fast, free food delivery, even if it&apos;s a late night. There is no minimum order and you can take your time while using our online menu. And of course, you can always count on getting delicious pizza from {post.acf.name}.</p>
+        <h5>The Only Choice for Free Delivery in the {post.acf.metro_area} metro area.</h5>
+        <p>We take pizza and food delivery to the next level. You get fast, free food delivery, even if it&apos;s a late night. There is no minimum order and you can take your time while using our online menu. And of course, you can always count on getting delicious pizza from Sarpino&apos;s Pizzeria in the {post.acf.metro_area} metro area.</p>
       </div>
 
       <div className={styles.container2}>

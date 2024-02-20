@@ -71,6 +71,7 @@ const MapHero = ({ posts }) => {
     if (userLocation) {
       setMapCenter(userLocation);
       setMapZoom(10);
+      console.log('userLocation', userLocation);
     }
   }, [userLocation]);
 
