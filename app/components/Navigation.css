@@ -108,10 +108,15 @@ nav.main-navigation .subitem a {
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    display: none;
+    display: flex;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
   }
   ul.mobilemenu.active {
     display: flex;
+    opacity: 1;
+    pointer-events: all;
   }
   ul.mobilemenu,
   ul.submenu {
@@ -212,8 +217,11 @@ nav.main-navigation .subitem a {
     flex-wrap: nowrap; /* override */
     padding: 0; /* override */
     z-index: 0;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
   }
   .navbar-dropdowns.dropdown-active {
+    opacity: 1;
     top: 70px;
   }
   .navbar-dropdowns::before {
@@ -233,6 +241,7 @@ nav.main-navigation .subitem a {
   .navbar-dropdowns ul.submenu.menu.active,
   .navbar-dropdowns ul.submenu.locations.active {
     display: flex;
+    transform: translateY(0);
   }
   .navbar-dropdowns ul.submenu.active li.has-submenu.without-thumbs ul {
     margin: 0.5rem;
