@@ -217,6 +217,7 @@ p a {
 }
 a.text-link {
   text-decoration: underline;
+  color: var(--red-color);
 }
 a.nav-link {
   text-decoration: none;

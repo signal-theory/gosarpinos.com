@@ -3,6 +3,7 @@ import { useContext, useState, useEffect } from 'react';
 import { StoreContext } from '../components/useStoreContext';
 import styles from './List.module.css';
 import Link from 'next/link';
+import OrderBtn from '../components/OrderBtn';
 import { checkOpenStatus } from '../lib/checkOpenStatus';
 import he from 'he';
 
@@ -56,15 +57,17 @@ const List = ({ locations, filteredLocations, setInfoWindowOpen, setOpenInfoWind
             <h5 className={styles.listTitle} onClick={() => handleLocationSelect(location)}>{he.decode(location.title.rendered)}</h5>
             <div className={styles.listColumns}>
               <div>
-                <p><strong>{location.isOpen ? `Open Now: ${location.currentOpenTime} - ${location.currentCloseTime}` : `Opens at: ${location.nextOpenTime}`}</strong></p>
+                <p><strong>{location.isOpen ? `Open Now: ${location.currentOpenTime || ''} - ${location.currentCloseTime || ''}` : `Opens at: ${location.nextOpenTime || ''}`}</strong></p>
                 <p>{location.acf.address}<br />
                   {location.acf.city}, {location.acf.state} {location.acf.zip}
                 </p>
-                <Link className="text-link" href={`https://www.google.com/maps?saddr=Your+Location&daddr=${he.decode(location.title.rendered)}`} target="_blank">Directions</Link>
+                <Link className="text-link" href={`https://www.google.com/maps?saddr=Your+Location&daddr=${he.decode(location.title.rendered)}`} target="_blank">Directions</Link><br />
+                <Link className="text-link" href={`/pizza-delivery/${location.slug}`}>See Store Info</Link>
               </div>
               <div>
-                <p>{location.acf.phone_number || 'phone number'}</p>
-                <Link className='btn primary-btn' href={`/pizza-delivery/${location.slug}`}><span>See Store Info</span></Link>
+                <p style={{ textAlign: 'center', marginBottom: '1rem' }}><strong>{location.acf.phone_number || 'phone number'}</strong></p>
+                <a href={`https://${location.acf.name}.gosarpinos.com/ordering/intro`} onClick={() => handleLocationSelect(location)} className="btn primary-btn"><span>Order Now</span></a>
+
               </div>
             </div>
 
