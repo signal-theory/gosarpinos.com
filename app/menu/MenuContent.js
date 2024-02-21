@@ -1,6 +1,6 @@
 // about/menu/MenuContent.js
 'use client';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import MenuCard from './MenuCard';
 import SortCategories from '../components/SortCategories';
 import { fetchACFImage } from '../lib/utils';
@@ -73,6 +73,35 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
     });
   }, [selectedCategory, posts, fetchImages, postTypeSlug]);
 
+  const [visiblePosts, setVisiblePosts] = useState([]);
+  const loadMoreRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setVisiblePosts((prevPosts) => {
+          const nextPosts = filteredPosts.slice(0, prevPosts.length + 9);
+          return nextPosts;
+        });
+      }
+    }, { threshold: 1 });
+
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
+
+    return () => {
+      if (loadMoreRef.current) {
+        observer.unobserve(loadMoreRef.current);
+      }
+    };
+  }, [filteredPosts]);
+
+  useEffect(() => {
+    setVisiblePosts(filteredPosts.slice(0, 9));
+  }, [filteredPosts]);
+
+
   return (
     <>
       {categories.length > 0 && <SortCategories
@@ -84,19 +113,21 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
       />}
 
       <div className="responsive-equal-height-container fade-in">
-        {filteredPosts.map((post, index) => {
+        {visiblePosts.map((post, index) => {
+          console.log(post.mainImage);
           return (
             <MenuCard
               key={index}
               post={post}
               postTypeSlug={postTypeSlug}
-              hoverImage={post.hoverImage ? post.hoverImage.sourceUrl : '/default-menu-hover.jpg'}
+              hoverImage={post.hoverImage ? post.hoverImage.sourceUrl : null}
               hoverAlt={post.hoverImage ? post.hoverImage.altText : ''}
-              featuredImage={post.mainImage ? post.mainImage.sourceUrl : '/default-menu-image.jpg'}
+              featuredImage={post.mainImage ? post.mainImage.sourceUrl : '/default-menu-image.svg'}
               featuredAlt={post.mainImage ? post.mainImage.altText : ''}
             />
           )
         })}
+        <div ref={loadMoreRef}>Load more...</div>
       </div>
     </>
   );

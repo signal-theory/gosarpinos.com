@@ -69,9 +69,7 @@ export default async function Page({ params }) {
           <div className="text-align-center">
             <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: post?.title?.rendered || '' }} />
             <p className={styles.date}>
-              {categoryNames && categoryNames.map((name, index) => (
-                <span key={index}>{name}</span>
-              ))} | {post?.date && new Date(post.date).toLocaleDateString("en-US", {
+              {post?.date && new Date(post.date).toLocaleDateString("en-US", {
                 day: "numeric",
                 month: "long",
                 year: "numeric",

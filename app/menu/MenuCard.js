@@ -14,23 +14,32 @@ const MenuCard = ({ post, postTypeSlug, menuSlug, hoverImage, hoverAlt, featured
       <div className={styles.container}>
         <div className={styles.menuThumb}>
           <Link href={url} className='fade-in'>
-            {hoverImage && (
-              <Image
-                alt={hoverAlt}
-                src={hoverImage}
-                width={500}
-                height={500}
-                className={styles.hoverImage}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
-            )}
-            {featuredImage && (
+            {hoverImage ? (
+              <>
+                <Image
+                  alt={hoverAlt}
+                  src={hoverImage}
+                  width={500}
+                  height={500}
+                  className={styles.hoverImage}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+                <Image
+                  alt={featuredAlt}
+                  src={featuredImage}
+                  width={500}
+                  height={500}
+                  className={styles.image}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </>
+            ) : (
               <Image
                 alt={featuredAlt}
                 src={featuredImage}
                 width={500}
                 height={500}
-                className={styles.image}
+                className={`${styles.scaleImage}`}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             )}
