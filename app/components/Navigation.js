@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { useLocation } from '../components/useLocation';
 import React, { useState, useEffect, useRef } from 'react';
-import { fetchPageData, fetchMediaData } from '../lib/utils';
+import { fetchPageData, fetchMediaData, fetchLocations } from '../lib/utils';
 import { APIProvider } from '@vis.gl/react-google-maps';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -16,6 +16,29 @@ export default function Navigation() {
   const router = useRouter();
   const { getUserLocation, selectedLocation, setSelectedLocation, locations, setSelectedStore } = useLocation();
   const [infoWindowOpen, setInfoWindowOpen] = useState(false);
+
+  const [locationsData, setLocationsData] = useState([]);
+  useEffect(() => {
+    const fetchLocationsData = async () => {
+      try {
+        const data = await fetchLocations();
+        setLocationsData(data);
+      } catch (error) {
+        console.error('Error fetching locations:', error);
+      }
+    };
+
+    fetchLocationsData();
+  }, []);
+  const metroAreas = [...new Set(locationsData.map(location =>
+    typeof location.acf.metro_area[0] === 'string' ? location.acf.metro_area[0].trim() : ''
+  ))];
+  const handleMetroSelect = (area) => {
+    setSelectedLocation(area);
+    router.push(`/pizza-delivery?location=${encodeURIComponent(area)}`);
+  };
+
+
   // Get the selected location from the URL query parameters
   useEffect(() => {
     if (router.query && router.query.location) {
@@ -232,7 +255,7 @@ export default function Navigation() {
           <li className="subitem has-submenu without-thumbs">
             <ul>
               <li className="subitem">
-                <Link href="/pizza-delivery" onClick={() => handleSubmenu('Locations')}>Search Sarpino&apos;s Locations</Link>
+                <h6 className="subitem-title">Search Sarpino&apos;s Locations</h6>
               </li>
 
               <li className="subitem">
@@ -251,20 +274,20 @@ export default function Navigation() {
               </li>
             </ul>
           </li>
-          {/* <li className="subitem has-submenu">
+          <li className="subitem has-submenu">
             <ul>
               <li>
-                <Link href="/pizza-delivery" onClick={() => handleSubmenu('Locations')}>Search By Area</Link>
+                <h6 className="subitem-title">Search By Metro Area</h6>
               </li>
               <li>
-                <ul>
-                  <li>hi</li>
-                  <li>hi</li>
-                  <li>hi</li>
-                </ul>
+                <ul className="areas-list">{metroAreas.map((area, index) => (
+                  <li key={index}>
+                    <button className="area-button" onClick={() => handleMetroSelect(area)}>{area}</button>
+                  </li>
+                ))}</ul>
               </li>
             </ul>
-          </li> */}
+          </li>
         </ul>)}
       </div>
       <ul className={`mobilemenu ${toggleMenu ? 'active' : ''}`}>

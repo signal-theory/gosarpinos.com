@@ -86,19 +86,16 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
       }
     }, { threshold: 1 });
 
-    if (loadMoreRef.current) {
-      observer.observe(loadMoreRef.current);
+    const currentRef = loadMoreRef.current; // Capture current ref in a variable
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (loadMoreRef.current) {
-        observer.unobserve(loadMoreRef.current);
+      if (currentRef) { // Use the captured ref in the cleanup function
+        observer.unobserve(currentRef);
       }
     };
-  }, [filteredPosts]);
-
-  useEffect(() => {
-    setVisiblePosts(filteredPosts.slice(0, 9));
   }, [filteredPosts]);
 
 

@@ -266,3 +266,37 @@ nav.main-navigation .subitem a {
     border-radius: 5px;
   }
 }
+.subitem-title {
+  color: white;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.navbar-dropdowns .areas-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.navbar-dropdowns .area-button {
+  display: inline-block;
+  border-radius: 0;
+  border: 0;
+  padding: 0.75em 0.2rem 0.75em 1.1rem;
+  margin: 0 1rem;
+  line-height: 1;
+  font-size: 1em;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+
+  font-family: var(--museo-slab);
+  font-weight: 700;
+  background: url("/location-pin-white.svg") no-repeat left center;
+  transition: all 0.3s ease-in-out;
+}
+.navbar-dropdowns .area-button:hover {
+  background: url("/location-pin-white.svg") no-repeat left 10px;
+}

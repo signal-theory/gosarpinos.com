@@ -48,11 +48,15 @@ export default async function Page({ params }) {
           <Hero
             data={data}
             mainImage={mainImage} />
+        </div>
+      </section>
+      <section className="viewport" style={{ overflow: 'hidden' }}>
+        <div className="page-container" style={{ paddingTop: 0 }}>
           <Earn
             data={data} />
         </div>
-      </section>
+      </section >
       <CalloutLoyalty />
-    </div>
+    </div >
   );
 }

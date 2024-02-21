@@ -1,5 +1,5 @@
 
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import { StoreContext } from '../components/useStoreContext';
 import styles from './List.module.css';
 import Link from 'next/link';
@@ -8,7 +8,8 @@ import { checkOpenStatus } from '../lib/checkOpenStatus';
 import he from 'he';
 
 
-const List = ({ locations, filteredLocations, setInfoWindowOpen, setOpenInfoWindowId, store, selectedLocation, setSelectedLocation }) => {
+const List = ({ locations, filteredLocations, setInfoWindowOpen, openInfoWindowId, setOpenInfoWindowId, store, selectedLocation, setSelectedLocation }) => {
+  const listRefs = useRef([]);
   const [isOpen, setIsOpen] = useState(false);
   const [currentOpenTime, setCurrentOpenTime] = useState('');
   const [currentCloseTime, setCurrentCloseTime] = useState('');
@@ -49,11 +50,18 @@ const List = ({ locations, filteredLocations, setInfoWindowOpen, setOpenInfoWind
     typeof location.acf.metro_area[0] === 'string' ? location.acf.metro_area[0].trim() : ''
   ))];
 
+  useEffect(() => {
+    const index = locations.findIndex(location => location.id === openInfoWindowId);
+    if (index !== -1 && listRefs.current[index]) {
+      listRefs.current[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [openInfoWindowId, locations]);
+
   return (
     <ul>
       {filteredLocations.length > 0 ? (
         filteredLocations.map((location, index) => (
-          <li className={styles.listItem} key={location.id}>
+          <li className={styles.listItem} key={location.id} ref={el => listRefs.current[index] = el}>
             <h5 className={styles.listTitle} onClick={() => handleLocationSelect(location)}>{he.decode(location.title.rendered)}</h5>
             <div className={styles.listColumns}>
               <div>

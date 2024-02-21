@@ -60,7 +60,9 @@ const MarkerWithInfoWindow = memo(({ isLoading, locations, infoWindowOpen, setIn
         <React.Fragment key={location.id}>
           <AdvancedMarker
             ref={markerRefs.current[index]}
-            onClick={() => handleLocationSelect(location)}
+            onClick={() => {
+              handleLocationSelect(location);
+            }}
             position={{ lat: parseFloat(location.acf.latitude), lng: parseFloat(location.acf.longitude) }}
             title={he.decode(location.title.rendered)}>
             <Pin>

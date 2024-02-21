@@ -4,7 +4,7 @@ import { StoreContext } from '../components/useStoreContext';
 
 const LoginBtn = () => {
   const { store } = useContext(StoreContext);
-  const [href, setHref] = useState('/pizza-delivery/');
+  const [href, setHref] = useState('/pizza-delivery/?noStore=true');
 
   useEffect(() => {
     if (store && store !== 'null') {

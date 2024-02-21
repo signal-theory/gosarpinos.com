@@ -32,8 +32,8 @@ const SearchPanel = ({ id, theme, locations, setInfoWindowOpen, getUserLocation,
 
   return (
     <div className={theme === "map" ? styles.listSearch : styles.navSearch}>
-      <button className={styles.searchBtn} onClick={handleUseCurrentLocation}>Use Current Location</button>
-      <span>-OR-</span>
+      <button className={styles.searchBtn} onClick={handleUseCurrentLocation} style={{ whiteSpace: 'nowrap' }}>Use Current Location</button>
+      <span style={{ whiteSpace: 'nowrap' }}>-OR-</span>
       <StyledAutocomplete>
         <Autocomplete
           disablePortal
