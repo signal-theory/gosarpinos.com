@@ -193,7 +193,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 500px;
+  height: 300px;
   width: 100%;
   transition: all 0.3s ease;
   color: var(--gray2-color);

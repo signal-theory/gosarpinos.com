@@ -8,7 +8,6 @@ import { fetchACFImage } from '../lib/utils';
 // This component is used to include the SortCategories component that sorts post by category
 const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
 
-  const [loading, setLoading] = useState(true);
   const [filteredPosts, setFilteredPosts] = useState(posts || []);
   const [categories, setCategories] = useState([]); // New state for categories
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -42,16 +41,6 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
     }));
   }, [filterPostsBy]);
 
-  useEffect(() => {
-    setLoading(true);
-    if (posts) {
-      const shuffledPosts = [...posts].sort(() => Math.random() - 0.5);
-      fetchImages(shuffledPosts).then(posts => {
-        setFilteredPosts(posts);
-        setLoading(false);
-      });
-    }
-  }, [posts, fetchImages]);
 
   useEffect(() => {
     // Extract unique categories from posts
@@ -60,7 +49,6 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
   }, [posts]);
 
   useEffect(() => {
-    setLoading(true);
     // Filter posts based on selected category
     const filtered = selectedCategory === `All`
       ? posts
@@ -69,10 +57,10 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
     // Fetch images for filtered posts
     fetchImages(filtered).then(posts => {
       setFilteredPosts(posts);
-      setLoading(false);
     });
   }, [selectedCategory, posts, fetchImages, postTypeSlug]);
 
+  // load more posts as the user scrolls
   const [visiblePosts, setVisiblePosts] = useState([]);
   const loadMoreRef = useRef(null);
 
@@ -80,7 +68,7 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         setVisiblePosts((prevPosts) => {
-          const nextPosts = filteredPosts.slice(0, prevPosts.length + 9);
+          const nextPosts = filteredPosts.slice(0, prevPosts.length + 8);
           return nextPosts;
         });
       }
@@ -124,7 +112,7 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
             />
           )
         })}
-        <div ref={loadMoreRef}>Load more...</div>
+        <div ref={loadMoreRef} />
       </div>
     </>
   );

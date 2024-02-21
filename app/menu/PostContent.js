@@ -1,13 +1,12 @@
 // about/menu/PostContent.js
 'use client';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import MenuCard from './MenuCard';
 import { fetchACFImage } from '../lib/utils';
 
 // This component is used to include the SortPosts component that sorts by post type
 const PostContent = ({ posts, menuSlug, postTypeSlug, filterPostsBy }) => {
 
-  const [loading, setLoading] = useState(true);
   const [filteredPosts, setFilteredPosts] = useState([]);
 
   const fetchImages = useCallback(async (postsToProcess) => {
@@ -30,40 +29,61 @@ const PostContent = ({ posts, menuSlug, postTypeSlug, filterPostsBy }) => {
   }, [filterPostsBy]);
 
   useEffect(() => {
-    setLoading(true);
     if (posts) {
       const shuffledPosts = [...posts].sort(() => Math.random() - 0.5);
       fetchImages(shuffledPosts).then(posts => {
         setFilteredPosts(posts);
-        setLoading(false);
       });
     }
   }, [posts, fetchImages]);
 
 
+  // load more posts as the user scrolls
+  const [visiblePosts, setVisiblePosts] = useState([]);
+  const loadMoreRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setVisiblePosts((prevPosts) => {
+          const nextPosts = filteredPosts.slice(0, prevPosts.length + 8);
+          return nextPosts;
+        });
+      }
+    }, { threshold: 1 });
+
+    const currentRef = loadMoreRef.current; // Capture current ref in a variable
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) { // Use the captured ref in the cleanup function
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [filteredPosts]);
 
   return (
     <>
-      {loading ? (
-        <div className="loading">Loading...</div>
-      ) : (
-        <div className="responsive-equal-height-container">
-          {filteredPosts.map((post, index) => {
-            return (
-              <MenuCard
-                key={index}
-                post={post}
-                postTypeSlug={postTypeSlug}
-                menuSlug={menuSlug}
-                hoverImage={post.hoverImage ? post.hoverImage.sourceUrl : '/default-menu-hover.jpg'}
-                hoverAlt={post.hoverImage ? post.hoverImage.altText : ''}
-                featuredImage={post.mainImage ? post.mainImage.sourceUrl : '/default-menu-image.jpg'}
-                featuredAlt={post.mainImage ? post.mainImage.altText : ''}
-              />
-            )
-          })}
-        </div>
-      )}
+      <div className="responsive-equal-height-container">
+        {visiblePosts.map((post, index) => {
+          return (
+            <MenuCard
+              key={index}
+              post={post}
+              postTypeSlug={postTypeSlug}
+              menuSlug={menuSlug}
+              hoverImage={post.hoverImage ? post.hoverImage.sourceUrl : '/default-menu-hover.jpg'}
+              hoverAlt={post.hoverImage ? post.hoverImage.altText : ''}
+              featuredImage={post.mainImage ? post.mainImage.sourceUrl : '/default-menu-image.jpg'}
+              featuredAlt={post.mainImage ? post.mainImage.altText : ''}
+            />
+          )
+        })}
+
+        <div ref={loadMoreRef} />
+      </div>
     </>
   );
 };
