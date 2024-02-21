@@ -12,7 +12,7 @@ const Hero = ({ data, mainImage }) => {
       <div className={`flex-align-center order2 ${styles.textCol}`}>
         <h2 className={styles.title} dangerouslySetInnerHTML={{ __html: data?.title.rendered || '' }} />
         <div dangerouslySetInnerHTML={{ __html: data?.content.rendered || '' }} />
-        <div className='display-flex'>
+        <div className='display-flex' style={{ gridGap: '1.5rem' }}>
           <LoginBtn />
           <SignupBtn />
         </div>

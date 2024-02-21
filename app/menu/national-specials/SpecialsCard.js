@@ -16,11 +16,11 @@ const SpecialsCard = ({ acfTitle, postTitle, category }) => {
           />
           <div className={styles.item}>
             <h3 className={styles.title} dangerouslySetInnerHTML={{ __html: acfTitle || '' }} />
-            <p>with code</p>
+            <p className={styles.paragraph}>with code</p>
             <h3 className={styles.code}>{postTitle}</h3>
           </div>
         </div>
-        {category.includes('Carryout Only') ? <p>Carryout Only</p> : null}
+        {category.includes('Carryout Only') ? <p className="museo-slab">Carryout Only</p> : null}
       </div>
     </>
   );

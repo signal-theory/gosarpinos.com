@@ -71,6 +71,15 @@ font-weight: 900; */
   --mobilemenu-width: calc(93% - 20px);
   --navbar-padding: 10px;
 }
+.museo-sans {
+  font-family: var(--museo-sans);
+}
+.museo-slab {
+  font-family: var(--museo-slab);
+}
+.nexa-rust {
+  font-family: var(--nexa-rust);
+}
 .daytime-background-color {
   background: var(--bkg-red-gradient);
   background-repeat: no-repeat;

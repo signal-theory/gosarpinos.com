@@ -34,3 +34,6 @@
 .hoverCalendar:hover {
   transform: rotate(-6deg) translateX(10px);
 }
+.hide {
+  display: none;
+}

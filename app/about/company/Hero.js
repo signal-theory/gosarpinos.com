@@ -78,8 +78,8 @@ const Hero = ({ data, heroImage }) => {
               </div>
             </div>
             <div className={`${styles.content}`}>
+              <div dangerouslySetInnerHTML={{ __html: data.content.rendered || '' }} />
               <div className={styles.innerHeroText}>
-                <div dangerouslySetInnerHTML={{ __html: data.content.rendered || '' }} />
                 <OrderBtn />
               </div>
             </div>

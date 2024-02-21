@@ -107,8 +107,16 @@
 }
 .content {
   box-sizing: border-box;
-  padding: 0 2rem;
+  padding: 0 2rem 0 0;
   max-width: calc(500px + 4rem);
+}
+@media screen and (max-width: 631px) {
+  .content {
+    padding: 0 2rem;
+  }
+  .innerHeroText {
+    text-align: center;
+  }
 }
 
 @keyframes fallIn {

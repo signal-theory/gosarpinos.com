@@ -62,6 +62,9 @@
   color: var(--red-color);
   margin: 0;
 }
+.paragraph {
+  margin-top: 0.2rem;
+}
 .code {
   color: var(--green-color);
 }

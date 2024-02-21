@@ -13,14 +13,15 @@ export default function Footer() {
             <h3>Get our newsletter</h3>
             <p>See the latest updates, deals and information from Sarpino&apos;s.</p>
             <form className={styles.emailSignUp} name="signup" method="POST" data-netlify="true" action="/success"
-              netlify-honeypot="bot-field">
+              netlify-honeypot="bot-field"
+            >
               <p className="hidden">
                 <label>
                   Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
                 </label>
               </p>
               <p>
-                <label><span className="screen-reader-text">Email Address</span> <input placeholder="Email Address" type="email" name="email" /></label>
+                <label><span className="screen-reader-text">Email Address</span> <input placeholder="Email Address" type="email" name="email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required /></label>
               </p>
               <p>
                 <button type="submit">Sign Up</button>
@@ -108,14 +109,14 @@ export default function Footer() {
           <div className={styles.order1}>
             <div className={styles.footerMenu}>
               <div>
-                <h4>Our Menu</h4>
+                <h4 className={styles.header}>Our Menu</h4>
                 <ul>
                   <li><Link href="/menu/sarpinos-specialty-pizza">Full Menu</Link></li>
                   <li><Link href="/vegan-menu/vegan-pizza">Vegan Menu</Link></li>
                   <li><Link href="/catering">Catering</Link></li>
                   <li><Link href="https://sarpinosfranchise.com/">Franchise</Link></li>
                 </ul>
-                <h4>Customer Service</h4>
+                <h4 className={styles.header}>Customer Service</h4>
                 <ul>
                   <li><Link href="/loyalty-program">Loyalty Program</Link></li>
                   <li><OrderGiftCard /></li>
@@ -125,24 +126,24 @@ export default function Footer() {
                 </ul>
               </div>
               <div>
-                <h4>Catering</h4>
+                <h4 className={styles.header}>Catering</h4>
                 <ul>
                   <li><Link href="/catering">Catering Menu</Link></li>
                 </ul>
-                <h4>About Us</h4>
+                <h4 className={styles.header}>About Us</h4>
                 <ul>
                   <li><Link href="https://jobs.gosarpinos.com/">Careers</Link></li>
                   <li><Link href="https://sarpinosfranchise.com/">Franchising Information</Link></li>
                   <li><Link href="/pizza-delivery">Location Finder</Link></li>
                   <li><Link href="/download-pizza-app">Mobile App</Link></li>
                 </ul>
-                <h4>Contact Us</h4>
+                <h4 className={styles.header}>Contact Us</h4>
                 <ul>
                   <li>Phone: 847.374.6300</li>
                   <li>Fax: 866.630.8595</li>
                   <li>Email: <Link href="mailto:us@gosarpinos.com">us@gosarpinos.com</Link></li>
                 </ul>
-                <h4>Address</h4>
+                <h4 className={styles.header}>Address</h4>
                 <ul>
                   <li>200 Tri State International, Suite 550 <br />Lincolnshire, IL 60069</li>
                 </ul>

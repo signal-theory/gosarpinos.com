@@ -41,9 +41,9 @@ const Timeline = ({ data }) => {
             <div className={styles.innerHeroText}>
               {timeline.map((item, index) => (
                 <div key={index} className={styles.timeline}>
-                  <h4 className={styles.timelineYear}>{item.year}</h4>
+                  <h4 className={styles.timelineYear}><strong>{item.year}</strong></h4>
                   <div className={styles.timelineInfo}>
-                    <h4>{item.title}</h4>
+                    <h4><strong>{item.title}</strong></h4>
                     <p>{item.description}</p>
                   </div>
                 </div>

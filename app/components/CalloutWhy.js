@@ -29,6 +29,8 @@ const CalloutWhy = ({ containerClasses, gridClasses }) => {
           <h2 className='slide-up-in' style={{ padding: '1.5rem 0' }}>Open <br />365 Days</h2>
         </Link>
       </div>
+
+      <Link href="/about/company" className={gridClasses === "red-gradient" ? "hidden" : "btn primary-btn"} style={{ margin: '2rem 0' }}><span>About Us</span></Link>
     </div>
   )
 }
