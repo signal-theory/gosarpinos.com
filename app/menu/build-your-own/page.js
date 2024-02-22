@@ -1,5 +1,5 @@
 import { METADATABASE_API_URL } from '../../lib/constants';
-import { fetchMetadata, fetchPageData, fetchCPTData } from '../../lib/utils';
+import { fetchMetadata, fetchPageData, fetchCPTData, fetchACFImage } from '../../lib/utils';
 import MenuNavigation from '../MenuNavigation';
 import MenuHeader from '../MenuHeader';
 import MenuContent from '../MenuContent';
@@ -26,15 +26,19 @@ export async function generateMetadata() {
 export default async function Page() {
   let data;
   let posts;
-
+  let heroImage;
   try {
     data = await fetchPageData(pageId);
+    console.log('Image ID:', data.acf?.hero_image); // Add this line
     posts = await fetchCPTData(postType);
+    heroImage = await fetchACFImage(data.acf.hero_image);
+    console.log('Hero Image:', heroImage); // Add this line
 
   } catch (error) {
     console.error("Error in Page component:", error);
   }
 
+  console.log('hero', heroImage)
   return (
     <>
       <MenuNavigation
@@ -43,8 +47,8 @@ export default async function Page() {
       <section className="viewport innermenu">
         <div className="page-container cream-color">
           <MenuHeader
-            featuredImage={data._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}
-            featuredImageAlt='alt'
+            featuredImage={heroImage?.sourceUrl || '/default-menu-image.svg'}
+            featuredImageAlt={heroImage?.altText || 'build your own fresh pizza'}
             pageTitle={data.title.rendered}
             pageContent={data.content.rendered}
           />

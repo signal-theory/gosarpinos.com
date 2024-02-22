@@ -243,7 +243,10 @@ a:focus {
   width: 100%;
   margin: 0 auto;
   padding: 2rem 0 3rem;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
 }
+
 .viewport.innerhero {
   padding-top: calc(106px + 2rem);
   overflow: hidden;

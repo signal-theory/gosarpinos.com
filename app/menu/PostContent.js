@@ -9,6 +9,11 @@ const PostContent = ({ posts, menuSlug, postTypeSlug, filterPostsBy }) => {
 
   const [filteredPosts, setFilteredPosts] = useState([]);
 
+  // Add this useEffect to update filteredPosts when posts or filterPostsBy changes
+  useEffect(() => {
+    fetchImages(posts).then(setFilteredPosts);
+  }, [posts, filterPostsBy]);
+
   const fetchImages = useCallback(async (postsToProcess) => {
     let filterPosts = postsToProcess;
     if (filterPostsBy === 'Vegan' || filterPostsBy === 'Gluten Free') {
@@ -28,15 +33,6 @@ const PostContent = ({ posts, menuSlug, postTypeSlug, filterPostsBy }) => {
     }));
   }, [filterPostsBy]);
 
-  useEffect(() => {
-    if (posts) {
-      const shuffledPosts = [...posts].sort(() => Math.random() - 0.5);
-      fetchImages(shuffledPosts).then(posts => {
-        setFilteredPosts(posts);
-      });
-    }
-  }, [posts, fetchImages]);
-
 
   // load more posts as the user scrolls
   const [visiblePosts, setVisiblePosts] = useState([]);
@@ -46,7 +42,7 @@ const PostContent = ({ posts, menuSlug, postTypeSlug, filterPostsBy }) => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         setVisiblePosts((prevPosts) => {
-          const nextPosts = filteredPosts.slice(0, prevPosts.length + 2);
+          const nextPosts = filteredPosts.slice(0, prevPosts.length + 6);
           return nextPosts;
         });
       }
@@ -74,9 +70,9 @@ const PostContent = ({ posts, menuSlug, postTypeSlug, filterPostsBy }) => {
               post={post}
               postTypeSlug={postTypeSlug}
               menuSlug={menuSlug}
-              hoverImage={post.hoverImage ? post.hoverImage.sourceUrl : '/default-menu-hover.jpg'}
+              hoverImage={post.hoverImage ? post.hoverImage.sourceUrl : null}
               hoverAlt={post.hoverImage ? post.hoverImage.altText : ''}
-              featuredImage={post.mainImage ? post.mainImage.sourceUrl : '/default-menu-image.jpg'}
+              featuredImage={post.mainImage ? post.mainImage.sourceUrl : '/default-menu-image.svg'}
               featuredAlt={post.mainImage ? post.mainImage.altText : ''}
             />
           )

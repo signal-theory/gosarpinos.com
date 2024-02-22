@@ -6,6 +6,7 @@ const MenuHeader = ({ featuredImage, featuredImageAlt, pageTitle, pageContent })
       <div>
         {featuredImage && (
           <Image
+            priority
             alt={featuredImageAlt}
             src={featuredImage}
             width={650}

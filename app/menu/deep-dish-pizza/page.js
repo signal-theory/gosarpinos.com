@@ -1,6 +1,6 @@
 // /menu/vegan-menu/page.js
 import { METADATABASE_API_URL } from '../../lib/constants';
-import { fetchMetadata, fetchPageData, fetchCPTData } from '../../lib/utils';
+import { fetchMetadata, fetchPageData, fetchCPTData, fetchACFImage } from '../../lib/utils';
 import MenuNavigation from '../MenuNavigation';
 import MenuHeader from '../../menu/MenuHeader';
 import MenuContent from '../../menu/MenuContent';
@@ -27,10 +27,11 @@ export async function generateMetadata() {
 export default async function Page() {
   let data;
   let posts;
-
+  let heroImage;
   try {
     data = await fetchPageData(pageId);
     posts = await fetchCPTData(postType);
+    heroImage = await fetchACFImage(data.acf.hero_image);
 
   } catch (error) {
     console.error("Error in Page component:", error);
@@ -44,8 +45,8 @@ export default async function Page() {
       <section className="viewport innermenu">
         <div className="page-container cream-color">
           <MenuHeader
-            featuredImage={data._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}
-            featuredImageAlt='alt'
+            featuredImage={heroImage?.sourceUrl || '/default-menu-image.svg'}
+            featuredImageAlt={heroImage?.altText || 'fresh DEEP DISH PIZZA'}
             pageTitle={data.title.rendered}
             pageContent={data.content.rendered}
           />

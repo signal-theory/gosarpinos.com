@@ -5,6 +5,7 @@ import MenuNavigation from '../MenuNavigation';
 import SpecialsContent from './SpecialsContent';
 import CalloutMenu from '../../components/CalloutMenu';
 import CalloutMobileApp from '../../components/CalloutMobileApp';
+import OrderBtn from '@/app/components/OrderBtn';
 
 const pageId = 88;
 const postType = ['specials'];
@@ -51,6 +52,9 @@ export default async function Page() {
             posts={posts}
             postType={postType}
             categoryTitle={'Sort ' + postType} />
+          <div className="text-align-center">
+            <OrderBtn btnColor="dark" />
+          </div>
         </div>
       </section>
 

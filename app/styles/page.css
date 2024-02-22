@@ -295,10 +295,10 @@
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-
-  /* background: url(../../assets/circle-outline-1.svg) center no-repeat;
-  background-size: contain;
-  box-sizing: border-box; */
+  transition: transform 0.3s ease;
+}
+.carousel-item:hover {
+  transform: scale(1.05);
 }
 .carousel-item .specials-bkg {
   position: absolute;

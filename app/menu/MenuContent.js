@@ -68,7 +68,7 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         setVisiblePosts((prevPosts) => {
-          const nextPosts = filteredPosts.slice(0, prevPosts.length + 20);
+          const nextPosts = filteredPosts.slice(0, prevPosts.length + 9);
           return nextPosts;
         });
       }
@@ -102,7 +102,6 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
 
       <div className="responsive-equal-height-container fade-in">
         {visiblePosts.map((post, index) => {
-          console.log(post.mainImage);
           return (
             <MenuCard
               key={index}

@@ -121,22 +121,36 @@ export default async function Page({ params }) {
                 <div key={index} className="menupage-item">
                   <div className="menupage-thumbnail">
                     <Link href={item.link.url}>
-                      <Image
-                        src={item.hoverImage.sourceUrl}
-                        alt={item.hoverImage.altText}
-                        className="mask hover-image"
-                        width={100}
-                        height={100}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                      <Image
-                        src={item.image.sourceUrl}
-                        alt={item.image.altText}
-                        className="mask main-image"
-                        width={100}
-                        height={100}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
+                      {item.hoverImage.sourceUrl ? (
+                        <>
+                          <Image
+                            src={item.hoverImage.sourceUrl}
+                            alt={item.hoverImage.altText}
+                            className="mask hover-image"
+                            width={100}
+                            height={100}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          />
+                          <Image
+                            src={item.image.sourceUrl}
+                            alt={item.image.altText}
+                            className="mask main-image"
+                            width={100}
+                            height={100}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          />
+                        </>
+                      ) : (
+                        <Image
+                          src={item.image.sourceUrl}
+                          alt={item.image.altText}
+                          className="mask main-image-scale"
+                          width={100}
+                          height={100}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      )}
+
                     </Link>
                   </div>
                   <div className="menupage-label" style={{ alignItems: 'center' }}>
