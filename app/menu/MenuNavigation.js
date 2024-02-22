@@ -1,6 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './MenuNavigation.module.css'
@@ -9,6 +9,7 @@ import Breadcrumbs from '../components/Breadcrumbs'
 export default function MenuNavigation({ mode, activeItem }) {
   const router = useRouter();
   const [activeNav, setActiveNav] = useState(activeItem);
+  const activeRef = useRef(null);
 
   //  Functions to handle nav Switching
   const handleNav = (navId, href) => (event) => {
@@ -30,6 +31,15 @@ export default function MenuNavigation({ mode, activeItem }) {
     { id: "extras", label: "Extras", handler: handleNav("extras"), href: "/menu/extras" }
   ];
 
+  useEffect(() => {
+    if (activeRef.current) {
+      activeRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'start'
+      });
+    }
+  }, []);
 
   return (
     <>
@@ -45,7 +55,7 @@ export default function MenuNavigation({ mode, activeItem }) {
         </div>
         <ul className={styles.menuNavigation}>
           {subnav.map((nav, index) => (
-            <li key={index}>
+            <li key={index} ref={activeNav === nav.id ? activeRef : null}>
               <Link
                 href={nav.href}
                 className={`${styles.navItem} ${activeNav === nav.id ? styles.active : ""}`}
