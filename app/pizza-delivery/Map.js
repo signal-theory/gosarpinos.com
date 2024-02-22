@@ -116,6 +116,7 @@ const MapHero = ({ posts }) => {
       <div className="responsive-column-container cream-color" style={{ height: '100%' }}>
         <div className={styles.map}>
           <APIProvider
+            async={true}
             apiKey={globalThis.NEXT_PUBLIC_GOOGLEMAPS_API_KEY ?? (process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY)}
             libraries={['places']}>
             <Map

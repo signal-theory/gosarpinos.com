@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { useLocation } from '../components/useLocation';
 import React, { useState, useEffect, useRef } from 'react';
-import { fetchPageData, fetchMediaData, fetchLocations } from '../lib/utils';
+import { fetchPageData, fetchACFImage, fetchLocations } from '../lib/utils';
 import { APIProvider } from '@vis.gl/react-google-maps';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -54,14 +54,16 @@ export default function Navigation() {
       try {
         const pageData = await fetchPageData(id);
 
-        if (pageData.featured_media) {
-          const mediaData = await fetchMediaData(pageData.featured_media, 'medium');
-          if (mediaData) {
+        // Assuming the ACF image ID is stored in a field named 'acf_image'
+        const acfImageId = pageData.acf?.hero_image;
+        if (acfImageId) {
+          const acfImageData = await fetchACFImage(acfImageId);
+          if (acfImageData) {
             setFeaturedImages(prevImages => ({
               ...prevImages,
               [id]: {
-                url: mediaData.source_url,
-                alt: mediaData.alt_text
+                url: acfImageData.sourceUrl,
+                alt: acfImageData.altText
               }
             }));
           }
@@ -71,7 +73,6 @@ export default function Navigation() {
       }
     });
   }, []);
-
 
   // handle desktopmenu dropdowns
   const [activeMenus, setActiveMenus] = useState({});
@@ -260,6 +261,7 @@ export default function Navigation() {
 
               <li className="subitem">
                 <APIProvider
+                  async={true}
                   apiKey={globalThis.NEXT_PUBLIC_GOOGLEMAPS_API_KEY ?? (process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY)}
                   libraries={['places']}
                 ><SearchPanel
