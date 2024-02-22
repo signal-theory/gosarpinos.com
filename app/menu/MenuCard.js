@@ -25,6 +25,7 @@ const MenuCard = ({ post, postTypeSlug, menuSlug, hoverImage, hoverAlt, featured
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 <Image
+                  priority
                   alt={featuredAlt}
                   src={featuredImage}
                   width={500}
@@ -35,6 +36,7 @@ const MenuCard = ({ post, postTypeSlug, menuSlug, hoverImage, hoverAlt, featured
               </>
             ) : (
               <Image
+                priority
                 alt={featuredAlt}
                 src={featuredImage}
                 width={500}

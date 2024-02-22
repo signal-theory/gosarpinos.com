@@ -46,7 +46,7 @@ const PostContent = ({ posts, menuSlug, postTypeSlug, filterPostsBy }) => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         setVisiblePosts((prevPosts) => {
-          const nextPosts = filteredPosts.slice(0, prevPosts.length + 8);
+          const nextPosts = filteredPosts.slice(0, prevPosts.length + 2);
           return nextPosts;
         });
       }

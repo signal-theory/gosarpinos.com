@@ -68,23 +68,26 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         setVisiblePosts((prevPosts) => {
-          const nextPosts = filteredPosts.slice(0, prevPosts.length + 8);
+          const nextPosts = filteredPosts.slice(0, prevPosts.length + 20);
           return nextPosts;
         });
       }
     }, { threshold: 1 });
 
-    const currentRef = loadMoreRef.current; // Capture current ref in a variable
-    if (currentRef) {
-      observer.observe(currentRef);
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
     }
 
     return () => {
-      if (currentRef) { // Use the captured ref in the cleanup function
-        observer.unobserve(currentRef);
+      if (loadMoreRef.current) {
+        observer.unobserve(loadMoreRef.current);
       }
     };
-  }, [filteredPosts]);
+  }, [filteredPosts, selectedCategory]);
+
+  useEffect(() => {
+    setVisiblePosts(filteredPosts.slice(0, 20));
+  }, [filteredPosts, selectedCategory]);
 
 
   return (

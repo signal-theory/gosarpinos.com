@@ -70,7 +70,7 @@ export default async function Page({ params }) {
                 content={content} />
               <div className="display-flex" style={{ alignItems: 'center' }}>
                 <OrderBtn />
-                <Link href="/SarpinosPizzeria_AllergenChart.pdf" target='_blank' className='text-link' style={{ paddingLeft: '2rem' }}>Allergen Info</Link>
+                <Link href="/SarpinosPizzeria_AllergenChart.pdf" target='_blank' className='text-link' style={{ paddingLeft: '2rem', color: 'white' }}>Allergen Info</Link>
               </div>
             </div>
           </div>
