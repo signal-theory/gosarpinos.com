@@ -12,6 +12,7 @@ nav.main-navigation a:not(.primary-btn).coupon {
   margin-left: 1rem;
   font-family: var(--museo-sans);
   font-weight: normal;
+  color: var(--red-color);
 }
 .homepage-nav .coupon-callout {
   width: 100%;
@@ -25,6 +26,9 @@ nav.main-navigation a:not(.primary-btn).coupon {
 .homepage-nav .coupon-callout.night-theme {
   background-color: var(--red-color);
   color: #ffffff;
+}
+nav.main-navigation .coupon-callout.night-theme a:not(.primary-btn).coupon {
+  color: white;
 }
 
 nav.main-navigation a:not(.primary-btn) {
