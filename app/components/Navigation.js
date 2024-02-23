@@ -3,7 +3,8 @@ import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { useLocation } from '../components/useLocation';
 import React, { useState, useEffect, useRef } from 'react';
-import { fetchPageData, fetchACFImage, fetchLocations } from '../lib/utils';
+import { fetchPageData, fetchCPTData, fetchACFImage, fetchLocations } from '../lib/utils';
+import { checkTime } from '../lib/checkTime';
 import { APIProvider } from '@vis.gl/react-google-maps';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -14,8 +15,14 @@ import SearchPanel from './SearchPanel';
 export default function Navigation() {
   const pathname = usePathname();
   const router = useRouter();
+  const isHomePage = pathname === '/';
   const { getUserLocation, selectedLocation, setSelectedLocation, locations, setSelectedStore } = useLocation();
   const [infoWindowOpen, setInfoWindowOpen] = useState(false);
+  const [featuredCouponTitle, setFeaturedCouponTitle] = useState(null);
+  const [featuredCouponName, setFeaturedCouponName] = useState(null);
+  const [isDay, setIsDay] = useState(true);
+
+  console.log('isDay:', isDay);
 
   const [locationsData, setLocationsData] = useState([]);
   useEffect(() => {
@@ -140,8 +147,36 @@ export default function Navigation() {
     };
   }, []);
 
+  // get specials data
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const posts = await fetchCPTData(['specials']);
+        console.log('All posts:', posts); // Log all posts
+
+        const featuredCoupons = posts
+          .filter(post => post.acf?.menu_category?.includes('Featured Specials'));
+        console.log('Featured posts:', featuredCoupons); // Log featured posts
+
+        const featuredCoupon = featuredCoupons
+          .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+        if (featuredCoupon) {
+          setFeaturedCouponTitle(featuredCoupon.title.rendered);
+          setFeaturedCouponName(featuredCoupon.acf?.title_of_special);
+        }
+      } catch (error) {
+        console.error('Error fetching Coupons:', error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
   return (
-    <nav className="main-navigation">
+    <nav className={`main-navigation ${isHomePage ? 'homepage-nav' : ''}`}>
+      <div className={`coupon-callout ${isDay === false ? 'night-theme' : ''}`}>
+        <strong>{featuredCouponName || ''}</strong>&nbsp; {featuredCouponName && ' with code '} &nbsp;<strong>{featuredCouponTitle || ''}</strong> {featuredCouponName && <OrderBtn location="coupon" />}
+      </div>
       <div className="navbar">
         <Link href="/" className="logo" title="Go to Sarpino&apos;s Home page">
           <Image

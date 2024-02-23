@@ -5,6 +5,7 @@
 }
 .listTitle {
   cursor: pointer;
+  margin-bottom: 0;
 }
 @media screen and (min-width: 900px) {
   .listColumns {

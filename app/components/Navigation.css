@@ -4,6 +4,28 @@ nav.main-navigation {
   width: 100%;
   z-index: 99999;
 }
+.coupon-callout {
+  display: none;
+}
+nav.main-navigation a:not(.primary-btn).coupon {
+  text-decoration: underline;
+  margin-left: 1rem;
+  font-family: var(--museo-sans);
+  font-weight: normal;
+}
+.homepage-nav .coupon-callout {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  color: var(--red-color);
+}
+.homepage-nav .coupon-callout.night-theme {
+  background-color: var(--red-color);
+  color: #ffffff;
+}
 
 nav.main-navigation a:not(.primary-btn) {
   color: white;
@@ -79,6 +101,9 @@ nav.main-navigation .subitem a {
     max-width: 1300px;
     background-color: var(--green-color);
     border-radius: 50px;
+  }
+  .homepage-nav .coupon-callout {
+    display: none;
   }
   .navbar .logo a {
     width: 123px;
@@ -173,6 +198,9 @@ nav.main-navigation .subitem a {
     border-radius: 50px;
     z-index: 1;
   }
+  .homepage-nav .navbar {
+    margin-top: 1.25rem;
+  }
   .navbar .logo {
     width: 171px;
     height: 53px;
@@ -226,6 +254,9 @@ nav.main-navigation .subitem a {
   .navbar-dropdowns.dropdown-active {
     opacity: 1;
     top: 70px;
+  }
+  .homepage-nav .navbar-dropdowns.dropdown-active {
+    top: 110px;
   }
   .navbar-dropdowns::before {
     content: "";

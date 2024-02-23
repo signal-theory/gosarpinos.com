@@ -150,7 +150,7 @@ const MapHero = ({ posts }) => {
               setSelectedStore={setSelectedStore}
               locations={locations}
               setInfoWindowOpen={setInfoWindowOpen} />
-            <Header filteredLocations={filteredLocations} />
+            <Header filteredLocations={filteredLocations} selectedLocation={selectedLocation} />
             <List
               posts={posts}
               locations={locations}
