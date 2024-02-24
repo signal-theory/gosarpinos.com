@@ -1,5 +1,5 @@
 
-import { useContext, useState, useEffect, useRef } from 'react';
+import { useContext, useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { StoreContext } from '../components/useStoreContext';
 import styles from './List.module.css';
 import Link from 'next/link';
@@ -50,12 +50,14 @@ const List = ({ locations, filteredLocations, setInfoWindowOpen, openInfoWindowI
     typeof location.acf.metro_area[0] === 'string' ? location.acf.metro_area[0].trim() : ''
   ))];
 
-  useEffect(() => {
-    const index = locations.findIndex(location => location.id === openInfoWindowId);
-    if (index !== -1 && listRefs.current[index]) {
-      listRefs.current[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  useLayoutEffect(() => {
+    const selectedMarkerIndex = filteredLocations.findIndex(location => location.id === openInfoWindowId);
+    if (selectedMarkerIndex !== -1 && listRefs.current[selectedMarkerIndex]) {
+      setTimeout(() => {
+        listRefs.current[selectedMarkerIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 200);
     }
-  }, [openInfoWindowId, locations]);
+  }, [openInfoWindowId, filteredLocations]);
 
   return (
     <ul>

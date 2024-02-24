@@ -1,12 +1,14 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect, useRef } from 'react'
+import { checkTime } from '../lib/checkTime'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './MenuNavigation.module.css'
 import Breadcrumbs from '../components/Breadcrumbs'
 
 export default function MenuNavigation({ mode, activeItem }) {
+  const isDay = checkTime();
   const router = useRouter();
   const [activeNav, setActiveNav] = useState(activeItem);
   const activeRef = useRef(null);
@@ -43,7 +45,7 @@ export default function MenuNavigation({ mode, activeItem }) {
 
   return (
     <>
-      <nav className={mode === "light" ? `${styles.light}` : `${styles.dark}`}>
+      <nav className={mode === "light" ? (isDay ? `${styles.light}` : `${styles.night}`) : `${styles.dark}`}>
         <div className={styles.menuLabel}>
           <Image
             className={styles.menuLabelFull}

@@ -93,6 +93,12 @@ nav.main-navigation .has-submenu > a.active::after {
 nav.main-navigation .subitem a {
   padding: 10px 15px;
 }
+.navbar {
+  background-color: var(--green-color);
+}
+.navbar.night-theme {
+  background-color: var(--lightgreen-color);
+}
 /* mobilemenu */
 @media all and (max-width: 1200px) {
   .navbar {
@@ -103,7 +109,6 @@ nav.main-navigation .subitem a {
     padding: var(--navbar-padding);
     width: var(--navbar-width);
     max-width: 1300px;
-    background-color: var(--green-color);
     border-radius: 50px;
   }
   .homepage-nav .coupon-callout {
@@ -143,6 +148,9 @@ nav.main-navigation .subitem a {
     transition: all 0.3s ease-in-out;
     pointer-events: none;
     z-index: -1;
+  }
+  ul.mobilemenu.night-theme {
+    background-color: var(--lightgreen-color);
   }
   ul.mobilemenu.active {
     display: flex;
@@ -198,7 +206,6 @@ nav.main-navigation .subitem a {
     padding: var(--navbar-padding);
     width: var(--navbar-width);
     max-width: 1300px;
-    background-color: var(--green-color);
     border-radius: 50px;
     z-index: 1;
   }
@@ -275,6 +282,9 @@ nav.main-navigation .subitem a {
     background-color: var(--green-color);
     border-radius: 32px;
     padding: var(--navbar-padding);
+  }
+  .navbar-dropdowns.night-theme ul.submenu {
+    background-color: var(--lightgreen-color);
   }
   .navbar-dropdowns ul.submenu.menu.active,
   .navbar-dropdowns ul.submenu.locations.active {

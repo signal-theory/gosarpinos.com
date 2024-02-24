@@ -71,7 +71,6 @@ const MapHero = ({ posts }) => {
     if (userLocation) {
       setMapCenter(userLocation);
       setMapZoom(10);
-      console.log('userLocation', userLocation);
     }
   }, [userLocation]);
 
@@ -128,7 +127,7 @@ const MapHero = ({ posts }) => {
               disableDefaultUI={true}
             >
               <MarkerWithInfoWindow
-                locations={filteredLocations}
+                filteredLocations={filteredLocations}
                 openInfoWindowId={openInfoWindowId}
                 setOpenInfoWindowId={setOpenInfoWindowId}
                 store={store}

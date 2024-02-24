@@ -11,27 +11,27 @@ const PostContent = ({ posts, menuSlug, postTypeSlug, filterPostsBy }) => {
 
   // Add this useEffect to update filteredPosts when posts or filterPostsBy changes
   useEffect(() => {
+    const fetchImages = async (postsToProcess) => {
+      let filterPosts = postsToProcess;
+      if (filterPostsBy === 'Vegan' || filterPostsBy === 'Gluten Free') {
+        filterPosts = postsToProcess.filter(post => post.acf.menu_category?.includes(filterPostsBy));
+      }
+      return await Promise.all(filterPosts.map(async post => {
+        const mainImage = post.acf.main_image ? await fetchACFImage(post.acf.main_image).catch(e => {
+          console.error(`Error fetching main image: ${e}`);
+          return null;
+        }) : null;
+        const hoverImage = post.acf.hover_image ? await fetchACFImage(post.acf.hover_image).catch(e => {
+          console.error(`Error fetching hover image: ${e}`);
+          return null;
+        }) : null;
+
+        return { ...post, mainImage, hoverImage };
+      }));
+    };
+
     fetchImages(posts).then(setFilteredPosts);
   }, [posts, filterPostsBy]);
-
-  const fetchImages = useCallback(async (postsToProcess) => {
-    let filterPosts = postsToProcess;
-    if (filterPostsBy === 'Vegan' || filterPostsBy === 'Gluten Free') {
-      filterPosts = postsToProcess.filter(post => post.acf.menu_category?.includes(filterPostsBy));
-    }
-    return await Promise.all(filterPosts.map(async post => {
-      const mainImage = post.acf.main_image ? await fetchACFImage(post.acf.main_image).catch(e => {
-        console.error(`Error fetching main image: ${e}`);
-        return null;
-      }) : null;
-      const hoverImage = post.acf.hover_image ? await fetchACFImage(post.acf.hover_image).catch(e => {
-        console.error(`Error fetching hover image: ${e}`);
-        return null;
-      }) : null;
-
-      return { ...post, mainImage, hoverImage };
-    }));
-  }, [filterPostsBy]);
 
 
   // load more posts as the user scrolls
@@ -39,6 +39,8 @@ const PostContent = ({ posts, menuSlug, postTypeSlug, filterPostsBy }) => {
   const loadMoreRef = useRef(null);
 
   useEffect(() => {
+    const currentRef = loadMoreRef.current; // Capture current ref in a variable
+
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         setVisiblePosts((prevPosts) => {
@@ -48,7 +50,6 @@ const PostContent = ({ posts, menuSlug, postTypeSlug, filterPostsBy }) => {
       }
     }, { threshold: 1 });
 
-    const currentRef = loadMoreRef.current; // Capture current ref in a variable
     if (currentRef) {
       observer.observe(currentRef);
     }

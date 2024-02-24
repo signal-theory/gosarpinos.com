@@ -20,9 +20,7 @@ export default function Navigation() {
   const [infoWindowOpen, setInfoWindowOpen] = useState(false);
   const [featuredCouponTitle, setFeaturedCouponTitle] = useState(null);
   const [featuredCouponName, setFeaturedCouponName] = useState(null);
-  const [isDay, setIsDay] = useState(true);
-
-  console.log('isDay:', isDay);
+  const isDay = checkTime();
 
   const [locationsData, setLocationsData] = useState([]);
   useEffect(() => {
@@ -152,11 +150,9 @@ export default function Navigation() {
     const fetchPosts = async () => {
       try {
         const posts = await fetchCPTData(['specials']);
-        console.log('All posts:', posts); // Log all posts
 
         const featuredCoupons = posts
           .filter(post => post.acf?.menu_category?.includes('Featured Specials'));
-        console.log('Featured posts:', featuredCoupons); // Log featured posts
 
         const featuredCoupon = featuredCoupons
           .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
@@ -177,7 +173,7 @@ export default function Navigation() {
       <div className={`coupon-callout ${isDay === false ? 'night-theme' : ''}`}>
         <strong>{featuredCouponName || ''}</strong>&nbsp; {featuredCouponName && ' with code '} &nbsp;<strong>{featuredCouponTitle || ''}</strong> {featuredCouponName && <OrderBtn location="coupon" />}
       </div>
-      <div className="navbar">
+      <div className={`navbar ${isDay === false ? 'night-theme' : ''}`}>
         <Link href="/" className="logo" title="Go to Sarpino&apos;s Home page">
           <Image
             src={'/sarpinos-logo.svg'}
@@ -224,7 +220,7 @@ export default function Navigation() {
           </li>
         </ul>
       </div>
-      <div className={`navbar-dropdowns ${Object.values(activeMenus).some(value => value) ? 'dropdown-active' : ''}`}>
+      <div className={`navbar-dropdowns ${Object.values(activeMenus).some(value => value) ? 'dropdown-active' : ''} ${isDay === false ? 'night-theme' : ''}`}>
         <ul ref={myRef1} className={`item submenu about ${activeMenus['About'] ? 'active' : ''}`}>
           <li className="subitem"><Link href="/about/company" onClick={() => handleSubmenu('About')}>Company Info</Link></li>
           <li className="subitem"><Link href="/about/why-sarpinos" onClick={() => handleSubmenu('About')}>Why Sarpino&apos;s?</Link></li>
@@ -327,7 +323,7 @@ export default function Navigation() {
           </li>
         </ul>)}
       </div>
-      <ul className={`mobilemenu ${toggleMenu ? 'active' : ''}`}>
+      <ul className={`mobilemenu ${toggleMenu ? 'active' : ''} ${isDay === false ? 'night-theme' : ''}`}>
         <li className="item has-submenu"><a tabIndex="0" className={`${activeMobileMenus['About'] ? 'active' : ''}`} onClick={() => handleMobileSubmenu('About')}>About</a>
           <ul className={`item submenu ${activeMobileMenus['About'] ? 'active' : ''}`}>
             <li className="subitem"><Link href="/about/company" onClick={handleMobile}>Company Info</Link></li>

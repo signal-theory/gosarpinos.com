@@ -65,6 +65,7 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
   const loadMoreRef = useRef(null);
 
   useEffect(() => {
+    const currentRef = loadMoreRef.current;
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         setVisiblePosts((prevPosts) => {
@@ -74,13 +75,13 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
       }
     }, { threshold: 1 });
 
-    if (loadMoreRef.current) {
-      observer.observe(loadMoreRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (loadMoreRef.current) {
-        observer.unobserve(loadMoreRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [filteredPosts, selectedCategory]);

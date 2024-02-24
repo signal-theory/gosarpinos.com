@@ -66,7 +66,6 @@ export async function fetchMetadataPost(postId) {
     ogImage = yoastMetadata.og_image[0].url;
   }
 
-  // console.log('yoastMetadata:', data[0]?.yoast_head_json);
   // Return only the title and description
   return {
     title: yoastMetadata && yoastMetadata.title ? he.decode(yoastMetadata.title) : null,

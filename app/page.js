@@ -3,6 +3,7 @@ import { METADATABASE_API_URL } from './lib/constants';
 import { fetchMetadata, fetchPageData, fetchACFImage, fetchCPTData } from './lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
+import { checkTime } from './lib/checkTime';
 
 import './styles/page.css';
 import './styles/menu.css';
@@ -34,6 +35,7 @@ export async function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
 
+  const isDay = checkTime();
   let data;
   let menuItemsWithImages;
   let specialsData;
@@ -107,7 +109,7 @@ export default async function Page({ params }) {
           <div className="homepage-content">
             <div dangerouslySetInnerHTML={{ __html: data?.content.rendered || '' }} style={{ margin: '4rem 0 2rem' }} />
             <div className="btn-slide">
-              <OrderBtn btnColor="dark" />
+              <OrderBtn btnColor={`${isDay === false ? '' : 'dark'}`} />
             </div>
           </div>
         </div>
@@ -164,7 +166,7 @@ export default async function Page({ params }) {
           </div>
         </div>
       </section>
-      <section className="viewport red-color homepage-specials text-align-center" style={{ padding: '7rem 0' }}>
+      <section className={`viewport homepage-specials text-align-center ${isDay === false ? 'lightgreen-color' : 'red-color'}`} style={{ padding: '7rem 0' }}>
         <div className="full-page-container">
           <h2>{data.acf.national_specials_headline}</h2>
           <p style={{ maxWidth: '540px', margin: '0 auto' }}>{data.acf.national_specials_paragraph}</p>
@@ -184,7 +186,7 @@ export default async function Page({ params }) {
         <Image src={'/heart-green-fill.svg'} width={60} height={60} className="heart-green-fill" alt="green fill heart" />
         <Image src={'/heart-green-outline.svg'} width={60} height={60} className="heart-green-outline" alt="green outline heart" />
       </div>
-      <section className="viewport catering green-color">
+      <section className={`viewport catering ${isDay === false ? 'darkred-color' : 'green-color'}`}>
         <div className="page-container cream-color">
           <div className="responsive-twothirds-column-container">
             <div className="image-fill-container">
@@ -204,7 +206,7 @@ export default async function Page({ params }) {
           </div>
         </div>
       </section>
-      <section className="viewport nighttime-background-color text-align-center" style={{ paddingTop: 0 }}>
+      <section className={`viewport text-align-center ${isDay === false ? 'daytime-background-color' : 'nighttime-background-color'}`} style={{ paddingTop: 0 }}>
         <h2 style={{ padding: '3rem 0 0' }}>WHY SARPINO&apos;S?</h2>
         <CalloutWhy
           containerClasses={'page-container cream-outline text-align-center'}

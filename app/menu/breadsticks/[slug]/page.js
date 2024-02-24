@@ -48,7 +48,6 @@ export default async function Page({ params }) {
     console.error("Error fetching post data:", error);
     // Handle the error appropriately
   }
-  // console.log('Post FeaturedImage:', post.featuredImage);
 
 
   const content = [

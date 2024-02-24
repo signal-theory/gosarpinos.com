@@ -102,6 +102,10 @@ font-weight: 900; */
   background-color: var(--red-color);
   color: white;
 }
+.darkred-color {
+  background-color: var(--darkred-color);
+  color: white;
+}
 .half-darkred-color:before {
   content: "";
   position: absolute;
@@ -113,6 +117,10 @@ font-weight: 900; */
 }
 .red-outline {
   border: 2px solid var(--red-color);
+}
+.lightgreen-color {
+  background-color: var(--lightgreen-color);
+  color: white;
 }
 .green-color {
   background-color: var(--green-color);

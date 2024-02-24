@@ -12,7 +12,7 @@ import {
   Pin,
 } from '@vis.gl/react-google-maps';
 
-const MarkerWithInfoWindow = memo(({ isLoading, locations, infoWindowOpen, setInfoWindowOpen, openInfoWindowId, setOpenInfoWindowId, store }) => {
+const MarkerWithInfoWindow = memo(({ isLoading, filteredLocations, infoWindowOpen, setInfoWindowOpen, openInfoWindowId, setOpenInfoWindowId, store }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentOpenTime, setCurrentOpenTime] = useState('');
   const [currentCloseTime, setCurrentCloseTime] = useState('');
@@ -40,23 +40,23 @@ const MarkerWithInfoWindow = memo(({ isLoading, locations, infoWindowOpen, setIn
   };
 
   useEffect(() => {
-    const selectedLocation = locations.find(location => location.acf.name === store);
+    const selectedLocation = filteredLocations.find(filteredLocation => filteredLocation.acf.name === store);
     if (selectedLocation) {
       setOpenInfoWindowId(selectedLocation.id);
     }
-  }, [store, setOpenInfoWindowId, locations]);
+  }, [store, setOpenInfoWindowId, filteredLocations]);
 
+  // Create a ref for each marker
   const markerRefs = useRef([]); // Create a ref for the markerRefs array
-
   useEffect(() => {
-    markerRefs.current = locations.map((_, i) => markerRefs.current[i] ?? React.createRef()); // Create a new ref for each location
-  }, [locations]);
+    markerRefs.current = filteredLocations.map((_, i) => markerRefs.current[i] ?? React.createRef());
+  }, [filteredLocations]);
 
-  const selectedLocation = locations.find(location => location.id === openInfoWindowId);
+  const selectedLocation = filteredLocations.find(location => location.id === openInfoWindowId);
 
   return (
     <>
-      {locations.map((location, index) => (
+      {filteredLocations.map((location, index) => (
         <React.Fragment key={location.id}>
           <AdvancedMarker
             ref={markerRefs.current[index]}
@@ -78,7 +78,7 @@ const MarkerWithInfoWindow = memo(({ isLoading, locations, infoWindowOpen, setIn
       {(!isLoading && infoWindowOpen && selectedLocation) && (
         <InfoWindow
           className={styleInfo.infoWindow}
-          anchor={markerRefs.current[locations.indexOf(selectedLocation)]?.current}  // Use the current marker ref as the anchor
+          anchor={markerRefs.current[filteredLocations.indexOf(selectedLocation)]?.current}  // Use the current marker ref as the anchor
           maxWidth={200}
           onCloseClick={() => handleWindowClose(selectedLocation.id)}
         >

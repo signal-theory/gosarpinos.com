@@ -1,5 +1,6 @@
 nav.light,
-nav.dark {
+nav.dark,
+nav.night {
   position: fixed;
   top: 0;
   z-index: 100;
@@ -29,7 +30,21 @@ nav.light::after {
   );
   pointer-events: none;
 }
-
+nav.night {
+  background-color: var(--green-color);
+  border-bottom: 1px solid rgba(88, 128, 82, 0.4);
+}
+nav.night::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: linear-gradient(to right, rgba(0, 79, 57, 0), rgba(0, 79, 57, 1));
+  pointer-events: none;
+}
 nav.dark {
   background-color: var(--cream-color);
   border-bottom: 1px solid #c2b59b;

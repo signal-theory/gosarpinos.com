@@ -67,8 +67,8 @@ export default async function Page({ params }) {
             <div className="responsive-column-container">
               <div>
                 <Image
-                  src={mainImage.sourceUrl}
-                  alt={mainImage.altText}
+                  src={mainImage ? mainImage.sourceUrl : '/default-menu-image.svg'}
+                  alt={mainImage ? mainImage.altText : 'vegan pizza'}
                   width={612}
                   height={678}
                   className={styles.image}

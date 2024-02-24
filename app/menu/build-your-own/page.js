@@ -29,16 +29,13 @@ export default async function Page() {
   let heroImage;
   try {
     data = await fetchPageData(pageId);
-    console.log('Image ID:', data.acf?.hero_image); // Add this line
     posts = await fetchCPTData(postType);
     heroImage = await fetchACFImage(data.acf.hero_image);
-    console.log('Hero Image:', heroImage); // Add this line
 
   } catch (error) {
     console.error("Error in Page component:", error);
   }
 
-  console.log('hero', heroImage)
   return (
     <>
       <MenuNavigation
