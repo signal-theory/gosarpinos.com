@@ -230,7 +230,7 @@ export default function Navigation() {
           <li className="subitem has-submenu with-thumbs">
             <ul>
               <li className="subitem">
-                <Link href="/menu/build-your-own" onClick={() => handleSubmenu('Menu')}>
+                <Link href="/menu/create-your-own" onClick={() => handleSubmenu('Menu')}>
                   {featuredImages[91] && (
                     <Image
                       className="featured-image"
@@ -240,7 +240,7 @@ export default function Navigation() {
                       height={43}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                   )}
-                  Build Your Own
+                  Create Your Own
                 </Link>
               </li>
               <li className="subitem">
@@ -277,7 +277,7 @@ export default function Navigation() {
           <li className="subitem has-submenu without-thumbs">
             <ul>
               <li className="subitem"><Link href="/menu/sarpinos-specialty-pizza" onClick={() => handleSubmenu('Menu')}>Full Menu</Link></li>
-              <li className="subitem"><Link href="/menu/build-your-own" onClick={() => handleSubmenu('Menu')}>Build Your Own</Link></li>
+              <li className="subitem"><Link href="/menu/create-your-own" onClick={() => handleSubmenu('Menu')}>Create Your Own</Link></li>
               <li className="subitem"><Link href="/vegan-menu/vegan-pizza" onClick={() => handleSubmenu('Menu')}>Vegan Menu</Link></li>
               <li className="subitem"><Link href="/menu/national-specials" onClick={() => handleSubmenu('Menu')}>Specials & Promotions</Link></li>
             </ul>
@@ -334,7 +334,7 @@ export default function Navigation() {
         <li className="item has-submenu"><a tabIndex="0" className={`${activeMobileMenus['Menu'] ? 'active' : ''}`} onClick={() => handleMobileSubmenu('Menu')}>Menu</a>
           <ul className={`item submenu ${activeMobileMenus['Menu'] ? 'active' : ''}`}>
             <li className="subitem"><Link href="/menu/sarpinos-specialty-pizza" onClick={handleMobile}>Full Menu</Link></li>
-            <li className="subitem"><Link href="/menu/build-your-own" onClick={handleMobile}>Build Your Own</Link></li>
+            <li className="subitem"><Link href="/menu/create-your-own" onClick={handleMobile}>Create Your Own</Link></li>
             <li className="subitem"><Link href="/vegan-menu/vegan-pizza" onClick={handleMobile}>Vegan Menu</Link></li>
             <li className="subitem"><Link href="/menu/national-specials" onClick={handleMobile}>Specials & Promotions</Link></li>
 

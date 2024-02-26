@@ -69,7 +69,7 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         setVisiblePosts((prevPosts) => {
-          const nextPosts = filteredPosts.slice(0, prevPosts.length + 9);
+          const nextPosts = filteredPosts.slice(0, prevPosts.length + 6);
           return nextPosts;
         });
       }
@@ -87,7 +87,7 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
   }, [filteredPosts, selectedCategory]);
 
   useEffect(() => {
-    setVisiblePosts(filteredPosts.slice(0, 20));
+    setVisiblePosts(filteredPosts.slice(0, 6));
   }, [filteredPosts, selectedCategory]);
 
 

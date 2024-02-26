@@ -20,7 +20,7 @@ export default function MenuNavigation({ mode, activeItem }) {
   };
 
   const subnav = [
-    { id: "build-your-own", label: "Build Your Own", handler: handleNav("build-your-own"), href: "/menu/build-your-own" },
+    { id: "build-your-own", label: "Create Your Own", handler: handleNav("build-your-own"), href: "/menu/create-your-own" },
     { id: "pizza", label: "Pizza", handler: handleNav("sarpinos-specialty-pizza"), href: "/menu/sarpinos-specialty-pizza" },
     { id: "deep-dish", label: "Deep Dish", handler: handleNav("deep-dish"), href: "/menu/deep-dish-pizza" },
     { id: "calzones", label: "Calzones", handler: handleNav("calzones"), href: "/menu/calzones" },
