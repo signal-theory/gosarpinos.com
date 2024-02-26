@@ -139,6 +139,10 @@ font-weight: 900; */
 .cream-outline {
   border: 2px solid var(--cream-color);
 }
+.white-text,
+.cream-text {
+  color: var(--cream-color);
+}
 /* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

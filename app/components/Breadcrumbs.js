@@ -3,13 +3,13 @@ import { usePathname } from "next/navigation"
 import Link from 'next/link'
 import styles from './Breadcrumbs.module.css'
 
-const Breadcrumbs = ({ style }) => {
+const Breadcrumbs = ({ style, location }) => {
   const pathname = usePathname();
   const segments = pathname.split("/").filter((item) => item !== "");
 
   return (
     <nav aria-label="breadcrumbs" className={style === "nonmenu" ? styles.breadcrumbsNonmenu : styles.breadcrumbs}>
-      <ol className={styles.list}>
+      <ol className={`${styles.list} ${location}`}>
         <li className={styles.item}><Link href="/">Home</Link></li>
         {segments.map((segment, index) => {
           const url = `/${segments.slice(0, index + 1).join("/")}`;

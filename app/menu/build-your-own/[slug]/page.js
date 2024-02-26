@@ -1,5 +1,5 @@
 // app/menu/[cptName]/[slug]/page.js
-import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchACFImage } from '../../../lib/utils';
+import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchPageData } from '../../../lib/utils';
 import { METADATABASE_API_URL } from '../../../lib/constants';
 import CalloutMobileApp from '@/app/components/CalloutMobileApp';
 import MenuNavigation from '../../MenuNavigation';
@@ -31,13 +31,15 @@ export async function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
 
+  let data;
   let post;
 
   try {
+
+    data = await fetchPageData(1332);
     post = await fetchCPTBySlug(params.slug, postType);
 
-
-
+    data = { ...data };
     post = { ...post };
 
   } catch (error) {
@@ -45,8 +47,8 @@ export default async function Page({ params }) {
     // Handle the error appropriately
   }
   const content = [
-    { id: 'tab1', component: <BYOContent1 data={post} /> },
-    { id: 'tab2', component: <BYOContent2 data={post} /> },
+    { id: 'tab1', component: <BYOContent1 data={data} post={post} /> },
+    { id: 'tab2', component: <BYOContent2 data={data} post={post} /> },
     // Add more content as needed
   ];
 

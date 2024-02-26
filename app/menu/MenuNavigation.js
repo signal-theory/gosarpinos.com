@@ -66,7 +66,7 @@ export default function MenuNavigation({ mode, activeItem }) {
           ))}
         </ul>
       </nav>
-      <Breadcrumbs />
+      <Breadcrumbs location={mode === "light" ? "white-text" : "green-text"} />
     </>
   );
 }

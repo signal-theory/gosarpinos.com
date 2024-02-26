@@ -1,8 +1,8 @@
 import styles from './BYOContent.module.css';
 
-const BYOContent1 = ({ data }) => {
+const BYOContent1 = ({ data, post }) => {
 
-  const sizes = data?.acf?.sizes || [];
+  const sizes = post?.acf?.sizes || [];
   const ingredients = data?.acf?.ingredients || [];
   return (
     <>

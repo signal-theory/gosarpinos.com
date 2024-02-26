@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
       <body>
         <StoreProvider>
           <Navigation />
-          <main className={`${isDay === false ? 'nighttime-background-color' : 'daytime-background-color'}`}>
+          <main>
             {children}
           </main>
           <MobileOrderBtn />
