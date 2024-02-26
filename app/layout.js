@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
       <body>
         <StoreProvider>
           <Navigation />
-          <main>
+          <main className='daytime-background-color'>
             {children}
           </main>
           <MobileOrderBtn />
