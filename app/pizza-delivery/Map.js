@@ -100,6 +100,13 @@ const MapHero = ({ posts }) => {
       return calculateDistance(userLocation, { lat: location.acf.latitude, lng: location.acf.longitude }) <= 50000;
     }
     return true;
+  }).sort((a, b) => {
+    // Calculate the distance from the selected location to each location
+    const distanceA = selectedCoordinates ? calculateDistance(selectedCoordinates, { lat: a.acf.latitude, lng: a.acf.longitude }) : 0;
+    const distanceB = selectedCoordinates ? calculateDistance(selectedCoordinates, { lat: b.acf.latitude, lng: b.acf.longitude }) : 0;
+
+    // Sort the locations in ascending order of distance
+    return distanceA - distanceB;
   });
 
   useEffect(() => {
