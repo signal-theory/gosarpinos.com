@@ -14,6 +14,7 @@ const List = ({ locations, filteredLocations, setInfoWindowOpen, openInfoWindowI
   const [currentOpenTime, setCurrentOpenTime] = useState('');
   const [currentCloseTime, setCurrentCloseTime] = useState('');
   const [nextOpenTime, setNextOpenTime] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   const { setStore } = useContext(StoreContext);
 
@@ -43,6 +44,7 @@ const List = ({ locations, filteredLocations, setInfoWindowOpen, openInfoWindowI
     const selectedLocation = locations.find(location => location.acf.name === store);
     if (selectedLocation) {
       setOpenInfoWindowId(selectedLocation.id);
+      setIsLoading(false);
     }
   }, [store, setOpenInfoWindowId, locations]);
 
@@ -72,7 +74,7 @@ const List = ({ locations, filteredLocations, setInfoWindowOpen, openInfoWindowI
                   {location.acf.city}, {location.acf.state} {location.acf.zip}
                 </p>
                 <Link className="text-link" href={`https://www.google.com/maps?saddr=Your+Location&daddr=${he.decode(location.title.rendered)}`} target="_blank">Directions</Link><br />
-                <Link className="text-link" href={`/pizza-delivery/${location.slug}`}>See Store Info</Link>
+                <Link className="text-link" href={`/pizza-delivery/${location.slug}`} onClick={() => setStore(location.slug)}>See Store Info</Link>
               </div>
               <div>
                 <p style={{ textAlign: 'center', marginBottom: '1rem' }}><strong>{location.acf.phone_number || 'phone number'}</strong></p>

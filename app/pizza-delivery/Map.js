@@ -16,7 +16,7 @@ import he from 'he';
 const MapHero = ({ posts }) => {
   const { store } = useContext(StoreContext);
   const router = useRouter();
-  const { selectedLocation, setSelectedLocation, userLocation, setUserLocation, locations, setLocations, getUserLocation, setSelectedStore } = useLocation();
+  const { selectedLocation, setSelectedLocation, userLocation, setUserLocation, locations, setLocations, getUserLocation, sortLocationsByDistance, setSelectedStore } = useLocation();
   const [mapCenter, setMapCenter] = useState({ lat: 41, lng: -94 }); // Initial map center
   const [mapZoom, setMapZoom] = useState(5); // Initial zoom level
   const markerRefs = useRef([]); // Create a reference for markerRefs
@@ -89,8 +89,8 @@ const MapHero = ({ posts }) => {
     getLocations();
   }, [setLocations]);
 
-  // check if selectedLocation is not empty, 
-  // then filter by selectedLocation, 
+  // check if selectedCoordinates is not empty, 
+  // then filter by selectedCoordinates, 
   // otherwise filter by userLocation
 
   const filteredLocations = locations.filter(location => {
@@ -100,14 +100,9 @@ const MapHero = ({ posts }) => {
       return calculateDistance(userLocation, { lat: location.acf.latitude, lng: location.acf.longitude }) <= 50000;
     }
     return true;
-  }).sort((a, b) => {
-    // Calculate the distance from the selected location to each location
-    const distanceA = selectedCoordinates ? calculateDistance(selectedCoordinates, { lat: a.acf.latitude, lng: a.acf.longitude }) : 0;
-    const distanceB = selectedCoordinates ? calculateDistance(selectedCoordinates, { lat: b.acf.latitude, lng: b.acf.longitude }) : 0;
-
-    // Sort the locations in ascending order of distance
-    return distanceA - distanceB;
   });
+
+  const sortedLocations = sortLocationsByDistance(filteredLocations, selectedCoordinates || userLocation);
 
   useEffect(() => {
     if (!selectedLocation) {
@@ -134,7 +129,7 @@ const MapHero = ({ posts }) => {
               disableDefaultUI={true}
             >
               <MarkerWithInfoWindow
-                filteredLocations={filteredLocations}
+                filteredLocations={sortedLocations}
                 openInfoWindowId={openInfoWindowId}
                 setOpenInfoWindowId={setOpenInfoWindowId}
                 store={store}
@@ -156,11 +151,11 @@ const MapHero = ({ posts }) => {
               setSelectedStore={setSelectedStore}
               locations={locations}
               setInfoWindowOpen={setInfoWindowOpen} />
-            <Header filteredLocations={filteredLocations} selectedLocation={selectedLocation} />
+            <Header filteredLocations={sortedLocations} selectedLocation={selectedLocation} />
             <List
               posts={posts}
               locations={locations}
-              filteredLocations={filteredLocations}
+              filteredLocations={sortedLocations}
               openInfoWindowId={openInfoWindowId}
               setOpenInfoWindowId={setOpenInfoWindowId}
               setSelectedStore={setSelectedStore}

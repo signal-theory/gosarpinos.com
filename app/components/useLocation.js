@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useContext } from 'react';
 import { StoreContext } from './useStoreContext';
 import { fetchLocations } from '../lib/utils';
+import { calculateDistance } from '../lib/geocode';
 
 export const useLocation = () => {
   const { store, setStore } = useContext(StoreContext);
@@ -71,6 +72,15 @@ export const useLocation = () => {
     }
   };
 
+  const sortLocationsByDistance = (locations, coordinates) => {
+    return locations.sort((a, b) => {
+      const distanceA = coordinates ? calculateDistance(coordinates, { lat: a.acf.latitude, lng: a.acf.longitude }) : 0;
+      const distanceB = coordinates ? calculateDistance(coordinates, { lat: b.acf.latitude, lng: b.acf.longitude }) : 0;
+
+      return distanceA - distanceB;
+    });
+  };
+
   return {
     selectedLocation,
     setSelectedLocation,
@@ -79,6 +89,7 @@ export const useLocation = () => {
     locations,
     setLocations,
     getUserLocation,
+    sortLocationsByDistance,
     selectedStore: store,
     setSelectedStore: setStore
   };
