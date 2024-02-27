@@ -4,11 +4,9 @@ import './styles/global.css'
 import './styles/animate.css';
 import { StoreProvider } from './components/useStoreProvider';
 import MobileOrderBtn from './components/MobileOrderBtn';
-import { checkTime } from './lib/checkTime';
 
 
 export default function RootLayout({ children }) {
-  const isDay = checkTime();
   return (
     <html lang="en">
       <head>
@@ -20,7 +18,7 @@ export default function RootLayout({ children }) {
       <body>
         <StoreProvider>
           <Navigation />
-          <main className='daytime-background-color'>
+          <main className='timeofday-background-color'>
             {children}
           </main>
           <MobileOrderBtn />

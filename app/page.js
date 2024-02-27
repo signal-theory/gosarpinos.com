@@ -5,13 +5,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { checkTime } from './lib/checkTime';
 
-import './styles/page.css';
-import './styles/menu.css';
-
-import OrderBtn from './components/OrderBtn'
-import CalloutWhy from './components/CalloutWhy';
-import SpecialsCarousel from './components/SpecialsCarousel';
-import InstagramFeed from './components/InstagramFeed';
+import Hero from './home/Hero';
+import PopularItems from './home/PopularItems';
+import Specials from './home/Specials';
+import Catering from './home/Catering';
+import WhySarpinos from './home/WhySarpinos';
+import InstagramFeed from './home/InstagramFeed';
 
 
 
@@ -85,138 +84,14 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <section className="homepage-hero">
-        <div className="hero-container">
-          <div className="homepage-pizza-animation">
-            <div className="pizza-shadow"></div>
-            <Image src={"/olives.svg"} width={100} height={100} alt="olives" className="olives" />
-            <Image src={"/tomatoes-cut.svg"} width={150} height={150} alt="cut tomatoes" className="tomatoes-cut" />
-            <Image src={'/garlic-bulb.svg'} width={100} height={100} alt="garlic" className="garlic-bulb" />
-            <Image src={'/pizza-hero.webp'} width={600} height={600} alt="pizza" className="pizza"
-              priority="true" />
-            <Image src={'/onions-sliced.webp'} width={180} height={180} alt="sliced onions" className="onions" />
-            <Image src={'/heart-green-outline.svg'} width={60} height={60} alt="green outline heart" className="heart-green-outline-1" />
-            <Image src={'/peppercorns-two.svg'} width={60} height={60} alt="peppercorns" className="peppercorns" />
-            <Image src={'/heart-tan-outline.svg'} width={60} height={60} alt="tan heart outline" className="heart-tan-outline" />
-            <Image src={'/tomatoes-cut.webp'} width={100} height={100} alt="cut tomatoes" className="tomatoes-fresh-cut" />
-            <Image src={'/heart-green-fill.svg'} width={60} height={60} alt="green fill heart" className="heart-green-fill" />
-            <Image src={'/basil-leaf-1.webp'} width={100} height={100} alt="basil leaf" className="basil-leaf-1" />
-            <Image src={'/heart-green-outline.svg'} width={100} height={100} alt="green outline heart" className="heart-green-outline-2" />
-            <Image src={'/tomato-whole-and-slice.svg'} width={200} height={200} alt="sliced tomatoes" className="tomato-whole-and-slice" />
-            <Image src={'/basil-leaf-2.webp'} width={100} height={100} alt="basil leaf" className="basil-leaf-2" />
-            <Image src={'/basil-leaf-3.webp'} width={100} height={100} alt="basil leaf" className="basil-leaf-3" />
-          </div>
-          <div className="homepage-content">
-            <div dangerouslySetInnerHTML={{ __html: data?.content.rendered || '' }} style={{ margin: '4rem 0 2rem' }} />
-            <div className="btn-slide">
-              <OrderBtn btnColor={`${isDay === false ? '' : 'dark'}`} />
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="viewport homepage-items" style={{ padding: 0 }}>
-        <div className="page-container cream-color text-align-center">
-          <h2 style={{ paddingTop: '2rem' }}>{data.acf.popular_items_headline}</h2>
-          <div className="responsive-three-column-container">
-            {menuItemsWithImages.map((item, index) => {
-              return (
-                <div key={index} className="menupage-item">
-                  <div className="menupage-thumbnail">
-                    <Link href={item.link.url}>
-                      {item.hoverImage.sourceUrl ? (
-                        <>
-                          <Image
-                            src={item.hoverImage.sourceUrl}
-                            alt={item.hoverImage.altText}
-                            className="mask hover-image"
-                            width={100}
-                            height={100}
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          />
-                          <Image
-                            src={item.image.sourceUrl}
-                            alt={item.image.altText}
-                            className="mask main-image"
-                            width={100}
-                            height={100}
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          />
-                        </>
-                      ) : (
-                        <Image
-                          src={item.image.sourceUrl}
-                          alt={item.image.altText}
-                          className="mask main-image-scale"
-                          width={100}
-                          height={100}
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                      )}
-
-                    </Link>
-                  </div>
-                  <div className="menupage-label" style={{ alignItems: 'center' }}>
-                    <h3><Link href={item.link.url}>{item.title}</Link></h3>
-                    <div className="menupage-caption" dangerouslySetInnerHTML={{ __html: item.description || '' }} />
-                    <Link className="btn primary-btn" href={item.link.url}><span>{item.title}</span></Link>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-      <section className={`viewport homepage-specials text-align-center ${isDay === false ? 'lightgreen-color' : 'red-color'}`} style={{ padding: '7rem 0' }}>
-        <div className="full-page-container">
-          <h2>{data.acf.national_specials_headline}</h2>
-          <p style={{ maxWidth: '540px', margin: '0 auto' }}>{data.acf.national_specials_paragraph}</p>
-          <div className="carousel-wrapper">
-            <div className="carousel-container full">
-              <SpecialsCarousel specialsData={specialsData} />
-            </div>
-          </div>
-          <div style={{ margin: '2rem 0' }}>
-
-          </div>
-          <Link href="/menu/national-specials" className="btn secondary-btn"><span>See More Specials</span></Link>
-        </div>
-      </section>
-      <div className="catering-animation">
-        <Image src={'/heart-tan-outline.svg'} width={60} height={60} className="heart-tan-outline" alt="tan outline heart" />
-        <Image src={'/heart-green-fill.svg'} width={60} height={60} className="heart-green-fill" alt="green fill heart" />
-        <Image src={'/heart-green-outline.svg'} width={60} height={60} className="heart-green-outline" alt="green outline heart" />
+      <div className="timeofday-overlay">
+        <Hero data={data} />
+        <PopularItems data={data} menuItemsWithImages={menuItemsWithImages} />
+        <Specials data={data} specialsData={specialsData} />
+        <Catering data={data} cateringImage={cateringImage} />
+        <WhySarpinos />
+        <InstagramFeed feed={randomImages} />
       </div>
-      <section className={`viewport catering ${isDay === false ? 'darkred-color' : 'green-color'}`}>
-        <div className="page-container cream-color">
-          <div className="responsive-twothirds-column-container">
-            <div className="image-fill-container">
-              <Image
-                src={cateringImage.sourceUrl}
-                alt={cateringImage.altText}
-                fill={true}
-                className="hover-image"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
-            </div>
-            <div className="content flex-align-center" style={{ alignItems: 'flex-start' }}>
-              <h2>{data.acf.catering_headline}</h2>
-              <p>{data.acf.catering_paragraph}</p>
-              <Link href="/catering" className="btn primary-btn"><span>Catering Info</span></Link>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className={`viewport text-align-center ${isDay === false ? 'daytime-background-color' : 'nighttime-background-color'}`} style={{ paddingTop: 0 }}>
-        <h2 style={{ padding: '3rem 0 0' }}>WHY SARPINO&apos;S?</h2>
-        <CalloutWhy
-          containerClasses={'page-container cream-outline text-align-center'}
-        />
-        <div className="page-container text-align-center" style={{ marginTop: '2rem' }}>
-          <h2>Sarpino&apos;s On Social</h2>
-          <p style={{ maxWidth: '347px', margin: '0 auto' }}>Pizza pics, cheesy captions and saucy posts. Follow us on Instagram and Facebook.</p>
-          <InstagramFeed feed={randomImages} />
-        </div>
-      </section>
     </>
   );
 }

@@ -8,7 +8,11 @@ import styles from '../menu/MenuNavigation.module.css'
 import Breadcrumbs from '../components/Breadcrumbs'
 
 export default function MenuNavigation({ mode, activeItem }) {
-  const isDay = checkTime();
+  const [isDay, setIsDay] = useState(true);
+
+  useEffect(() => {
+    setIsDay(checkTime());
+  }, []);
   const router = useRouter();
   const [activeNav, setActiveNav] = useState(activeItem);
   const activeRef = useRef(null);
@@ -65,7 +69,7 @@ export default function MenuNavigation({ mode, activeItem }) {
           ))}
         </ul>
       </nav>
-      <Breadcrumbs />
+      <Breadcrumbs location={mode === "light" ? "white-text" : "green-text"} />
     </>
   );
 }

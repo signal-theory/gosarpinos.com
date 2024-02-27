@@ -20,7 +20,11 @@ export default function Navigation() {
   const [infoWindowOpen, setInfoWindowOpen] = useState(false);
   const [featuredCouponTitle, setFeaturedCouponTitle] = useState(null);
   const [featuredCouponName, setFeaturedCouponName] = useState(null);
-  const isDay = checkTime();
+  const [isDay, setIsDay] = useState(true);
+
+  useEffect(() => {
+    setIsDay(checkTime());
+  }, []);
 
   const [locationsData, setLocationsData] = useState([]);
   useEffect(() => {

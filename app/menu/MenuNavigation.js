@@ -15,8 +15,12 @@ export default function MenuNavigation({ mode, activeItem }) {
 
   //  Functions to handle nav Switching
   const handleNav = (navId, href) => (event) => {
-    setActiveNav(navId);
-    router.push(href);
+    try {
+      setActiveNav(navId);
+      router.push(href);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const subnav = [

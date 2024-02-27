@@ -139,3 +139,7 @@ nav.dark::after {
 .dark .navItem.active {
   color: var(--cream-color);
 }
+.night .navItem.active {
+  background-color: var(--lightgreen-color);
+  color: var(--cream-color);
+}

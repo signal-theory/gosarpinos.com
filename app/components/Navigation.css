@@ -22,6 +22,7 @@ nav.main-navigation a:not(.primary-btn).coupon {
   align-items: center;
   background-color: #ffffff;
   color: var(--red-color);
+  transition: all 1s ease-in-out;
 }
 .homepage-nav .coupon-callout.night-theme {
   background-color: var(--red-color);
@@ -59,6 +60,26 @@ nav.main-navigation li.item.button.heart a::before {
   animation: heartbeat 2s ease-in-out infinite;
 }
 
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.2);
+  }
+  30% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 nav.main-navigation li.item {
   order: 3;
   text-align: center;

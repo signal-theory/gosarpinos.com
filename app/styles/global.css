@@ -57,6 +57,10 @@ font-weight: 900; */
     "Arial Narrow Bold", sans-serif;
 
   background-color: var(--bkg-color);
+  /* check the time of day with javascript 
+  to set the value of --timeofdayBkg */
+  --timeofdayBkg: var(--bkg-red-gradient);
+
   /* background: var(--bkg-red-gradient); 
   background-repeat: no-repeat;
   background-attachment: fixed; */
@@ -71,6 +75,7 @@ font-weight: 900; */
   --mobilemenu-width: calc(93% - 20px);
   --navbar-padding: 10px;
 }
+
 .museo-sans {
   font-family: var(--museo-sans);
 }
@@ -80,10 +85,46 @@ font-weight: 900; */
 .nexa-rust {
   font-family: var(--nexa-rust);
 }
+
+.timeofday-background-color.day {
+  position: relative;
+  background: var(--bkg-red-gradient);
+  overflow: hidden;
+}
+.timeofday-background-color.night {
+  position: relative;
+  background: var(--bkg-green-gradient);
+  overflow: hidden;
+}
+
+.timeofday-overlay {
+  position: relative;
+  background: var(--bkg-red-gradient);
+  overflow: hidden;
+}
+.timeofday-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--bkg-green-gradient);
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.timeofday-overlay::before {
+  opacity: 0;
+}
+
+.timeofday-overlay.night::before {
+  opacity: 1;
+}
 .daytime-background-color {
   background: var(--bkg-red-gradient);
   background-repeat: no-repeat;
   color: white;
+  transition: opacity 1s ease-in-out;
 }
 .red-gradient {
   background: var(--red-gradient);
@@ -93,6 +134,7 @@ font-weight: 900; */
   background: var(--bkg-green-gradient);
   background-repeat: no-repeat;
   color: white;
+  transition: opacity 1s ease-in-out;
 }
 .green-gradient {
   background: var(--green-gradient);
@@ -183,6 +225,7 @@ body {
 }
 main {
   width: 100%;
+  transition: background 1s ease-in-out;
 }
 /* Adobe Font Loading */
 .wf-loading {
@@ -461,6 +504,10 @@ a.secondary-btn {
 button.tertiary-btn,
 a.tertiary-btn {
   background-color: var(--darkred-color);
+}
+button.quaternary-btn,
+a.quaternary-btn {
+  background-color: var(--lightgreen-color);
 }
 button.grayscale-btn,
 a.grayscale-btn {
