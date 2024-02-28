@@ -3,6 +3,7 @@ import Navigation from './components/Navigation'
 import './styles/global.css'
 import './styles/animate.css';
 import { StoreProvider } from './components/useStoreProvider';
+import { ThemeProvider } from './components/useThemeProvider';
 import MobileOrderBtn from './components/MobileOrderBtn';
 
 
@@ -17,10 +18,10 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <StoreProvider>
-          <Navigation />
-          <main className='timeofday-background-color'>
+          <ThemeProvider>
+            <Navigation />
             {children}
-          </main>
+          </ThemeProvider>
           <MobileOrderBtn />
           <Footer />
         </StoreProvider>

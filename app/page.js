@@ -1,9 +1,6 @@
 // `app/page.js` is the UI for the `/` URL
 import { METADATABASE_API_URL } from './lib/constants';
 import { fetchMetadata, fetchPageData, fetchACFImage, fetchCPTData } from './lib/utils';
-import Link from 'next/link';
-import Image from 'next/image';
-import { checkTime } from './lib/checkTime';
 
 import Hero from './home/Hero';
 import PopularItems from './home/PopularItems';
@@ -33,8 +30,6 @@ export async function generateMetadata({ params }) {
 
 
 export default async function Page({ params }) {
-
-  const isDay = checkTime();
   let data;
   let menuItemsWithImages;
   let specialsData;
@@ -84,14 +79,12 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <div className="timeofday-overlay">
-        <Hero data={data} />
-        <PopularItems data={data} menuItemsWithImages={menuItemsWithImages} />
-        <Specials data={data} specialsData={specialsData} />
-        <Catering data={data} cateringImage={cateringImage} />
-        <WhySarpinos />
-        <InstagramFeed feed={randomImages} />
-      </div>
+      <Hero data={data} />
+      <PopularItems data={data} menuItemsWithImages={menuItemsWithImages} />
+      <Specials data={data} specialsData={specialsData} />
+      <Catering data={data} cateringImage={cateringImage} />
+      <WhySarpinos />
+      <InstagramFeed feed={randomImages} />
     </>
   );
 }

@@ -1,18 +1,20 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect, useRef } from 'react'
-import { checkTime } from '../lib/checkTime'
+import { useContext } from 'react';
+import { ThemeContext } from '../components/useThemeProvider';
+
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../menu/MenuNavigation.module.css'
 import Breadcrumbs from '../components/Breadcrumbs'
 
 export default function MenuNavigation({ mode, activeItem }) {
-  const [isDay, setIsDay] = useState(true);
-
-  useEffect(() => {
-    setIsDay(checkTime());
-  }, []);
+  const theme = useContext(ThemeContext);
+  let navClass = mode === "light" ? styles.light : styles.dark;
+  if (mode === "light" && theme === 'night') {
+    navClass = ` ${styles.night}`;
+  }
   const router = useRouter();
   const [activeNav, setActiveNav] = useState(activeItem);
   const activeRef = useRef(null);
@@ -48,7 +50,7 @@ export default function MenuNavigation({ mode, activeItem }) {
   }, []);
   return (
     <>
-      <nav className={mode === "light" ? (isDay ? `${styles.light}` : `${styles.night}`) : `${styles.dark}`}>
+      <nav className={navClass}>
         <div className={styles.menuLabel}>
           <Image
             className={styles.menuLabelVegan}

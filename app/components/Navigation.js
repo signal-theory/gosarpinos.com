@@ -1,18 +1,25 @@
 'use client'
+import dynamic from 'next/dynamic'
+import { useContext } from 'react';
+import { ThemeContext } from './useThemeProvider';
 import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
-import { useLocation } from '../components/useLocation';
+import { useLocation } from './useLocation';
 import React, { useState, useEffect, useRef } from 'react';
 import { fetchPageData, fetchCPTData, fetchACFImage, fetchLocations } from '../lib/utils';
-import { checkTime } from '../lib/checkTime';
 import { APIProvider } from '@vis.gl/react-google-maps';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import OrderBtn from './OrderBtn';
 import './Navigation.css';
-import SearchPanel from './SearchPanel';
+// import SearchPanel from './SearchPanel';
+const DynamicSearchPanel = dynamic(() => import('./SearchPanel'));
 
 export default function Navigation() {
+  const theme = useContext(ThemeContext);
+  const isDay = theme === 'day';
+
   const pathname = usePathname();
   const router = useRouter();
   const isHomePage = pathname === '/';
@@ -20,12 +27,6 @@ export default function Navigation() {
   const [infoWindowOpen, setInfoWindowOpen] = useState(false);
   const [featuredCouponTitle, setFeaturedCouponTitle] = useState(null);
   const [featuredCouponName, setFeaturedCouponName] = useState(null);
-  const [isDay, setIsDay] = useState(true);
-
-  useEffect(() => {
-    setIsDay(checkTime());
-  }, []);
-
   const [locationsData, setLocationsData] = useState([]);
   useEffect(() => {
     const fetchLocationsData = async () => {
@@ -225,69 +226,73 @@ export default function Navigation() {
         </ul>
       </div>
       <div className={`navbar-dropdowns ${Object.values(activeMenus).some(value => value) ? 'dropdown-active' : ''} ${isDay === false ? 'night-theme' : ''}`}>
-        <ul ref={myRef1} className={`item submenu about ${activeMenus['About'] ? 'active' : ''}`}>
-          <li className="subitem"><Link href="/about/company" onClick={() => handleSubmenu('About')}>Company Info</Link></li>
-          <li className="subitem"><Link href="/about/why-sarpinos" onClick={() => handleSubmenu('About')}>Why Sarpino&apos;s?</Link></li>
-          <li className="subitem"><Link href="/about/blog" onClick={() => handleSubmenu('About')}>Sarpino&apos;s Blog</Link></li>
-        </ul>
-        <ul ref={myRef2} className={`item submenu menu ${activeMenus['Menu'] ? 'active' : ''}`}>
-          <li className="subitem has-submenu with-thumbs">
-            <ul>
-              <li className="subitem">
-                <Link href="/menu/create-your-own" onClick={() => handleSubmenu('Menu')}>
-                  {featuredImages[91] && (
-                    <Image
-                      className="featured-image"
-                      src={featuredImages[91].url}
-                      alt={featuredImages[91].alt}
-                      width={191}
-                      height={43}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
-                  )}
-                  Create Your Own
-                </Link>
-              </li>
-              <li className="subitem">
-                <Link href="/menu/sarpinos-specialty-pizza" onClick={() => handleSubmenu('Menu')}>
-                  {featuredImages[34] && (
-                    <Image
-                      className="featured-image"
-                      src={featuredImages[34].url}
-                      alt={featuredImages[34].alt}
-                      width={191}
-                      height={43} />
-                  )}
-                  Specialty Pizza
-                </Link>
-              </li>
-              <li className="subitem">
-                <Link
-                  href="/vegan-menu/vegan-pizza"
-                  onClick={() => { handleSubmenu('Menu'); }}
-                >
-                  {featuredImages[1022] && (
-                    <Image
-                      className="featured-image"
-                      src={featuredImages[1022].url}
-                      alt={featuredImages[1022].alt}
-                      width={191}
-                      height={43} />
-                  )}
-                  Vegan Pizza
-                </Link>
-              </li>
-            </ul>
-          </li>
-          <li className="subitem has-submenu without-thumbs">
-            <ul>
-              <li className="subitem"><Link href="/menu/sarpinos-specialty-pizza" onClick={() => handleSubmenu('Menu')}>Full Menu</Link></li>
-              <li className="subitem"><Link href="/menu/create-your-own" onClick={() => handleSubmenu('Menu')}>Create Your Own</Link></li>
-              <li className="subitem"><Link href="/vegan-menu/vegan-pizza" onClick={() => handleSubmenu('Menu')}>Vegan Menu</Link></li>
-              <li className="subitem"><Link href="/menu/national-specials" onClick={() => handleSubmenu('Menu')}>Specials & Promotions</Link></li>
-            </ul>
-          </li>
-        </ul>
-        {pathname !== '/pizza-delivery' && (<ul ref={myRef3} className={`item submenu locations ${activeMenus['Locations'] ? 'active' : ''}`}>
+        {activeMenus['About'] && (
+          <ul ref={myRef1} className={`item submenu about ${activeMenus['About'] ? 'active' : ''}`}>
+            <li className="subitem"><Link href="/about/company" onClick={() => handleSubmenu('About')}>Company Info</Link></li>
+            <li className="subitem"><Link href="/about/why-sarpinos" onClick={() => handleSubmenu('About')}>Why Sarpino&apos;s?</Link></li>
+            <li className="subitem"><Link href="/about/blog" onClick={() => handleSubmenu('About')}>Sarpino&apos;s Blog</Link></li>
+          </ul>
+        )}
+        {activeMenus['Menu'] && (
+          <ul ref={myRef2} className={`item submenu menu ${activeMenus['Menu'] ? 'active' : ''}`}>
+            <li className="subitem has-submenu with-thumbs">
+              <ul>
+                <li className="subitem">
+                  <Link href="/menu/create-your-own" onClick={() => handleSubmenu('Menu')}>
+                    {featuredImages[91] && (
+                      <Image
+                        className="featured-image"
+                        src={featuredImages[91].url}
+                        alt={featuredImages[91].alt}
+                        width={191}
+                        height={43}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                    )}
+                    Create Your Own
+                  </Link>
+                </li>
+                <li className="subitem">
+                  <Link href="/menu/sarpinos-specialty-pizza" onClick={() => handleSubmenu('Menu')}>
+                    {featuredImages[34] && (
+                      <Image
+                        className="featured-image"
+                        src={featuredImages[34].url}
+                        alt={featuredImages[34].alt}
+                        width={191}
+                        height={43} />
+                    )}
+                    Specialty Pizza
+                  </Link>
+                </li>
+                <li className="subitem">
+                  <Link
+                    href="/vegan-menu/vegan-pizza"
+                    onClick={() => { handleSubmenu('Menu'); }}
+                  >
+                    {featuredImages[1022] && (
+                      <Image
+                        className="featured-image"
+                        src={featuredImages[1022].url}
+                        alt={featuredImages[1022].alt}
+                        width={191}
+                        height={43} />
+                    )}
+                    Vegan Pizza
+                  </Link>
+                </li>
+              </ul>
+            </li>
+            <li className="subitem has-submenu without-thumbs">
+              <ul>
+                <li className="subitem"><Link href="/menu/sarpinos-specialty-pizza" onClick={() => handleSubmenu('Menu')}>Full Menu</Link></li>
+                <li className="subitem"><Link href="/menu/create-your-own" onClick={() => handleSubmenu('Menu')}>Create Your Own</Link></li>
+                <li className="subitem"><Link href="/vegan-menu/vegan-pizza" onClick={() => handleSubmenu('Menu')}>Vegan Menu</Link></li>
+                <li className="subitem"><Link href="/menu/national-specials" onClick={() => handleSubmenu('Menu')}>Specials & Promotions</Link></li>
+              </ul>
+            </li>
+          </ul>
+        )}
+        {pathname !== '/pizza-delivery' && activeMenus['Locations'] && (<ul ref={myRef3} className={`item submenu locations ${activeMenus['Locations'] ? 'active' : ''}`}>
           <li className="subitem has-submenu without-thumbs">
             <ul>
               <li className="subitem">
@@ -299,7 +304,7 @@ export default function Navigation() {
                   async={true}
                   apiKey={globalThis.NEXT_PUBLIC_GOOGLEMAPS_API_KEY ?? (process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY)}
                   libraries={['places']}
-                ><SearchPanel
+                ><DynamicSearchPanel
                     id="autocomplete-nav"
                     getUserLocation={getUserLocation}
                     selectedLocation={selectedLocation}

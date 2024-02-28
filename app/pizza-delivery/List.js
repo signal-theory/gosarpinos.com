@@ -56,7 +56,9 @@ const List = ({ locations, filteredLocations, setInfoWindowOpen, openInfoWindowI
     const selectedMarkerIndex = filteredLocations.findIndex(location => location.id === openInfoWindowId);
     if (selectedMarkerIndex !== -1 && listRefs.current[selectedMarkerIndex]) {
       setTimeout(() => {
-        listRefs.current[selectedMarkerIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (listRefs.current[selectedMarkerIndex]) {
+          listRefs.current[selectedMarkerIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       }, 200);
     }
   }, [openInfoWindowId, filteredLocations]);

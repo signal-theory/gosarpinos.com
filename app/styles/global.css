@@ -58,8 +58,6 @@ font-weight: 900; */
 
   background-color: var(--bkg-color);
   /* check the time of day with javascript 
-  to set the value of --timeofdayBkg */
-  --timeofdayBkg: var(--bkg-red-gradient);
 
   /* background: var(--bkg-red-gradient); 
   background-repeat: no-repeat;
@@ -86,23 +84,19 @@ font-weight: 900; */
   font-family: var(--nexa-rust);
 }
 
-.timeofday-background-color.day {
+main {
   position: relative;
   background: var(--bkg-red-gradient);
   overflow: hidden;
 }
-.timeofday-background-color.night {
-  position: relative;
+main.day {
+  background: var(--bkg-red-gradient);
+}
+/* main.night {
   background: var(--bkg-green-gradient);
-  overflow: hidden;
-}
+} */
 
-.timeofday-overlay {
-  position: relative;
-  background: var(--bkg-red-gradient);
-  overflow: hidden;
-}
-.timeofday-overlay::before {
+main::before {
   content: "";
   position: absolute;
   top: 0;
@@ -111,15 +105,23 @@ font-weight: 900; */
   left: 0;
   background: var(--bkg-green-gradient);
   opacity: 0;
-  transition: opacity 1s ease-in-out;
 }
-.timeofday-overlay::before {
+main::before {
   opacity: 0;
 }
-
-.timeofday-overlay.night::before {
+main.night::before {
   opacity: 1;
+  animation: fadeIn 2s forwards;
 }
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .daytime-background-color {
   background: var(--bkg-red-gradient);
   background-repeat: no-repeat;
@@ -175,6 +177,7 @@ font-weight: 900; */
   border: 2px solid var(--green-color);
 }
 .cream-color {
+  position: relative;
   background-color: var(--cream-color);
   color: var(--green-color);
 }

@@ -1,6 +1,8 @@
+import dynamic from 'next/dynamic';
 import { METADATABASE_API_URL } from '../lib/constants';
 import { fetchMetadata, fetchCPTData } from '../lib/utils'; // Adjust the path as necessary
-import MapHero from './Map';
+// import MapHero from './Map';
+const DynamicMap = dynamic(() => import('./Map'));
 
 const pageId = 214;
 const postType = ['locations'];
@@ -29,5 +31,5 @@ export default async function Page({ params }) {
     console.error("Error in Page component:", error);
   }
 
-  return <MapHero posts={posts} />;
+  return <DynamicMap posts={posts} />;
 }

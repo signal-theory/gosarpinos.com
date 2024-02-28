@@ -1,11 +1,11 @@
-// about/menu/national-specials/SpecialsContent.js
+// about/menu/national-specials/SpecialsList.js
 'use client';
 import React, { useState, useEffect, useCallback } from 'react';
 import SpecialsCard from './SpecialsCard';
 import SortSpecials from './SortSpecials';
 
 // This component is used to include the SortSpecials component that sorts post by category
-const SpecialsContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
+const SpecialsList = ({ posts, postType, categoryTitle, filterPostsBy }) => {
 
   const [loading, setLoading] = useState(true);
   const [filteredPosts, setFilteredPosts] = useState(posts || []);
@@ -68,4 +68,4 @@ const SpecialsContent = ({ posts, postType, categoryTitle, filterPostsBy }) => {
   );
 };
 
-export default SpecialsContent;
+export default SpecialsList;

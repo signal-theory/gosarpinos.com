@@ -1,6 +1,6 @@
 .homepageHero {
   position: sticky;
-  top: 0;
+  top: calc(3vw + 1rem);
   z-index: 0;
   overflow: hidden;
   transition: all 1s ease-in-out;
@@ -42,7 +42,7 @@
   position: relative;
   text-align: center;
   margin: 0 auto;
-  padding: 370px 2rem 2rem;
+  padding: 370px 2rem 5rem;
   color: white;
 }
 .homepageHero h1 {
@@ -68,12 +68,12 @@
 
 @media screen and (min-width: 767px) {
   .homepageHero {
-    height: 600px;
+    height: calc(650px + 2vw);
   }
   .pizzaAnimation {
     width: 400px;
     height: 400px;
-    left: 0;
+    left: 5vw;
     transform: translate(0, 0);
   }
   .content {
@@ -86,9 +86,6 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .homepageHero {
-    height: 600px;
-  }
   .pizzaAnimation {
     width: 500px;
     height: 500px;
@@ -108,7 +105,7 @@
 
 @media screen and (min-width: 1315px) {
   .homepageHero {
-    height: 800px;
+    height: calc(850px + 2vw);
   }
   .pizzaAnimation {
     width: 650px;
@@ -288,7 +285,7 @@
   height: auto;
   animation: pizza-triangle-rotate 7.25s ease-in-out infinite;
 }
-.heartGreenOutline1 {
+.heartGreenOutline2 {
   top: 69%;
   left: 80%;
   width: 8%;

@@ -1,4 +1,5 @@
 'use client';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation'
 import { useLocation } from '../components/useLocation';
 import React, { useContext, useState, useEffect, useRef } from 'react';
@@ -9,8 +10,10 @@ import { geocode, calculateDistance } from '../lib/geocode';
 import styles from './Map.module.css';
 import MarkerWithInfoWindow from './MarkerWithInfowindow';
 import Header from './Header';
-import SearchPanel from '../components/SearchPanel';
-import List from './List';
+// import SearchPanel from '../components/SearchPanel';
+const DynamicSearchPanel = dynamic(() => import('../components/SearchPanel'));
+// import List from './List';
+const DynamicList = dynamic(() => import('./List'));
 import he from 'he';
 
 const MapHero = ({ posts }) => {
@@ -142,7 +145,7 @@ const MapHero = ({ posts }) => {
         </div>
         <div className={styles.list}>
           <div className={styles.listContainer}>
-            <SearchPanel
+            <DynamicSearchPanel
               id="autocomplete-map"
               theme="map"
               getUserLocation={getUserLocation}
@@ -152,7 +155,7 @@ const MapHero = ({ posts }) => {
               locations={locations}
               setInfoWindowOpen={setInfoWindowOpen} />
             <Header filteredLocations={sortedLocations} selectedLocation={selectedLocation} />
-            <List
+            <DynamicList
               posts={posts}
               locations={locations}
               filteredLocations={sortedLocations}

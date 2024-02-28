@@ -74,35 +74,35 @@ nav.dark::after {
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 .menuLabel {
-  padding-left: 1.5rem;
+  padding: 0 1.5rem;
 }
 @media screen and (max-width: 768px) {
   .menuLabel {
-    padding-left: 0;
+    padding: 0;
   }
 }
 
 .menuLabel img.menuLabelFull {
   width: 113px;
-  height: 40px;
+  height: 44px;
   max-width: none;
 }
 @media screen and (max-width: 768px) {
   .menuLabel img.menuLabelFull {
-    width: 84px;
-    height: 34px;
+    width: 89px;
+    height: 35px;
     max-width: none;
   }
 }
 .menuLabel img.menuLabelVegan {
   width: 126px;
-  height: 40px;
+  height: 44px;
   max-width: none;
 }
 @media screen and (max-width: 768px) {
   .menuLabel img.menuLabelVegan {
-    width: 94px;
-    height: 34px;
+    width: 97px;
+    height: 35px;
     max-width: none;
   }
 }
@@ -125,6 +125,12 @@ nav.dark::after {
   padding: 0 1rem;
   line-height: 40px;
   font-size: 0.9375rem;
+}
+@media screen and (max-width: 768px) {
+  .navItem {
+    font-size: 0.875rem;
+    line-height: 35px;
+  }
 }
 .navItem.active {
   background-color: var(--green-color);

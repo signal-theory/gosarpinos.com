@@ -1,17 +1,14 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { checkTime } from '../lib/checkTime';
+import { useContext } from 'react';
+import { ThemeContext } from '../components/useThemeProvider';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './InstagramFeed.module.css';
 
 const InstagramFeed = ({ feed }) => {
-  const [isDay, setIsDay] = useState(true);
-
-  useEffect(() => {
-    setIsDay(checkTime());
-  }, []);
-
+  const theme = useContext(ThemeContext);
+  const isDay = theme === 'day';
   return (
     <>
       <div className={styles.heartAnimation}>

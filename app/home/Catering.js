@@ -1,16 +1,15 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { checkTime } from '../lib/checkTime';
+import { useContext } from 'react';
+import { ThemeContext } from '../components/useThemeProvider';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Catering.module.css';
 
 const Catering = ({ data, cateringImage }) => {
-  const [isDay, setIsDay] = useState(true);
+  const theme = useContext(ThemeContext);
+  const isDay = theme === 'day';
 
-  useEffect(() => {
-    setIsDay(checkTime());
-  }, []);
   return (
     <>
       <div className={styles.cateringAnimation}>
@@ -18,7 +17,7 @@ const Catering = ({ data, cateringImage }) => {
         <Image src={'/heart-green-fill.svg'} width={60} height={60} className={styles.greenFillHeart} alt="green fill heart" />
         <Image src={'/heart-green-outline.svg'} width={60} height={60} className={styles.greenOutlineHeart} alt="green outline heart" />
       </div>
-      <section className={`viewport catering ${isDay === false ? 'darkred-color' : 'green-color'}`}>
+      <section className={`viewport catering ${isDay ? 'green-color' : 'darkred-color'}`}>
         <div className="page-container cream-color">
           <div className="responsive-twothirds-column-container">
             <div className="image-fill-container">

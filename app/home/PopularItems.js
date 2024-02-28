@@ -1,19 +1,8 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { checkTime } from '../lib/checkTime';
 import Image from "next/image";
 import Link from "next/link";
 import styles from './PopularItems.module.css'
 
 const PopularItems = ({ data, menuItemsWithImages }) => {
-
-  const [isDay, setIsDay] = useState(true);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setIsDay(checkTime());
-    setLoading(false);
-  }, []);
   return (
     <section className="viewport" style={{ padding: 0 }}>
       <div className="page-container cream-color text-align-center">

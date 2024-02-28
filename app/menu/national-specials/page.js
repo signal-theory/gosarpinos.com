@@ -2,10 +2,9 @@
 import { METADATABASE_API_URL } from '../../lib/constants';
 import { fetchMetadata, fetchPageData, fetchCPTData } from '../../lib/utils';
 import MenuNavigation from '../MenuNavigation';
-import SpecialsContent from './SpecialsContent';
+import SpecialsContainer from './SpecialsContainer';
 import CalloutMenu from '../../components/CalloutMenu';
 import CalloutMobileApp from '../../components/CalloutMobileApp';
-import OrderBtn from '@/app/components/OrderBtn';
 
 const pageId = 88;
 const postType = ['specials'];
@@ -41,23 +40,7 @@ export default async function Page() {
       <MenuNavigation
         mode="light"
         activeItem="specials" />
-      <section className="viewport innermenu specials-background">
-        <div className="full-page-container">
-          <div className='flex-align-center text-align-center' style={{ padding: '0 2rem' }}>
-            <h2 dangerouslySetInnerHTML={{ __html: data.title.rendered || '' }} />
-            <div style={{ maxWidth: '500px' }} dangerouslySetInnerHTML={{ __html: data.content.rendered || '' }} />
-          </div>
-          {/* Render the menu posts */}
-          <SpecialsContent
-            posts={posts}
-            postType={postType}
-            categoryTitle={'Sort ' + postType} />
-          <div className="text-align-center">
-            <OrderBtn btnColor="dark" />
-          </div>
-        </div>
-      </section>
-
+      <SpecialsContainer data={data} posts={posts} postType={postType} />
       <CalloutMenu />
       <CalloutMobileApp />
     </>

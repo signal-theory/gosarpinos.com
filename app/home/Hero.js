@@ -1,17 +1,13 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { checkTime } from '../lib/checkTime';
+import { useContext } from 'react';
+import { ThemeContext } from '../components/useThemeProvider';
+
 import Image from 'next/image';
 import OrderBtn from '../components/OrderBtn';
 import styles from './Hero.module.css';
 const Hero = ({ data }) => {
-  const [isDay, setIsDay] = useState(true);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setIsDay(checkTime());
-    setLoading(false);
-  }, []);
+  const theme = useContext(ThemeContext);
+  const isDay = theme === 'day';
   return (
     <>
       <section className={styles.homepageHero}>
@@ -35,16 +31,17 @@ const Hero = ({ data }) => {
             <Image src={'/basil-leaf-2.webp'} width={100} height={100} alt="basil leaf" className={styles.basilLeaf2} />
             <Image src={'/basil-leaf-3.webp'} width={100} height={100} alt="basil leaf" className={styles.basilLeaf3} />
           </div>
-          {loading == false ? <div className={styles.content}>
+          <div className={styles.content}>
             {isDay ?
               <div dangerouslySetInnerHTML={{ __html: data?.content.rendered || '' }} style={{ margin: '6rem 0 2rem' }} />
               :
-              <div dangerouslySetInnerHTML={{ __html: data?.acf?.hero_nighttime_content || '' }} style={{ margin: '6rem 0 2rem' }} />}
+              <div dangerouslySetInnerHTML={{ __html: data?.acf?.hero_nighttime_content || '' }} style={{ margin: '6rem 0 2rem' }} />
+            }
 
             <div className="btn-slide">
-              <OrderBtn btnColor={`${isDay === false ? '' : 'dark'}`} />
+              <OrderBtn btnColor={`${isDay ? 'dark' : ''}`} />
             </div>
-          </div> : ''}
+          </div>
         </div>
       </section>
     </>
