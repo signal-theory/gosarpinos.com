@@ -1,8 +1,8 @@
 .specials {
   background-image: url("/homepage-bkg-illustrations-black.webp");
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background-position: center 0;
+  background-size: 100% auto;
 }
 
 /* carousel */
