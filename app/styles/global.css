@@ -92,11 +92,14 @@ main {
 main.day {
   background: var(--bkg-red-gradient);
 }
-/* main.night {
+main.night {
   background: var(--bkg-green-gradient);
-} */
+}
 
-main::before {
+.nightmode-overlay {
+  background: var(--bkg-red-gradient);
+}
+.nightmode-overlay::before {
   content: "";
   position: absolute;
   top: 0;
@@ -106,10 +109,10 @@ main::before {
   background: var(--bkg-green-gradient);
   opacity: 0;
 }
-main::before {
+.nightmode-overlay::before {
   opacity: 0;
 }
-main.night::before {
+main.night .nightmode-overlay::before {
   opacity: 1;
   animation: fadeIn 2s forwards;
 }
