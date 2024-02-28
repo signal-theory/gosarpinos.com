@@ -19,7 +19,7 @@
   display: block;
   position: relative;
   width: 400px;
-  height: 340px;
+  height: 280px;
   object-fit: cover;
   overflow: hidden;
   z-index: 999;
@@ -27,6 +27,12 @@
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
+}
+@media screen and (min-width: 768px) {
+  .thumbnail img {
+    width: 400px;
+    height: 340px;
+  }
 }
 @media screen and (min-width: 1300px) {
   .thumbnail img {

@@ -13,6 +13,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import OrderBtn from './OrderBtn';
 import './Navigation.css';
+import stylesMobile from './NavigationMobile.module.css';
+
 // import SearchPanel from './SearchPanel';
 const DynamicSearchPanel = dynamic(() => import('./SearchPanel'));
 
@@ -202,7 +204,7 @@ export default function Navigation() {
           <li className="item has-submenu">
             <a
               className={`${activeMobileMenus['About'] ? 'active' : ''}`}
-              onClick={() => handleSubmenu('About')}>About</a>
+              onClick={() => handleSubmenu('About')}>About Us</a>
           </li>
           <li className="item has-submenu">
             <a
@@ -332,26 +334,49 @@ export default function Navigation() {
           </li>
         </ul>)}
       </div>
-      <ul className={`mobilemenu ${toggleMenu ? 'active' : ''} ${isDay === false ? 'night-theme' : ''}`}>
-        <li className="item has-submenu"><a tabIndex="0" className={`${activeMobileMenus['About'] ? 'active' : ''}`} onClick={() => handleMobileSubmenu('About')}>About</a>
-          <ul className={`item submenu ${activeMobileMenus['About'] ? 'active' : ''}`}>
+      <ul className={`${stylesMobile.dropdown} ${toggleMenu ? stylesMobile.active : ''} ${isDay === false ? stylesMobile.nightTheme : ''}`}>
+        <li className={`${stylesMobile.item} button heart`}><a href="/loyalty-program" onClick={handleMobile}>Loyalty Sign-In</a></li>
+        <li className={stylesMobile.sliderItems}>
+          <ul className={`${stylesMobile.slider} ${(activeMobileMenus['About'] || activeMobileMenus['Menu']) ? stylesMobile.active : ''}`}>
+            <li className={`${stylesMobile.item} has-submenu`}>
+              <a
+                className={`${activeMobileMenus['About'] ? stylesMobile.active : ''}`}
+                onClick={() => handleMobileSubmenu('About')}>
+                About Us
+              </a>
+            </li>
+            <li className={`${stylesMobile.item} has-submenu`}>
+              <a
+                className={`${activeMobileMenus['Menu'] ? stylesMobile.active : ''}`}
+                onClick={() => handleMobileSubmenu('Menu')}>
+                Menu
+              </a>
+            </li>
+            <li className={`${stylesMobile.item}`}><Link href="/catering" onClick={handleMobile}>Catering</Link></li>
+            <li className={`${stylesMobile.item}`}><Link href="/pizza-delivery" onClick={handleMobile}>Find Locations</Link></li>
+          </ul>
+          <ul className={`${stylesMobile.item} ${stylesMobile.sliderSubmenu} ${activeMobileMenus['About'] ? stylesMobile.active : ''}`}>
+            <li className={`subitem ${stylesMobile.closeSubmenu}`}>
+              <a onClick={() => handleMobileSubmenu('')}>
+                About Us
+              </a>
+            </li>
             <li className="subitem"><Link href="/about/company" onClick={handleMobile}>Company Info</Link></li>
             <li className="subitem"><Link href="/about/why-sarpinos" onClick={handleMobile}>Why Sarpino&apos;s?</Link></li>
             <li className="subitem"><Link href="/about/blog" onClick={handleMobile}>Sarpino&apos;s Blog</Link></li>
           </ul>
-        </li>
-        <li className="item has-submenu"><a tabIndex="0" className={`${activeMobileMenus['Menu'] ? 'active' : ''}`} onClick={() => handleMobileSubmenu('Menu')}>Menu</a>
-          <ul className={`item submenu ${activeMobileMenus['Menu'] ? 'active' : ''}`}>
+          <ul className={`${stylesMobile.item} ${stylesMobile.sliderSubmenu} ${activeMobileMenus['Menu'] ? stylesMobile.active : ''}`}>
+            <li className={`subitem ${stylesMobile.closeSubmenu}`}>
+              <a onClick={() => handleMobileSubmenu('')}>
+                Menu
+              </a>
+            </li>
             <li className="subitem"><Link href="/menu/sarpinos-specialty-pizza" onClick={handleMobile}>Full Menu</Link></li>
             <li className="subitem"><Link href="/menu/create-your-own" onClick={handleMobile}>Create Your Own</Link></li>
             <li className="subitem"><Link href="/vegan-menu/vegan-pizza" onClick={handleMobile}>Vegan Menu</Link></li>
             <li className="subitem"><Link href="/menu/national-specials" onClick={handleMobile}>Specials & Promotions</Link></li>
-
           </ul>
         </li>
-        <li className="item"><Link href="/catering" onClick={handleMobile}>Catering</Link></li>
-        <li className="item"><Link href="/pizza-delivery" onClick={handleMobile}>Find Locations</Link></li>
-        <li className="item button heart"><a href="/loyalty" onClick={handleMobile}>Loyalty Sign-In</a></li>
       </ul>
 
     </nav>

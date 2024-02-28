@@ -29,7 +29,7 @@ const Catering = ({ data, cateringImage }) => {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
-            <div className="content flex-align-center" style={{ alignItems: 'flex-start' }}>
+            <div className={`flex-align-center ${styles.content}`}>
               <h2>{data.acf.catering_headline}</h2>
               <p>{data.acf.catering_paragraph}</p>
               <Link href="/catering" className="btn primary-btn"><span>Catering Info</span></Link>

@@ -4,7 +4,18 @@
   background-position: center 0;
   background-size: 100% auto;
 }
-
+@media screen and (max-width: 767px) {
+  .specials {
+    background-image: url("/homepage-bkg-illustrations-black.webp");
+    background-size: cover;
+  }
+}
+/* text */
+.content {
+  padding: 0 2rem;
+  margin: 0 auto;
+  max-width: 540px;
+}
 /* carousel */
 .wrapper {
   display: grid;

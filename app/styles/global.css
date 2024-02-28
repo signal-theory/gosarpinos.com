@@ -494,7 +494,7 @@ a.mobile {
     left: 50%;
     transform: translateX(-50%);
     display: block;
-    z-index: 99999;
+    z-index: 99998;
   }
 }
 
@@ -588,6 +588,8 @@ a.btn:hover span,
     opacity: 1;
   }
 }
+
+/* / */
 figure.wp-block-image {
   margin: 4rem auto;
 }

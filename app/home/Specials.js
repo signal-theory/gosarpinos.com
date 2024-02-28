@@ -12,8 +12,10 @@ const Specials = ({ data, specialsData }) => {
   return (
     <section className={`viewport text-align-center ${styles.specials} ${isDay ? 'red-color' : 'lightgreen-color'}`} style={{ padding: '7rem 0' }}>
       <div className="full-page-container">
-        <h2>{data.acf.national_specials_headline}</h2>
-        <p style={{ maxWidth: '540px', margin: '0 auto' }}>{data.acf.national_specials_paragraph}</p>
+        <div className={styles.content}>
+          <h2>{data.acf.national_specials_headline}</h2>
+          <p>{data.acf.national_specials_paragraph}</p>
+        </div>
         <div className={styles.wrapper}>
           <div className={styles.container}>
             <SpecialsCarousel specialsData={specialsData} />
