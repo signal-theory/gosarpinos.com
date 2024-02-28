@@ -1,5 +1,5 @@
 'use client';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../components/useThemeProvider';
 
 import Image from 'next/image';
@@ -9,6 +9,17 @@ import styles from './InstagramFeed.module.css';
 const InstagramFeed = ({ feed }) => {
   const theme = useContext(ThemeContext);
   const isDay = theme === 'day';
+
+  const [randomImages, setRandomImages] = useState([]);
+
+  useEffect(() => {
+    function getRandomImages(images) {
+      const shuffled = images.sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, 3);
+    }
+
+    setRandomImages(getRandomImages(feed));
+  }, [feed]);
   return (
     <>
       <div className={styles.heartAnimation}>
@@ -22,7 +33,7 @@ const InstagramFeed = ({ feed }) => {
           <p style={{ maxWidth: '347px', margin: '0 auto' }}>Pizza pics, cheesy captions and saucy posts. Follow us on Instagram and Facebook.</p>
 
           <div className={styles.socialFeed} style={{ margin: '3rem 0 6rem' }}>
-            {feed.map((item, index) => {
+            {randomImages.map((item, index) => {
               return (
                 <Link href="https://www.instagram.com/sarpinos_pizzeria/"
                   key={index} className={styles.imageContainer}>

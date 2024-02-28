@@ -85,7 +85,7 @@ export default async function Page({ params }) {
         <Specials data={data} specialsData={specialsData} />
         <Catering data={data} cateringImage={cateringImage} />
         <WhySarpinos />
-        <InstagramFeed feed={randomImages} />
+        <InstagramFeed feed={socialImagesData} />
       </div>
     </>
   );
