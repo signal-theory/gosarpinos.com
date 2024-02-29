@@ -21,6 +21,7 @@ export function checkTime() {
   const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const currentHour = moment().tz(timeZone).hour();
   console.log('currentHour', currentHour);
-  const isDay = currentHour >= 6 && currentHour < 16;
+  // const isDay = currentHour >= 6 && currentHour < 16;
+  const isDay = true;
   return isDay;
 }

@@ -35,14 +35,14 @@ li.sliderItems {
 }
 .dropdown li a {
   display: block;
-  padding: 10px 0;
+  padding: 18px 0;
   font-size: 1.2rem;
   width: 100%;
 }
 li.sliderItems {
   display: flex;
   flex-wrap: nowrap;
-  margin: 10px 0 40px;
+  margin: 10px 0 0;
 }
 ul.slider {
   display: block;
@@ -56,13 +56,14 @@ ul.slider.active {
 ul.sliderSubmenu {
   position: absolute;
   background-color: #143227;
+  border-top-left-radius: 1.2rem;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  width: 92%;
+  width: 93%;
   height: 100%;
-  padding: 0;
+  padding: 8px 0 0;
   list-style-type: none;
   transition: transform 0.3s ease-in-out;
   transform: translateX(112%);
@@ -75,20 +76,22 @@ ul.sliderSubmenu.active {
 }
 ul.sliderSubmenu li {
   text-align: left;
-  padding-left: 12%;
+  padding: 5px 0 5px 12%;
 }
 .closeSubmenu {
-  border-bottom: 1px solid var(--green-color);
+  border-bottom: 1px solid #1d4f3d;
+  margin-bottom: 10px;
+  margin-left: -15px;
 }
 .dropdown.nightTheme .closeSubmenu {
-  border-bottom: 1px solid var(--lightgreen-color);
+  border-bottom: 1px solid #1e5f47;
 }
 .closeSubmenu > a::before {
   content: "";
   display: inline-block;
-  height: 10px;
-  width: 10px;
-  margin-right: 5px;
+  height: 11px;
+  width: 11px;
+  margin-right: 10px;
   background: url("/arrow-right.svg") no-repeat center center;
   background-size: contain;
   transform: rotate(180deg);
