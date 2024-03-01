@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation'
 import { useState, useEffect, useRef } from 'react'
 import { useContext } from 'react';
-import { ThemeContext } from '../components/useThemeProvider';
+import { ThemeContext } from '../context/useThemeProvider';
 
 import Link from 'next/link'
 import Image from 'next/image'

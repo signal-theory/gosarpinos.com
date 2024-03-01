@@ -1,6 +1,6 @@
 'use client';
 import { useContext } from 'react';
-import { ThemeContext } from '../components/useThemeProvider';
+import { ThemeContext } from '../context/useThemeProvider';
 
 import Link from 'next/link';
 import SpecialsCarousel from '../components/SpecialsCarousel';

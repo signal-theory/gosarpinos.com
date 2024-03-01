@@ -1,6 +1,6 @@
 'use client';
 import { useContext } from 'react';
-import { ThemeContext } from '../components/useThemeProvider';
+import { ThemeContext } from '../context/useThemeProvider';
 
 import Image from 'next/image';
 import Link from 'next/link';

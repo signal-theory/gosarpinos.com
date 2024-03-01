@@ -1,7 +1,7 @@
 'use client'
 import dynamic from 'next/dynamic'
 import { useContext } from 'react';
-import { ThemeContext } from './useThemeProvider';
+import { ThemeContext } from '../context/useThemeProvider';
 import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { useLocation } from './useLocation';

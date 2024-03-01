@@ -1,6 +1,6 @@
 'use client';
 import { useContext } from 'react';
-import { ThemeContext } from '../components/useThemeProvider';
+import { ThemeContext } from '../context/useThemeProvider';
 
 import CalloutWhy from '../components/CalloutWhy';
 const WhySarpinos = () => {
