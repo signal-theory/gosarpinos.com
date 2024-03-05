@@ -96,10 +96,10 @@ main.night {
   background: var(--bkg-green-gradient);
 }
 
-.nightmode-overlay {
+main.night .nightmode-overlay {
   background: var(--bkg-red-gradient);
 }
-.nightmode-overlay::before {
+main.night .nightmode-overlay::before {
   content: "";
   position: absolute;
   top: 0;

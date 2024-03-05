@@ -39,8 +39,7 @@ export default function MenuNavigation({ mode, activeItem }) {
     { id: "sandwiches", label: "Sandwiches", handler: handleNav("sandwiches"), href: "/menu/sandwiches" },
     { id: "pastas", label: "Pastas", handler: handleNav("pastas"), href: "/menu/pastas" },
     { id: "breadsticks", label: "Breadsticks", handler: handleNav("breadsticks"), href: "/menu/breadsticks" },
-    { id: "desserts", label: "Desserts", handler: handleNav("desserts"), href: "/menu/desserts" },
-    { id: "extras", label: "Extras", handler: handleNav("extras"), href: "/menu/extras" }
+    { id: "desserts", label: "Desserts", handler: handleNav("desserts"), href: "/menu/desserts" }
   ];
 
   useEffect(() => {

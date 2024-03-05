@@ -14,7 +14,10 @@ export const ThemeProvider = ({ children }) => {
 
   return <ThemeContext.Provider value={theme}>
     <main className={theme}>
-      {children}
+
+      <div className="nightmode-overlay">
+        {children}
+      </div>
     </main>
   </ThemeContext.Provider>
 };

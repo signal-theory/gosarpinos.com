@@ -79,14 +79,12 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <div className="nightmode-overlay">
-        <Hero data={data} />
-        <PopularItems data={data} menuItemsWithImages={menuItemsWithImages} />
-        <Specials data={data} specialsData={specialsData} />
-        <Catering data={data} cateringImage={cateringImage} />
-        <WhySarpinos />
-        <InstagramFeed feed={socialImagesData} />
-      </div>
+      <Hero data={data} />
+      <PopularItems data={data} menuItemsWithImages={menuItemsWithImages} />
+      <Specials data={data} specialsData={specialsData} />
+      <Catering data={data} cateringImage={cateringImage} />
+      <WhySarpinos />
+      <InstagramFeed feed={socialImagesData} />
     </>
   );
 }
