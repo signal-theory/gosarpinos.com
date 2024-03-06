@@ -15,9 +15,9 @@ const Franchise = ({ data, franchiseImage }) => {
             />
           </div>
           <div className="flex-align-center" style={{ padding: '2rem', maxWidth: '525px' }}>
-            <h2>{data.acf.franchise_headline}</h2>
+            {data.acf.franchise_headline && <h2>{data.acf.franchise_headline}</h2>}
             {data.acf.franchise_content && <div dangerouslySetInnerHTML={{ __html: data.acf.franchise_content }}></div>}
-            <Link className='btn primary-btn' style={{ margin: '2rem auto 1rem 0' }} href={data.acf.franchise_link.url}>{data.acf.franchise_link.title}</Link>
+            {data.acf.franchise_link && <Link className='btn primary-btn' style={{ margin: '2rem auto 1rem 0' }} href={data.acf.franchise_link.url}>{data.acf.franchise_link.title}</Link>}
           </div>
         </div>
       </div>
