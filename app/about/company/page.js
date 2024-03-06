@@ -30,7 +30,7 @@ export default async function Page({ params }) {
 
   try {
     data = await fetchPageData(pageId);
-    franchiseImage = data.acf && data.acf.franchise_image ? await fetchACFImage(data.acf.franchise_image) : null;
+    franchiseImage = data.acf && data.acf.franchise_image ? await fetchACFImage(data.acf.franchise_image) : '/default-menu-image.svg';
 
   } catch (error) {
     console.error("Error in Page component:", error);
