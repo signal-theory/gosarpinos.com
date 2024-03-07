@@ -52,7 +52,7 @@ const MenuCard = ({ post, postTypeSlug, menuSlug, hoverImage, hoverAlt, featured
           <Link className={styles.caption} href={url}>
             {post.acf.caption.length > 140
               ? post.acf.caption.substring(0, 140) + '...'
-              : post.acf.caption || 'Sarpino\'s traditional pan pizza baked to perfection and loaded with fresh ingredients.'}
+              : post.acf.caption || ''}
           </Link>
           <p className={styles.links}>
             <OrderBtn />

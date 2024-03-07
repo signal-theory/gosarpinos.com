@@ -30,12 +30,10 @@ export default async function Page({ params }) {
 
   try {
     data = await fetchPageData(pageId);
-    console.log('Page data:', data); // Log the page data
     franchiseImage = data.acf && data.acf.franchise_image ? await fetchACFImage(data.acf.franchise_image) : '/default-menu-image.svg';
 
     if (data.acf && data.acf.franchise_image) {
       franchiseImage = await fetchACFImage(data.acf.franchise_image);
-      console.log('Franchise image:', franchiseImage); // Log the franchise image
     } else {
       franchiseImage = '/default-menu-image.svg'; // Set fallback image here
     }

@@ -1,7 +1,7 @@
 import { METADATABASE_API_URL } from '../lib/constants';
 import { fetchMiscMetadata, fetchMiscData } from '../lib/utils'; // Adjust the path as necessary
 import Link from 'next/link';
-import styles from './Page.module.css';
+import styles from './[slug]/Page.module.css';
 
 export async function generateMetadata({ params }) {
   const metadata = await fetchMiscMetadata(params.slug);
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }) {
 }
 
 
-export default async function Page({ params }) {
+export default async function Custom404({ params }) {
   let data;
 
   try {

@@ -39,13 +39,15 @@ const PostContent = ({ posts, menuSlug, postTypeSlug, filterPostsBy }) => {
   const loadMoreRef = useRef(null);
 
   useEffect(() => {
-    const currentRef = loadMoreRef.current; // Capture current ref in a variable
-
+    const currentRef = loadMoreRef.current;
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         setVisiblePosts((prevPosts) => {
-          const nextPosts = filteredPosts.slice(0, prevPosts.length + 6);
-          return nextPosts;
+          if (filteredPosts.length > prevPosts.length) {
+            const nextPosts = filteredPosts.slice(0, Math.min(prevPosts.length + 6, filteredPosts.length));
+            return nextPosts;
+          }
+          return prevPosts;
         });
       }
     }, { threshold: 1 });
@@ -55,10 +57,14 @@ const PostContent = ({ posts, menuSlug, postTypeSlug, filterPostsBy }) => {
     }
 
     return () => {
-      if (currentRef) { // Use the captured ref in the cleanup function
+      if (currentRef) {
         observer.unobserve(currentRef);
       }
     };
+  }, [filteredPosts]);
+
+  useEffect(() => {
+    setVisiblePosts(filteredPosts.slice(0, Math.min(6, filteredPosts.length)));
   }, [filteredPosts]);
 
   return (
@@ -79,7 +85,7 @@ const PostContent = ({ posts, menuSlug, postTypeSlug, filterPostsBy }) => {
           )
         })}
 
-        <div ref={loadMoreRef} />
+        {filteredPosts.length > visiblePosts.length && <div ref={loadMoreRef} />}
       </div>
     </>
   );

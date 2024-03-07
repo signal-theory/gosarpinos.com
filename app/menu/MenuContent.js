@@ -69,8 +69,11 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         setVisiblePosts((prevPosts) => {
-          const nextPosts = filteredPosts.slice(0, prevPosts.length + 6);
-          return nextPosts;
+          if (filteredPosts.length > prevPosts.length) {
+            const nextPosts = filteredPosts.slice(0, Math.min(prevPosts.length + 6, filteredPosts.length));
+            return nextPosts;
+          }
+          return prevPosts;
         });
       }
     }, { threshold: 1 });
@@ -84,12 +87,11 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
         observer.unobserve(currentRef);
       }
     };
-  }, [filteredPosts, selectedCategory]);
+  }, [filteredPosts]);
 
   useEffect(() => {
-    setVisiblePosts(filteredPosts.slice(0, 6));
-  }, [filteredPosts, selectedCategory]);
-
+    setVisiblePosts(filteredPosts.slice(0, Math.min(6, filteredPosts.length)));
+  }, [filteredPosts]);
 
   return (
     <>
@@ -101,7 +103,7 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
         onCategorySelect={setSelectedCategory}
       />}
 
-      <div className="responsive-equal-height-container fade-in">
+      <div className="responsive-equal-height-container fade-in" style={{ marginBottom: '1rem' }}>
         {visiblePosts.map((post, index) => {
           return (
             <MenuCard
@@ -115,7 +117,7 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
             />
           )
         })}
-        <div ref={loadMoreRef} />
+        {filteredPosts.length > visiblePosts.length && <div ref={loadMoreRef} />}
       </div>
     </>
   );
