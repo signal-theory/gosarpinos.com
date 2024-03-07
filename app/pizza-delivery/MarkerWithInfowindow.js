@@ -1,6 +1,6 @@
 'use client';
 import React, { useContext, useState, useEffect, useRef, memo } from 'react';
-import { StoreContext } from '../components/useStoreContext';
+import { StoreContext } from '../context/useStoreContext';
 import Image from 'next/image';
 import he from 'he';
 import styleInfo from './MarkerInfo.module.css';

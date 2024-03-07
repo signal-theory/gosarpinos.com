@@ -1,6 +1,6 @@
 'use client';
 import { useContext, useState, useEffect } from 'react';
-import { StoreContext } from '../components/useStoreContext';
+import { StoreContext } from '../context/useStoreContext';
 
 const LoginBtn = () => {
   const { store } = useContext(StoreContext);

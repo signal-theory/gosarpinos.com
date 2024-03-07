@@ -1,6 +1,6 @@
 import React from 'react';
 import { useContext, useState, useEffect } from 'react';
-import { StoreContext } from '../components/useStoreContext';
+import { StoreContext } from '../context/useStoreContext';
 
 import { useRouter } from 'next/navigation'
 import Autocomplete from '@mui/material/Autocomplete';

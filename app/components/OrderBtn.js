@@ -1,6 +1,6 @@
 'use client';
 import { useContext, useState, useEffect } from 'react';
-import { StoreContext } from '../components/useStoreContext';
+import { StoreContext } from '../context/useStoreContext';
 
 const OrderBtn = ({ btnColor, theme, location }) => {
   const { store } = useContext(StoreContext);

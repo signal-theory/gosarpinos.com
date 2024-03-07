@@ -1,9 +1,9 @@
 'use client';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation'
-import { useLocation } from '../components/useLocation';
+import { useLocation } from '../context/useLocation';
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { StoreContext } from '../components/useStoreContext';
+import { StoreContext } from '../context/useStoreContext';
 import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import { fetchLocations } from '../lib/utils';
 import { geocode, calculateDistance } from '../lib/geocode';

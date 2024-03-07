@@ -34,18 +34,14 @@ export default async function Page({ params }) {
     console.error("Error in Page component:", error);
   }
 
-  // Separate the featured post
-  const featuredCategoryId = 15;
-  // Filter posts to get only those in the "Featured" category, then sort by date
-  const featuredPosts = posts.filter(post => post.categories.includes(featuredCategoryId));
-  const sortedFeaturedPosts = featuredPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  // Sort posts by date
+  const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  // Get the most recent featured post
-  const mostRecentFeaturedPost = sortedFeaturedPosts[0];
+  // Get the most recent post (which is the featured post)
+  const featuredPost = sortedPosts[0];
 
-  // Filter out the most recent featured post from all posts
-  const nonFeaturedPosts = posts.filter(post => post !== mostRecentFeaturedPost);
-
+  // Filter out the featured post from all posts to get non-featured posts
+  const nonFeaturedPosts = posts.filter(post => post !== featuredPost);
   return (
     <>
       <div className="cream-color">
@@ -56,11 +52,11 @@ export default async function Page({ params }) {
               <div dangerouslySetInnerHTML={{ __html: data?.content.rendered || '' }} />
             </div>
             {/* Render the featured post */}
-            {mostRecentFeaturedPost && (
-              <Link href={`/about/blog/${mostRecentFeaturedPost.slug}`}>
+            {featuredPost && (
+              <Link href={`/about/blog/${featuredPost.slug}`}>
                 <BlogFeatured
-                  post={mostRecentFeaturedPost}
-                  featuredImage={mostRecentFeaturedPost._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}
+                  post={featuredPost}
+                  featuredImage={featuredPost._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}
                 />
               </Link>
             )}
