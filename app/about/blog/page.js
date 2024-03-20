@@ -60,7 +60,7 @@ export default async function Page({ params }) {
                 />
               </Link>
             )}
-            <BlogContent initialPosts={nonFeaturedPosts} />
+            <BlogContent initialPosts={posts} />
           </div>
         </section>
       </div>

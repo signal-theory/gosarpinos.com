@@ -10,9 +10,11 @@ const ItemInfo = ({ post }) => {
     return null;  // Or some fallback UI
   }
   const nutritional_info_by_size = post.acf.nutritional_info_by_size;
+  const nutritional_info_with_label = nutritional_info_by_size.filter(size => size.size_label);
+  const nutritional_info_length = nutritional_info_with_label.length;
 
   // Map over the nutritional_info_by_size array to generate the buttons
-  const sizeButtons = nutritional_info_by_size.map((size, index) => {
+  const sizeButtons = nutritional_info_with_label.map((size, index) => {
     if (!size.size_label) {
       return null; // Skip this iteration if size_label is empty
     }
@@ -20,12 +22,11 @@ const ItemInfo = ({ post }) => {
     const handleSize = () => {
       setActiveSize(sizeId);
     };
-
     return (
       <button
         key={sizeId}
         onClick={handleSize}
-        className={`${styles.sizeBtn} ${activeSize === sizeId ? styles.active : ""}`}
+        className={`${styles.sizeBtn} ${activeSize === sizeId ? styles.active : ""} ${nutritional_info_length === 1 ? styles.singleSize : ""}`}
       >
         {size.size_label}
       </button>
