@@ -139,7 +139,6 @@ export default function Footer() {
                 <h4 className={styles.header}>Contact Us</h4>
                 <ul>
                   <li>Phone: 847.374.6300</li>
-                  <li>Fax: 866.630.8595</li>
                   <li>Email: <Link href="mailto:us@gosarpinos.com">us@gosarpinos.com</Link></li>
                 </ul>
                 <h4 className={styles.header}>Address</h4>

@@ -92,3 +92,6 @@
 .footerMenu ul li {
   padding: 7px 0;
 }
+.footerMenu ul li a:hover {
+  text-shadow: 0 0 10px var(--cream-color);
+}

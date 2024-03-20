@@ -41,6 +41,9 @@ nav.main-navigation a:not(.primary-btn) {
   font-family: var(--museo-slab);
   font-weight: 700;
 }
+nav.main-navigation a:not(.primary-btn):hover {
+  text-shadow: 0 0 20px var(--cream-color);
+}
 
 nav.main-navigation li.item {
   padding: 15px var(--navbar-padding);
@@ -52,6 +55,7 @@ li.item:not(.button) a:hover,
 li.item a:hover::after {
   color: white;
   cursor: pointer;
+  text-shadow: 0 0 20px var(--cream-color);
 }
 nav.main-navigation li.button.heart a::before {
   content: "";
@@ -189,6 +193,10 @@ nav.main-navigation .subitem a {
   }
   ul.desktopmenu li.item {
     padding: 15px calc(var(--navbar-padding) * 2);
+  }
+
+  ul.desktopmenu li.item a:hover {
+    text-shadow: 0 0 20px var(--cream-color);
   }
   ul.desktoplinks {
     align-items: center;
