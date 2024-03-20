@@ -4,7 +4,7 @@ import Link from 'next/link';
 const Hero = ({ featuredImage, featuredImageAlt, data }) => {
   return (
     <>
-      <div className="responsive-column-container" style={{ margin: '1em 0 2em', gridGap: '4rem' }}>
+      <div className="responsive-column-container" style={{ margin: '1em 0 0', gridGap: '4rem' }}>
         <div className={styles.animation}>
           <div className={styles.mask}>
             {featuredImage && (

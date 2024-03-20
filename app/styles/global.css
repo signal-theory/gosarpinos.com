@@ -87,7 +87,7 @@ font-weight: 900; */
 main {
   position: relative;
   background: var(--bkg-red-gradient);
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 main.day {
   background: var(--bkg-red-gradient);
@@ -303,7 +303,7 @@ a:focus {
   position: relative;
   width: 100%;
   margin: 0 auto;
-  padding: 2rem 0 3rem;
+  padding: 2rem 0 calc(2.5vw + 0.5rem);
   opacity: 0;
   animation: fadeIn 0.5s forwards;
 }

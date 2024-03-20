@@ -30,7 +30,7 @@ const CalloutWhy = ({ containerClasses, gridClasses }) => {
         </Link>
       </div>
 
-      <Link href="/about/company" className={gridClasses === "red-gradient" ? "hidden" : gridClasses === "night-theme" ? "btn quaternary-btn" : "btn primary-btn"} style={{ margin: '2rem 0' }}><span>About Us</span></Link>
+      <Link href="/about/company" className={gridClasses === "red-gradient" ? "hidden" : gridClasses === "night-theme" ? "btn quaternary-btn" : gridClasses === "static-theme" ? "btn quaternary-btn" : "btn primary-btn"} style={{ margin: '2rem 0' }}><span>About Us</span></Link>
     </div>
   )
 }

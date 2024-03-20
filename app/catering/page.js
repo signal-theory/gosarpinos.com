@@ -5,7 +5,7 @@ import How from './How';
 import Form from './Form';
 import Info from './Info';
 import CalloutCatering from '../components/CalloutCatering';
-import CalloutWhy from '../components/CalloutWhy';
+import WhySarpinos from './WhySarpinos';
 import FAQs from './FAQs';
 import Breadcrumbs from '@/app/components/Breadcrumbs';
 
@@ -66,12 +66,7 @@ export default async function Page({ params }) {
           </div>
         </section>
         <CalloutCatering />
-        <section className="viewport red-gradient text-align-center">
-          <h2 style={{ padding: '3rem 0 0' }}>WHY SARPINO&apos;S?</h2>
-          <CalloutWhy
-            containerClasses={'page-container cream-outline text-align-center'}
-          />
-        </section>
+        <WhySarpinos />
         <section className="viewport cream-color">
           <FAQs data={data} />
         </section>
