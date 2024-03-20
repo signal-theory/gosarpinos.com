@@ -13,7 +13,7 @@ const MenuCallout = () => {
             </h3>
           </div>
           <div className={styles.buttons}>
-            <Link href="/vegan-menu/vegan-pizza" className={`${styles.button} btn primary-btn`}>See our vegan menu</Link>
+            <Link href="/vegan-menu/vegan-pizza" className={`${styles.button} btn primary-btn`}><span>See our vegan menu</span></Link>
           </div>
         </div>
         <Image src={'/heart-red-fill.svg'} width={30} height={30} className={styles.redFillHeart} alt="red fill heart" />
