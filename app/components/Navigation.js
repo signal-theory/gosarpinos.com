@@ -132,15 +132,15 @@ export default function Navigation() {
   // close menu dropdowns when clicking outside of them
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if ((myRef1.current && !myRef1.current.contains(event.target)) &&
-        (myRef2.current && !myRef2.current.contains(event.target)) &&
-        (myRef3.current && !myRef3.current.contains(event.target))) {
-        setActiveMenus(prevState => {
-          const newState = Object.keys(prevState).reduce((acc, key) => {
-            acc[key] = false;
-            return acc;
-          }, {});
-          return newState;
+      if (
+        !myRef1.current?.contains(event.target) &&
+        !myRef2.current?.contains(event.target) &&
+        !myRef3.current?.contains(event.target)
+      ) {
+        setActiveMenus({
+          About: false,
+          Menu: false,
+          Locations: false,
         });
       }
     };
