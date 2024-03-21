@@ -49,6 +49,10 @@ export default function Navigation() {
     setSelectedLocation(area);
     router.push(`/pizza-delivery?location=${encodeURIComponent(area)}`);
   };
+  const handleMetroReplace = (area) => {
+    setSelectedLocation(area);
+    window.location.href = `/pizza-delivery?location=${encodeURIComponent(area)}`;
+  };
 
 
   // Get the selected location from the URL query parameters
@@ -91,6 +95,7 @@ export default function Navigation() {
   const myRef1 = useRef(null);
   const myRef2 = useRef(null);
   const myRef3 = useRef(null);
+  const myRef4 = useRef(null);
   const handleSubmenu = (menu) => {
     setActiveMenus(prevState => {
       // Create a new state object with all menus inactive
@@ -135,7 +140,8 @@ export default function Navigation() {
       if (
         !myRef1.current?.contains(event.target) &&
         !myRef2.current?.contains(event.target) &&
-        !myRef3.current?.contains(event.target)
+        !myRef3.current?.contains(event.target) &&
+        !myRef4.current?.contains(event.target)
       ) {
         setActiveMenus({
           About: false,
@@ -151,6 +157,12 @@ export default function Navigation() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    if (pathname === '/pizza-delivery') {
+      setActiveMenus(prevMenus => ({ ...prevMenus, Locations: false }));
+    }
+  }, [pathname]);
 
   // get specials data
   useEffect(() => {
@@ -294,45 +306,67 @@ export default function Navigation() {
             </li>
           </ul>
         )}
-        {pathname !== '/pizza-delivery' && activeMenus['Locations'] && (<ul ref={myRef3} className={`item submenu locations ${activeMenus['Locations'] ? 'active' : ''}`}>
-          <li className="subitem has-submenu without-thumbs">
-            <ul>
-              <li className="subitem">
-                <h6 className="subitem-title">Search Sarpino&apos;s Locations</h6>
-              </li>
+        {pathname !== '/pizza-delivery' && activeMenus['Locations'] && (
+          // If Not Locations page
+          <ul ref={myRef3} className={`item submenu locations ${activeMenus['Locations'] ? 'active' : ''}`}>
+            <li className="subitem has-submenu without-thumbs">
+              <ul>
+                <li className="subitem">
+                  <h6 className="subitem-title">Search Sarpino&apos;s Locations</h6>
+                </li>
 
-              <li className="subitem">
-                <APIProvider
-                  async={true}
-                  apiKey={globalThis.NEXT_PUBLIC_GOOGLEMAPS_API_KEY ?? (process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY)}
-                  libraries={['places']}
-                ><DynamicSearchPanel
-                    id="autocomplete-nav"
-                    getUserLocation={getUserLocation}
-                    selectedLocation={selectedLocation}
-                    setSelectedLocation={setSelectedLocation}
-                    setSelectedStore={setSelectedStore}
-                    locations={locations}
-                    setInfoWindowOpen={setInfoWindowOpen} />
-                </APIProvider>
-              </li>
-            </ul>
-          </li>
-          <li className="subitem has-submenu">
-            <ul>
-              <li>
-                <h6 className="subitem-title">Search By Metro Area</h6>
-              </li>
-              <li>
-                <ul className="areas-list">{metroAreas.map((area, index) => (
-                  <li key={index}>
-                    <button className="area-button" onClick={() => handleMetroSelect(area)}>{area}</button>
-                  </li>
-                ))}</ul>
-              </li>
-            </ul>
-          </li>
-        </ul>)}
+                <li className="subitem">
+                  <APIProvider
+                    async={true}
+                    apiKey={globalThis.NEXT_PUBLIC_GOOGLEMAPS_API_KEY ?? (process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY)}
+                    libraries={['places']}
+                  ><DynamicSearchPanel
+                      id="autocomplete-nav"
+                      getUserLocation={getUserLocation}
+                      selectedLocation={selectedLocation}
+                      setSelectedLocation={setSelectedLocation}
+                      setSelectedStore={setSelectedStore}
+                      locations={locations}
+                      setInfoWindowOpen={setInfoWindowOpen} />
+                  </APIProvider>
+                </li>
+              </ul>
+            </li>
+            <li className="subitem has-submenu">
+              <ul>
+                <li>
+                  <h6 className="subitem-title">Search By Metro Area</h6>
+                </li>
+                <li>
+                  <ul className="areas-list">{metroAreas.map((area, index) => (
+                    <li key={index}>
+                      <button className="area-button" onClick={() => handleMetroSelect(area)}>{area}</button>
+                    </li>
+                  ))}</ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        )}
+        {pathname === '/pizza-delivery' && activeMenus['Locations'] && (
+          // If Locations page
+          <ul ref={myRef4} className={`item submenu locations ${activeMenus['Locations'] ? 'active' : ''}`}>
+            <li className="subitem has-submenu">
+              <ul style={{ maxWidth: '650px', padding: '0 2rem' }}>
+                <li>
+                  <h6 className="subitem-title">Search By Metro Area</h6>
+                </li>
+                <li>
+                  <ul className="areas-list">{metroAreas.map((area, index) => (
+                    <li key={index}>
+                      <button className="area-button" onClick={() => handleMetroReplace(area)}>{area}</button>
+                    </li>
+                  ))}</ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        )}
       </div>
       <ul className={`${stylesMobile.dropdown} ${toggleMenu ? stylesMobile.active : ''} ${isDay === false ? stylesMobile.nightTheme : ''}`}>
         <li className={`${stylesMobile.item} button heart`}><a href="/loyalty-program" onClick={handleMobile}>Loyalty Sign-In</a></li>
