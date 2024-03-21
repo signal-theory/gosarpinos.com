@@ -125,10 +125,6 @@ export default function Footer() {
                 </ul>
               </div>
               <div>
-                <h4 className={styles.header}>Catering</h4>
-                <ul>
-                  <li><Link href="/catering">Catering Menu</Link></li>
-                </ul>
                 <h4 className={styles.header}>About Us</h4>
                 <ul>
                   <li><Link href="https://jobs.gosarpinos.com/">Careers</Link></li>

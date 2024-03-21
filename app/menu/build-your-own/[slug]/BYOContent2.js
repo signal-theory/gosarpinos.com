@@ -1,8 +1,8 @@
 import styles from './BYOContent.module.css';
 
-const BYOContent2 = ({ post }) => {
+const BYOContent2 = ({ data }) => {
 
-  const sauces = post?.acf?.sauces || '';
+  const sauces = data?.acf?.sauces || '';
   return (
     <>
       {sauces && <div className={styles.ingredients}>
