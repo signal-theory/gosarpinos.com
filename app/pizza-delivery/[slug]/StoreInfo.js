@@ -62,9 +62,9 @@ const StoreInfo = ({ post }) => {
       </div>
       <div className={styles.content}>
         <h3>Looking for the Best Pizza Delivery in {post.acf.city}?</h3>
-        <p>Look no further than your local Sarpino&apos;s. You want the best pizza delivery in your area, and we aim to fulfill that with hand-made pizza delivered to you with no delivery fee and, oh yeah, we're open late.</p>
-        <p>We offer specialty pizza with the freshest of ingredients. Our menu is full of gourmet pizza options born from Italian tradition. We also provide numerous vegan/gluten free pizza options because everyone deserves great pizza in their life. Vegan pizza doesn't mean less flavor. Our vegan pizza uses fresh ingredients from trusted brands such as Daiya Cheese, Beyond Meat, and Field Roast to ensure maximum flavor. We encourage you to try all our different vegan pizza options in Sarpino&apos;s Pizzeria {post.acf.city}. We can even accommodate new creations, so feel free to order a customized vegan pizza today!</p>
-        <p>Our menu provides so much more than pizza, serving up sandwiches, pastas, calzones, salads, sides, desserts and more! All meals are made fresh and you can also count on free delivery when you order from Sarpino's online.</p>
+        <p>Look no further than your local Sarpino&apos;s. You want the best pizza delivery in your area, and we aim to fulfill that with hand-made pizza delivered to you with no delivery fee and, oh yeah, we&apos;re open late.</p>
+        <p>We offer specialty pizza with the freshest of ingredients. Our menu is full of gourmet pizza options born from Italian tradition. We also provide numerous vegan/gluten free pizza options because everyone deserves great pizza in their life. Vegan pizza doesn&apos;t mean less flavor. Our vegan pizza uses fresh ingredients from trusted brands such as Daiya Cheese, Beyond Meat, and Field Roast to ensure maximum flavor. We encourage you to try all our different vegan pizza options in Sarpino&apos;s Pizzeria {post.acf.city}. We can even accommodate new creations, so feel free to order a customized vegan pizza today!</p>
+        <p>Our menu provides so much more than pizza, serving up sandwiches, pastas, calzones, salads, sides, desserts and more! All meals are made fresh and you can also count on free delivery when you order from Sarpino&apos;s online.</p>
       </div>
       <div className={styles.content}>
         <h5>The Only Choice for Free Delivery in the {post.acf.metro_area} metro area.</h5>
@@ -76,7 +76,7 @@ const StoreInfo = ({ post }) => {
       </div>
       <div className={styles.content}>
         <h5>Have a craving after hours?</h5>
-        <p>It's late. You are hungry. You are craving pizza. You need it delivered fast. You are on the right page. Your local  {post.acf.name} Sarpino's is open all day, even at late-night and is ready help you satisfy your cravings.</p>
+        <p>It&apos;s late. You are hungry. You are craving pizza. You need it delivered fast. You are on the right page. Your local  {post.acf.name} Sarpino&apos;s is open all day, even at late-night and is ready help you satisfy your cravings.</p>
       </div>
       <div className={styles.content}>
         <h5>You can get hot, fresh food delivered to your door in three easy steps:</h5>
