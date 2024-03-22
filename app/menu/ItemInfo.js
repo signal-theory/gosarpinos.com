@@ -33,10 +33,14 @@ const ItemInfo = ({ post }) => {
     );
   });
 
+  // Add a flag outside of your map function
+  let messageDisplayed = false;
   // Map over the nutritional_info_by_size array to generate the table rows
   const sizeRows = nutritional_info_by_size.map((size, index) => {
-    if (!size.size_label) {
-      return null; // Skip this iteration if size_label is empty
+    if (!size.size_total_calories || !size.size_label) {
+      messageDisplayed = true;
+      console.log('messageDisplayed', messageDisplayed);
+      return null; // Skip this iteration if empty
     }
     const sizeId = `size${index + 1}`;
 
@@ -128,16 +132,24 @@ const ItemInfo = ({ post }) => {
   });
 
   // Render the table with the size rows
-  return (
-    <div className={styles.itemInfo}>
-      <div className={styles.sizes}>
-        {sizeButtons}
+  if (messageDisplayed) {
+    return (
+      <div className={styles.table}>
+        <p>No nutritional information available for this item.</p>
       </div>
-      <table className={styles.table}>
-        {sizeRows}
-      </table>
-    </div>
-  );
+    );
+  } else {
+    (
+      <div className={styles.itemInfo}>
+        <div className={styles.sizes}>
+          {sizeButtons}
+        </div>
+        <table className={styles.table}>
+          {sizeRows}
+        </table>
+      </div>
+    );
+  }
 }
 
 export default ItemInfo;
