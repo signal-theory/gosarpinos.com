@@ -11,7 +11,7 @@ import ItemInfo from '../../../menu/ItemInfo';
 import ItemAllergens from '../../../menu/ItemAllergens';
 import styles from './Single.module.css';
 
-const postType = 'desserts';
+const postType = 'wings-apps';
 export async function generateMetadata({ params }) {
   const postId = params.slug;
   const metadata = await fetchCPTMetadataBySlug(postId, postType);
