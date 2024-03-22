@@ -1,9 +1,9 @@
 import Link from "next/link";
 
-const ContactBrn = () => {
+const ContactBtn = () => {
   return (
-    <Link href="/" className="btn primary-btn glow"><span>Contact Your local Sarpino&apos;s</span></Link>
+    <Link href="https://www.gosarpinos.com/catering#" className="btn primary-btn glow"><span>Contact Your local Sarpino&apos;s</span></Link>
   );
 }
 
-export default ContactBrn;
+export default ContactBtn;

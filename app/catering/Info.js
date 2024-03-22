@@ -9,9 +9,7 @@ const Info = ({ data }) => {
   const cCol3 = data.acf.catering_col3;
   const headline2 = data.acf.servings_headline;
   const content2 = data.acf.servings_content;
-  const sCol1 = data.acf.servings_col1;
-  const sCol2 = data.acf.servings_col2;
-  const sCol3 = data.acf.servings_col3;
+  const servingscolumns = data.acf?.servings_columns || [];
   return (
     <>
       <div>
@@ -34,17 +32,13 @@ const Info = ({ data }) => {
       <div className={`green-gradient ${styles.container}`}>
         {headline2 && <h2 className={styles.headline} dangerouslySetInnerHTML={{ __html: headline2 || '' }} />}
         {content2 && <p className={styles.headline} dangerouslySetInnerHTML={{ __html: content2 || '' }} />}
-        <div className="responsive-unlimited-equal-height-container">
-          {sCol1 && <div className={`${styles.col}`}>
-            <div dangerouslySetInnerHTML={{ __html: sCol1 || '' }} />
-          </div>}
-          {sCol2 && <div className={`${styles.col}`}>
-            <div dangerouslySetInnerHTML={{ __html: sCol2 || '' }} />
-          </div>}
-          {sCol3 && <div className={`${styles.col}`}>
-            <div dangerouslySetInnerHTML={{ __html: sCol3 || '' }} />
-          </div>}
-        </div>
+        {servingscolumns &&
+          <div className="responsive-unlimited-equal-height-container">
+            {servingscolumns.map((item, index) => (
+              <div key={index} className={`${styles.col}`} dangerouslySetInnerHTML={{ __html: item.column || '' }} />
+            ))}
+          </div>
+        }
         <ContactBtn />
       </div>
     </>

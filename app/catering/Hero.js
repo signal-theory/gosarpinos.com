@@ -1,6 +1,6 @@
 import styles from './Hero.module.css'
 import Image from 'next/image';
-import Link from 'next/link';
+import ContactBtn from '../components/ContactBtn';
 const Hero = ({ featuredImage, featuredImageAlt, data }) => {
   return (
     <>
@@ -26,7 +26,7 @@ const Hero = ({ featuredImage, featuredImageAlt, data }) => {
         <div className='flex-align-center'>
           <div>
             <div dangerouslySetInnerHTML={{ __html: data.content.rendered || '' }} />
-            <Link href="/pizza-delivery" className="btn primary-btn glow" style={{ margin: '1rem auto 1rem 0' }}><span>Contact Your local Sarpino&apos;s</span></Link>
+            <ContactBtn />
             <p style={{ maxWidth: '255px' }}>{data.acf.description}</p>
           </div>
         </div>

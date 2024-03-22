@@ -12,10 +12,19 @@ const DeliveryArea = ({ post }) => {
     <>
       <div className={styles.container}>
         <h3>Sarpino&apos;s delivers food to:</h3>
-        <h5 className={styles.title}>{post.acf.city}</h5>
         {areacities &&
           <ul className={styles.list}>
             {areacities.map((item, index) => (
+              <li key={index}>
+                {item.item_name}
+              </li>
+            ))}
+          </ul>
+        }
+        <h5 className={styles.title}>{post.acf.city}</h5>
+        {areaneighborhoods &&
+          <ul className={styles.list}>
+            {areaneighborhoods.map((item, index) => (
               <li key={index}>
                 {item.item_name}
               </li>
