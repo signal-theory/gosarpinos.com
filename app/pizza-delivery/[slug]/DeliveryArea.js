@@ -1,23 +1,63 @@
 import styles from './DeliveryArea.module.css';
 const DeliveryArea = ({ post }) => {
+
+  const areacities = post.acf?.area_cities || [];
+  const areazips = post.acf?.area_zips || [];
+  const areaneighborhoods = post.acf?.area_neighborhoods || [];
+  const arealandmarks = post.acf?.area_landmarks || [];
+  const areahotels = post.acf?.area_hotels || [];
+
+
   return (
     <>
       <div className={styles.container}>
         <h3>Sarpino&apos;s delivers food to:</h3>
         <h5 className={styles.title}>{post.acf.city}</h5>
-        <p>cities list</p>
+        {areacities &&
+          <ul className={styles.list}>
+            {areacities.map((item, index) => (
+              <li key={index}>
+                {item.item_name}
+              </li>
+            ))}
+          </ul>
+        }
       </div>
       <div className={styles.container}>
         <h5 className={styles.title}>Food Delivery To Zip Codes</h5>
-        <p>zip code list</p>
+        {areazips &&
+          <ul className={styles.list}>
+            {areazips.map((item, index) => (
+              <li key={index}>
+                {item.item_name}
+              </li>
+            ))}
+          </ul>
+        }
       </div>
       <div className={styles.container}>
         <h5 className={styles.title}>Hotel Delivery Options</h5>
-        <p>hotel list</p>
+        {areahotels &&
+          <ul className={styles.list}>
+            {areahotels.map((item, index) => (
+              <li key={index}>
+                {item.item_name}
+              </li>
+            ))}
+          </ul>
+        }
       </div>
       <div className={styles.container}>
         <h5 className={styles.title}>Late Night Food Delivery To:</h5>
-        <p>cities list</p>
+        {arealandmarks &&
+          <ul className={styles.list}>
+            {arealandmarks.map((item, index) => (
+              <li key={index}>
+                {item.item_name}
+              </li>
+            ))}
+          </ul>
+        }
       </div>
     </>
   );

@@ -37,7 +37,7 @@
   padding: 0;
 }
 .tabList.locationTabs .tabItem.active {
-  color: var(--lightgreen-color);
+  color: var(--green-color);
 }
 .tabItem.active::after {
   content: "";
@@ -48,7 +48,7 @@
   background-color: var(--green-color);
 }
 .tabList.locationTabs .tabItem.active::after {
-  background-color: var(--lightgreen-color);
+  background-color: var(--green-color);
 }
 .greenTabs .tabItem.active::after {
   background-color: var(--cream-color);
