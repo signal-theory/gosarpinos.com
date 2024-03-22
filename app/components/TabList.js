@@ -4,6 +4,7 @@ const TabList = ({ activeTab, tabs, bkgVariant }) => (
     {tabs.map((tab, index) => (
       <li
         key={index}
+        id={tab.id}
         className={`${styles.tabItem} ${activeTab === tab.id ? styles.active : ""}`}
         onClick={tab.handler}
       >

@@ -21,7 +21,7 @@ const DeliveryArea = ({ post }) => {
             ))}
           </ul>
         }
-        <h5 className={styles.title}>{post.acf.city}</h5>
+        <h5 className={styles.title}>Find best pizza places that deliver in and around {post.acf.city}, {post.acf.state}</h5>
         {areaneighborhoods &&
           <ul className={styles.list}>
             {areaneighborhoods.map((item, index) => (

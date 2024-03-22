@@ -1,9 +1,9 @@
-import { METADATABASE_API_URL } from '../../lib/constants';
-import { fetchCPTMetadataBySlug, fetchCPTBySlug } from '../../lib/utils'; // Adjust the path as necessary
+import { METADATABASE_API_URL } from '../../../lib/constants';
+import { fetchCPTMetadataBySlug, fetchCPTBySlug } from '../../../lib/utils'; // Adjust the path as necessary
 import Link from 'next/link';
-import Hero from './Hero';
-import StoreInfo from './StoreInfo';
-import tabStyles from '../../components/TabList.module.css';
+import Hero from '../Hero';
+import Feedback from '../Feedback';
+import tabStyles from '../../../components/TabList.module.css';
 
 const postType = 'locations';
 export async function generateMetadata({ params }) {
@@ -48,17 +48,17 @@ export default async function Page({ params }) {
       <section className="viewport">
         <div className="page-container">
           <ul className={`${tabStyles.tabList} ${tabStyles.locationTabs}`}>
-            <li className={`${tabStyles.tabItem} ${tabStyles.active}`}>
+            <li className={`${tabStyles.tabItem}`}>
               <Link href={url}>Store Info</Link>
             </li>
-            <li className={`${tabStyles.tabItem}`}>
+            <li className={`${tabStyles.tabItem} ${tabStyles.active}`}>
               <Link href={url + '/feedback'}>Feedback</Link>
             </li>
             <li className={`${tabStyles.tabItem}`}>
               <Link href={url + '/deliveryarea'}>Delivery Area</Link>
             </li>
           </ul>
-          <StoreInfo post={post} />
+          <Feedback post={post} />
         </div>
       </section>
     </div>
