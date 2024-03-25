@@ -1,20 +1,25 @@
 'use client';
-import { useContext, useState, useEffect } from 'react';
+import { useContext } from 'react';
 import { StoreContext } from '../context/useStoreContext';
+import { NavLocatorContext } from '../context/useNavLocatorContext';
 
 const OrderGiftCard = () => {
   const { store } = useContext(StoreContext);
-  const [href, setHref] = useState('/pizza-delivery/?noStore=true');
+  const { isNavLocatorActive, setIsNavLocatorActive } = useContext(NavLocatorContext);
 
-  useEffect(() => {
-    if (store && store !== 'null') {
-      setHref(`https://${store}.gosarpinos.com/giftcards/actions`);
-    }
-  }, [store]);
 
-  return (
-    <a href={href} className="nav-link" target='_blank'>Gift Cards</a>
-  );
+  if (!store || store === 'null') {
+    return (
+      <a onClick={() => setIsNavLocatorActive(!isNavLocatorActive)} className="nav-link">
+        Gift Cards
+      </a>
+    );
+  } else {
+    return (
+      <a href={`https://${store}.gosarpinos.com/giftcards/actions`} className="nav-link">
+        Gift Cards
+      </a>
+    );
+  }
 }
-
 export default OrderGiftCard;

@@ -1,20 +1,26 @@
 'use client';
-import { useContext, useState, useEffect } from 'react';
+import { useContext } from 'react';
 import { StoreContext } from '../context/useStoreContext';
+import { NavLocatorContext } from '../context/useNavLocatorContext';
 
 const OrderCatering = ({ url }) => {
   const { store } = useContext(StoreContext);
-  const [href, setHref] = useState('/pizza-delivery/?noStore=true');
+  const { isNavLocatorActive, setIsNavLocatorActive } = useContext(NavLocatorContext);
 
-  useEffect(() => {
-    if (store && store !== 'null') {
-      setHref(`https://${store}.gosarpinos.com/${url}`);
-    }
-  }, [store]);
 
-  return (
-    <a href={href} className="btn"><span>Order Now</span></a>
-  );
+  if (!store || store === 'null') {
+    return (
+      <button onClick={() => setIsNavLocatorActive(!isNavLocatorActive)} className="btn selectstore-btn">
+        Select Store to Order Online
+      </button>
+    );
+  } else {
+    return (
+      <a href={`https://${store}.gosarpinos.com/${url}`} className="btn selectstore-btn">
+        Order Catering from {store}
+      </a>
+    );
+  }
 }
 
 export default OrderCatering;

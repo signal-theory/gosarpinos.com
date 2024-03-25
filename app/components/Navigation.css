@@ -13,6 +13,7 @@ nav.main-navigation a:not(.primary-btn).coupon {
   font-family: var(--museo-sans);
   font-weight: normal;
   color: var(--red-color);
+  cursor: pointer;
 }
 .homepage-nav .coupon-callout {
   width: 100%;
@@ -114,6 +115,9 @@ nav.main-navigation .has-submenu > a.active::after {
 nav.main-navigation .subitem a {
   padding: 10px 15px;
 }
+nav.main-navigation .subitem a.navlocator-btn {
+  padding: 17px 15px 13px;
+}
 .navbar {
   background-color: var(--green-color);
 }
@@ -209,7 +213,7 @@ nav.main-navigation .subitem a {
 
   .navbar-dropdowns {
     position: absolute;
-    top: -40px;
+    top: -70px;
     max-width: 1300px;
     left: 50%;
     transform: translateX(-50%);
@@ -276,6 +280,11 @@ nav.main-navigation .subitem a {
   font-size: 1rem;
   margin-top: 1rem;
 }
+.subitem-title-large {
+  color: white;
+  font-size: 1.25rem;
+  margin: 1rem auto 0.5rem;
+}
 
 .navbar-dropdowns .areas-list {
   display: flex;
@@ -305,4 +314,8 @@ nav.main-navigation .subitem a {
 .navbar-dropdowns .area-button:hover {
   background: url("/location-pin-white.svg") no-repeat left 10px;
   text-shadow: 0 0 15px var(--cream-color);
+}
+
+.navbar-dropdowns ul.submenu.navlocator {
+  padding: calc(var(--navbar-padding) * 2);
 }

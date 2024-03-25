@@ -4,6 +4,7 @@ import './styles/global.css'
 import './styles/animate.css';
 import { StoreProvider } from './context/useStoreProvider';
 import { ThemeProvider } from './context/useThemeProvider';
+import { NavLocatorProvider } from './context/useNavLocatorProvider';
 import MobileOrderBtn from './components/MobileOrderBtn';
 
 
@@ -18,12 +19,14 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <StoreProvider>
-          <ThemeProvider>
-            <Navigation />
-            {children}
-          </ThemeProvider>
-          <MobileOrderBtn />
-          <Footer />
+          <NavLocatorProvider>
+            <ThemeProvider>
+              <Navigation />
+              {children}
+            </ThemeProvider>
+            <MobileOrderBtn />
+            <Footer />
+          </NavLocatorProvider>
         </StoreProvider>
       </body>
     </html>

@@ -1,7 +1,9 @@
 'use client'
 import dynamic from 'next/dynamic'
 import { useContext } from 'react';
+import { StoreContext } from '../context/useStoreContext';
 import { ThemeContext } from '../context/useThemeProvider';
+import { NavLocatorContext } from '../context/useNavLocatorContext';
 import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { useLocation } from '../context/useLocation';
@@ -15,12 +17,15 @@ import OrderBtn from './OrderBtn';
 import './Navigation.css';
 import stylesMobile from './NavigationMobile.module.css';
 
-// import SearchPanel from './SearchPanel';
+import NavLocatorPanel from './NavLocatorPanel';
 const DynamicSearchPanel = dynamic(() => import('./SearchPanel'));
 
 export default function Navigation() {
+
   const theme = useContext(ThemeContext);
   const isDay = theme === 'day';
+
+  const { store } = useContext(StoreContext);
 
   const pathname = usePathname();
   const router = useRouter();
@@ -91,6 +96,8 @@ export default function Navigation() {
   }, []);
 
   // handle desktopmenu dropdowns
+  const { isNavLocatorActive, setIsNavLocatorActive } = useContext(NavLocatorContext);
+  const navLocatorRef = useRef(null);
   const [activeMenus, setActiveMenus] = useState({});
   const myRef1 = useRef(null);
   const myRef2 = useRef(null);
@@ -141,13 +148,15 @@ export default function Navigation() {
         !myRef1.current?.contains(event.target) &&
         !myRef2.current?.contains(event.target) &&
         !myRef3.current?.contains(event.target) &&
-        !myRef4.current?.contains(event.target)
+        !myRef4.current?.contains(event.target) &&
+        !navLocatorRef.current?.contains(event.target)
       ) {
         setActiveMenus({
           About: false,
           Menu: false,
           Locations: false,
         });
+        setIsNavLocatorActive(false);
       }
     };
 
@@ -239,7 +248,7 @@ export default function Navigation() {
           </li>
         </ul>
       </div>
-      <div className={`navbar-dropdowns ${Object.values(activeMenus).some(value => value) ? 'dropdown-active' : ''} ${isDay === false ? 'night-theme' : ''}`}>
+      <div className={`navbar-dropdowns ${(Object.values(activeMenus).some(value => value) || isNavLocatorActive) ? 'dropdown-active' : ''} ${isDay === false ? 'night-theme' : ''}`}>
         {activeMenus['About'] && (
           <ul ref={myRef1} className={`item submenu about ${activeMenus['About'] ? 'active' : ''}`}>
             <li className="subitem"><Link href="/about/company" onClick={() => handleSubmenu('About')}>Company Info</Link></li>
@@ -362,6 +371,29 @@ export default function Navigation() {
                       <button className="area-button" onClick={() => handleMetroReplace(area)}>{area}</button>
                     </li>
                   ))}</ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        )}
+        {isNavLocatorActive && (
+          <ul ref={navLocatorRef} className={`item submenu navlocator ${isNavLocatorActive ? 'active' : ''}`}>
+            <li className="subitem has-submenu without-thumbs">
+              <ul>
+                <li className="subitem">
+                  <h6 className="subitem-title-large">Please choose your restaurant first:</h6>
+                </li>
+
+                <li className="subitem">
+                  <NavLocatorPanel
+                    id="autocomplete-nav"
+                    getUserLocation={getUserLocation}
+                    selectedLocation={selectedLocation}
+                    setSelectedLocation={setSelectedLocation}
+                    setSelectedStore={setSelectedStore}
+                    locations={locations}
+                    setInfoWindowOpen={setInfoWindowOpen} />
+                  {store || !store === 'null' ? <p className='white-text'>Thank you! You have chosen Sarpino&apos;s {store} as your local restaurant.</p> : ''}
                 </li>
               </ul>
             </li>

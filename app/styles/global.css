@@ -531,6 +531,28 @@ a.grayscale-outline-btn {
   border-color: var(--gray2-color);
   color: var(--gray2-color);
 }
+a.selectstore-btn,
+button.selectstore-btn {
+  display: inline-block;
+  border-radius: 0;
+  border: 0;
+  padding: 0.75em 0.5rem 0.75em 1.1rem;
+  margin: 0 1rem;
+  line-height: 1;
+  font-size: 1em;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+
+  font-family: var(--museo-slab);
+  font-weight: 700;
+  background: url("/location-pin-white.svg") no-repeat left center;
+  transition: all 0.3s ease-in-out;
+}
+a.selectstore-btn:hover,
+button.selectstore-btn:hover {
+  text-shadow: 0 0 15px var(--cream-color);
+}
 button span,
 a.btn span,
 .wp-block-button a {
