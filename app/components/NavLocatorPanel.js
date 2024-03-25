@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import styles from './SearchPanel.module.css';
+import styles from './NavLocatorPanel.module.css';
 import { StyledAutocomplete } from './SearchPanel.styles';
 import he from 'he';
 

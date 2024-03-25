@@ -97,7 +97,7 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
         observer.unobserve(currentRef);
       }
     };
-  }, [filteredPosts, fetchImages, isLoading]); // Add isLoading to the dependency array
+  }, [filteredPosts, fetchImages, isLoading, visiblePosts.length]); // Add isLoading to the dependency array
 
   useEffect(() => {
     setVisiblePosts(filteredPosts.slice(0, Math.min(6, filteredPosts.length)));

@@ -226,7 +226,8 @@ nav.main-navigation .subitem a.navlocator-btn {
     opacity: 0;
     transition: all 0.3s ease-in-out;
   }
-  .navbar-dropdowns.dropdown-active {
+  .navbar-dropdowns.dropdown-active,
+  .navbar-dropdowns.navlocator-active {
     opacity: 1;
     top: 70px;
   }
@@ -318,4 +319,19 @@ nav.main-navigation .subitem a.navlocator-btn {
 
 .navbar-dropdowns ul.submenu.navlocator {
   padding: calc(var(--navbar-padding) * 2);
+}
+
+@media all and (max-width: 1198px) {
+  .navbar-dropdowns.navlocator-active {
+    background-color: var(--green-color);
+    border-radius: 32px;
+    margin: 1rem auto 0;
+    width: var(--mobilemenu-width);
+  }
+}
+
+@media all and (max-width: 425px) {
+  nav.main-navigation .subitem a.navlocator-btn {
+    padding: 0.6rem 1rem 0.4rem;
+  }
 }

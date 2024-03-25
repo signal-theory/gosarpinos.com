@@ -165,7 +165,7 @@ export default function Navigation() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [setIsNavLocatorActive]);
 
   useEffect(() => {
     if (pathname === '/pizza-delivery') {
@@ -248,7 +248,7 @@ export default function Navigation() {
           </li>
         </ul>
       </div>
-      <div className={`navbar-dropdowns ${(Object.values(activeMenus).some(value => value) || isNavLocatorActive) ? 'dropdown-active' : ''} ${isDay === false ? 'night-theme' : ''}`}>
+      <div className={`navbar-dropdowns ${Object.values(activeMenus).some(value => value) ? 'dropdown-active' : ''} ${isNavLocatorActive ? 'navlocator-active' : ''} ${isDay === false ? 'night-theme' : ''}`}>
         {activeMenus['About'] && (
           <ul ref={myRef1} className={`item submenu about ${activeMenus['About'] ? 'active' : ''}`}>
             <li className="subitem"><Link href="/about/company" onClick={() => handleSubmenu('About')}>Company Info</Link></li>
