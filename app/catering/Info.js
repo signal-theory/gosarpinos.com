@@ -1,4 +1,4 @@
-import ContactBtn from '../components/ContactBtn';
+import OrderCatering from '../components/OrderCatering';
 import styles from './Info.module.css';
 
 const Info = ({ data }) => {
@@ -33,13 +33,15 @@ const Info = ({ data }) => {
         {headline2 && <h2 className={styles.headline} dangerouslySetInnerHTML={{ __html: headline2 || '' }} />}
         {content2 && <p className={styles.headline} dangerouslySetInnerHTML={{ __html: content2 || '' }} />}
         {servingscolumns &&
-          <div className="responsive-unlimited-equal-height-container">
+          <div className="responsive-three-column-container" style={{ margin: '3rem auto' }}>
             {servingscolumns.map((item, index) => (
-              <div key={index} className={`${styles.col}`} dangerouslySetInnerHTML={{ __html: item.column || '' }} />
+              <div key={index}>
+                <div key={index} dangerouslySetInnerHTML={{ __html: item.column || '' }} />
+                <OrderCatering url={item.catering_url} />
+              </div>
             ))}
           </div>
         }
-        <ContactBtn />
       </div>
     </>
   );
