@@ -11,6 +11,7 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
   const [filteredPosts, setFilteredPosts] = useState(posts || []);
   const [categories, setCategories] = useState([]); // New state for categories
   const [selectedCategory, setSelectedCategory] = useState('All');
+
   useEffect(() => {
     // Extract unique categories from posts
     const uniqueCategories = Array.from(new Set(posts.flatMap(post => post.acf.menu_category || [])));
@@ -22,10 +23,11 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
     }
   }, [posts]);
 
-  const fetchImages = useCallback(async (postsToProcess) => {
-    let filterPosts = postsToProcess;
+  // Fetch the first 6 images for posts
+  const fetchImages = useCallback(async (postsToProcess, numPosts) => {
+    let filterPosts = postsToProcess.slice(0, numPosts); // Only process the first 6 posts
     if (filterPostsBy === 'Vegan' || filterPostsBy === 'Gluten Free') {
-      filterPosts = postsToProcess.filter(post => post.acf.menu_category?.includes(filterPostsBy));
+      filterPosts = filterPosts.filter(post => post.acf.menu_category?.includes(filterPostsBy));
     }
     return await Promise.all(filterPosts.map(async post => {
       const mainImage = post.acf.main_image ? await fetchACFImage(post.acf.main_image).catch(e => {
@@ -41,41 +43,49 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
     }));
   }, [filterPostsBy]);
 
-
-  useEffect(() => {
-    // Extract unique categories from posts
-    const uniqueCategories = Array.from(new Set(posts.flatMap(post => post.acf.menu_category || [])));
-    setCategories(uniqueCategories.map(category => ({ name: category, id: category })));
-  }, [posts]);
-
   useEffect(() => {
     // Filter posts based on selected category
     const filtered = selectedCategory === `All`
       ? posts
       : posts.filter(post => post.acf.menu_category?.includes(selectedCategory));
 
+    // Prioritize 'Popular' posts
+    const popularPosts = filtered.filter(post => post.acf.menu_category?.includes('Popular'));
+    const otherPosts = filtered.filter(post => !post.acf.menu_category?.includes('Popular'));
+
+    // Randomize the order of popularPosts and otherPosts
+    const randomizedPopularPosts = popularPosts.sort(() => Math.random() - 0.5);
+    const randomizedOtherPosts = otherPosts.sort(() => Math.random() - 0.5);
+
     // Fetch images for filtered posts
-    fetchImages(filtered).then(posts => {
+    fetchImages([...randomizedPopularPosts, ...randomizedOtherPosts]).then(posts => {
       setFilteredPosts(posts);
     });
   }, [selectedCategory, posts, fetchImages, postTypeSlug]);
 
+  // LAZY LOADING
   // load more posts as the user scrolls
   const [visiblePosts, setVisiblePosts] = useState([]);
   const loadMoreRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const currentRef = loadMoreRef.current;
     const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        setVisiblePosts((prevPosts) => {
-          if (filteredPosts.length > prevPosts.length) {
-            const nextPosts = filteredPosts.slice(0, Math.min(prevPosts.length + 6, filteredPosts.length));
-            return nextPosts;
+      const loadMorePosts = async () => {
+        if (entries[0].isIntersecting && !isLoading) {
+          setIsLoading(true); // Set loading to true when starting to fetch images
+          if (filteredPosts.length > visiblePosts.length) {
+            const nextPosts = filteredPosts.slice(visiblePosts.length, Math.min(visiblePosts.length + 6, filteredPosts.length));
+
+            // Fetch images for the next set of posts
+            const fetchedPosts = await fetchImages(nextPosts, nextPosts.length);
+            setIsLoading(false); // Set loading to false when images have finished loading
+            setVisiblePosts(prevPosts => [...prevPosts, ...fetchedPosts]);
           }
-          return prevPosts;
-        });
-      }
+        }
+      };
+      loadMorePosts();
     }, { threshold: 1 });
 
     if (currentRef) {
@@ -87,7 +97,7 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
         observer.unobserve(currentRef);
       }
     };
-  }, [filteredPosts]);
+  }, [filteredPosts, fetchImages, isLoading]); // Add isLoading to the dependency array
 
   useEffect(() => {
     setVisiblePosts(filteredPosts.slice(0, Math.min(6, filteredPosts.length)));

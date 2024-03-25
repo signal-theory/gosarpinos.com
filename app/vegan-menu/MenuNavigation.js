@@ -35,7 +35,7 @@ export default function MenuNavigation({ mode, activeItem }) {
     { id: "sandwiches", label: "Sandwiches", handler: handleNav("sandwiches"), href: "/vegan-menu/vegan-sandwiches" },
     { id: "pastas", label: "Pastas", handler: handleNav("pastas"), href: "/vegan-menu/vegan-pastas" },
     { id: "breadsticks", label: "Breadsticks", handler: handleNav("breadsticks"), href: "/vegan-menu/vegan-breadsticks" },
-    { id: "desserts", label: "Desserts", handler: handleNav("desserts"), href: "/menu/vegan-desserts" }
+    { id: "desserts", label: "Desserts", handler: handleNav("desserts"), href: "/vegan-menu/vegan-desserts" }
   ];
 
   useEffect(() => {
