@@ -7,6 +7,7 @@ import ShareThis from '../../../components/ShareThis';
 import styles from './Single.module.css';
 import Breadcrumbs from '@/app/components/Breadcrumbs';
 
+
 export async function generateMetadata({ params }) {
   const postId = params.slug;
   const metadata = await fetchMetadataPost(postId);
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       images: metadata.ogImage ? [{ url: metadata.ogImage }] : []
     },
-    // Add other metadata properties if needed
+    jsonld: metadata.yoastMetadata.schema["@graph"]
   };
 }
 

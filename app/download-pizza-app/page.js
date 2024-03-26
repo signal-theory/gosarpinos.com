@@ -17,7 +17,7 @@ export async function generateMetadata() {
     openGraph: {
       images: metadata.ogImage ? [{ url: metadata.ogImage }] : []
     },
-    // Add other metadata properties if needed
+    jsonld: metadata.yoastMetadata.schema["@graph"]
   };
 }
 

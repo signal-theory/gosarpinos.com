@@ -18,8 +18,8 @@ export async function fetchMetadata(pageId) {
   return {
     title: yoastMetadata.title ? he.decode(yoastMetadata.title) : 'Default Title',
     description: yoastMetadata.description ? he.decode(yoastMetadata.description) : 'Default Description',
-    ogImage: ogImage
-    // You can add more fields here if needed
+    ogImage: ogImage,
+    yoastMetadata: yoastMetadata // Include the entire Yoast metadata
   };
 }
 // utils/fetchMiscMetadata
@@ -45,8 +45,8 @@ export async function fetchMiscMetadata(slug) {
   return {
     title: yoastMetadata.title ? he.decode(yoastMetadata.title) : 'Default Title',
     description: yoastMetadata.description ? he.decode(yoastMetadata.description) : 'Default Description',
-    ogImage: ogImage
-    // You can add more fields here if needed
+    ogImage: ogImage,
+    yoastMetadata: yoastMetadata // Include the entire Yoast metadata
   };
 }
 // utils/fetchMetadataPost
@@ -70,7 +70,8 @@ export async function fetchMetadataPost(postId) {
   return {
     title: yoastMetadata && yoastMetadata.title ? he.decode(yoastMetadata.title) : null,
     description: yoastMetadata && yoastMetadata.og_description ? he.decode(yoastMetadata.og_description) : null,
-    ogImage: ogImage
+    ogImage: ogImage,
+    yoastMetadata: yoastMetadata // Include the entire Yoast metadata
   };
 }
 
@@ -103,7 +104,8 @@ export async function fetchCPTMetadataBySlug(slug, cptName) {
   return {
     title: yoastMetadata && yoastMetadata.title ? he.decode(yoastMetadata.title) : null,
     description: yoastMetadata && yoastMetadata.og_description ? he.decode(yoastMetadata.og_description) : null,
-    ogImage: ogImage
+    ogImage: ogImage,
+    yoastMetadata: yoastMetadata // Include the entire Yoast metadata
   };
 }
 
