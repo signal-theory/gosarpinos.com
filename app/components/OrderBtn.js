@@ -1,5 +1,5 @@
 'use client';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { StoreContext } from '../context/useStoreContext';
 import { NavLocatorContext } from '../context/useNavLocatorContext';
 
@@ -7,7 +7,15 @@ const OrderBtn = ({ btnColor, theme, location }) => {
   const { store } = useContext(StoreContext);
   const { isNavLocatorActive, setIsNavLocatorActive } = useContext(NavLocatorContext);
 
+  const [isClient, setIsClient] = useState(false);
 
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null; // or return a loading spinner, placeholder, etc.
+  }
   if (!store || store === 'null') {
     return (
       <>
