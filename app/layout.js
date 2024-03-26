@@ -12,6 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <link rel="preconnect" href="https://p.typekit.net" crossOrigin="true" />
         <link rel="preconnect" href="https://use.typekit.net" crossOrigin="true" />
         <script defer type="text/javascript" src="https://myaskai.com/ev-embed-chat-js-min" id="QDjBguDD3wwhEnnK2bqzDHraX6Jzjf" async={true}></script>
