@@ -33,15 +33,9 @@ const ItemInfo = ({ post }) => {
     );
   });
 
-  // Add a flag outside of your map function
-  let messageDisplayed = false;
   // Map over the nutritional_info_by_size array to generate the table rows
   const sizeRows = nutritional_info_by_size.map((size, index) => {
-    if (!size.size_total_calories || !size.size_label) {
-      messageDisplayed = true;
-      console.log('messageDisplayed', messageDisplayed);
-      return null; // Skip this iteration if empty
-    }
+
     const sizeId = `size${index + 1}`;
 
     // Only render the row if it's the active size
@@ -132,14 +126,20 @@ const ItemInfo = ({ post }) => {
   });
 
   // Render the table with the size rows
-  if (messageDisplayed) {
+  // Check if all fields are blank
+  const allFieldsBlank = nutritional_info_by_size.every(size =>
+    !size.size_total_calories &&
+    !size.total_fat
+  );
+
+  if (allFieldsBlank) {
     return (
       <div className={styles.table}>
         <p>No nutritional information available for this item.</p>
       </div>
     );
   } else {
-    (
+    return (
       <div className={styles.itemInfo}>
         <div className={styles.sizes}>
           {sizeButtons}
@@ -150,6 +150,7 @@ const ItemInfo = ({ post }) => {
       </div>
     );
   }
+
 }
 
 export default ItemInfo;
