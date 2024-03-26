@@ -231,7 +231,8 @@ nav.main-navigation .subitem a.navlocator-btn {
     opacity: 1;
     top: 70px;
   }
-  .homepage-nav .navbar-dropdowns.dropdown-active {
+  .homepage-nav .navbar-dropdowns.dropdown-active,
+  .homepage-nav .navbar-dropdowns.navlocator-active {
     top: 110px;
   }
   .navbar-dropdowns::before {
@@ -284,7 +285,7 @@ nav.main-navigation .subitem a.navlocator-btn {
 .subitem-title-large {
   color: white;
   font-size: 1.25rem;
-  margin: 1rem auto 0.5rem;
+  margin: 1rem auto;
 }
 
 .navbar-dropdowns .areas-list {
