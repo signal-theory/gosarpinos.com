@@ -16,7 +16,6 @@ export async function generateMetadata({ params }) {
   const metadata = await fetchMetadata(pageId);
 
   const metadataBase = METADATABASE_API_URL;
-
   return {
     metadataBase,
     title: metadata.title,
@@ -24,6 +23,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       images: metadata.ogImage ? [{ url: metadata.ogImage }] : []
     },
+    jsonld: metadata.yoastMetadata.schema["@graph"]
   };
 }
 
