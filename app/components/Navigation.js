@@ -160,10 +160,10 @@ export default function Navigation() {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside, { passive: true });
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside, { passive: true });
     };
   }, [setIsNavLocatorActive]);
 
@@ -225,18 +225,18 @@ export default function Navigation() {
           <li className="item has-submenu">
             <a
               className={`${activeMobileMenus['About'] ? 'active' : ''}`}
-              onClick={() => handleSubmenu('About')}>About Us</a>
+              href="/about/company" onClick={(e) => { e.preventDefault(); handleSubmenu('About') }}>About Us</a>
           </li>
           <li className="item has-submenu">
             <a
               className={`${activeMobileMenus['Menu'] ? 'active' : ''}`}
-              onClick={() => handleSubmenu('Menu')}>Menu</a>
+              href="/menu/sarpinos-specialty-pizza" onClick={(e) => { e.preventDefault(); handleSubmenu('Menu') }}>Menu</a>
           </li>
           <li className="item"><Link href="/catering">Catering</Link></li>
           <li className="item has-submenu">
             <a
               className={`${activeMobileMenus['Locations'] ? 'active' : ''}`}
-              onClick={() => handleSubmenu('Locations')}>Find Locations</a>
+              href="/pizza-delivery" onClick={(e) => { e.preventDefault(); handleSubmenu('Locations') }}>Find Locations</a>
           </li>
         </ul>
         <ul className="desktoplinks">
@@ -407,14 +407,14 @@ export default function Navigation() {
             <li className={`${stylesMobile.item} has-submenu`}>
               <a
                 className={`${activeMobileMenus['About'] ? stylesMobile.active : ''}`}
-                onClick={() => handleMobileSubmenu('About')}>
+                href="/about/company" onClick={(e) => { e.preventDefault(); handleMobileSubmenu('About') }}>
                 About Us
               </a>
             </li>
             <li className={`${stylesMobile.item} has-submenu`}>
               <a
                 className={`${activeMobileMenus['Menu'] ? stylesMobile.active : ''}`}
-                onClick={() => handleMobileSubmenu('Menu')}>
+                href="/menu/sarpinos-specialty-pizza" onClick={(e) => { e.preventDefault(); handleMobileSubmenu('Menu') }}>
                 Menu
               </a>
             </li>
@@ -423,7 +423,7 @@ export default function Navigation() {
           </ul>
           <ul className={`${stylesMobile.item} ${stylesMobile.sliderSubmenu} ${activeMobileMenus['About'] ? stylesMobile.active : ''}`}>
             <li className={`subitem ${stylesMobile.closeSubmenu}`}>
-              <a onClick={() => handleMobileSubmenu('')}>
+              <a href="/about/company" onClick={(e) => { e.preventDefault(); handleMobileSubmenu('') }}>
                 About Us
               </a>
             </li>
@@ -433,7 +433,7 @@ export default function Navigation() {
           </ul>
           <ul className={`${stylesMobile.item} ${stylesMobile.sliderSubmenu} ${activeMobileMenus['Menu'] ? stylesMobile.active : ''}`}>
             <li className={`subitem ${stylesMobile.closeSubmenu}`}>
-              <a onClick={() => handleMobileSubmenu('')}>
+              <a href="/menu/sarpinos-specialty-pizza" onClick={(e) => { e.preventDefault(); handleMobileSubmenu('') }}>
                 Menu
               </a>
             </li>

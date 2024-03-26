@@ -14,8 +14,8 @@ const MobileOrderBtn = () => {
         setIsScrolled(false);
       }
     };
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll, { passive: true });
   }, [isScrolled]);
 
   return isScrolled && <OrderBtn theme="mobile" />;

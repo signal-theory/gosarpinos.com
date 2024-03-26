@@ -213,7 +213,7 @@ nav.main-navigation .subitem a.navlocator-btn {
 
   .navbar-dropdowns {
     position: absolute;
-    top: -70px;
+    top: 0px;
     max-width: 1300px;
     left: 50%;
     transform: translateX(-50%);
@@ -225,15 +225,18 @@ nav.main-navigation .subitem a.navlocator-btn {
     z-index: 0;
     opacity: 0;
     transition: all 0.3s ease-in-out;
+    pointer-events: none;
   }
   .navbar-dropdowns.dropdown-active,
   .navbar-dropdowns.navlocator-active {
     opacity: 1;
     top: 70px;
+    pointer-events: all;
   }
   .homepage-nav .navbar-dropdowns.dropdown-active,
   .homepage-nav .navbar-dropdowns.navlocator-active {
     top: 110px;
+    pointer-events: all;
   }
   .navbar-dropdowns::before {
     content: "";

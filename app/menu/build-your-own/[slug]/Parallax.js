@@ -24,10 +24,10 @@ const Parallax = () => {
     handleResize();
 
     // Add the event listener for window resize
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
 
     // Cleanup function to remove the event listener when the component unmounts
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize, { passive: true });
   }, []);
 
   return (

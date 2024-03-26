@@ -10,7 +10,7 @@ const OrderGiftCard = () => {
 
   if (!store || store === 'null') {
     return (
-      <a onClick={() => setIsNavLocatorActive(!isNavLocatorActive)} className="nav-link">
+      <a href="/pizza-delivery" onClick={(e) => { e.preventDefault(); setIsNavLocatorActive(!isNavLocatorActive); }} className="nav-link">
         Gift Cards
       </a>
     );
