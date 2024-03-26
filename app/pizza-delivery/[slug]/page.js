@@ -17,7 +17,6 @@ export async function generateMetadata({ params }) {
     openGraph: {
       images: metadata.ogImage ? [{ url: metadata.ogImage }] : []
     },
-    jsonld: metadata.yoastMetadata.schema["@graph"]
   };
 }
 
@@ -37,20 +36,8 @@ export default async function Page({ params }) {
 
   const slug = post.slug || '';
   const url = `/pizza-delivery/${slug}`;
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FoodEstablishment',
-    'acceptsReservations': 'No',
-    'serveCuisine': 'Pizza, Italian, Pasta, Salad, Calzones, Sandwiches, Wings, Desserts',
-
-  }
   return (
     <div className="cream-color">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
       <section className="hero">
         <Hero post={post} />
       </section>
