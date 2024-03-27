@@ -73,6 +73,10 @@ export default async function Page({ params }) {
 
   return (
     <div className="cream-color">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="hero">
         <Hero post={post} />
       </section>
