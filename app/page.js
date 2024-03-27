@@ -82,6 +82,20 @@ export default async function Page({ params }) {
     name: 'Sarpino\'s Pizzeria',
     image: data.yoast_head_json.og_image.url,
     description: data.yoast_head_json.description,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '200 Tri State International, Suite 550',
+      addressLocality: 'Lincolnshire',
+      addressRegion: 'IL',
+      postalCode: '60069',
+      addressCountry: 'US'
+    },
+    email: 'us@gosarpinos.com',
+    servesCuisine: "Italian",
+    currenciesAccepted: 'USD',
+    paymentAccepted: 'Cash, Credit Card',
+    priceRange: '$$',
+    logo: './sarpinos-logo.svg',
   }
 
   return (
