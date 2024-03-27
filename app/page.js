@@ -76,9 +76,21 @@ export default async function Page({ params }) {
 
   const randomImages = getRandomImages(socialImagesData);
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FoodEstablishment',
+    name: 'Sarpino\'s Pizzeria',
+    image: data.yoast_head_json.og_image.url,
+    description: data.yoast_head_json.description,
+  }
+
   return (
     <>
       <div className="nightmode-overlay">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Hero data={data} />
         <PopularItems data={data} menuItemsWithImages={menuItemsWithImages} />
         <Specials data={data} specialsData={specialsData} />
