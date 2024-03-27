@@ -23,7 +23,6 @@ export async function generateMetadata({ params }) {
     openGraph: {
       images: metadata.ogImage ? [{ url: metadata.ogImage }] : []
     },
-    jsonld: metadata.yoastMetadata.schema["@graph"]
   };
 }
 
@@ -80,7 +79,8 @@ export default async function Page({ params }) {
     '@context': 'https://schema.org',
     '@type': 'FoodEstablishment',
     name: 'Sarpino\'s Pizzeria',
-    image: data.yoast_head_json.og_image.url,
+    url: 'https://www.gosarpinos.com/',
+    image: './default-image.jpg',
     description: data.yoast_head_json.description,
     address: {
       '@type': 'PostalAddress',
@@ -90,6 +90,7 @@ export default async function Page({ params }) {
       postalCode: '60069',
       addressCountry: 'US'
     },
+    telephone: '(847) 374-6300',
     email: 'us@gosarpinos.com',
     servesCuisine: "Italian",
     currenciesAccepted: 'USD',
@@ -97,7 +98,6 @@ export default async function Page({ params }) {
     priceRange: '$$',
     logo: './sarpinos-logo.svg',
   }
-
   return (
     <>
       <div className="nightmode-overlay">

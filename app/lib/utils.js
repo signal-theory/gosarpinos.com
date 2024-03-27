@@ -13,7 +13,6 @@ export async function fetchMetadata(pageId) {
   const data = await res.json();
   const yoastMetadata = data.yoast_head_json;
   const ogImage = yoastMetadata.og_image ? yoastMetadata.og_image[0].url : null;
-
   // Return only the title and description
   return {
     title: yoastMetadata.title ? he.decode(yoastMetadata.title) : 'Default Title',
