@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Hero from './Hero';
 import StoreInfo from './StoreInfo';
 import tabStyles from '../../components/TabList.module.css';
+import moment from 'moment';
 
 const postType = 'locations';
 export async function generateMetadata({ params }) {
@@ -60,13 +61,13 @@ export default async function Page({ params }) {
     priceRange: '$$',
     logo: './location-hero-sarpinos.jpg',
     openingHours: [`
-    "Mo ${post.acf.monday_open}-${post.acf.monday_open}", 
-    "Tu ${post.acf.tuesday_open}-${post.acf.tuesday_open}", 
-    "We ${post.acf.wednesday_open}-${post.acf.wednesday_open}", 
-    "Th ${post.acf.thursday_open}-${post.acf.thursday_open}", 
-    "Fr ${post.acf.friday_open}-${post.acf.friday_open}", 
-    "Sa ${post.acf.saturday_open}-${post.acf.saturday_open}",
-    "Su ${post.acf.sunday_open}-${post.acf.sunday_open}"
+    "Mo ${moment(post.acf.monday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post.acf.monday_close, 'HH:mm:ss').format('h:mm a')}", 
+    "Tu ${moment(post.acf.tuesday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post.acf.tuesday_close, 'HH:mm:ss').format('h:mm a')}", 
+    "We ${moment(post.acf.wednesday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post.acf.wednesday_close, 'HH:mm:ss').format('h:mm a')}", 
+    "Th ${moment(post.acf.thursday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post.acf.thursday_close, 'HH:mm:ss').format('h:mm a')}", 
+    "Fr ${moment(post.acf.friday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post.acf.friday_close, 'HH:mm:ss').format('h:mm a')}", 
+    "Sa ${moment(post.acf.saturday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post.acf.saturday_close, 'HH:mm:ss').format('h:mm a')}",
+    "Su ${moment(post.acf.sunday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post.acf.sunday_close, 'HH:mm:ss').format('h:mm a')}"
     `],
     hasMenu: `https://${post.acf.name}.gosarpinos.com/ordering/menu/Popular%20Items`,
   }
