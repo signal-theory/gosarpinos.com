@@ -4,7 +4,7 @@
   background-position: center 0;
   background-size: 100% auto;
 }
-@media screen and (max-width: 1420px) {
+@media screen and (max-width: 1511px) {
   .specials {
     background-image: url("/homepage-bkg-illustrations-black.webp");
     background-size: cover;

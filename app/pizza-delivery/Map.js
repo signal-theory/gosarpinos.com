@@ -10,13 +10,14 @@ import { geocode, calculateDistance } from '../lib/geocode';
 import styles from './Map.module.css';
 import MarkerWithInfoWindow from './MarkerWithInfowindow';
 import Header from './Header';
+
 // import SearchPanel from '../components/SearchPanel';
 const DynamicSearchPanel = dynamic(() => import('../components/SearchPanel'));
 // import List from './List';
 const DynamicList = dynamic(() => import('./List'));
 import he from 'he';
 
-const MapHero = ({ posts }) => {
+const MapHero = ({ posts, data }) => {
   const { store } = useContext(StoreContext);
   const router = useRouter();
   const { selectedLocation, setSelectedLocation, userLocation, setUserLocation, locations, setLocations, getUserLocation, sortLocationsByDistance, setSelectedStore } = useLocation();
@@ -124,7 +125,7 @@ const MapHero = ({ posts }) => {
             apiKey={globalThis.NEXT_PUBLIC_GOOGLEMAPS_API_KEY ?? (process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY)}
             libraries={['places']}>
             <Map
-              mapId={'4726a23fb5e9ce49'}
+              mapId={data.acf?.map_style_id}
               zoom={mapZoom}
               // scrollwheel={false}
               center={mapCenter}

@@ -20,7 +20,7 @@ const SpecialsCard = ({ acfTitle, postTitle, category }) => {
             <h3 className={styles.code}>{postTitle}</h3>
           </div>
         </div>
-        {category.includes('Carryout Only') ? <p className="museo-slab">Carryout Only</p> : null}
+        {category.includes('Carryout Only') ? <p className="museo-slab">Online/Carryout Only</p> : null}
       </div>
     </>
   );
