@@ -97,6 +97,8 @@ export default async function Page({ params }) {
     paymentAccepted: 'Cash, Credit Card',
     priceRange: '$$',
     logo: './sarpinos-logo.svg',
+    bestRating: "5",
+    ratingExplanation: "Many 5 star reviews have been captured with the ReviewTracker app",
   }
   return (
     <>
