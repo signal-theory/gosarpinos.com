@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import moment from 'moment';
 import OrderBtn from '@/app/components/OrderBtn';
+import OrderLink from '@/app/components/OrderLink';
 
 
 const StoreInfo = ({ post }) => {
@@ -81,7 +82,7 @@ const StoreInfo = ({ post }) => {
       <div className={styles.content}>
         <h5>You can get hot, fresh food delivered to your door in three easy steps:</h5>
         <ol className={styles.list}>
-          <li>Browse {post.acf.city} Sarpino&apos;s online menu and pick what you like from our selection of pizzas, pastas, sandwiches, and more.</li>
+          <li>Browse {post.acf.city} Sarpino&apos;s <OrderLink label="online menu" /> and pick what you like from our selection of pizzas, pastas, sandwiches, and more.</li>
           <li>Order online using our secure website. There is no minimum order requirement for free delivery.</li>
           <li>We will deliver your food fast and free right to your door.</li>
         </ol>

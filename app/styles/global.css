@@ -285,9 +285,13 @@ p a {
   text-decoration: underline;
   font-weight: inherit;
 }
+button.text-link,
 a.text-link {
   text-decoration: underline;
   color: var(--red-color);
+  appearance: none;
+  border: 0;
+  background: transparent;
 }
 a.nav-link {
   text-decoration: none;

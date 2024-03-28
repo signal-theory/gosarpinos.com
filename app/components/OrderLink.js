@@ -3,7 +3,7 @@ import { useContext, useState, useEffect } from 'react';
 import { StoreContext } from '../context/useStoreContext';
 import { NavLocatorContext } from '../context/useNavLocatorContext';
 
-const SignupBtn = () => {
+const OrderLink = ({ label }) => {
   const { store } = useContext(StoreContext);
   const { isNavLocatorActive, setIsNavLocatorActive } = useContext(NavLocatorContext);
 
@@ -17,15 +17,18 @@ const SignupBtn = () => {
     return null; // or return a loading spinner, placeholder, etc.
   }
 
-
   if (!store || store === 'null') {
     return (
-      <button onClick={() => setIsNavLocatorActive(!isNavLocatorActive)} className="btn secondary-btn" > <span>Sign Up</span></button>
+      <button onClick={() => setIsNavLocatorActive(!isNavLocatorActive)} className='text-link'>
+        {label}
+      </button>
     );
   } else {
     return (
-      <a href={`https://${store}.gosarpinos.com/ordering/register?target=loyalty`} className="btn secondary-btn"><span>Sign Up</span></a>
+      <a href={`https://${store}.gosarpinos.com/ordering/intro`} className='text-link'>
+        {label}
+      </a>
     );
   }
 }
-export default SignupBtn;
+export default OrderLink;
