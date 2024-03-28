@@ -1,6 +1,3 @@
-.container {
-  margin: calc(1rem + 3vw) 0;
-}
 .animation {
   position: relative;
   width: 100%;
@@ -9,7 +6,7 @@
 }
 @media screen and (min-width: 632px) {
   .animation {
-    min-height: 400px;
+    min-height: 500px;
     height: 100%;
   }
 }
