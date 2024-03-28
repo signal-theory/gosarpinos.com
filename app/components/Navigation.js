@@ -223,20 +223,20 @@ export default function Navigation() {
         </button>
         <ul className="desktopmenu">
           <li className="item has-submenu">
-            <a
+            <Link
               className={`${activeMobileMenus['About'] ? 'active' : ''}`}
-              href="/about/company" onClick={(e) => { e.preventDefault(); handleSubmenu('About') }}>About Us</a>
+              href="/about/company" onClick={(e) => { e.preventDefault(); handleSubmenu('About') }}>About Us</Link>
           </li>
           <li className="item has-submenu">
-            <a
+            <Link
               className={`${activeMobileMenus['Menu'] ? 'active' : ''}`}
-              href="/menu/sarpinos-specialty-pizza" onClick={(e) => { e.preventDefault(); handleSubmenu('Menu') }}>Menu</a>
+              href="/menu/sarpinos-specialty-pizza" onClick={(e) => { e.preventDefault(); handleSubmenu('Menu') }}>Menu</Link>
           </li>
           <li className="item"><Link href="/catering">Catering</Link></li>
           <li className="item has-submenu">
-            <a
+            <Link
               className={`${activeMobileMenus['Locations'] ? 'active' : ''}`}
-              href="/pizza-delivery" onClick={(e) => { e.preventDefault(); handleSubmenu('Locations') }}>Find Locations</a>
+              href="/pizza-delivery" onClick={(e) => { e.preventDefault(); handleSubmenu('Locations') }}>Find Locations</Link>
           </li>
         </ul>
         <ul className="desktoplinks">
@@ -401,31 +401,31 @@ export default function Navigation() {
         )}
       </div>
       <ul className={`${stylesMobile.dropdown} ${toggleMenu ? stylesMobile.active : ''} ${isDay === false ? stylesMobile.nightTheme : ''}`}>
-        <li className={`${stylesMobile.item} button heart`}><a href="/loyalty-program" onClick={handleMobile}>Loyalty Sign-In</a></li>
+        <li className={`${stylesMobile.item} button heart`}><Link href="/loyalty-program" onClick={handleMobile}>Loyalty Sign-In</Link></li>
         <li className={stylesMobile.sliderItems}>
           <ul className={`${stylesMobile.slider} ${(activeMobileMenus['About'] || activeMobileMenus['Menu']) ? stylesMobile.active : ''}`}>
             <li className={`${stylesMobile.item} has-submenu`}>
-              <a
+              <Link
                 className={`${activeMobileMenus['About'] ? stylesMobile.active : ''}`}
                 href="/about/company" onClick={(e) => { e.preventDefault(); handleMobileSubmenu('About') }}>
                 About Us
-              </a>
+              </Link>
             </li>
             <li className={`${stylesMobile.item} has-submenu`}>
-              <a
+              <Link
                 className={`${activeMobileMenus['Menu'] ? stylesMobile.active : ''}`}
                 href="/menu/sarpinos-specialty-pizza" onClick={(e) => { e.preventDefault(); handleMobileSubmenu('Menu') }}>
                 Menu
-              </a>
+              </Link>
             </li>
             <li className={`${stylesMobile.item}`}><Link href="/catering" onClick={handleMobile}>Catering</Link></li>
             <li className={`${stylesMobile.item}`}><Link href="/pizza-delivery" onClick={handleMobile}>Find Locations</Link></li>
           </ul>
           <ul className={`${stylesMobile.item} ${stylesMobile.sliderSubmenu} ${activeMobileMenus['About'] ? stylesMobile.active : ''}`}>
             <li className={`subitem ${stylesMobile.closeSubmenu}`}>
-              <a href="/about/company" onClick={(e) => { e.preventDefault(); handleMobileSubmenu('') }}>
+              <Link href="/about/company" onClick={(e) => { e.preventDefault(); handleMobileSubmenu('') }}>
                 About Us
-              </a>
+              </Link>
             </li>
             <li className="subitem"><Link href="/about/company" onClick={handleMobile}>Company Info</Link></li>
             <li className="subitem"><Link href="/about/why-sarpinos" onClick={handleMobile}>Why Sarpino&apos;s?</Link></li>
@@ -433,9 +433,9 @@ export default function Navigation() {
           </ul>
           <ul className={`${stylesMobile.item} ${stylesMobile.sliderSubmenu} ${activeMobileMenus['Menu'] ? stylesMobile.active : ''}`}>
             <li className={`subitem ${stylesMobile.closeSubmenu}`}>
-              <a href="/menu/sarpinos-specialty-pizza" onClick={(e) => { e.preventDefault(); handleMobileSubmenu('') }}>
+              <Link href="/menu/sarpinos-specialty-pizza" onClick={(e) => { e.preventDefault(); handleMobileSubmenu('') }}>
                 Menu
-              </a>
+              </Link>
             </li>
             <li className="subitem"><Link href="/menu/sarpinos-specialty-pizza" onClick={handleMobile}>Full Menu</Link></li>
             <li className="subitem"><Link href="/menu/create-your-own" onClick={handleMobile}>Create Your Own</Link></li>

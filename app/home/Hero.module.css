@@ -9,9 +9,12 @@
 .heroContainer {
   width: 100%;
   max-width: 1400px;
+  min-height: 750px;
   padding: 0;
   margin: 0 auto;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 .pizzaShadow {
   position: absolute;
@@ -42,10 +45,11 @@
   position: relative;
   text-align: center;
   margin: 0 auto;
-  padding: 370px 2rem 5rem;
+  padding: 470px 2rem 3rem;
   color: white;
 }
 .homepageHero h1 {
+  margin-bottom: 1.5rem;
   opacity: 0;
   animation: slideUpIn 0.5s ease-in-out forwards;
 }
@@ -76,25 +80,26 @@
     left: 5vw;
     transform: translate(0, 0);
   }
+  .heroContainer {
+    min-height: 650px;
+  }
   .content {
-    padding: 100px 0 0;
-    width: 49%;
+    padding: 0;
     max-width: 400px;
     margin: 0;
-    left: 48%;
+    left: 45%;
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1124px) {
   .pizzaAnimation {
     width: 500px;
     height: 500px;
   }
-
   .content {
-    width: 49%;
-    margin: 0;
-    left: 52%;
+    max-width: 550px;
+    padding: 100px 0 0;
+    left: 48%;
   }
   .homepageHero p {
     display: block;
@@ -105,7 +110,7 @@
 
 @media screen and (min-width: 1315px) {
   .homepageHero {
-    height: calc(850px + 2vw);
+    height: calc(800px + 2vw);
   }
   .pizzaAnimation {
     width: 650px;
@@ -116,8 +121,7 @@
   }
   .content {
     padding: 175px 0 0;
-    left: 50%;
-    transform: translate(40%, 0);
+    transform: translate(20%, 0);
   }
 }
 

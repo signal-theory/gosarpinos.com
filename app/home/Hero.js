@@ -33,12 +33,12 @@ const Hero = ({ data }) => {
           </div>
           <div className={styles.content}>
             {isDay ?
-              <div dangerouslySetInnerHTML={{ __html: data?.content.rendered || '' }} style={{ margin: '6rem 0 2rem' }} />
+              <div dangerouslySetInnerHTML={{ __html: data?.content.rendered || '' }} />
               :
-              <div dangerouslySetInnerHTML={{ __html: data?.acf?.hero_nighttime_content || '' }} style={{ margin: '6rem 0 2rem' }} />
+              <div dangerouslySetInnerHTML={{ __html: data?.acf?.hero_nighttime_content || '' }} />
             }
 
-            <div className="btn-slide">
+            <div className="btn-slide" style={{ paddingTop: '1rem' }}>
               <OrderBtn btnColor={`${isDay ? 'dark' : ''}`} />
             </div>
           </div>
