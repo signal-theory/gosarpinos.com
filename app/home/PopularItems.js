@@ -4,7 +4,7 @@ import styles from './PopularItems.module.css'
 
 const PopularItems = ({ data, menuItemsWithImages }) => {
   return (
-    <section className="viewport">
+    <section className="viewport" style={{ padding: 0 }}>
       <div className="page-container cream-color text-align-center">
         <h2 style={{ paddingTop: '2rem' }}>{data.acf.popular_items_headline}</h2>
         <div className="responsive-three-column-container">
