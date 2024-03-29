@@ -36,7 +36,7 @@ const Timeline = ({ data }) => {
   return (
     <section className={`viewport`}>
       <div className={`full-page-container ${styles.container}`}>
-        <div className="responsive-column-container">
+        <div className="responsive-twothirds-column-container">
           {timeline && <div className={`${styles.content}`}>
             <div className={styles.innerHeroText}>
               {timeline.map((item, index) => (
@@ -67,10 +67,10 @@ const Timeline = ({ data }) => {
             <div className={`rellax9 ${styles.rellaxDiv}`} data-rellax-speed="-1">
               <Image src={'/pepperoni-3.webp'} width={300} height={300} className={styles.pepperoni3} alt="pepperoni" />
             </div>
-            <div className={`rellax10 ${styles.rellaxDiv}`} data-rellax-speed="-2">
+            <div className={`rellax10 ${styles.rellaxDiv}`} data-rellax-speed="-3">
               <Image src={'/pepperoni-4.webp'} width={300} height={300} className={styles.pepperoni4} alt="pepperoni" />
             </div>
-            <div className={`rellax11 ${styles.rellaxDiv}`} data-rellax-speed="-3">
+            <div className={`rellax11 ${styles.rellaxDiv}`} data-rellax-speed="-4">
               <Image src={'/pepperoni-5.webp'} width={300} height={300} className={styles.pepperoni5} alt="pepperoni" />
             </div>
             <div className={`rellax12 ${styles.rellaxDiv}`} data-rellax-speed="-2">

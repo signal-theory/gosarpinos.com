@@ -125,7 +125,7 @@ nav.main-navigation .subitem a.navlocator-btn {
   background-color: var(--lightgreen-color);
 }
 /* mobilemenu */
-@media all and (max-width: 1200px) {
+@media all and (max-width: 1210px) {
   .navbar {
     display: flex;
     justify-content: space-between;
@@ -155,7 +155,7 @@ nav.main-navigation .subitem a.navlocator-btn {
   }
 }
 /*  desktopmenu */
-@media all and (min-width: 1200px) {
+@media all and (min-width: 1210px) {
   .navbar,
   .navbar-dropdowns {
     position: relative;

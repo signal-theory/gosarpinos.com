@@ -97,7 +97,7 @@ ul.sliderSubmenu li {
   transform: rotate(180deg);
 }
 
-@media all and (min-width: 1200px) {
+@media all and (min-width: 1210px) {
   .dropdown {
     display: none;
   }

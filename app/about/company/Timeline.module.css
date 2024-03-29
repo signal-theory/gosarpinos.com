@@ -16,9 +16,9 @@
   position: absolute;
   width: 125%;
   padding-top: 80%;
-  top: 21%;
+  top: 16%;
   right: -45%;
-  background: rgba(2, 2, 2, 0.5);
+  background: rgba(2, 2, 2, 0.3);
   border-radius: 100%;
   filter: blur(19px);
 }
@@ -32,38 +32,38 @@
   height: auto;
 }
 .pepperoni1 {
-  top: 20%;
+  top: 30%;
   left: -6.5%;
-  width: 23%;
+  width: 20%;
   height: auto;
 }
 
 .pepperoni2 {
-  top: 0;
+  top: 5%;
   left: 45%;
   width: 17%;
   height: auto;
 }
 .pepperoni3 {
-  top: -7%;
+  top: -2%;
   left: 21%;
-  width: 14%;
+  width: 12%;
   height: auto;
 }
 .pepperoni4 {
-  top: -19%;
+  top: -11%;
   left: 44%;
   width: 20%;
   height: auto;
 }
 .pepperoni5 {
-  top: 10%;
+  top: 14%;
   left: 57%;
   width: 22%;
   height: auto;
 }
 .pepperoni6 {
-  top: -3%;
+  top: 3%;
   left: -61%;
   width: 21%;
   height: auto;
@@ -89,40 +89,40 @@
     transform: translateY(-90%);
     top: 0;
     left: -6.5%;
-    width: 23%;
+    width: 21%;
     height: auto;
   }
 
   .pepperoni2 {
-    transform: translateY(-102%);
+    transform: translateY(-106%);
     top: 0;
     left: 25%;
     width: 17%;
     height: auto;
   }
   .pepperoni3 {
-    transform: translateY(-70%);
+    transform: translateY(-78%);
     top: 0;
     left: 43%;
-    width: 14%;
+    width: 13%;
     height: auto;
   }
   .pepperoni4 {
-    transform: translateY(-296%);
+    transform: translateY(-406%);
     top: 0;
     left: 44%;
     width: 20%;
     height: auto;
   }
   .pepperoni5 {
-    transform: translateY(-142%);
+    transform: translateY(-350%);
     top: 0;
     left: 64.5%;
     width: 22%;
     height: auto;
   }
   .pepperoni6 {
-    transform: translateY(-93%);
+    transform: translateY(-88%);
     top: 0;
     left: -4%;
     width: 21%;
@@ -132,7 +132,6 @@
 .content {
   box-sizing: border-box;
   padding: 0 2rem 2rem;
-  max-width: calc(500px + 4rem);
   margin: 0 0 0 auto;
 }
 .timeline {
@@ -140,7 +139,7 @@
 }
 .timeline h4 {
   margin: 0;
-  padding: 2rem calc(3vw + 0.5rem) 0 0;
+  padding: 2rem 2rem 0 0;
   font-size: clamp(1.1rem, 1.5vw, 1rem);
 }
 .timelineYear {
@@ -150,7 +149,7 @@
 }
 @media screen and (min-width: 1024px) {
   .timelineYear {
-    flex: 0 0 100px;
+    flex: 0 0 calc(3vw + 100px);
   }
 }
 .timelineInfo {
