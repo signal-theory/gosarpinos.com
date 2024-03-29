@@ -72,7 +72,7 @@
 
 @media screen and (min-width: 767px) {
   .homepageHero {
-    height: calc(650px + 2vw);
+    height: calc(620px + 2vw);
   }
   .pizzaAnimation {
     width: 400px;
@@ -92,6 +92,9 @@
 }
 
 @media screen and (min-width: 1124px) {
+  .homepageHero {
+    height: calc(720px + 2vw);
+  }
   .pizzaAnimation {
     width: 500px;
     height: 500px;
@@ -110,7 +113,7 @@
 
 @media screen and (min-width: 1315px) {
   .homepageHero {
-    height: calc(800px + 2vw);
+    height: calc(825px + 2vw);
   }
   .pizzaAnimation {
     width: 650px;

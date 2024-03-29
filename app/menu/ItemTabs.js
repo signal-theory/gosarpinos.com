@@ -1,9 +1,9 @@
 'use client';
-import {useState} from 'react';
-import TabList from "../components/TabList";
-import TabContent from "../components/TabContent";
+import { useState } from 'react';
+import TabList from "@/app/components/TabList";
+import TabContent from "@/app/components/TabContent";
 
-const ItemTabs = ({bkgVariant, tab1, tab2, content}) => {
+const ItemTabs = ({ bkgVariant, tab1, tab2, content }) => {
 
   const [activeTab, setActiveTab] = useState("tab1");
   //  Functions to handle Tab Switching
@@ -29,8 +29,8 @@ const ItemTabs = ({bkgVariant, tab1, tab2, content}) => {
         activeTab={activeTab}
         tabs={tabs} />
       <TabContent
-       activeTab={activeTab} 
-       content={content} />
+        activeTab={activeTab}
+        content={content} />
     </div>
   );
 }

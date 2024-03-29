@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { ThemeContext } from '../context/useThemeProvider';
 
 import Link from 'next/link';
-import SpecialsCarousel from '../components/SpecialsCarousel';
+import SpecialsCarousel from '@/app/components/SpecialsCarousel';
 import styles from './Specials.module.css';
 const Specials = ({ data, specialsData }) => {
   const theme = useContext(ThemeContext);

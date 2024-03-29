@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Hero.module.css';
-import styles2 from '../components/Footer.module.css';
+import styles2 from '@/app/components/Footer.module.css';
 
 const Hero = ({ data, mainImage }) => {
 

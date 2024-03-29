@@ -2,7 +2,7 @@ import { METADATABASE_API_URL } from '../lib/constants';
 import { fetchMetadata, fetchPageData, fetchACFImage } from '../lib/utils'; // Adjust the path as necessary
 import Hero from './Hero';
 import Earn from './Earn';
-import CalloutLoyalty from '../components/CalloutLoyalty';
+import CalloutLoyalty from '@/app/components/CalloutLoyalty';
 import Breadcrumbs from '@/app/components/Breadcrumbs';
 
 const pageId = 111;

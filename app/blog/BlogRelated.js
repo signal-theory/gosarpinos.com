@@ -10,8 +10,8 @@ const BlogRelated = ({ relatedPosts }) => {
           <h3>Related Posts</h3>
           <div className="responsive-equal-height-container">
             {relatedPosts.slice(0, 3).map((relatedPost, index) => (
-              <Link key={index} href={`/about/blog/${relatedPost.slug}`} style={{display: 'flex'}}>
-                <BlogCard 
+              <Link key={index} href={`/blog/${relatedPost.slug}`} style={{ display: 'flex' }}>
+                <BlogCard
                   post={relatedPost}
                   featuredImage={relatedPost._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'} />
               </Link>

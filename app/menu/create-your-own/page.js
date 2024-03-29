@@ -3,8 +3,8 @@ import { fetchMetadata, fetchPageData, fetchCPTData, fetchACFImage } from '../..
 import MenuNavigation from '../MenuNavigation';
 import MenuHeader from '../MenuHeader';
 import MenuContent from '../MenuContent';
-import CalloutMenu from '../../components/CalloutMenu';
-import CalloutMobileApp from '../../components/CalloutMobileApp';
+import CalloutMenu from '@/app/components/CalloutMenu';
+import CalloutMobileApp from '@/app/components/CalloutMobileApp';
 
 const pageId = 91;
 const postType = ['build-your-own'];

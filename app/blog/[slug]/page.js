@@ -1,9 +1,8 @@
-// app/about/blog/[slug]/page.js
-import { METADATABASE_API_URL } from '../../../lib/constants';
-import { fetchMetadataPost, fetchPostBySlug, getCategoryNamesByIds, fetchRelatedPosts } from '../../../lib/utils';
+import { METADATABASE_API_URL } from '../../lib/constants';
+import { fetchMetadataPost, fetchPostBySlug, getCategoryNamesByIds, fetchRelatedPosts } from '../../lib/utils';
 import Image from 'next/image';
 import BlogRelated from '../BlogRelated';
-import ShareThis from '../../../components/ShareThis';
+import ShareThis from '@/app/components/ShareThis';
 import styles from './Single.module.css';
 import Breadcrumbs from '@/app/components/Breadcrumbs';
 

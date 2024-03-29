@@ -4,7 +4,7 @@ import Hero from './Hero';
 import How from './How';
 import Form from './Form';
 import Info from './Info';
-import CalloutCatering from '../components/CalloutCatering';
+import CalloutCatering from '@/app/components/CalloutCatering';
 import WhySarpinos from './WhySarpinos';
 import FAQs from './FAQs';
 import Breadcrumbs from '@/app/components/Breadcrumbs';

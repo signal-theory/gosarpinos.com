@@ -8,7 +8,7 @@ const CalloutWhy = ({ containerClasses, gridClasses }) => {
   return (
     <div className={containerClasses}>
       <div className="responsive-three-column-container" style={{ margin: '3rem 0 0', gridGap: '1.5rem' }}>
-        <Link href="/about/blog/fast-and-free-pizza-delivery-is-sarpinos-specialty" className={`grid-item ${gridClasses && gridClasses || ''}`} style={{ borderRadius: '10px' }}>
+        <Link href="/blog/fast-and-free-pizza-delivery-is-sarpinos-specialty" className={`grid-item ${gridClasses && gridClasses || ''}`} style={{ borderRadius: '10px' }}>
           <div className={styles.hoverCar}>
             <div style={{ padding: '2rem 1rem 1rem' }}>
               <Car />
@@ -16,13 +16,13 @@ const CalloutWhy = ({ containerClasses, gridClasses }) => {
           </div>
           <h2 className='slide-up-in' style={{ padding: '1.5rem 0' }}>Free <br />Delivery</h2>
         </Link>
-        <Link href="/about/blog/sarpinos-is-open-for-late-night-delivery" className={`grid-item ${gridClasses && gridClasses || ''}`} style={{ borderRadius: '10px' }}>
+        <Link href="/blog/sarpinos-is-open-for-late-night-delivery" className={`grid-item ${gridClasses && gridClasses || ''}`} style={{ borderRadius: '10px' }}>
           <div className={styles.hoverMoon} style={{ padding: '2rem 1rem 1rem' }}>
             <Moon />
           </div>
           <h2 className='slide-up-in' style={{ padding: '1.5rem 0' }}>Open <br />Late</h2>
         </Link>
-        <Link href="/about/blog/sarpinos-is-open-every-day-365-days" className={`grid-item ${gridClasses && gridClasses || ''}`} style={{ borderRadius: '10px' }}>
+        <Link href="/blog/sarpinos-is-open-every-day-365-days" className={`grid-item ${gridClasses && gridClasses || ''}`} style={{ borderRadius: '10px' }}>
           <div className={styles.hoverCalendar} style={{ padding: '2rem 1rem 1rem' }}>
             <Calendar />
           </div>
@@ -30,7 +30,7 @@ const CalloutWhy = ({ containerClasses, gridClasses }) => {
         </Link>
       </div>
 
-      <Link href="/about/company" className={gridClasses === "red-gradient" ? "hidden" : gridClasses === "night-theme" ? "btn quaternary-btn" : gridClasses === "static-theme" ? "btn quaternary-btn" : "btn primary-btn"} style={{ margin: '2rem 0' }}><span>About Us</span></Link>
+      <Link href="/company" className={gridClasses === "red-gradient" ? "hidden" : gridClasses === "night-theme" ? "btn quaternary-btn" : gridClasses === "static-theme" ? "btn quaternary-btn" : "btn primary-btn"} style={{ margin: '2rem 0' }}><span>About Us</span></Link>
     </div>
   )
 }

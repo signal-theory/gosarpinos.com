@@ -3,7 +3,7 @@ import { fetchCPTMetadataBySlug, fetchCPTBySlug } from '../../../lib/utils'; // 
 import Link from 'next/link';
 import Hero from '../Hero';
 import DeliveryArea from '../DeliveryArea';
-import tabStyles from '../../../components/TabList.module.css';
+import tabStyles from '@/app/components/TabList.module.css';
 
 const postType = 'locations';
 export async function generateMetadata({ params }) {

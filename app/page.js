@@ -77,28 +77,43 @@ export default async function Page({ params }) {
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'FoodEstablishment',
-    name: 'Sarpino\'s Pizzeria',
-    url: 'https://www.gosarpinos.com/',
-    image: './default-image.jpg',
-    description: data.yoast_head_json.description,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: '200 Tri State International, Suite 550',
-      addressLocality: 'Lincolnshire',
-      addressRegion: 'IL',
-      postalCode: '60069',
-      addressCountry: 'US'
-    },
-    telephone: '(847) 374-6300',
-    email: 'us@gosarpinos.com',
-    servesCuisine: "Italian",
-    currenciesAccepted: 'USD',
-    paymentAccepted: 'Cash, Credit Card',
-    priceRange: '$$',
-    logo: './sarpinos-logo.svg',
-    bestRating: "5",
-    ratingExplanation: "Many 5 star reviews have been captured with the ReviewTracker app",
+    "@graph": [
+      {
+        '@type': 'FoodEstablishment',
+        name: 'Sarpino\'s Pizzeria',
+        url: 'https://www.gosarpinos.com/',
+        image: './default-image.jpg',
+        description: data.yoast_head_json.description,
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '200 Tri State International, Suite 550',
+          addressLocality: 'Lincolnshire',
+          addressRegion: 'IL',
+          postalCode: '60069',
+          addressCountry: 'US'
+        },
+        telephone: '(847) 374-6300',
+        email: 'us@gosarpinos.com',
+        servesCuisine: "Italian",
+        currenciesAccepted: 'USD',
+        paymentAccepted: 'Cash, Credit Card',
+        priceRange: '$$',
+        logo: './sarpinos-logo.svg',
+        bestRating: "5",
+        ratingExplanation: "Many 5 star reviews have been captured with the ReviewTracker app",
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Gourmet Pizza Open Late Near You | Sarpino\'s Pizzeria",
+            "item": "https://gosarpinos.com/"
+          }
+        ]
+      }
+    ],
   }
   return (
     <>

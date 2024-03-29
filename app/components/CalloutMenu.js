@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '../components/CalloutMenu.module.css';
+import styles from './CalloutMenu.module.css';
 
 const MenuCallout = () => {
   return (

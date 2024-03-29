@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { ThemeContext } from '../context/useThemeProvider';
 
 import Image from 'next/image';
-import OrderBtn from '../components/OrderBtn';
+import OrderBtn from '@/app/components/OrderBtn';
 import styles from './Hero.module.css';
 const Hero = ({ data }) => {
   const theme = useContext(ThemeContext);

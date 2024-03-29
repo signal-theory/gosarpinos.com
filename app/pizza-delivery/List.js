@@ -3,7 +3,6 @@ import { useContext, useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { StoreContext } from '../context/useStoreContext';
 import styles from './List.module.css';
 import Link from 'next/link';
-import OrderBtn from '../components/OrderBtn';
 import { checkOpenStatus } from '../lib/checkOpenStatus';
 import he from 'he';
 

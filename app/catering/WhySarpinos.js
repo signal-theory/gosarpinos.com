@@ -1,6 +1,6 @@
 
 
-import CalloutWhy from '../components/CalloutWhy';
+import CalloutWhy from '@/app/components/CalloutWhy';
 const WhySarpinos = () => {
 
   return (

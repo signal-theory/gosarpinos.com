@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import he from 'he';
 import styles from './Hero.module.css';
-import OrderBtn from '../../components/OrderBtn';
+import OrderBtn from '@/app/components/OrderBtn';
 import Link from 'next/link';
 import { checkOpenStatus } from '../../lib/checkOpenStatus';
 

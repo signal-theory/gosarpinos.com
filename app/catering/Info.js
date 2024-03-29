@@ -1,4 +1,4 @@
-import OrderCatering from '../components/OrderCatering';
+import OrderCatering from '@/app/components/OrderCatering';
 import styles from './Info.module.css';
 
 const Info = ({ data }) => {

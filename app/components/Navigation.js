@@ -225,7 +225,7 @@ export default function Navigation() {
           <li className="item has-submenu">
             <Link
               className={`${activeMobileMenus['About'] ? 'active' : ''}`}
-              href="/about/company" onClick={(e) => { e.preventDefault(); handleSubmenu('About') }}>About Us</Link>
+              href="/company" onClick={(e) => { e.preventDefault(); handleSubmenu('About') }}>About Us</Link>
           </li>
           <li className="item has-submenu">
             <Link
@@ -251,9 +251,9 @@ export default function Navigation() {
       <div className={`navbar-dropdowns ${Object.values(activeMenus).some(value => value) ? 'dropdown-active' : ''} ${isNavLocatorActive ? 'navlocator-active' : ''} ${isDay === false ? 'night-theme' : ''}`}>
         {activeMenus['About'] && (
           <ul ref={myRef1} className={`item submenu about ${activeMenus['About'] ? 'active' : ''}`}>
-            <li className="subitem"><Link href="/about/company" onClick={() => handleSubmenu('About')}>Company Info</Link></li>
-            <li className="subitem"><Link href="/about/why-sarpinos" onClick={() => handleSubmenu('About')}>Why Sarpino&apos;s?</Link></li>
-            <li className="subitem"><Link href="/about/blog" onClick={() => handleSubmenu('About')}>Sarpino&apos;s Blog</Link></li>
+            <li className="subitem"><Link href="/company" onClick={() => handleSubmenu('About')}>Company Info</Link></li>
+            <li className="subitem"><Link href="/why-sarpinos" onClick={() => handleSubmenu('About')}>Why Sarpino&apos;s?</Link></li>
+            <li className="subitem"><Link href="/blog" onClick={() => handleSubmenu('About')}>Sarpino&apos;s Blog</Link></li>
           </ul>
         )}
         {activeMenus['Menu'] && (
@@ -407,7 +407,7 @@ export default function Navigation() {
             <li className={`${stylesMobile.item} has-submenu`}>
               <Link
                 className={`${activeMobileMenus['About'] ? stylesMobile.active : ''}`}
-                href="/about/company" onClick={(e) => { e.preventDefault(); handleMobileSubmenu('About') }}>
+                href="/company" onClick={(e) => { e.preventDefault(); handleMobileSubmenu('About') }}>
                 About Us
               </Link>
             </li>
@@ -423,13 +423,13 @@ export default function Navigation() {
           </ul>
           <ul className={`${stylesMobile.item} ${stylesMobile.sliderSubmenu} ${activeMobileMenus['About'] ? stylesMobile.active : ''}`}>
             <li className={`subitem ${stylesMobile.closeSubmenu}`}>
-              <Link href="/about/company" onClick={(e) => { e.preventDefault(); handleMobileSubmenu('') }}>
+              <Link href="/company" onClick={(e) => { e.preventDefault(); handleMobileSubmenu('') }}>
                 About Us
               </Link>
             </li>
-            <li className="subitem"><Link href="/about/company" onClick={handleMobile}>Company Info</Link></li>
-            <li className="subitem"><Link href="/about/why-sarpinos" onClick={handleMobile}>Why Sarpino&apos;s?</Link></li>
-            <li className="subitem"><Link href="/about/blog" onClick={handleMobile}>Sarpino&apos;s Blog</Link></li>
+            <li className="subitem"><Link href="/company" onClick={handleMobile}>Company Info</Link></li>
+            <li className="subitem"><Link href="/why-sarpinos" onClick={handleMobile}>Why Sarpino&apos;s?</Link></li>
+            <li className="subitem"><Link href="/blog" onClick={handleMobile}>Sarpino&apos;s Blog</Link></li>
           </ul>
           <ul className={`${stylesMobile.item} ${stylesMobile.sliderSubmenu} ${activeMobileMenus['Menu'] ? stylesMobile.active : ''}`}>
             <li className={`subitem ${stylesMobile.closeSubmenu}`}>

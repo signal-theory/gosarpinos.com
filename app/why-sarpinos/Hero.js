@@ -1,4 +1,4 @@
-import CalloutWhy from '../../components/CalloutWhy'
+import CalloutWhy from '@/app/components/CalloutWhy'
 
 const Hero = ({ data, heroImage }) => {
   return (

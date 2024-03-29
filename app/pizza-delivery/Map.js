@@ -11,8 +11,7 @@ import styles from './Map.module.css';
 import MarkerWithInfoWindow from './MarkerWithInfowindow';
 import Header from './Header';
 
-// import SearchPanel from '../components/SearchPanel';
-const DynamicSearchPanel = dynamic(() => import('../components/SearchPanel'));
+const DynamicSearchPanel = dynamic(() => import('@/app/components/SearchPanel'));
 // import List from './List';
 const DynamicList = dynamic(() => import('./List'));
 import he from 'he';

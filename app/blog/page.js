@@ -1,6 +1,6 @@
 // about.blog.page.js
-import { METADATABASE_API_URL } from '../../lib/constants';
-import { fetchMetadata, fetchPageData, fetchPostData } from '../../lib/utils'; // Adjust the path as necessary
+import { METADATABASE_API_URL } from '../lib/constants';
+import { fetchMetadata, fetchPageData, fetchPostData } from '../lib/utils'; // Adjust the path as necessary
 import Link from 'next/link';
 import BlogFeatured from './BlogFeatured';
 import BlogContent from './BlogContent';
@@ -53,7 +53,7 @@ export default async function Page({ params }) {
             </div>
             {/* Render the featured post */}
             {featuredPost && (
-              <Link href={`/about/blog/${featuredPost.slug}`}>
+              <Link href={`/blog/${featuredPost.slug}`}>
                 <BlogFeatured
                   post={featuredPost}
                   featuredImage={featuredPost._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg'}

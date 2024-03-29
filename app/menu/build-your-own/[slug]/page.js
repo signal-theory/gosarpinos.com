@@ -8,7 +8,7 @@ import ItemTabs from '../../ItemTabs';
 import BYOContent1 from './BYOContent1';
 import BYOContent2 from './BYOContent2';
 import Parallax from './Parallax';
-import OrderBtn from '../../../components/OrderBtn';
+import OrderBtn from '@/app/components/OrderBtn';
 import Link from 'next/link';
 
 const postType = 'build-your-own';

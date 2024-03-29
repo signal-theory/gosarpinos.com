@@ -1,11 +1,11 @@
-import Footer from './components/Footer'
-import Navigation from './components/Navigation'
+import Footer from '@/app/components/Footer'
+import Navigation from '@/app/components/Navigation'
 import './styles/global.css'
 import './styles/animate.css';
 import { StoreProvider } from './context/useStoreProvider';
 import { ThemeProvider } from './context/useThemeProvider';
 import { NavLocatorProvider } from './context/useNavLocatorProvider';
-import MobileOrderBtn from './components/MobileOrderBtn';
+import MobileOrderBtn from '@/app/components/MobileOrderBtn';
 
 
 export default function RootLayout({ children }) {

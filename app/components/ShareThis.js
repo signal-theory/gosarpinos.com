@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from 'next/image';
-import styles from '../components/Footer.module.css'
+import styles from './Footer.module.css'
 
 const ShareThis = ({ headline, post }) => {
   return (

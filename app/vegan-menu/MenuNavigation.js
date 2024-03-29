@@ -7,7 +7,7 @@ import { ThemeContext } from '../context/useThemeProvider';
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../menu/MenuNavigation.module.css'
-import Breadcrumbs from '../components/Breadcrumbs'
+import Breadcrumbs from '@/app/components/Breadcrumbs'
 
 export default function MenuNavigation({ mode, activeItem }) {
   const theme = useContext(ThemeContext);

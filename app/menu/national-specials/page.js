@@ -3,8 +3,8 @@ import { METADATABASE_API_URL } from '../../lib/constants';
 import { fetchMetadata, fetchPageData, fetchCPTData } from '../../lib/utils';
 import MenuNavigation from '../MenuNavigation';
 import SpecialsContainer from './SpecialsContainer';
-import CalloutMenu from '../../components/CalloutMenu';
-import CalloutMobileApp from '../../components/CalloutMobileApp';
+import CalloutMenu from '@/app/components/CalloutMenu';
+import CalloutMobileApp from '@/app/components/CalloutMobileApp';
 
 const pageId = 88;
 const postType = ['specials'];

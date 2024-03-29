@@ -1,6 +1,6 @@
 import styles from './Hero.module.css'
 import Image from 'next/image';
-import ContactBtn from '../components/ContactBtn';
+import ContactBtn from '@/app/components/ContactBtn';
 const Hero = ({ featuredImage, featuredImageAlt, data }) => {
   return (
     <>

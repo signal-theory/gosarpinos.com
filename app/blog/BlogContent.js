@@ -1,10 +1,9 @@
-// about/blog/BlogContent.js
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import BlogCard from './BlogCard';
-import SortCategories from '../../components/SortCategories';
-import { fetchCategories } from '../../lib/utils';
+import SortCategories from '@/app/components/SortCategories';
+import { fetchCategories } from '../lib/utils';
 
 
 const BlogContent = ({ initialPosts }) => {
@@ -24,19 +23,19 @@ const BlogContent = ({ initialPosts }) => {
   }, []);
 
   useEffect(() => {
-  // Find the category object that matches the selectedCategory name
-  const selectedCategoryObject = categories.find(cat => cat.name === selectedCategory);
+    // Find the category object that matches the selectedCategory name
+    const selectedCategoryObject = categories.find(cat => cat.name === selectedCategory);
 
-  // Use the ID of the found category, or null if 'All' or not found
-  const categoryId = selectedCategoryObject ? selectedCategoryObject.id : null;
+    // Use the ID of the found category, or null if 'All' or not found
+    const categoryId = selectedCategoryObject ? selectedCategoryObject.id : null;
 
-  if (selectedCategory === 'All' || !categoryId) {
-    setFilteredPosts(initialPosts);
-  } else {
-    const filtered = initialPosts.filter(post => post.categories.includes(categoryId));
-    setFilteredPosts(filtered);
-  }
-}, [selectedCategory, initialPosts, categories]);
+    if (selectedCategory === 'All' || !categoryId) {
+      setFilteredPosts(initialPosts);
+    } else {
+      const filtered = initialPosts.filter(post => post.categories.includes(categoryId));
+      setFilteredPosts(filtered);
+    }
+  }, [selectedCategory, initialPosts, categories]);
 
 
   return (
@@ -52,10 +51,10 @@ const BlogContent = ({ initialPosts }) => {
         {filteredPosts.map((post, index) => {
           const featuredImageUrl = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/default-image.jpg';
 
-          return(
-            <Link key={index} href={`/about/blog/${post.slug}`}
-              style={{display: 'flex'}}>
-              <BlogCard 
+          return (
+            <Link key={index} href={`/blog/${post.slug}`}
+              style={{ display: 'flex' }}>
+              <BlogCard
                 post={post}
                 featuredImage={featuredImageUrl} />
             </Link>

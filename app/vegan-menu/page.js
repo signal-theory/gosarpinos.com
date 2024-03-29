@@ -4,8 +4,8 @@ import { fetchMetadata, fetchPageData, fetchCPTData, fetchACFImage } from '../li
 import MenuNavigation from './MenuNavigation';
 import MenuHeader from '../menu/MenuHeader';
 import PostContent from '../menu/PostContent';
-import CalloutMenu from '../components/CalloutMenu';
-import CalloutMobileApp from '../components/CalloutMobileApp';
+import CalloutMenu from '@/app/components/CalloutMenu';
+import CalloutMobileApp from '@/app/components/CalloutMobileApp';
 
 const pageId = 316;
 const postType = ['pizza'];

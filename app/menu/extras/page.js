@@ -4,8 +4,8 @@ import { fetchMetadata, fetchPageData, fetchCPTData, fetchACFImage } from '../..
 import MenuNavigation from '../MenuNavigation';
 import MenuHeader from '../MenuHeader';
 import MenuContent from '../MenuContent';
-import CalloutMenu from '../../components/CalloutMenu';
-import CalloutMobileApp from '../../components/CalloutMobileApp';
+import CalloutMenu from '@/app/components/CalloutMenu';
+import CalloutMobileApp from '@/app/components/CalloutMobileApp';
 
 const pageId = 425;
 const postType = ['extras'];
@@ -32,8 +32,12 @@ export default async function Page() {
   try {
     data = await fetchPageData(pageId);
     posts = await fetchCPTData(postType);
-    heroImage = await fetchACFImage(data.acf.hero_image);
-
+    try {
+      heroImage = await fetchACFImage(data.acf.hero_image);
+    } catch (error) {
+      console.error("Error fetching hero image:", data.acf.hero_image);
+      throw error;
+    }
   } catch (error) {
     console.error("Error in Page component:", error);
   }

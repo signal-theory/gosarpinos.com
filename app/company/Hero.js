@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import OrderBtn from '../../components/OrderBtn';
+import OrderBtn from '@/app/components/OrderBtn';
 import styles from './Hero.module.css';
 
 import { useEffect } from 'react';

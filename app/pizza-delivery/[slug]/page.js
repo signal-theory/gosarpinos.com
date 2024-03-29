@@ -3,7 +3,7 @@ import { fetchCPTMetadataBySlug, fetchCPTBySlug } from '../../lib/utils'; // Adj
 import Link from 'next/link';
 import Hero from './Hero';
 import StoreInfo from './StoreInfo';
-import tabStyles from '../../components/TabList.module.css';
+import tabStyles from '@/app/components/TabList.module.css';
 import moment from 'moment';
 
 const postType = 'locations';

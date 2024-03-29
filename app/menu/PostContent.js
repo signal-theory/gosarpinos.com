@@ -1,4 +1,3 @@
-// about/menu/PostContent.js
 'use client';
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import MenuCard from './MenuCard';

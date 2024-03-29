@@ -1,9 +1,9 @@
 import { METADATABASE_API_URL } from '../lib/constants';
 import { fetchMetadata, fetchPageData, fetchACFImage } from '../lib/utils'; // Adjust the path as necessary
-import Hero from './company/Hero';
-import Ingredients from './company/Ingredients';
-import Timeline from './company/Timeline';
-import Franchise from './company/Franchise';
+import Hero from './Hero';
+import Ingredients from './Ingredients';
+import Timeline from './Timeline';
+import Franchise from './Franchise';
 import Breadcrumbs from '@/app/components/Breadcrumbs';
 
 const pageId = 49;
@@ -30,12 +30,15 @@ export default async function Page({ params }) {
 
   try {
     data = await fetchPageData(pageId);
-    franchiseImage = data.acf && data.acf.franchise_image ? await fetchACFImage(data.acf.franchise_image) : '/default-menu-image.svg';
-
     if (data.acf && data.acf.franchise_image) {
-      franchiseImage = await fetchACFImage(data.acf.franchise_image);
+      try {
+        franchiseImage = await fetchACFImage(data.acf.franchise_image);
+      } catch (error) {
+        console.error("Error fetching franchise image:", data.acf.franchise_image);
+        throw error;
+      }
     } else {
-      franchiseImage = '/default-menu-image.svg'; // Set fallback image here
+      franchiseImage = '/franchise-exterior.jpg'; // Set fallback image here
     }
   } catch (error) {
     console.error("Error in Page component:", error);

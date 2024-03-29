@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import OrderBtn from '../components/OrderBtn';
+import OrderBtn from '@/app/components/OrderBtn';
 import styles from './MenuCard.module.css';
 import he from 'he';
 

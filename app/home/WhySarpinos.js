@@ -2,7 +2,7 @@
 import { useContext } from 'react';
 import { ThemeContext } from '../context/useThemeProvider';
 
-import CalloutWhy from '../components/CalloutWhy';
+import CalloutWhy from '@/app/components/CalloutWhy';
 const WhySarpinos = () => {
   const theme = useContext(ThemeContext);
   const isDay = theme === 'day';
