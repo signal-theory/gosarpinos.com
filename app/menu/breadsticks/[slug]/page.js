@@ -65,9 +65,23 @@ export default async function Page({ params }) {
         "url": `https://www.gosarpinos.com/menu/${post.slug}`,
         "name": "Sarpino\'s Pizzeria",
         "description": "Sarpino's is your go-to for authentic Italian flavor and free delivery on gourmet pizzas, open late into the night when, and where, you need it most.",
-        "servesCuisine": [
-          "Italian",
-        ],
+        "address": {
+          '@type': 'PostalAddress',
+          "streetAddress": '200 Tri State International, Suite 550',
+          "addressLocality": 'Lincolnshire',
+          "addressRegion": 'IL',
+          "postalCode": '60069',
+          "addressCountry": 'US'
+        },
+        "telephone": '(847) 374-6300',
+        "email": 'us@gosarpinos.com',
+        "servesCuisine": "Italian",
+        "currenciesAccepted": 'USD',
+        "paymentAccepted": 'Cash, Credit Card',
+        "priceRange": '$$',
+        "logo": './sarpinos-logo.svg',
+        "bestRating": "5",
+        "ratingExplanation": "Many 5 star reviews have been captured with the ReviewTracker app",
         "hasMenu": {
           "@type": "Menu",
           "hasMenuSection": {
