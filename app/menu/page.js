@@ -25,8 +25,7 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Page() {
-
+export default async function Page({ params }) {
 
   let data;
   let posts;
@@ -34,14 +33,52 @@ export default async function Page() {
   try {
     data = await fetchPageData(pageId);
     posts = await fetchCPTData(postType);
-    heroImage = await fetchACFImage(data.acf.hero_image);
-
+    try {
+      heroImage = await fetchACFImage(data.acf.hero_image);
+    } catch (error) {
+      console.error("Error fetching hero image:", data.acf.hero_image);
+      throw error;
+    }
   } catch (error) {
     console.error("Error in Page component:", error);
   }
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    "@graph": [
+      {
+        '@type': 'Menu',
+        "name": `Full Menu | Sarpino\'s Pizzeria`,
+        "url": 'https://www.gosarpinos.com/menu/sarpinos-specialty-pizza',
+        "image": heroImage?.sourceUrl,
+        "description": data.yoast_head_json.description || data.excerpt.rendered,
+        "servesCuisine": "Italian",
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Gourmet Pizza Open Late Near You | Sarpino\'s Pizzeria",
+            "item": "https://gosarpinos.com/"
+          },
 
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": `${data.yoast_head_json.title} | Sarpino\'s Pizzeria`,
+            "item": `https://www.gosarpinos.com/menu/${data.slug}`
+          }
+        ]
+      }
+    ],
+  }
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <MenuNavigation
         mode="light"
         activeItem="pizza" />

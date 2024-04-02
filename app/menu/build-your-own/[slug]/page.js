@@ -36,7 +36,7 @@ export default async function Page({ params }) {
 
   try {
 
-    data = await fetchPageData(1332);
+    data = await fetchPageData(91);
     post = await fetchCPTBySlug(params.slug, postType);
 
     data = { ...data };
@@ -52,9 +52,64 @@ export default async function Page({ params }) {
     // Add more content as needed
   ];
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    "@graph": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "url": `https://www.gosarpinos.com/menu/${post.slug}`,
+        "name": "Sarpino\'s Pizzeria",
+        "description": "Sarpino's is your go-to for authentic Italian flavor and free delivery on gourmet pizzas, open late into the night when, and where, you need it most.",
+        "servesCuisine": [
+          "Italian",
+        ],
+        "hasMenu": {
+          "@type": "Menu",
+          "hasMenuSection": {
+            "@type": "MenuSection",
+            "name": "Build Your Own",
+            "description": "When you know what you want, you need to create it your way.",
+            "hasMenuItem": {
+              "@type": "MenuItem",
+              "name": post.title.rendered,
+              "description": post.excerpt.rendered,
+            }
+          },
+          "inLanguage": "English"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Gourmet Pizza Open Late Near You | Sarpino\'s Pizzeria",
+            "item": "https://gosarpinos.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": `Create Your Own | Sarpino\'s Pizzeria`,
+            "item": `https://www.gosarpinos.com/menu/${postType}`
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": `${post.title.rendered} | Sarpino\'s Pizzeria`,
+            "item": `https://www.gosarpinos.com/menu/${postType}/${post.slug}`
+          }
+        ]
+      }
+    ],
+  }
   return (
     <>
-
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="cream-color">
         <MenuNavigation
           mode="dark"

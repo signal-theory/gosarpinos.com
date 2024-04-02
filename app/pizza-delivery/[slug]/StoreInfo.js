@@ -2,6 +2,7 @@ import styles from './StoreInfo.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import moment from 'moment';
+import he from 'he';
 import OrderBtn from '@/app/components/OrderBtn';
 import OrderLink from '@/app/components/OrderLink';
 
@@ -73,7 +74,7 @@ const StoreInfo = ({ post }) => {
       </div>
       <div className={styles.content}>
         <h5>Wondering about our delivery area?</h5>
-        <p>Food and Pizza Delivery to the {post.acf.name} area at no additional cost! Want to know if your zip code, hotel or other location is in our delivery area? See the  <Link href={url + '/deliveryarea'}>Delivery Area section</Link> for more specific details.</p>
+        <p>Food and Pizza Delivery to the {post.acf.name} area at no additional cost! Want to know if your zip code, hotel or other location is in our delivery area? See the <Link href={url + '/delivery-area'}>Delivery Area section</Link> for more specific details.</p>
       </div>
       <div className={styles.content}>
         <h5>Have a craving after hours?</h5>
@@ -82,7 +83,7 @@ const StoreInfo = ({ post }) => {
       <div className={styles.content}>
         <h5>You can get hot, fresh food delivered to your door in three easy steps:</h5>
         <ol className={styles.list}>
-          <li>Browse {post.acf.city} Sarpino&apos;s <OrderLink label="online menu" /> and pick what you like from our selection of pizzas, pastas, sandwiches, and more.</li>
+          <li>Browse {he.decode(post.title.rendered)} <OrderLink label="online menu" /> and pick what you like from our selection of pizzas, pastas, sandwiches, and more.</li>
           <li>Order online using our secure website. There is no minimum order requirement for free delivery.</li>
           <li>We will deliver your food fast and free right to your door.</li>
         </ol>

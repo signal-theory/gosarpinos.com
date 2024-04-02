@@ -1,8 +1,8 @@
-import { METADATABASE_API_URL } from '../../lib/constants';
-import { fetchCPTMetadataBySlug, fetchCPTBySlug } from '../../lib/utils'; // Adjust the path as necessary
+import { METADATABASE_API_URL } from '../../../lib/constants';
+import { fetchCPTMetadataBySlug, fetchCPTBySlug } from '../../../lib/utils'; // Adjust the path as necessary
 import Link from 'next/link';
-import Hero from './Hero';
-import StoreInfo from './StoreInfo';
+import Hero from '../Hero';
+import DeliveryArea from '../DeliveryArea';
 import tabStyles from '@/app/components/TabList.module.css';
 import moment from 'moment';
 
@@ -11,8 +11,10 @@ export async function generateMetadata({ params }) {
   const postId = params.slug;
   const metadata = await fetchCPTMetadataBySlug(postId, postType);
 
+  const metadataBase = METADATABASE_API_URL;
+
   return {
-    metadataBase: METADATABASE_API_URL,
+    metadataBase,
     title: metadata.title,
     description: metadata.description,
     openGraph: {
@@ -35,6 +37,7 @@ export default async function Page({ params }) {
     console.error("Error fetching post data:", error);
     // Handle the error appropriately
   }
+
   const slug = post.slug || '';
   const url = `/pizza-delivery/${slug}`;
 
@@ -84,17 +87,17 @@ export default async function Page({ params }) {
       <section className="viewport">
         <div className="page-container">
           <ul className={`${tabStyles.tabList} ${tabStyles.locationTabs}`}>
-            <li className={`${tabStyles.tabItem} ${tabStyles.active}`}>
+            <li className={`${tabStyles.tabItem}`}>
               <Link href={url}>Store Info</Link>
             </li>
             <li className={`${tabStyles.tabItem}`}>
               <Link href={url + '/feedback'}>Feedback</Link>
             </li>
-            <li className={`${tabStyles.tabItem}`}>
+            <li className={`${tabStyles.tabItem} ${tabStyles.active}`}>
               <Link href={url + '/delivery-area'}>Delivery Area</Link>
             </li>
           </ul>
-          <StoreInfo post={post} />
+          <DeliveryArea post={post} />
         </div>
       </section>
     </div>

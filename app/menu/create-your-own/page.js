@@ -24,7 +24,7 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Page() {
+export default async function Page({ params }) {
   let data;
   let posts;
   let heroImage;
@@ -37,8 +37,52 @@ export default async function Page() {
     console.error("Error in Page component:", error);
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    "@graph": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "url": `https://www.gosarpinos.com`,
+        "name": "Sarpino\'s Pizzeria",
+        "description": "Sarpino's is your go-to for authentic Italian flavor and free delivery on gourmet pizzas, open late into the night when, and where, you need it most.",
+        "servesCuisine": [
+          "Italian",
+        ],
+      },
+      {
+        '@type': 'Menu',
+        "name": `Build Your Own | Sarpino\'s Pizzeria`,
+        "url": `https://www.gosarpinos.com/menu/${data.slug}`,
+        "image": heroImage?.sourceUrl || '/default-menu-image.svg',
+        "description": data.yoast_head_json.description || data.excerpt.rendered,
+        "servesCuisine": "Italian",
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Gourmet Pizza Open Late Near You | Sarpino\'s Pizzeria",
+            "item": "https://gosarpinos.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": `Build Your Own | Sarpino\'s Pizzeria`,
+            "item": `https://www.gosarpinos.com/menu/${postType}`
+          }
+        ]
+      }
+    ],
+  }
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <MenuNavigation
         mode="light"
         activeItem="build-your-own" />

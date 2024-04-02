@@ -2,25 +2,14 @@
   margin: 2rem 0;
   padding-bottom: 2rem;
 }
-
-/* .rellaxDiv {
+.rellaxDiv {
   display: none;
-} */
+}
 
 .animation {
   position: relative;
   min-height: 400px;
   height: 90vw;
-}
-.shadow {
-  position: absolute;
-  width: 125%;
-  padding-top: 80%;
-  top: 16%;
-  right: -45%;
-  background: rgba(2, 2, 2, 0.3);
-  border-radius: 100%;
-  filter: blur(19px);
 }
 .animation img {
   position: absolute;
@@ -30,6 +19,7 @@
   top: 0;
   right: 0;
   height: auto;
+  max-width: 540px;
 }
 .pepperoni1 {
   top: 30%;
@@ -78,6 +68,38 @@
     top: 0;
     right: 0;
     height: auto;
+  }
+}
+.content {
+  box-sizing: border-box;
+  padding: 0 2rem 2rem;
+  margin: 0 0 0 auto;
+}
+.timeline {
+  display: flex;
+}
+.timeline h4 {
+  margin: 0;
+  padding: 2rem 2rem 0 0;
+  font-size: clamp(1.1rem, 1.5vw, 1rem);
+}
+.timelineYear {
+  flex: 0 0 70px;
+  text-align: right;
+  padding-right: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .shadow {
+    position: absolute;
+    width: 150%;
+    padding-top: 80%;
+    top: 10%;
+    right: -55%;
+    background: rgba(2, 2, 2, 0.3);
+    border-radius: 100%;
+    filter: blur(19px);
+    max-width: 750px;
   }
   .rellaxDiv {
     position: relative;
@@ -129,27 +151,17 @@
     height: auto;
   }
 }
-.content {
-  box-sizing: border-box;
-  padding: 0 2rem 2rem;
-  margin: 0 0 0 auto;
-}
-.timeline {
-  display: flex;
-}
-.timeline h4 {
-  margin: 0;
-  padding: 2rem 2rem 0 0;
-  font-size: clamp(1.1rem, 1.5vw, 1rem);
-}
-.timelineYear {
-  flex: 0 0 70px;
-  text-align: right;
-  padding-right: 2rem;
-}
+
 @media screen and (min-width: 1024px) {
   .timelineYear {
     flex: 0 0 calc(3vw + 100px);
+  }
+  .pizzaImg {
+    max-width: none;
+  }
+  .shadow {
+    top: 15%;
+    max-width: none;
   }
 }
 .timelineInfo {
