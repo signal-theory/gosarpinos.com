@@ -32,12 +32,10 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
     return await Promise.all(filterPosts.map(async post => {
       const mainImage = post.acf.main_image ? await fetchACFImage(post.acf.main_image).catch(e => {
         console.error(`Error fetching main image: ${e}`);
-        console.log(`Post ID: ${post.id}, Image ID: ${post.acf.main_image}`); // Log the post ID and image ID
         return null;
       }) : null;
       const hoverImage = post.acf.hover_image ? await fetchACFImage(post.acf.hover_image).catch(e => {
         console.error(`Error fetching hover image: ${e}`);
-        console.log(`Post ID: ${post.id}, Image ID: ${post.acf.hover_image}`); // Log the post ID and image ID
         return null;
       }) : null;
 
@@ -59,9 +57,15 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
     const randomizedPopularPosts = popularPosts.sort(() => Math.random() - 0.5);
     const randomizedOtherPosts = otherPosts.sort(() => Math.random() - 0.5);
 
-    // Fetch images for filtered posts
-    fetchImages([...randomizedPopularPosts, ...randomizedOtherPosts]).then(posts => {
-      setFilteredPosts(posts);
+    // Combine the posts
+    const combinedPosts = [...randomizedPopularPosts, ...randomizedOtherPosts];
+
+    // Set filteredPosts to combinedPosts
+    setFilteredPosts(combinedPosts);
+
+    // Fetch images for the first 6 posts
+    fetchImages(combinedPosts.slice(0, 6)).then(posts => {
+      setVisiblePosts(posts);
     });
   }, [selectedCategory, posts, fetchImages, postTypeSlug]);
 
