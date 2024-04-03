@@ -32,10 +32,12 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
     return await Promise.all(filterPosts.map(async post => {
       const mainImage = post.acf.main_image ? await fetchACFImage(post.acf.main_image).catch(e => {
         console.error(`Error fetching main image: ${e}`);
+        console.log(`Post ID: ${post.id}, Image ID: ${post.acf.main_image}`); // Log the post ID and image ID
         return null;
       }) : null;
       const hoverImage = post.acf.hover_image ? await fetchACFImage(post.acf.hover_image).catch(e => {
         console.error(`Error fetching hover image: ${e}`);
+        console.log(`Post ID: ${post.id}, Image ID: ${post.acf.hover_image}`); // Log the post ID and image ID
         return null;
       }) : null;
 

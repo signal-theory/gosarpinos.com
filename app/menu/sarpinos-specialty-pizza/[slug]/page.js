@@ -25,7 +25,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       images: metadata.ogImage ? [{ url: metadata.ogImage }] : []
     },
-    jsonld: metadata.yoastMetadata.schema["@graph"]
+    jsonld: metadata.yoastMetadata?.schema?.["@graph"]
   };
 }
 
@@ -86,12 +86,12 @@ export default async function Page({ params }) {
           "hasMenuSection": {
             "@type": "MenuSection",
             "name": "Specialty Pizza",
-            "description": post?.acf.caption || post?.excerpt?.rendered || '',
-            "image": mainImage.sourceUrl || '/default-menu-image.svg',
+            "description": post?.acf?.caption || post?.excerpt?.rendered || '',
+            "image": mainImage ? mainImage.sourceUrl : '/default-menu-image.svg',
             "hasMenuItem": {
               "@type": "MenuItem",
-              "name": post.title.rendered,
-              "description": post?.acf.caption || post?.excerpt?.rendered || '',
+              "name": post?.title?.rendered,
+              "description": post?.acf?.caption || post?.excerpt?.rendered || '',
               "mainEntityOfPage": `https://www.gosarpinos.com/menu/${postType}`,
               "nutrition": {
                 "@type": "NutritionInformation",

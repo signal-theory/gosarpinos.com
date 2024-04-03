@@ -21,7 +21,7 @@ export async function generateMetadata() {
     openGraph: {
       images: metadata.ogImage ? [{ url: metadata.ogImage }] : []
     },
-    jsonld: metadata.yoastMetadata.schema["@graph"]
+    jsonld: metadata.yoastMetadata?.schema?.["@graph"]
   };
 }
 
@@ -51,7 +51,7 @@ export default async function Page() {
         "@context": "https://schema.org",
         "@type": "Restaurant",
         "url": `https://www.gosarpinos.com/menu/sarpinos-specialty-pizza`,
-        "image": heroImage?.sourceUrl || '/default-menu-image.svg',
+        "image": heroImage ? heroImage.sourceUrl : '/default-menu-image.svg',
         "name": "Sarpino\'s Pizzeria",
         "description": "Sarpino's is your go-to for authentic Italian flavor and free delivery on gourmet pizzas, open late into the night when, and where, you need it most.",
         "address": {
@@ -77,7 +77,7 @@ export default async function Page() {
             "@type": "MenuSection",
             "name": "Specialty Pizzas",
             "description": data.excerpt.rendered || '',
-            "image": heroImage?.sourceUrl || '/default-menu-image.svg'
+            "image": heroImage ? heroImage.sourceUrl : '/default-menu-image.svg'
           },
           "inLanguage": "English"
         }
@@ -114,7 +114,7 @@ export default async function Page() {
       <section className="viewport innermenu">
         <div className="page-container cream-color">
           <MenuHeader
-            featuredImage={heroImage?.sourceUrl || '/default-menu-image.svg'}
+            featuredImage={heroImage ? heroImage.sourceUrl : '/default-menu-image.svg'}
             featuredImageAlt={heroImage?.altText || 'fresh pizza'}
             pageTitle={data.title.rendered}
             pageContent={data.content.rendered}

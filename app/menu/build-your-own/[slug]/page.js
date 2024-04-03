@@ -25,7 +25,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       images: metadata.ogImage ? [{ url: metadata.ogImage }] : []
     },
-    jsonld: metadata.yoastMetadata.schema["@graph"]
+    jsonld: metadata.yoastMetadata?.schema?.["@graph"]
   };
 }
 
@@ -87,7 +87,7 @@ export default async function Page({ params }) {
             "description": "When you know what you want, you need to create it your way.",
             "hasMenuItem": {
               "@type": "MenuItem",
-              "name": post.title.rendered,
+              "name": post?.title?.rendered,
               "description": post.excerpt.rendered,
             }
           },

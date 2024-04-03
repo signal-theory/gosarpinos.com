@@ -25,7 +25,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       images: metadata.ogImage ? [{ url: metadata.ogImage }] : []
     },
-    jsonld: metadata.yoastMetadata.schema["@graph"]
+    jsonld: metadata.yoastMetadata?.schema?.["@graph"]
   };
 }
 
@@ -62,7 +62,7 @@ export default async function Page({ params }) {
         "@type": "Restaurant",
         "url": `https://www.gosarpinos.com/menu/${post.slug}`,
         "name": "Sarpino\'s Pizzeria",
-        "image": mainImage?.sourceUrl || '/default-menu-image.svg',
+        "image": mainImage ? mainImage.sourceUrl : '/default-menu-image.svg',
         "description": "Sarpino's is your go-to for authentic Italian flavor and free delivery on gourmet pizzas, open late into the night when, and where, you need it most.",
         "address": {
           '@type': 'PostalAddress',
@@ -86,12 +86,12 @@ export default async function Page({ params }) {
           "hasMenuSection": {
             "@type": "MenuSection",
             "name": postType,
-            "description": post?.acf.caption || post?.excerpt?.rendered || '',
-            "image": mainImage.sourceUrl || '/default-menu-image.svg',
+            "description": post?.acf?.caption || post?.excerpt?.rendered || '',
+            "image": mainImage ? mainImage.sourceUrl : '/default-menu-image.svg',
             "hasMenuItem": {
               "@type": "MenuItem",
-              "name": post.title.rendered,
-              "description": post?.acf.caption || post?.excerpt?.rendered || '',
+              "name": post?.title?.rendered,
+              "description": post?.acf?.caption || post?.excerpt?.rendered || '',
               "mainEntityOfPage": `https://www.gosarpinos.com/menu/${postType}`,
               "nutrition": {
                 "@type": "NutritionInformation",
