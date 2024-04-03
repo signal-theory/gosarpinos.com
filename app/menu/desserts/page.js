@@ -45,12 +45,39 @@ export default async function Page() {
     '@context': 'https://schema.org',
     "@graph": [
       {
-        '@type': 'Menu',
-        "name": `Order ${data.title.rendered} from Sarpino\'s Pizzeria`,
-        "url": `https://www.gosarpinos.com/menu/${data.slug}`,
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "url": `https://www.gosarpinos.com/menu/${postType}`,
         "image": heroImage?.sourceUrl || '/default-menu-image.svg',
-        "description": data.yoast_head_json.description || data.excerpt.rendered,
+        "name": "Sarpino\'s Pizzeria",
+        "description": "Sarpino's is your go-to for authentic Italian flavor and free delivery on gourmet pizzas, open late into the night when, and where, you need it most.",
+        "address": {
+          '@type': 'PostalAddress',
+          "streetAddress": '200 Tri State International, Suite 550',
+          "addressLocality": 'Lincolnshire',
+          "addressRegion": 'IL',
+          "postalCode": '60069',
+          "addressCountry": 'US'
+        },
+        "telephone": '(847) 374-6300',
+        "email": 'us@gosarpinos.com',
         "servesCuisine": "Italian",
+        "currenciesAccepted": 'USD',
+        "paymentAccepted": 'Cash, Credit Card',
+        "priceRange": '$$',
+        "logo": './sarpinos-logo.svg',
+        "bestRating": "5",
+        "ratingExplanation": "Many 5 star reviews have been captured with the ReviewTracker app",
+        "hasMenu": {
+          "@type": "Menu",
+          "hasMenuSection": {
+            "@type": "MenuSection",
+            "name": "Desserts",
+            "description": data.excerpt.rendered || '',
+            "image": heroImage?.sourceUrl || '/default-menu-image.svg'
+          },
+          "inLanguage": "English"
+        }
       },
       {
         "@type": "BreadcrumbList",

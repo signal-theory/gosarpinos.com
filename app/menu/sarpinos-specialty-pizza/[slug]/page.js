@@ -123,13 +123,13 @@ export default async function Page({ params }) {
             "@type": "ListItem",
             "position": 2,
             "name": `Specialty Pizza | Sarpino\'s Pizzeria`,
-            "item": `https://www.gosarpinos.com/menu/${postType}`
+            "item": `https://www.gosarpinos.com/menu/sarpinos-specialty-pizza`
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": `${post.title.rendered} | Sarpino\'s Pizzeria`,
-            "item": `https://www.gosarpinos.com/menu/${postType}/${post.slug}`
+            "item": `https://www.gosarpinos.com/menu/sarpinos-specialty-pizza/${post.slug}`
           }
         ]
       }

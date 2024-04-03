@@ -49,6 +49,7 @@ export default async function Page() {
         "@context": "https://schema.org",
         "@type": "Restaurant",
         "url": `https://www.gosarpinos.com/menu/${postType}`,
+        "image": heroImage?.sourceUrl || '/default-menu-image.svg',
         "name": "Sarpino\'s Pizzeria",
         "description": "Sarpino's is your go-to for authentic Italian flavor and free delivery on gourmet pizzas, open late into the night when, and where, you need it most.",
         "address": {
