@@ -29,10 +29,10 @@ const InstagramFeed = ({ feed }) => {
       </div>
       <section className={`viewport text-align-center ${isDay === false ? 'red-color' : 'lightgreen-color'}`} style={{ paddingTop: 0 }}>
         <div className="page-container text-align-center">
-          <h2 style={{ padding: '3rem 0 0' }}>Sarpino&apos;s On Social</h2>
+          <h2 style={{ padding: '1rem 0 0' }}>Sarpino&apos;s On Social</h2>
           <p style={{ maxWidth: '347px', margin: '0 auto' }}>Pizza pics, cheesy captions and saucy posts. Follow us on Instagram and Facebook.</p>
 
-          <div className={styles.socialFeed} style={{ margin: '3rem 0 6rem' }}>
+          <div className={styles.socialFeed} style={{ margin: '3rem 0 4rem' }}>
             {randomImages.map((item, index) => {
               return (
                 <Link href="https://www.instagram.com/sarpinos_pizzeria/"

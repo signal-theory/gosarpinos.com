@@ -14,7 +14,10 @@
 .content {
   padding: 0 2rem;
   margin: 0 auto;
+}
+.content p {
   max-width: 540px;
+  margin: 0 auto;
 }
 /* carousel */
 .wrapper {

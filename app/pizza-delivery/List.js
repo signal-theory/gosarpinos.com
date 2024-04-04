@@ -74,12 +74,12 @@ const List = ({ locations, filteredLocations, setInfoWindowOpen, openInfoWindowI
                 <p>{location.acf.address}<br />
                   {location.acf.city}, {location.acf.state} {location.acf.zip}
                 </p>
-                <Link className="text-link" href={`https://www.google.com/maps?saddr=Your+Location&daddr=${he.decode(location.title.rendered)}`} target="_blank">Directions</Link><br />
+                <Link className="text-link" href={location.acf.google_url.url || `https://www.google.com/maps?saddr=Your+Location&daddr=${he.decode(location.title.rendered)}`} target="_blank">Directions</Link><br />
                 <Link className="text-link" href={`/pizza-delivery/${location.slug}`} onClick={() => setStore(location.acf.name)}>See Store Info</Link>
               </div>
               <div>
                 <p style={{ textAlign: 'center', marginBottom: '1rem' }}><strong>{location.acf.phone_number || 'phone number'}</strong></p>
-                <a href={`https://${location.acf.name}.gosarpinos.com/ordering/intro`} onClick={() => handleLocationSelect(location)} className="btn primary-btn"><span>Order Now</span></a>
+                <a href={`https://${location.acf.name}.gosarpinos.com/ordering/menu/Popular%20Items`} onClick={() => handleLocationSelect(location)} className="btn primary-btn"><span>Order Now</span></a>
 
               </div>
             </div>

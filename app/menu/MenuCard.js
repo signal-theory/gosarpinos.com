@@ -4,11 +4,12 @@ import OrderBtn from '@/app/components/OrderBtn';
 import styles from './MenuCard.module.css';
 import he from 'he';
 
-const MenuCard = ({ post, postTypeSlug, menuSlug, hoverImage, hoverAlt, featuredImage, featuredAlt }) => {
+const MenuCard = ({ post, postTypeSlug, itemCategory, menuSlug, hoverImage, hoverAlt, featuredImage, featuredAlt }) => {
 
   const whichMenu = menuSlug === 'vegan-menu' ? 'vegan-menu' : 'menu';
-
   const url = `/${whichMenu}/${postTypeSlug}/${post.slug}`;
+
+  console.log('MenuCard:', post.type);
   return (
     <>
       <div className={styles.container}>
@@ -48,14 +49,16 @@ const MenuCard = ({ post, postTypeSlug, menuSlug, hoverImage, hoverAlt, featured
           </Link>
         </div>
         <div className={styles.label}>
-          <h2 className={styles.title}><Link className={styles.link} href={url}>{he.decode(post?.title?.rendered || '')}</Link></h2>
+          <h2 className={styles.title}>
+            <Link className={styles.link} href={url}>{he.decode(post?.title?.rendered || '')}</Link>
+          </h2>
           <Link className={styles.caption} href={url}>
             {post.acf.caption.length > 140
               ? post.acf.caption.substring(0, 140) + '...'
               : post.acf.caption || ''}
           </Link>
           <p className={styles.links}>
-            <OrderBtn />
+            <OrderBtn category={post.type} itemCategory={itemCategory} />
             <Link className={styles.link} href={url}>More Info</Link>
           </p>
         </div>

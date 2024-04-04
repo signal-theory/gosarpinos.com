@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import OrderGiftCard from './OrderGiftCard'
+import FeedbackBtn from './FeedbackBtn';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -120,7 +121,7 @@ export default function Footer() {
                   <li><Link href="/loyalty-program">Loyalty Program</Link></li>
                   <li><OrderGiftCard /></li>
                   <li><Link href="/pizza-delivery">Location Finder</Link></li>
-                  <li><Link href="/">Rate Us</Link></li>
+                  <li><FeedbackBtn /></li>
                   <li><Link href="/sitemap">Site Map</Link></li>
                 </ul>
               </div>

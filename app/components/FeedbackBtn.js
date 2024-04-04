@@ -2,8 +2,9 @@
 import { useContext, useState, useEffect } from 'react';
 import { StoreContext } from '../context/useStoreContext';
 import { NavLocatorContext } from '../context/useNavLocatorContext';
+import Link from 'next/link';
 
-const OrderLink = ({ label }) => {
+const FeedbackBtn = () => {
   const { store } = useContext(StoreContext);
   const { isNavLocatorActive, setIsNavLocatorActive } = useContext(NavLocatorContext);
 
@@ -19,16 +20,16 @@ const OrderLink = ({ label }) => {
 
   if (!store || store === 'null') {
     return (
-      <button onClick={() => setIsNavLocatorActive(!isNavLocatorActive)} className='text-link'>
-        {label}
-      </button>
+      <Link href="/pizza-delivery" onClick={(e) => { e.preventDefault(); setIsNavLocatorActive(!isNavLocatorActive); }}>
+        Rate Us
+      </Link>
     );
   } else {
     return (
-      <a href={`https://${store}.gosarpinos.com/ordering/menu/Popular%20Items`} className='text-link'>
-        {label}
-      </a>
+      <Link href={`/pizza-delivery/sarpinos-${store.toLowerCase()}/feedback`}>
+        Rate Us
+      </Link>
     );
   }
 }
-export default OrderLink;
+export default FeedbackBtn;

@@ -142,7 +142,7 @@ export default async function Page({ params }) {
                 tab2="Sauces"
                 content={content} />
               <div className="display-flex" style={{ alignItems: 'center' }}>
-                <OrderBtn />
+                <OrderBtn category={post.type} />
                 <Link href="/SarpinosPizzeria_AllergenChart.pdf" target='_blank' className='text-link' style={{ paddingLeft: '2rem', color: 'white' }}>Allergen Info</Link>
               </div>
             </div>

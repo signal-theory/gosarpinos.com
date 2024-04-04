@@ -163,7 +163,7 @@ export default async function Page({ params }) {
                 <ShareToggle post={post} />
                 <h1 dangerouslySetInnerHTML={{ __html: post?.title?.rendered || '' }} />
                 <div dangerouslySetInnerHTML={{ __html: post?.content?.rendered || '' }} />
-                <OrderBtn />
+                <OrderBtn category={post.type} />
                 <ItemTabs
                   tab1="Nutritional Info"
                   tab2="Allergens"
