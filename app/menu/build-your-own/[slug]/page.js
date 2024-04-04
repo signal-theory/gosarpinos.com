@@ -88,7 +88,7 @@ export default async function Page({ params }) {
             "hasMenuItem": {
               "@type": "MenuItem",
               "name": post?.title?.rendered,
-              "description": post.excerpt.rendered,
+              "description": post?.acf?.caption || post?.excerpt?.rendered || '',
             }
           },
           "inLanguage": "English"
@@ -119,6 +119,7 @@ export default async function Page({ params }) {
       }
     ],
   }
+  console.log(jsonLd["@graph"][0]["hasMenu"]);
   return (
     <>
       <script

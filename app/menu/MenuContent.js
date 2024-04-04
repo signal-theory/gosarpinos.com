@@ -1,9 +1,8 @@
-// menu/MenuContent.js
 'use client';
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import MenuCard from './MenuCard';
 import SortCategories from '@/app/components/SortCategories';
-import { fetchACFImage } from '../lib/utils';
+import { fetchACFImage } from '@/app/lib/utils';
 
 // This component is used to include the SortCategories component that sorts post by category
 const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
