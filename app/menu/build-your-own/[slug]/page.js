@@ -119,7 +119,7 @@ export default async function Page({ params }) {
       }
     ],
   }
-  console.log(jsonLd["@graph"][0]["hasMenu"]);
+
   return (
     <>
       <script

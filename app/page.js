@@ -126,7 +126,7 @@ export default async function Page({ params }) {
         <PopularItems data={data} menuItemsWithImages={menuItemsWithImages} />
         <Specials data={data} specialsData={specialsData} />
         <Catering data={data} cateringImage={cateringImage} />
-        <WhySarpinos />
+        <WhySarpinos data={data} />
         <InstagramFeed feed={socialImagesData} />
       </div>
     </>

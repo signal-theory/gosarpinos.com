@@ -1,8 +1,7 @@
-import styles from './TabContent.module.css';
 const TabContent = ({ activeTab, content }) => {
   const activeContent = content.find(item => item.id === activeTab);
   return (
-    <div className={styles.tabContent}>
+    <div>
       {activeContent && activeContent.component}
     </div>
   );
