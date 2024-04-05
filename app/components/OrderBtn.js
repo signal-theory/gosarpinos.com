@@ -32,7 +32,6 @@ const OrderBtn = ({ btnColor, theme, location, category, itemCategory }) => {
     );
   } else {
     if (category != null) {
-
       // Replace all hyphens in category with "%20"
       formattedCategory = category.replace(/-/g, "%20").replace(/\b\w/g, char => char.toUpperCase());
 
@@ -41,6 +40,9 @@ const OrderBtn = ({ btnColor, theme, location, category, itemCategory }) => {
       }
       if (category === "deep-dish") {
         formattedCategory = "Deep%20Dish%20Pizzas";
+      }
+      if (category === "build-your-own") {
+        formattedCategory = "Create%20your%20own";
       }
     }
     if (itemCategory != null && itemCategory != "Vegan") {
@@ -51,8 +53,14 @@ const OrderBtn = ({ btnColor, theme, location, category, itemCategory }) => {
       if (itemCategory === "Appetizers") {
         formattedCategory = "Appetizers";
       }
-    } else if (itemCategory === "Vegan") {
-      formattedCategory = "Vegan&Options";
+    }
+    // Check if itemCategory is "Vegan" last, so it overwrites all other conditionals
+
+    if (itemCategory === "Vegan" && itemCategory === "Appetizers") {
+      formattedCategory = "Vegan%20Options";
+    }
+    if (itemCategory === "Vegan") {
+      formattedCategory = "Vegan%20Options";
     }
   }
   return (
