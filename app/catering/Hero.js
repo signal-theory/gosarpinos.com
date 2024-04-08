@@ -27,7 +27,7 @@ const Hero = ({ featuredImage, featuredImageAlt, data }) => {
           <div>
             <div dangerouslySetInnerHTML={{ __html: data.content.rendered || '' }} />
             <ContactBtn />
-            <p style={{ maxWidth: '255px' }}>{data.acf.description}</p>
+            <p style={{ maxWidth: '255px' }} dangerouslySetInnerHTML={{ __html: data.acf.description }} />
           </div>
         </div>
       </div></>
