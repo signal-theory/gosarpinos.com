@@ -1,10 +1,12 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useContext } from 'react';
+import { StoreContext } from '../context/useStoreContext';
 import Image from 'next/image';
 import styles from './Form.module.css';
 
-const Form = ({ data }) => {
+const Form = ({ data, posts }) => {
   const dateInputRef = useRef();
+  const { store } = useContext(StoreContext);
 
   useEffect(() => {
     const today = new Date();
@@ -130,6 +132,20 @@ const Form = ({ data }) => {
               </label>
               <label className={styles.w100}>Zip
                 <input placeholder="Zip" type="text" name="event_zip" /></label>
+            </p>
+            <p>
+              <label>Your Store
+                <select
+                  defaultValue={store || "default"}
+                  placeholder="Location"
+                  name="event_store"
+                  required>
+                  <option value="default" disabled>Select a store</option>
+                  {posts.map((p, index) => (
+                    <option key={index} value={p.acf.name} dangerouslySetInnerHTML={{ __html: p.title.rendered }} />
+                  ))}
+                </select>
+              </label>
             </p>
             <p>
               <label>Date of Catering Needs

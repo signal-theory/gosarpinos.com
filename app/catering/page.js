@@ -1,5 +1,5 @@
 import { METADATABASE_API_URL } from '../lib/constants';
-import { fetchMetadata, fetchPageData } from '../lib/utils'; // Adjust the path as necessary
+import { fetchMetadata, fetchCPTData, fetchPageData } from '../lib/utils'; // Adjust the path as necessary
 import Hero from './Hero';
 import How from './How';
 import Form from './Form';
@@ -10,6 +10,7 @@ import FAQs from './FAQs';
 import Breadcrumbs from '@/app/components/Breadcrumbs';
 
 const pageId = 109;
+const postType = 'locations';
 export async function generateMetadata() {
   const metadata = await fetchMetadata(pageId);
 
@@ -29,9 +30,11 @@ export async function generateMetadata() {
 
 export default async function Page({ params }) {
   let data;
+  let posts;
 
   try {
     data = await fetchPageData(pageId);
+    posts = await fetchCPTData([postType]);
 
   } catch (error) {
     console.error("Error in Page component:", error);
@@ -57,7 +60,7 @@ export default async function Page({ params }) {
         </section>
         <section className="viewport red-gradient">
           <div className="page-container">
-            <Form data={data} />
+            <Form data={data} posts={posts} />
           </div>
         </section>
         <section className="viewport cream-color">
