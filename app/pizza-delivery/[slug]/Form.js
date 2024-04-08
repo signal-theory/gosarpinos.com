@@ -139,7 +139,7 @@ const Form = ({ post, posts }) => {
           </label>
         </p>
         <p>
-          <label>What do you think about Sarpino's brand?
+          <label>What do you think about Sarpino&apos;s brand?
             <textarea
               placeholder="Message"
               name="message"
