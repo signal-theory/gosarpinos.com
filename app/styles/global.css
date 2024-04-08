@@ -83,7 +83,9 @@ font-weight: 900; */
 .nexa-rust {
   font-family: var(--nexa-rust);
 }
-
+html {
+  scroll-behavior: smooth;
+}
 main {
   position: relative;
   background: var(--bkg-red-gradient);
@@ -550,7 +552,7 @@ button.selectstore-btn {
 
   font-family: var(--museo-slab);
   font-weight: 700;
-  background: url("/location-pin-white.svg") no-repeat left center;
+  background: url("/location-pin-white.svg") no-repeat left 14px;
   transition: all 0.3s ease-in-out;
 }
 a.selectstore-btn:hover,

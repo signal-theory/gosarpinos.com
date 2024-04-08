@@ -2,16 +2,22 @@ export function convertTo12Hour(time) {
   const [hour, minute] = time.split(':');
   let newHour = hour % 12 || 12;
   const period = hour >= 12 ? 'PM' : 'AM';
-  return `${newHour}:${minute} ${period}`;
+  if (newHour && minute) {
+    return `${newHour}:${minute} ${period}`;
+  } else {
+    // Handle the error or return a default value
+    console.error('Invalid time format');
+    return '00:00 AM';
+  }
 }
 
 export function convertTo24Hour(time) {
   const [hourMinute, period] = time.split(' ');
   const [hour, minute] = hourMinute.split(':');
   let newHour = hour;
-  if (period.toLowerCase() === 'pm' && hour !== '12') {
+  if (period && period.toLowerCase() === 'pm' && hour !== '12') {
     newHour = parseInt(hour, 10) + 12;
-  } else if (period.toLowerCase() === 'am' && hour === '12') {
+  } else if (period && period.toLowerCase() === 'am' && hour === '12') {
     newHour = '00';
   }
   return `${newHour}:${minute}:00`;

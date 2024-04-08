@@ -37,7 +37,7 @@ const Info = ({ data }) => {
             {servingscolumns.map((item, index) => (
               <div key={index}>
                 <div key={index} dangerouslySetInnerHTML={{ __html: item.column || '' }} />
-                <OrderCatering url={item.catering_url} />
+                <OrderCatering url={item.catering_url} label={item.catering_label} />
               </div>
             ))}
           </div>

@@ -1,8 +1,9 @@
 import { METADATABASE_API_URL } from '../../../lib/constants';
-import { fetchCPTMetadataBySlug, fetchCPTBySlug } from '../../../lib/utils'; // Adjust the path as necessary
+import { fetchCPTMetadataBySlug, fetchCPTData, fetchCPTBySlug } from '../../../lib/utils'; // Adjust the path as necessary
 import Link from 'next/link';
 import Hero from '../Hero';
 import Feedback from '../Feedback';
+import Form from '../Form';
 import tabStyles from '@/app/components/TabList.module.css';
 import moment from 'moment';
 
@@ -28,8 +29,10 @@ export async function generateMetadata({ params }) {
 export default async function Page({ params }) {
 
   let post;
+  let posts;
   try {
     post = await fetchCPTBySlug(params.slug, postType);
+    posts = await fetchCPTData([postType]);
 
     post;
 
@@ -84,7 +87,7 @@ export default async function Page({ params }) {
         <Hero post={post} />
       </section>
       <section className="viewport">
-        <div className="page-container">
+        <div className="page-container" id="rateUs">
           <ul className={`${tabStyles.tabList} ${tabStyles.locationTabs}`}>
             <li className={`${tabStyles.tabItem}`}>
               <Link href={url}>Store Info</Link>
@@ -96,7 +99,10 @@ export default async function Page({ params }) {
               <Link href={url + '/delivery-area'}>Delivery Area</Link>
             </li>
           </ul>
-          <Feedback post={post} />
+          <div className="responsive-column-container">
+            <Form post={post} posts={posts} />
+            <Feedback post={post} />
+          </div>
         </div>
       </section>
     </div>

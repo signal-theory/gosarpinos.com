@@ -9,7 +9,6 @@ const MenuCard = ({ post, postTypeSlug, itemCategory, menuSlug, hoverImage, hove
   const whichMenu = menuSlug === 'vegan-menu' ? 'vegan-menu' : 'menu';
   const url = `/${whichMenu}/${postTypeSlug}/${post.slug}`;
 
-  console.log('MenuCard:', post.type);
   return (
     <>
       <div className={styles.container}>

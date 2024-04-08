@@ -45,22 +45,22 @@ const OrderBtn = ({ btnColor, theme, location, category, itemCategory }) => {
         formattedCategory = "Create%20your%20own";
       }
     }
-    if (itemCategory != null && itemCategory != "Vegan") {
+    if (itemCategory != null) {
+      if (itemCategory != "Vegan") {
 
-      if (itemCategory === "Wings") {
-        formattedCategory = "Wings";
-      }
-      if (itemCategory === "Appetizers") {
-        formattedCategory = "Appetizers";
+        if (itemCategory === "Wings") {
+          formattedCategory = "Wings";
+        }
+        if (itemCategory === "Appetizers") {
+          formattedCategory = "Appetizers";
+        }
       }
     }
-    // Check if itemCategory is "Vegan" last, so it overwrites all other conditionals
-
-    if (itemCategory === "Vegan" && itemCategory === "Appetizers") {
-      formattedCategory = "Vegan%20Options";
-    }
-    if (itemCategory === "Vegan") {
-      formattedCategory = "Vegan%20Options";
+    if (itemCategory != null) {
+      // Check if itemCategory is "Vegan" last, so it overwrites all other conditionals
+      if (itemCategory === "Vegan") {
+        formattedCategory = "Vegan%20Options";
+      }
     }
   }
   return (

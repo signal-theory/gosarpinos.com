@@ -3,7 +3,7 @@ import { useContext, useState, useEffect } from 'react';
 import { StoreContext } from '../context/useStoreContext';
 import { NavLocatorContext } from '../context/useNavLocatorContext';
 
-const OrderCatering = ({ url }) => {
+const OrderCatering = ({ url, label }) => {
   const { store } = useContext(StoreContext);
   const { isNavLocatorActive, setIsNavLocatorActive } = useContext(NavLocatorContext);
 
@@ -26,7 +26,7 @@ const OrderCatering = ({ url }) => {
   } else {
     return (
       <a href={`https://${store}.gosarpinos.com/${url}`} className="btn selectstore-btn">
-        Order Catering from {store}
+        {label || ''} Catering Menu from {store}
       </a>
     );
   }
