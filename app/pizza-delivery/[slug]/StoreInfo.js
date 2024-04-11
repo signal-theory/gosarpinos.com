@@ -90,30 +90,34 @@ const StoreInfo = ({ post }) => {
       </div>
       <OrderBtn />
       <div className={styles.container2}>
-        <div className={styles.column1}>
-          <h5>MANAGER</h5>
-          <Image
-            className={styles.managerPhoto}
-            src={post.acf.managers_photo || '/default-manager.jpg'}
-            alt="manager"
-            width={80} height={80} />
-          <h5 className={styles.managerName}>{post.acf.manager_name || 'manager\'s name'}</h5>
-          {post.acf.managers_email && <Link
-            className={styles.managerEmail}
-            href={`mailto${post.acf.managers_email}`}>{post.acf.managers_email}</Link>
-            || <p className={styles.managerEmail}>manager@email.com</p>}
+        {post.acf.manager_name &&
+          <div className={styles.column1}>
+            <h5>MANAGER</h5>
+            <Image
+              className={styles.managerPhoto}
+              src={post.acf.managers_photo || '/default-manager.jpg'}
+              alt="manager"
+              width={80} height={80} />
+            <h5 className={styles.managerName}>{post.acf.manager_name}</h5>
+            {post.acf.managers_email && <Link
+              className={styles.managerEmail}
+              href={`mailto${post.acf.managers_email}`}>{post.acf.managers_email}</Link>
+              || <p className={styles.managerEmail}>manager@email.com</p>}
 
-        </div>
-        <div className={styles.column2}>
+          </div> || null}
+        {careers && careers.some(career => career.position) && <div className={styles.column2}>
           <h5>Currently Hiring</h5>
           <div className={styles.careers}>
             {careers.map((career, index) => (
               <div key={index} className={styles.career}>
-                {career.position && <Link className={styles.jobLink} href="">{career.position}</Link> || <p className={styles.jobLink}>careers list</p>}
+                <Link className={styles.jobLink} href="">{career.position}</Link>
               </div>
             ))}
           </div>
-        </div>
+        </div> || <div className={styles.column2}>
+            <h5>Currently Hiring</h5>
+            <p>Interested in working with us? <a href="https://jobs.gosarpinos.com/" target="_blank">View our current job listings.</a></p>
+          </div>}
       </div>
     </>
   );
