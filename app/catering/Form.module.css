@@ -55,7 +55,13 @@
   margin-top: 10px;
 }
 .form select {
-  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  padding: 0 10px;
+  line-height: 36px;
+  color: #000;
 }
 .columns {
   display: flex;
