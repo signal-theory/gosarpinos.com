@@ -10,7 +10,7 @@ import { checkOpenStatus } from '../../lib/checkOpenStatus';
 
 
 
-const Hero = ({ post }) => {
+const Hero = ({ post, storefrontImage }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentOpenTime, setCurrentOpenTime] = useState('');
   const [currentCloseTime, setCurrentCloseTime] = useState('');
@@ -27,7 +27,7 @@ const Hero = ({ post }) => {
   return (
     <section className={styles.hero}>
       <Image
-        src="/location-hero-sarpinos.jpg"
+        src={storefrontImage ? storefrontImage.sourceUrl : '/location-hero-sarpinos.jpg'}
         alt={`Exterior view of Sarpinos Location`}
         width={1366}
         height={509}

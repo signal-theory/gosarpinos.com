@@ -6,6 +6,7 @@ import StoreInfo from './StoreInfo';
 import tabStyles from '@/app/components/TabList.module.css';
 import moment from 'moment';
 
+const pageId = 214;
 const postType = 'locations';
 export async function generateMetadata({ params }) {
   const postId = params.slug;
@@ -26,10 +27,16 @@ export async function generateMetadata({ params }) {
 export default async function Page({ params }) {
 
   let post;
+  let storefrontImage;
   try {
-    post = await fetchCPTBySlug(params.slug, postType);
+    post = await fetchCPTBySlug(params.slug, postType)
 
-    post;
+    storefrontImage = post?.acf.storefront_image ? await fetchACFImage(post?.acf.storefront_image).catch(e => {
+      console.error(`Error fetching storefront image: ${e}`);
+      return null;
+    }) : null;
+
+    post = { ...post, storefrontImage };
 
   } catch (error) {
     console.error("Error fetching post data:", error);
@@ -79,7 +86,7 @@ export default async function Page({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <section className="hero">
-        <Hero post={post} />
+        <Hero post={post} storefrontImage={storefrontImage} />
       </section>
       <section className="viewport">
         <div className="page-container">
@@ -94,6 +101,7 @@ export default async function Page({ params }) {
               <Link href={url + '/delivery-area'}>Delivery Area</Link>
             </li>
           </ul>
+          {post?.acf.storefront_image && post?.acf.storefront_image.surceUrl}
           <StoreInfo post={post} />
         </div>
       </section>
