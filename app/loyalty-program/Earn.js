@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styles from './Earn.module.css';
 
-const Earn = ({ data }) => {
+const Earn = ({ data, earnImages, rewardsPointsImage, rewardsDiscountImage, rewardsPizzaImage }) => {
   const title = '<span>' + data?.acf.points_headline + '</span>';
   const title2 = '<span>' + data?.acf.rewards_headline + '</span>';
 
@@ -11,7 +11,7 @@ const Earn = ({ data }) => {
       <div className="responsive-three-column-container">
         <div className={styles.iconCol}>
           <Image
-            src={'/loyalty-signup.svg'}
+            src={earnImages[0] ? earnImages[0].sourceUrl : '/loyalty-signup.svg'}
             alt="signup icon"
             width={167}
             height={167}
@@ -24,7 +24,7 @@ const Earn = ({ data }) => {
         </div>
         <div className={styles.iconCol}>
           <Image
-            src={'/loyalty-cash.svg'}
+            src={earnImages[1] ? earnImages[1].sourceUrl : '/loyalty-cash.svg'}
             alt="signup icon"
             width={167}
             height={167}
@@ -37,7 +37,7 @@ const Earn = ({ data }) => {
         </div>
         <div className={styles.iconCol}>
           <Image
-            src={'/loyalty-pizza.svg'}
+            src={earnImages[2] ? earnImages[2].sourceUrl : '/loyalty-pizza.svg'}
             alt="signup icon"
             width={167}
             height={167}
@@ -53,7 +53,7 @@ const Earn = ({ data }) => {
       <div className={`responsive-unlimited-equal-height-container ${styles.pointsContainer}`}>
         <div className={styles.pointsCol}>
           <Image
-            src={'/loyalty-points.svg'}
+            src={rewardsPointsImage ? rewardsPointsImage.sourceUrl : '/loyalty-points.svg'}
             alt="100 points icon"
             width={150}
             height={150}
@@ -63,7 +63,7 @@ const Earn = ({ data }) => {
         <div className={styles.arrow} />
         <div className={styles.pointsCol}>
           <Image
-            src={'/loyalty-discount.svg'}
+            src={rewardsDiscountImage ? rewardsDiscountImage.sourceUrl : '/loyalty-discount.svg'}
             alt="Get $10 off icon"
             width={220}
             height={220}
@@ -73,7 +73,7 @@ const Earn = ({ data }) => {
         <div className={styles.arrow} />
         <div className={styles.pointsCol}>
           <Image
-            src={'/loyalty-canadian-pizza.webp'}
+            src={rewardsPizzaImage ? rewardsPizzaImage.sourceUrl : '/loyalty-canadian-pizza.webp'}
             alt="Canadian bacon pizza"
             width={350}
             height={350}

@@ -36,7 +36,7 @@ export default async function Page({ params }) {
   }
 
   let categoryNames = [];
-  if (post.categories) {
+  if (post && post.categories) {
     categoryNames = await getCategoryNamesByIds(post.categories);
   }
 

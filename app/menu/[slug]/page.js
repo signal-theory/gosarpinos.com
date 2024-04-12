@@ -33,7 +33,7 @@ export default async function Page({ params }) {
 
   let post;
   let mainImage;
-
+  let data;
   try {
     post = await fetchCPTBySlug(params.slug, postType);
 
