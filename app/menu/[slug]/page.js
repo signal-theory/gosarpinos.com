@@ -33,7 +33,6 @@ export default async function Page({ params }) {
 
   let post;
   let mainImage;
-  let data;
   try {
     post = await fetchCPTBySlug(params.slug, postType);
 
@@ -58,10 +57,10 @@ export default async function Page({ params }) {
     "@graph": [
       {
         '@type': 'Menu',
-        "name": `Order ${data.title.rendered} from Sarpino\'s Pizzeria`,
-        "url": `https://www.gosarpinos.com/menu/${data.slug}`,
+        "name": `Order ${post.title.rendered} from Sarpino\'s Pizzeria`,
+        "url": `https://www.gosarpinos.com/menu/${post.slug}`,
         "image": '/default-menu-image.svg',
-        "description": data.yoast_head_json.description || data.excerpt.rendered,
+        "description": post.yoast_head_json.description || post.excerpt.rendered,
         "address": {
           '@type': 'PostalAddress',
           "streetAddress": '200 Tri State International, Suite 550',
@@ -94,7 +93,7 @@ export default async function Page({ params }) {
             "@type": "ListItem",
             "position": 2,
             "name": `Order Gourmet Italian Food | Sarpino\'s Pizzeria`,
-            "item": `https://www.gosarpinos.com/menu/${data.slug}`
+            "item": `https://www.gosarpinos.com/menu/${post.slug}`
           }
         ]
       }
