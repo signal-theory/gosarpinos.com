@@ -1,5 +1,5 @@
-import { METADATABASE_API_URL } from '../lib/constants';
-import { fetchMetadata } from '../lib/utils'; // Adjust the path as necessary
+import { METADATABASE_API_URL } from '@/app/lib/constants';
+import { fetchMetadata } from '@/app/lib/utils'; // Adjust the path as necessary
 import Link from 'next/link';
 import styles from '../[slug]/Page.module.css';
 

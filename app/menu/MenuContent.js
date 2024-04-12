@@ -125,6 +125,7 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
               key={index}
               post={post}
               itemCategory={post.acf.menu_category ? post.acf.menu_category[0] : null}
+              menuSlug={post.acf.menu_category?.includes('Vegan') ? 'vegan-menu' : null}
               postTypeSlug={postTypeSlug}
               hoverImage={post.hoverImage ? post.hoverImage.sourceUrl : null}
               hoverAlt={post.hoverImage ? post.hoverImage.altText : ''}

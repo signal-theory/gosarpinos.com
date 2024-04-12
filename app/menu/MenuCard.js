@@ -7,7 +7,22 @@ import he from 'he';
 const MenuCard = ({ post, postTypeSlug, itemCategory, menuSlug, hoverImage, hoverAlt, featuredImage, featuredAlt }) => {
 
   const whichMenu = menuSlug === 'vegan-menu' ? 'vegan-menu' : 'menu';
-  const url = `/${whichMenu}/${postTypeSlug}/${post.slug}`;
+  const veganMenuMap = {
+    'sarpinos-specialty-pizza': 'vegan-pizza',
+    'deep-dish-pizza': 'vegan-deep-dish-pizza',
+    'calzones': 'vegan-calzones',
+    'wings-apps': 'vegan-wings-apps',
+    'salads': 'vegan-salads',
+    'sandwiches': 'vegan-sandwiches',
+    'pastas': 'vegan-pastas',
+    'breadsticks': 'vegan-breadsticks',
+    'desserts': 'vegan-desserts',
+    'extras': 'vegan-extras',
+    // add more mappings as needed
+  };
+
+  const whichPizza = menuSlug === 'vegan-menu' && veganMenuMap[postTypeSlug] ? veganMenuMap[postTypeSlug] : postTypeSlug;
+  const url = `/${whichMenu}/${whichPizza}/${post.slug}`;
 
   return (
     <>

@@ -1,6 +1,6 @@
 // app/menu/[cptName]/[slug]/page.js
-import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchPageData } from '../../../lib/utils';
-import { METADATABASE_API_URL } from '../../../lib/constants';
+import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchPageData, fetchACFImage } from '@/app/lib/utils';
+import { METADATABASE_API_URL } from '@/app/lib/constants';
 import CalloutMobileApp from '@/app/components/CalloutMobileApp';
 import MenuNavigation from '../../MenuNavigation';
 import styles from './Single.module.css';
@@ -33,19 +33,23 @@ export default async function Page({ params }) {
 
   let data;
   let post;
+  let calloutImage;
 
   try {
-
     data = await fetchPageData(91);
     post = await fetchCPTBySlug(params.slug, postType);
-
-    data = { ...data };
+    calloutImage = data?.acf.mobile_app_background_image ? await fetchACFImage(data.acf.mobile_app_background_image).catch(e => {
+      console.error(`Error fetching callout image: ${e}`);
+      return null;
+    }) : null;
+    data = { ...data, calloutImage };
     post = { ...post };
 
   } catch (error) {
     console.error("Error fetching post data:", error);
     // Handle the error appropriately
   }
+
   const content = [
     { id: 'tab1', component: <BYOContent1 data={data} post={post} /> },
     { id: 'tab2', component: <BYOContent2 data={data} post={post} /> },
@@ -149,7 +153,7 @@ export default async function Page({ params }) {
           </div>
           <Parallax />
         </section>
-        <CalloutMobileApp />
+        <CalloutMobileApp calloutImage={calloutImage} />
       </div>
     </>
   );

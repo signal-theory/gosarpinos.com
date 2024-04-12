@@ -1,6 +1,6 @@
 // /menu/national-specials/page.js
-import { METADATABASE_API_URL } from '../../lib/constants';
-import { fetchMetadata, fetchPageData, fetchCPTData } from '../../lib/utils';
+import { METADATABASE_API_URL } from '@/app/lib/constants';
+import { fetchMetadata, fetchPageData, fetchCPTData } from '@/app/lib/utils';
 import MenuNavigation from '../MenuNavigation';
 import SpecialsContainer from './SpecialsContainer';
 import CalloutMenu from '@/app/components/CalloutMenu';

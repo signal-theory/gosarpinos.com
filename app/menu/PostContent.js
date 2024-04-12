@@ -1,7 +1,7 @@
 'use client';
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import MenuCard from './MenuCard';
-import { fetchACFImage } from '../lib/utils';
+import { fetchACFImage } from '@/app/lib/utils';
 
 // This component is used to include the SortPosts component that sorts by post type
 const PostContent = ({ posts, menuSlug, postTypeSlug, filterPostsBy }) => {

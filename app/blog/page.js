@@ -1,6 +1,6 @@
 // about.blog.page.js
-import { METADATABASE_API_URL } from '../lib/constants';
-import { fetchMetadata, fetchPageData, fetchPostData } from '../lib/utils'; // Adjust the path as necessary
+import { METADATABASE_API_URL } from '@/app/lib/constants';
+import { fetchMetadata, fetchPageData, fetchPostData } from '@/app/lib/utils'; // Adjust the path as necessary
 import Link from 'next/link';
 import BlogFeatured from './BlogFeatured';
 import BlogContent from './BlogContent';

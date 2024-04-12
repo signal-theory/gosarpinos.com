@@ -2,18 +2,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './CalloutMenu.module.css';
 
-const MenuCallout = () => {
+const MenuCallout = ({ isVegan }) => {
   return (
     <section className="viewport cream-color">
       <div className="page-container">
         <div className="responsive-column-container" style={{ margin: '4em 0' }}>
           <div>
             <h3 className={styles.title}>
-              Hungry for Our Vegan Menu?
+              Hungry for Our {isVegan ? 'Full' : 'Vegan'} Menu?
             </h3>
           </div>
           <div className={styles.buttons}>
-            <Link href="/vegan-menu/vegan-pizza" className={`${styles.button} btn primary-btn`}><span>See our vegan menu</span></Link>
+            <Link href={isVegan ? "/menu/sarpinos-specialty-pizza" : "/vegan-menu/vegan-pizza"} className={`${styles.button} btn primary-btn`}><span>See our  {isVegan ? 'full' : 'vegan'} menu</span></Link>
           </div>
         </div>
         <Image src={'/heart-red-fill.svg'} width={30} height={30} className={styles.redFillHeart} alt="red fill heart" />

@@ -1,6 +1,6 @@
 'use client'
 import { createContext, useEffect, useState } from 'react'
-import { checkTime } from '../lib/checkTime';
+import { checkTime } from '@/app/lib/checkTime';
 
 export const ThemeContext = createContext({})
 

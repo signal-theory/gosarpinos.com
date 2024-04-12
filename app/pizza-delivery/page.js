@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
-import { METADATABASE_API_URL } from '../lib/constants';
-import { fetchMetadata, fetchCPTData, fetchPageData } from '../lib/utils'; // Adjust the path as necessary
+import { METADATABASE_API_URL } from '@/app/lib/constants';
+import { fetchMetadata, fetchCPTData, fetchPageData } from '@/app/lib/utils'; // Adjust the path as necessary
 // import MapHero from './Map';
 const DynamicMap = dynamic(() => import('./Map'));
 

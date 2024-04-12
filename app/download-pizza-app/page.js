@@ -1,5 +1,5 @@
-import { METADATABASE_API_URL } from '../lib/constants';
-import { fetchMetadata, fetchPageData, fetchACFImage } from '../lib/utils'; // Adjust the path as necessary
+import { METADATABASE_API_URL } from '@/app/lib/constants';
+import { fetchMetadata, fetchPageData, fetchACFImage } from '@/app/lib/utils'; // Adjust the path as necessary
 import Hero from './Hero';
 import Features from './Features';
 import Breadcrumbs from '@/app/components/Breadcrumbs';

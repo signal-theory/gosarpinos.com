@@ -1,6 +1,6 @@
 // /menu/extras/page.js
-import { METADATABASE_API_URL } from '../../lib/constants';
-import { fetchMetadata, fetchPageData, fetchCPTData, fetchACFImage } from '../../lib/utils';
+import { METADATABASE_API_URL } from '@/app/lib/constants';
+import { fetchMetadata, fetchPageData, fetchCPTData, fetchACFImage } from '@/app/lib/utils';
 import MenuNavigation from '../MenuNavigation';
 import MenuHeader from '../MenuHeader';
 import MenuContent from '../MenuContent';
@@ -29,14 +29,24 @@ export default async function Page() {
   let data;
   let posts;
   let heroImage;
+  let calloutImage;
   try {
     data = await fetchPageData(pageId);
     posts = await fetchCPTData(postType);
     try {
-      heroImage = await fetchACFImage(data.acf.hero_image);
+      if (data.acf && data.acf.hero_image) {
+        heroImage = await fetchACFImage(data.acf.hero_image);
+      }
     } catch (error) {
       console.error("Error fetching hero image:", data.acf.hero_image);
-      throw error;
+    }
+
+    try {
+      if (data.acf && data.acf.mobile_app_background_image) {
+        calloutImage = await fetchACFImage(data.acf.mobile_app_background_image);
+      }
+    } catch (error) {
+      console.error("Error fetching callout image:", data.acf.mobile_app_background_image);
     }
   } catch (error) {
     console.error("Error in Page component:", error);
@@ -115,6 +125,7 @@ export default async function Page() {
             featuredImageAlt={heroImage?.altText || 'fresh extras'}
             pageTitle={data.title.rendered}
             pageContent={data.content.rendered}
+            category="extras"
           />
           {/* Render the menu posts */}
           <MenuContent
@@ -125,7 +136,7 @@ export default async function Page() {
       </section>
 
       <CalloutMenu />
-      <CalloutMobileApp />
+      <CalloutMobileApp calloutImage={calloutImage} />
     </>
   );
 }

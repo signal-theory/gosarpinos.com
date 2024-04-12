@@ -5,7 +5,7 @@ import Image from 'next/image';
 import he from 'he';
 import styleInfo from './MarkerInfo.module.css';
 import OrderBtn from '@/app/components/OrderBtn';
-import { checkMarkerStatus } from '../lib/checkOpenStatus';
+import { checkMarkerStatus } from '@/app/lib/checkOpenStatus';
 import {
   AdvancedMarker,
   InfoWindow,

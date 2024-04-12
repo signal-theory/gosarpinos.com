@@ -1,8 +1,8 @@
 // app/menu/sandwiches/[slug]/page.js
-import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchACFImage } from '../../../lib/utils';
-import { METADATABASE_API_URL } from '../../../lib/constants';
+import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchACFImage, fetchPageData } from '@/app/lib/utils';
+import { METADATABASE_API_URL } from '@/app/lib/constants';
 import Image from 'next/image';
-import MenuNavigation from '../../../menu/MenuNavigation';
+import MenuNavigation from '../../MenuNavigation';
 import OrderBtn from '@/app/components/OrderBtn';
 import ShareToggle from '@/app/components/ShareToggle';
 import ItemTabs from '../../../menu/ItemTabs';
@@ -11,6 +11,7 @@ import ItemInfo from '../../../menu/ItemInfo';
 import ItemAllergens from '../../../menu/ItemAllergens';
 import styles from './Single.module.css';
 
+const pageId = 522;
 const postType = 'sandwiches';
 export async function generateMetadata({ params }) {
   const postId = params.slug;
@@ -33,6 +34,8 @@ export default async function Page({ params }) {
 
   let post;
   let mainImage;
+  let pageData;
+  let calloutImage;
 
   try {
     post = await fetchCPTBySlug(params.slug, postType);
@@ -47,6 +50,17 @@ export default async function Page({ params }) {
   } catch (error) {
     console.error("Error fetching post data:", error);
     // Handle the error appropriately
+  }
+  try {
+    pageData = await fetchPageData(pageId);
+    calloutImage = pageData?.acf.mobile_app_background_image ? await fetchACFImage(pageData.acf.mobile_app_background_image).catch(e => {
+      console.error(`Error fetching callout image: ${e}`);
+      return null;
+    }) : null;
+
+  } catch (error) {
+    console.error("Error fetching callout image:", pageData.acf.mobile_app_background_image);
+    throw error;
   }
 
 
@@ -87,7 +101,7 @@ export default async function Page({ params }) {
             </div>
           </div>
         </section>
-        <CalloutMobileApp />
+        <CalloutMobileApp calloutImage={calloutImage} calloutItem={"vegan " + postType} />
       </div>
     </>
   );

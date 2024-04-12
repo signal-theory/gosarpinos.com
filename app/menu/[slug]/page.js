@@ -1,6 +1,6 @@
 // app/menu/sarpinos-specialty-pizza/[slug]/page.js
 import { METADATABASE_API_URL } from '@/app/lib/constants';
-import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchACFImage } from '@/app/lib/utils';
+import { fetchCPTMetadataBySlug, fetchCPTBySlug, fetchACFImage, fetchPageData } from '@/app/lib/utils';
 import Image from 'next/image';
 import MenuNavigation from '../MenuNavigation';
 import OrderBtn from '@/app/components/OrderBtn';
@@ -11,6 +11,7 @@ import ItemInfo from '../ItemInfo';
 import ItemAllergens from '../ItemAllergens';
 import styles from './Single.module.css';
 
+const pageId = 34;
 const postType = 'pizza';
 export async function generateMetadata({ params }) {
   const postId = params.slug;
@@ -33,6 +34,9 @@ export default async function Page({ params }) {
 
   let post;
   let mainImage;
+  let pageData;
+  let calloutImage;
+
   try {
     post = await fetchCPTBySlug(params.slug, postType);
 
@@ -47,6 +51,18 @@ export default async function Page({ params }) {
     console.error("Error fetching post data:", error);
     // Handle the error appropriately
   }
+  try {
+    pageData = await fetchPageData(pageId);
+    calloutImage = pageData?.acf.mobile_app_background_image ? await fetchACFImage(pageData.acf.mobile_app_background_image).catch(e => {
+      console.error(`Error fetching callout image: ${e}`);
+      return null;
+    }) : null;
+
+  } catch (error) {
+    console.error("Error fetching callout image:", pageData.acf.mobile_app_background_image);
+    throw error;
+  }
+
   const content = [
     { id: 'tab1', component: <ItemInfo post={post} /> },
     { id: 'tab2', component: <ItemAllergens post={post} /> },
@@ -134,7 +150,7 @@ export default async function Page({ params }) {
             </div>
           </div>
         </section>
-        <CalloutMobileApp />
+        <CalloutMobileApp calloutImage={calloutImage} />
       </div>
     </>
   );

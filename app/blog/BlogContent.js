@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import BlogCard from './BlogCard';
 import SortCategories from '@/app/components/SortCategories';
-import { fetchCategories } from '../lib/utils';
+import { fetchCategories } from '@/app/lib/utils';
 
 
 const BlogContent = ({ initialPosts }) => {

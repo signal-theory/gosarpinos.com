@@ -1,6 +1,6 @@
 // /menu/pizza/page.js
-import { METADATABASE_API_URL } from '../lib/constants';
-import { fetchMetadata, fetchPageData, fetchCPTData, fetchACFImage } from '../lib/utils';
+import { METADATABASE_API_URL } from '@/app/lib/constants';
+import { fetchMetadata, fetchPageData, fetchCPTData, fetchACFImage } from '@/app/lib/utils';
 import MenuNavigation from './MenuNavigation';
 import MenuHeader from './MenuHeader';
 import MenuContent from './MenuContent';

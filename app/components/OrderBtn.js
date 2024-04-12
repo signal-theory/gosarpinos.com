@@ -62,17 +62,17 @@ const OrderBtn = ({ btnColor, theme, location, category, itemCategory }) => {
         formattedCategory = "Vegan%20Options";
       }
     }
+    return (
+      <>
+        {location === "coupon" ? (
+          <a href={`https://${store}.gosarpinos.com/ordering/intro`} className="coupon">ORDER NOW</a>
+        ) : (
+          <a href={`https://${store}.gosarpinos.com/ordering/menu/${formattedCategory}`} className={`btn glow ${btnColor === "dark" ? "tertiary-btn" : "primary-btn"} ${theme === "mobile" ? "mobile" : ""}`}>
+            <span>Order Now</span>
+          </a>
+        )}
+      </>
+    );
   }
-  return (
-    <>
-      {location === "coupon" ? (
-        <a href={`https://${store}.gosarpinos.com/ordering/intro`} className="coupon">ORDER NOW</a>
-      ) : (
-        <a href={`https://${store}.gosarpinos.com/ordering/menu/${formattedCategory}`} className={`btn glow ${btnColor === "dark" ? "tertiary-btn" : "primary-btn"} ${theme === "mobile" ? "mobile" : ""}`}>
-          <span>Order Now</span>
-        </a>
-      )}
-    </>
-  );
 }
 export default OrderBtn;

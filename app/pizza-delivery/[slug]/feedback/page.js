@@ -1,5 +1,5 @@
-import { METADATABASE_API_URL } from '../../../lib/constants';
-import { fetchCPTMetadataBySlug, fetchCPTData, fetchCPTBySlug } from '../../../lib/utils'; // Adjust the path as necessary
+import { METADATABASE_API_URL } from '@/app/lib/constants';
+import { fetchCPTMetadataBySlug, fetchCPTData, fetchCPTBySlug } from '@/app/lib/utils'; // Adjust the path as necessary
 import Link from 'next/link';
 import Hero from '../Hero';
 import Feedback from '../Feedback';

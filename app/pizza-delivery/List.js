@@ -3,7 +3,7 @@ import { useContext, useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { StoreContext } from '../context/useStoreContext';
 import styles from './List.module.css';
 import Link from 'next/link';
-import { checkOpenStatus } from '../lib/checkOpenStatus';
+import { checkOpenStatus } from '@/app/lib/checkOpenStatus';
 import he from 'he';
 
 

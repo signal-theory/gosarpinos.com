@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { useLocation } from '../context/useLocation';
 import React, { useState, useEffect, useRef } from 'react';
-import { fetchPageData, fetchCPTData, fetchACFImage, fetchLocations } from '../lib/utils';
+import { fetchPageData, fetchCPTData, fetchACFImage, fetchLocations } from '@/app/lib/utils';
 import { APIProvider } from '@vis.gl/react-google-maps';
 
 import Link from 'next/link';

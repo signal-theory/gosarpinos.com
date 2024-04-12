@@ -1,5 +1,5 @@
-import { METADATABASE_API_URL } from '../../lib/constants';
-import { fetchMetadataPost, fetchPostBySlug, getCategoryNamesByIds, fetchRelatedPosts } from '../../lib/utils';
+import { METADATABASE_API_URL } from '@/app/lib/constants';
+import { fetchMetadataPost, fetchPostBySlug, getCategoryNamesByIds, fetchRelatedPosts } from '@/app/lib/utils';
 import Image from 'next/image';
 import BlogRelated from '../BlogRelated';
 import ShareThis from '@/app/components/ShareThis';

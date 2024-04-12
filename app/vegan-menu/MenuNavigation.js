@@ -21,21 +21,29 @@ export default function MenuNavigation({ mode, activeItem }) {
 
   //  Functions to handle nav Switching
   const handleNav = (navId, href) => (event) => {
-    setActiveNav(navId);
-    router.push(href);
+    try {
+      if (typeof href !== 'string') {
+        console.error('Invalid href:', href);
+        return;
+      }
+      setActiveNav(navId);
+      router.push(href);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const subnav = [
-    { id: "build-your-own", label: "Create Your Own", handler: handleNav("build-your-own"), href: "/menu/create-your-own" },
-    { id: "pizza", label: "Pizza", handler: handleNav("sarpinos-specialty-pizza"), href: "/vegan-menu/vegan-pizza" },
-    { id: "deep-dish", label: "Deep Dish", handler: handleNav("deep-dish-pizza"), href: "/vegan-menu/vegan-deep-dish-pizza" },
-    { id: "calzones", label: "Calzones", handler: handleNav("calzones"), href: "/vegan-menu/vegan-calzones" },
-    { id: "wings-apps", label: "Wings & Appetizers", handler: handleNav("wings-apps"), href: "/vegan-menu/vegan-wings-apps" },
-    { id: "salads", label: "Salads", handler: handleNav("salads"), href: "/vegan-menu/vegan-salads" },
-    { id: "sandwiches", label: "Sandwiches", handler: handleNav("sandwiches"), href: "/vegan-menu/vegan-sandwiches" },
-    { id: "pastas", label: "Pastas", handler: handleNav("pastas"), href: "/vegan-menu/vegan-pastas" },
-    { id: "breadsticks", label: "Breadsticks", handler: handleNav("breadsticks"), href: "/vegan-menu/vegan-breadsticks" },
-    { id: "desserts", label: "Desserts", handler: handleNav("desserts"), href: "/vegan-menu/vegan-desserts" }
+    { id: "build-your-own", label: "Create Your Own", handler: handleNav("build-your-own", "/menu/create-your-own"), href: "/menu/create-your-own" },
+    { id: "pizza", label: "Pizza", handler: handleNav("sarpinos-specialty-pizza", "/vegan-menu/vegan-pizza"), href: "/vegan-menu/vegan-pizza" },
+    { id: "deep-dish", label: "Deep Dish", handler: handleNav("deep-dish-pizza", "/vegan-menu/vegan-deep-dish-pizza"), href: "/vegan-menu/vegan-deep-dish-pizza" },
+    { id: "calzones", label: "Calzones", handler: handleNav("calzones", "/vegan-menu/vegan-calzones"), href: "/vegan-menu/vegan-calzones" },
+    { id: "wings-apps", label: "Wings & Appetizers", handler: handleNav("wings-apps", "/vegan-menu/vegan-wings-apps"), href: "/vegan-menu/vegan-wings-apps" },
+    { id: "salads", label: "Salads", handler: handleNav("salads", "/vegan-menu/vegan-salads"), href: "/vegan-menu/vegan-salads" },
+    { id: "sandwiches", label: "Sandwiches", handler: handleNav("sandwiches", "/vegan-menu/vegan-sandwiches"), href: "/vegan-menu/vegan-sandwiches" },
+    { id: "pastas", label: "Pastas", handler: handleNav("pastas", "/vegan-menu/vegan-pastas"), href: "/vegan-menu/vegan-pastas" },
+    { id: "breadsticks", label: "Breadsticks", handler: handleNav("breadsticks", "/vegan-menu/vegan-breadsticks"), href: "/vegan-menu/vegan-breadsticks" },
+    { id: "desserts", label: "Desserts", handler: handleNav("desserts", "/vegan-menu/vegan-desserts"), href: "/vegan-menu/vegan-desserts" }
   ];
 
   useEffect(() => {

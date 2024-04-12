@@ -1,5 +1,5 @@
-import { METADATABASE_API_URL } from '../../lib/constants';
-import { fetchMetadata, fetchPageData, fetchCPTData, fetchACFImage } from '../../lib/utils';
+import { METADATABASE_API_URL } from '@/app/lib/constants';
+import { fetchMetadata, fetchPageData, fetchCPTData, fetchACFImage } from '@/app/lib/utils';
 import MenuNavigation from '../MenuNavigation';
 import MenuHeader from '../MenuHeader';
 import MenuContent from '../MenuContent';
@@ -28,11 +28,25 @@ export default async function Page({ params }) {
   let data;
   let posts;
   let heroImage;
+  let calloutImage;
   try {
     data = await fetchPageData(pageId);
     posts = await fetchCPTData(postType);
-    heroImage = await fetchACFImage(data.acf.hero_image);
+    try {
+      if (data.acf && data.acf.hero_image) {
+        heroImage = await fetchACFImage(data.acf.hero_image);
+      }
+    } catch (error) {
+      console.error("Error fetching hero image:", data.acf.hero_image);
+    }
 
+    try {
+      if (data.acf && data.acf.mobile_app_background_image) {
+        calloutImage = await fetchACFImage(data.acf.mobile_app_background_image);
+      }
+    } catch (error) {
+      console.error("Error fetching callout image:", data.acf.mobile_app_background_image);
+    }
   } catch (error) {
     console.error("Error in Page component:", error);
   }
@@ -107,6 +121,7 @@ export default async function Page({ params }) {
             featuredImageAlt={heroImage?.altText || 'build your own fresh pizza'}
             pageTitle={data.title.rendered}
             pageContent={data.content.rendered}
+            category="build-your-own"
           />
           {/* Render the menu posts */}
           <MenuContent
@@ -117,7 +132,7 @@ export default async function Page({ params }) {
       </section>
 
       <CalloutMenu />
-      <CalloutMobileApp />
+      <CalloutMobileApp calloutImage={calloutImage} />
     </>
   );
 }

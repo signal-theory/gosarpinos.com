@@ -1,4 +1,4 @@
-import { METADATABASE_API_URL } from '../lib/constants';
+import { METADATABASE_API_URL } from '@/app/lib/constants';
 import { fetchMetadata, fetchPageData, fetchACFImage } from '@/app/lib/utils';
 import Hero from './Hero';
 import Earn from './Earn';

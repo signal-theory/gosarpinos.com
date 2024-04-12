@@ -6,7 +6,7 @@ import he from 'he';
 import styles from './Hero.module.css';
 import OrderBtn from '@/app/components/OrderBtn';
 import Link from 'next/link';
-import { checkOpenStatus } from '../../lib/checkOpenStatus';
+import { checkOpenStatus } from '@/app/lib/checkOpenStatus';
 
 
 

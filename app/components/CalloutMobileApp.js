@@ -1,54 +1,57 @@
+'use client';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './CalloutMobileApp.module.css';
 import stylesF from './Footer.module.css';
 
-const CalloutMobileApp = () => {
+const CalloutMobileApp = ({ calloutImage, calloutItem }) => {
+
   return (
     <>
       <section className={`viewport gray-color ${styles.bkg}`}>
-        <Image 
-          src="/pizza-background-callout.jpg"
+        <Image
+          src={calloutImage ? calloutImage.sourceUrl : '/pizza-background-callout.jpg'}
           alt="Pizza Background"
           fill
           className={styles.bkgImage}
-          />
+        />
         <div className={styles.callout}>
           <div className="responsive-column-container">
             <div className={styles.column}>
               <h3 className={styles.title}>
-                Order on our Mobile App
+                {'Order on our Mobile App'}
               </h3>
-              <p>Get $10 off your next order by earning loyalty points while enjoying our delicious pizzas. </p>
+              <p>{`Get $10 off your next order by earning loyalty points while enjoying our delicious ${calloutItem ? calloutItem + ' and pizzas' : 'pizzas'}.`} </p>
               <div className={stylesF.appStoreLinks}>
-              <div>
-                <Link href="https://apps.apple.com/us/app/sarpinos-pizzeria/id1479489789">
-                  <Image 
-                    src={"/icon-app-store.png"} 
-                    alt="App Store" 
-                    width={136} 
-                    height={40}
-                    style={{paddingBottom: '1rem'}}
+                <div>
+                  <Link href={'https://apps.apple.com/us/app/sarpinos-pizzeria/id1479489789'}>
+                    <Image
+                      src={"/icon-app-store.png"}
+                      alt="App Store"
+                      width={136}
+                      height={40}
+                      style={{ paddingBottom: '1rem' }}
                     />
                   </Link>
-                <Link href="https://play.google.com/store/apps/details?id=com.sarpinos">
-                  <Image 
-                    src={"/icon-google-play.png"} 
-                    alt="App Store" 
-                    width={136} 
-                    height={40}
+                  <Link href={'https://play.google.com/store/apps/details?id=com.sarpinos'}>
+                    <Image
+                      src={"/icon-google-play.png"}
+                      alt="App Store"
+                      width={136}
+                      height={40}
                     />
-                </Link>
-              </div>
+                  </Link>
+                </div>
 
-              <Image 
-                src={"/qr-code-app.png"}
-                alt="Scan the QR Code"
-                width={78}
-                height={97}
-                className={stylesF.qrCode}
+                <Image
+                  src={"/qr-code-app.png"}
+                  alt="Scan the QR Code"
+                  width={78}
+                  height={97}
+                  className={stylesF.qrCode}
                 />
-            </div>
+              </div>
             </div>
             <div className={styles.column}>
               <Image

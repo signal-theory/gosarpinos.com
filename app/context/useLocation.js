@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useContext } from 'react';
 import { StoreContext } from './useStoreContext';
-import { fetchLocations } from '../lib/utils';
-import { calculateDistance } from '../lib/geocode';
+import { fetchLocations } from '@/app/lib/utils';
+import { calculateDistance } from '@/app/lib/geocode';
 
 export const useLocation = () => {
   const { store, setStore } = useContext(StoreContext);
