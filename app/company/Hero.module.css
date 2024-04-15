@@ -109,7 +109,7 @@
 }
 @media screen and (max-width: 631px) {
   .content {
-    padding: 0 2rem;
+    padding: 0 1.5rem;
   }
   .innerHeroText {
     text-align: center;

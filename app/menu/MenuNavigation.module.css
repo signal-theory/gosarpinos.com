@@ -130,6 +130,7 @@ nav.dark::after {
   .navItem {
     font-size: 0.875rem;
     line-height: 35px;
+    margin: 0.5rem 0 0;
   }
 }
 .navItem.active {

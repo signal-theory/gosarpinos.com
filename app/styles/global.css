@@ -289,11 +289,21 @@ p a {
 }
 button.text-link,
 a.text-link {
-  text-decoration: underline;
   color: var(--red-color);
   appearance: none;
   border: 0;
+  border-radius: 0;
   background: transparent;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  text-decoration: underline;
+  text-transform: none !important;
+  font-family: var(--museo-sans);
+  font-size: inherit;
+  line-height: inherit;
+  white-space: normal;
+  overflow: visible;
 }
 a.nav-link {
   text-decoration: none;

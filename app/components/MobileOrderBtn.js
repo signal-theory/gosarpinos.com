@@ -8,7 +8,7 @@ const MobileOrderBtn = () => {
 
   useEffect(() => {
     const onScroll = () => {
-      if (window.scrollY > 0) {
+      if (window.scrollY > 0 && window.scrollY < document.body.offsetHeight - window.innerHeight) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
