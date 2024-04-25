@@ -75,6 +75,11 @@ export default async function Page({ params }) {
     "Su ${moment(post.acf.sunday_open, 'HH:mm:ss').format('h:mm a')}-${moment(post.acf.sunday_close, 'HH:mm:ss').format('h:mm a')}"
     `],
     hasMenu: `https://${post.acf.name}.gosarpinos.com/ordering/menu/Popular%20Items`,
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.5',
+      reviewCount: '250'
+    },
   }
 
   return (

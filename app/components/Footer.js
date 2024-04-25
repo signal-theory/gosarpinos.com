@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import FooterForm from './FooterForm';
 import OrderGiftCard from './OrderGiftCard'
 import FeedbackBtn from './FeedbackBtn';
 import styles from './Footer.module.css';
@@ -13,23 +14,7 @@ export default function Footer() {
           <div className={styles.order2}>
             <h3>Get our newsletter</h3>
             <p>See the latest updates, deals and information from Sarpino&apos;s.</p>
-            <form className={styles.emailSignUp} name="signup" method="POST" data-netlify="true" action="/success"
-              netlify-honeypot="bot-field"
-            >
-              <p className="hidden">
-                <label>
-                  Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
-                </label>
-              </p>
-              <p>
-                <label><span className="screen-reader-text">Email Address</span> <input placeholder="Email Address" type="email" name="email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required /></label>
-              </p>
-              <p>
-                <button type="submit">Sign Up</button>
-              </p>
-              <input type="hidden" name="form-name" value="signup"></input>
-            </form>
-
+            <FooterForm />
             <h3>DOWNLOAD <br />OUR MOBILE APP</h3>
             <p style={{ maxWidth: '290px' }}>Get $10 off your next order by earning loyalty points while enjoying our delicious pizzas. </p>
             <div className={styles.appStoreLinks}>

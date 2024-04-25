@@ -54,6 +54,11 @@
   width: calc(100% - 24px);
   margin-top: 10px;
 }
+.form input[type="date"] {
+  width: calc(94% - 20px);
+  padding: 0 10px;
+  line-height: 36px;
+}
 .form select {
   -webkit-appearance: none;
   -moz-appearance: none;
