@@ -743,13 +743,14 @@ button[type="submit"] {
   padding: 15px 5px !important;
   width: calc(100% - 20px) !important;
   height: 100%;
+  margin-top: -40px !important;
 }
 .gm-ui-hover-effect {
   top: 0 !important;
   right: 0 !important;
 }
 .gm-ui-hover-effect > span {
-  mask-image: url("/icon-close.svg") !important;
+  /* mask-image: url("/icon-close.svg") !important; */
   background-color: white;
 }
 .gm-style-iw-tc::after {
