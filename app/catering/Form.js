@@ -29,12 +29,12 @@ const Form = ({ data, posts }) => {
 
   const handleStoreChange = (event) => {
     const selectedStore = event.target.value;
-    const email = getEmailForStore(selectedStore);
-    setStoreEmail(email);
+    // const email = getEmailForStore(selectedStore);
+    // setStoreEmail(email);
 
     // Log the selected store and email
     console.log('Selected store:', selectedStore);
-    console.log('Corresponding email:', email);
+    // console.log('Corresponding email:', email);
   };
 
   return (
