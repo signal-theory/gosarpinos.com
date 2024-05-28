@@ -1,6 +1,5 @@
 'use client';
 import { useState, useEffect, useRef, useContext } from 'react';
-import axios from 'axios';
 import { StoreContext } from '../context/useStoreContext';
 import Image from 'next/image';
 import styles from './Form.module.css';
@@ -30,7 +29,7 @@ const Form = ({ data, posts }) => {
 
   const handleStoreChange = (event) => {
     const selectedStore = event.target.value;
-    const email = getEmailForStore(selectedStore); // Replace this with your own function to get the email for a store
+    const email = getEmailForStore(selectedStore);
     setStoreEmail(email);
 
     // Log the selected store and email
@@ -38,26 +37,6 @@ const Form = ({ data, posts }) => {
     console.log('Corresponding email:', email);
   };
 
-  // FORM HANDLING
-  const [message, setMessage] = useState('');
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    // Gather form data
-    const formData = new FormData(event.target);
-
-    // Send a POST request to your serverless function
-    try {
-      const response = await axios.post('/api/sendFormCatering', Object.fromEntries(formData));
-
-      // If the request was successful, display a success message
-      setMessage('Form submitted successfully!');
-    } catch (error) {
-      // If the request failed, display an error message
-      setMessage('An error occurred. Please try again.');
-    }
-  };
   return (
     <>
       <div className={styles.content} dangerouslySetInnerHTML={{ __html: data.acf.how_it_works_content || '' }} />
@@ -72,8 +51,7 @@ const Form = ({ data, posts }) => {
           </div>
         </div>
         <div>
-          <form className={styles.form} name="catering" onSubmit={handleSubmit}
-            method="POST">
+          <form className={styles.form} name="catering">
             <p>
               <label>Name *
                 <input placeholder="Name" type="text" name="name" required />
