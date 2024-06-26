@@ -7,9 +7,9 @@ export default function Page() {
     //     token: process.env.KV_REST_API_TOKEN,
     // });
 
-    // redirects.slice(1995).map(async function (item, index) {
-    //     await kv.set(item.source, item.destination);
-    //     console.log(item);
+    // redirects.slice(3511, 3555).map(async function (item, index) {
+    //     let data = await kv.get(item.source);
+    //     console.log(data);
     // })
     
     return <h1>Hello, Next.js! 123</h1>

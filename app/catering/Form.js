@@ -5,6 +5,20 @@ import Image from 'next/image';
 import styles from './Form.module.css';
 
 const Form = ({ data, posts }) => {
+  const [formData, setFormData] = useState({
+    form: 'catering',
+    name: '',
+    email: '',
+    phone: '',
+    event_address: '',
+    event_city: '',
+    event_state: 'AL',
+    event_zip: '',
+    store: '',
+    event_date: '',
+    message: '',
+    managers_email: '',
+  });
   const dateInputRef = useRef();
   const { store } = useContext(StoreContext);
 
@@ -15,6 +29,31 @@ const Form = ({ data, posts }) => {
     dateInputRef.current.min = formatDate(today);
     dateInputRef.current.max = formatDate(nextYear);
   }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await fetch('/api/submit-form', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+
+    if (response.ok) {
+      window.location.href = window.location.origin + '/success';
+    } else {
+      alert('Error submitting form');
+    }
+  };
 
   const formatDate = (date) => {
     const day = String(date.getDate()).padStart(2, '0');
@@ -29,12 +68,19 @@ const Form = ({ data, posts }) => {
 
   const handleStoreChange = (event) => {
     const selectedStore = event.target.value;
+    
     // const email = getEmailForStore(selectedStore);
-    // setStoreEmail(email);
+    const email = posts.reduce((email, p) => {
+      if (p.acf.name == selectedStore) email = p.acf.managers_email;
+      return email;
+    }, null);
 
-    // Log the selected store and email
-    console.log('Selected store:', selectedStore);
-    // console.log('Corresponding email:', email);
+    setFormData({
+      ...formData,
+      ['store']: selectedStore,
+      ['managers_email']: email,
+    });
+
   };
 
   return (
@@ -51,17 +97,17 @@ const Form = ({ data, posts }) => {
           </div>
         </div>
         <div>
-          <form className={styles.form} name="catering">
+          <form className={styles.form} onSubmit={handleSubmit} name="catering">
             <p>
               <label>Name *
-                <input placeholder="Name" type="text" name="name" required />
+                <input placeholder="Name" type="text" name="name" required onChange={handleChange}/>
               </label>
             </p>
             <p>
               <label>Email *
                 <input placeholder="Email" type="email" name="email"
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                  required />
+                  required onChange={handleChange}/>
               </label>
             </p>
             <p>
@@ -69,20 +115,20 @@ const Form = ({ data, posts }) => {
                 <input placeholder="Phone" type="tel"
                   name="phone"
                   pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$"
-                  required />
+                  required onChange={handleChange}/>
               </label>
             </p>
             <p>
               <label>Address of Event or Group Order
-                <input placeholder="Address" type="text" name="event_address" />
+                <input placeholder="Address" type="text" name="event_address" onChange={handleChange}/>
               </label>
             </p>
             <p className={styles.columns}>
               <label className={styles.grow1}>City
-                <input placeholder="City" type="text" name="event_city" />
+                <input placeholder="City" type="text" name="event_city" onChange={handleChange}/>
               </label>
               <label className={styles.w50}>State
-                <select placeholder="State" name="event_state">
+                <select placeholder="State" name="event_state" onChange={handleChange}>
                   <option value="AL">AL</option>
                   <option value="AK">AK</option>
                   <option value="AZ">AZ</option>
@@ -139,7 +185,7 @@ const Form = ({ data, posts }) => {
                 </select>
               </label>
               <label className={styles.w100}>Zip
-                <input placeholder="Zip" type="text" name="event_zip" /></label>
+                <input placeholder="Zip" type="text" name="event_zip" onChange={handleChange}/></label>
             </p>
             <p>
               <label>Your Store
@@ -163,6 +209,7 @@ const Form = ({ data, posts }) => {
                   placeholder="Event Date"
                   type="date"
                   name="event_date"
+                  onChange={handleChange}
                 />
               </label>
             </p>
@@ -173,6 +220,7 @@ const Form = ({ data, posts }) => {
                   name="message"
                   type="text"
                   rows="5"
+                  onChange={handleChange}
                 />
               </label>
             </p>
@@ -180,7 +228,6 @@ const Form = ({ data, posts }) => {
               <button type="submit">Submit Contact Form</button>
             </p>
             <input type="hidden" name="form-name" value="catering"></input>
-            <input type="hidden" name="store_email" value={storeEmail} />
           </form>
           <p dangerouslySetInnerHTML={{ __html: data.acf?.submit_message || '' }} />
         </div>
