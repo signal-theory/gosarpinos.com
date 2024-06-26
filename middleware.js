@@ -7,7 +7,7 @@ export async function middleware(request) {
         token: process.env.KV_REST_API_TOKEN,
     });
 
-    const pathname = request.nextUrl.pathname
+    const pathname = request.nextUrl.pathname;
     const redirectData = await kv.get(pathname);
     
     if (redirectData) {
