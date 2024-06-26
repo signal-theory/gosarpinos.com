@@ -1,3 +1,6 @@
+const signupSubject = () => 'New Newsletter Signup!'
+const signupEmail = (data) => `${data.email} as signed up for the newsletter!`
+
 const cateringThankYouSubject = () => 'Thank You for Your Catering Request!'
 const cateringManagerSubject = () => 'A Catering Request has been submitted!'
 
@@ -73,5 +76,7 @@ export {
     cateringThankYouSubject,
     cateringThankYouEmail,
     cateringManagerSubject,
-    cateringManagerEmail
+    cateringManagerEmail,
+    signupSubject,
+    signupEmail,
 };
