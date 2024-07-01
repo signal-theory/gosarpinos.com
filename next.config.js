@@ -5,7 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'sarpinos.mysites.io',
+        hostname: 'gosarpinos.flywheelsites.com',
       },
     ],
   },
