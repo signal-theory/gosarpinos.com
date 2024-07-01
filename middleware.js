@@ -3,8 +3,8 @@ import { createClient } from '@vercel/kv';
 
 export async function middleware(request) {
     const kv = createClient({
-        url: process.env.KV_REST_API_URL,
-        token: process.env.KV_REST_API_TOKEN,
+        url: process.env.KV_Redirects_REST_API_URL,
+        token: process.env.KV_Redirects_REST_API_TOKEN,
     });
 
     const pathname = request.nextUrl.pathname;
