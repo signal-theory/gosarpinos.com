@@ -136,9 +136,9 @@ nav.main-navigation .subitem a.navlocator-btn {
     max-width: 1300px;
     border-radius: 50px;
   }
-  .homepage-nav .coupon-callout {
+  /* .homepage-nav .coupon-callout {
     display: none;
-  }
+  } */
   .navbar .logo a {
     width: 123px;
     height: 38px;
@@ -331,6 +331,12 @@ nav.main-navigation .subitem a.navlocator-btn {
     border-radius: 32px;
     margin: 1rem auto 0;
     width: var(--mobilemenu-width);
+  }
+}
+
+@media all and (max-width: 475px) {
+  .homepage-nav .coupon-callout {
+    font-size: 0.7rem;
   }
 }
 

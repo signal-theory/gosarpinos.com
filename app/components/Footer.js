@@ -19,7 +19,7 @@ export default function Footer() {
             <p style={{ maxWidth: '290px' }}>Get $10 off your next order by earning loyalty points while enjoying our delicious pizzas. </p>
             <div className={styles.appStoreLinks}>
               <div>
-                <Link href="https://apps.apple.com/us/app/sarpinos-pizzeria/id1334667520">
+                <a href="https://apps.apple.com/us/app/sarpinos-pizzeria/id1334667520" target="_blank" rel="noopener noreferrer">
                   <Image
                     src={"/icon-app-store.png"}
                     alt="App Store"
@@ -27,15 +27,15 @@ export default function Footer() {
                     height={40}
                     style={{ paddingBottom: '1rem' }}
                   />
-                </Link>
-                <Link href="https://play.google.com/store/apps/details?id=com.foodtec.sarpinosusa&hl=en_US">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.foodtec.sarpinosusa&hl=en_US" target="_blank" rel="noopener noreferrer">
                   <Image
                     src={"/icon-google-play.png"}
                     alt="App Store"
                     width={136}
                     height={40}
                   />
-                </Link>
+                </a>
               </div>
 
               <Image
@@ -56,38 +56,38 @@ export default function Footer() {
               <div style={{ paddingLeft: '2rem' }}>
                 <p>Follow Us</p>
                 <div className={styles.iconLinks}>
-                  <Link href="https://www.facebook.com/SarpinosPizzeria/">
+                  <a href="https://www.facebook.com/SarpinosPizzeria/" target="_blank" rel="noopener noreferrer">
                     <Image
                       src={"/icon-facebook.svg"}
                       width={20}
                       height={20}
                       alt="Facebook"
                     />
-                  </Link>
-                  <Link href="https://www.instagram.com/sarpinos_pizzeria/">
+                    </a>
+                  <a href="https://www.instagram.com/sarpinos_pizzeria/" target="_blank" rel="noopener noreferrer">
                     <Image
                       src={"/icon-instagram.svg"}
                       width={20}
                       height={20}
                       alt="Instagram"
                     />
-                  </Link>
-                  <Link href="https://x.com/sarpinos_pizza">
+                    </a>
+                  <a href="https://x.com/sarpinos_pizza" target="_blank" rel="noopener noreferrer">
                     <Image
                       src={"/icon-x.svg"}
                       width={20}
                       height={20}
                       alt="Twitter"
                     />
-                  </Link>
-                  <Link href="https://www.youtube.com/company/sarpinos-pizzeria/">
+                    </a>
+                  <a href="https://www.youtube.com/company/sarpinos-pizzeria/" target="_blank" rel="noopener noreferrer">
                     <Image
                       src={"/icon-youtube.svg"}
                       width={20}
                       height={20}
                       alt="LinkedIn"
                     />
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
@@ -113,14 +113,15 @@ export default function Footer() {
               <div>
                 <h4 className={styles.header}>About Us</h4>
                 <ul>
-                  <li><Link href="https://jobs.gosarpinos.com/">Careers</Link></li>
-                  <li><Link href="https://sarpinosfranchise.com/">Franchising Information</Link></li>
+                  <li><a href="https://jobs.gosarpinos.com/" target="_blank" rel="noopener noreferrer">Careers</a></li>
+                  <li><a href="https://sarpinosfranchise.com/" target="_blank" rel="noopener noreferrer">Franchising Information</a></li>
+                  <li><a href="https://admin-v1.gosarpinos.com/admin/" target="_blank" rel="noopener noreferrer">Franchise Login</a></li>
                   <li><Link href="/pizza-delivery">Location Finder</Link></li>
                   <li><Link href="/download-pizza-app">Mobile App</Link></li>
                 </ul>
                 <h4 className={styles.header}>Contact Us</h4>
                 <ul>
-                  <li>Phone: 847.374.6300</li>
+                  <li>Phone: <Link href="tel:018473746300">847.374.6300</Link></li>
                   <li>Email: <Link href="mailto:us@gosarpinos.com">us@gosarpinos.com</Link></li>
                 </ul>
                 <h4 className={styles.header}>Address</h4>

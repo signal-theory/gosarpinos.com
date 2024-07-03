@@ -25,7 +25,7 @@ const CalloutMobileApp = ({ calloutImage, calloutItem }) => {
               <p>{`Get $10 off your next order by earning loyalty points while enjoying our delicious ${calloutItem ? calloutItem + ' and pizzas' : 'pizzas'}.`} </p>
               <div className={stylesF.appStoreLinks}>
                 <div>
-                  <Link href={'https://apps.apple.com/us/app/sarpinos-pizzeria/id1334667520'}>
+                 <a href={'https://apps.apple.com/us/app/sarpinos-pizzeria/id1334667520'} target="_blank" rel="noopener noreferrer">
                     <Image
                       src={"/icon-app-store.png"}
                       alt="App Store"
@@ -33,15 +33,15 @@ const CalloutMobileApp = ({ calloutImage, calloutItem }) => {
                       height={40}
                       style={{ paddingBottom: '1rem' }}
                     />
-                  </Link>
-                  <Link href={'https://play.google.com/store/apps/details?id=com.foodtec.sarpinosusa&hl=en_US'}>
+                    </a>
+                 <a href={'https://play.google.com/store/apps/details?id=com.foodtec.sarpinosusa&hl=en_US'} target="_blank" rel="noopener noreferrer">
                     <Image
                       src={"/icon-google-play.png"}
                       alt="App Store"
                       width={136}
                       height={40}
                     />
-                  </Link>
+                    </a>
                 </div>
 
                 <Image

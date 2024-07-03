@@ -127,6 +127,17 @@
     transform: translate(20%, 0);
   }
 }
+@media screen and (max-height: 850px) and (min-width: 1125px) {
+  .homepageHero {
+    position: relative;
+  }
+}
+@media screen and (max-height: 760px) and (max-width: 760px) {
+  .homepageHero {
+    position: relative;
+  }
+}
+
 
 .pizzaAnimation img {
   position: absolute;

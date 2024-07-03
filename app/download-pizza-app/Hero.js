@@ -14,6 +14,7 @@ const Hero = ({ data, mainImage }) => {
         <div className={styles2.appStoreLinks}>
           <div>
             <Link href="https://apps.apple.com/us/app/sarpinos-pizzeria/id1334667520">
+            <a target="_blank">
               <Image
                 src={"/icon-app-store.png"}
                 alt="App Store"
@@ -21,14 +22,17 @@ const Hero = ({ data, mainImage }) => {
                 height={40}
                 style={{ paddingBottom: '1rem' }}
               />
+              </a>
             </Link>
             <Link href="https://play.google.com/store/apps/details?id=com.foodtec.sarpinosusa&hl=en_US">
+            <a target="_blank">
               <Image
                 src={"/icon-google-play.png"}
                 alt="App Store"
                 width={136}
                 height={40}
               />
+              </a>
             </Link>
           </div>
 
