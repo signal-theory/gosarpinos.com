@@ -1,8 +1,12 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Using Wordpress [gosarpinos.flywheelsites.com](https://gosarpinos.flywheelsites.com) as a database
 
 ## Getting Started
 
-First, run the development server:
+Install node packages:
+`npm install`
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -16,21 +20,35 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Adding Redirects
 
-## Learn More
+Take this link as an example:
+`https://www.gosarpinos.com/pizza-delivery/sarpino-s-pizzeria-in-harwood-heights-chicago-o-hare#!/Info`
 
-To learn more about Next.js, take a look at the following resources:
+You have to remove the origin, and the fragments at the end, so that becomes
+`/pizza-delivery/sarpino-s-pizzeria-in-harwood-heights-chicago-o-hare`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Then you just figure out where they redirect to, in this case, it should go to
+`'/pizza-delivery/sarpinos-harwood-heights'`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Then just create a set command in Redis.
+`SET '/pizza-delivery/sarpino-s-pizzeria-in-harwood-heights-chicago-o-hare' '/pizza-delivery/sarpinos-harwood-heights'``
 
-## Deploy on Vercel
+I usually test to make sure they don't exist before i create them, for that you just run
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`GET '/pizza-delivery/harwood-heights-chicago-o-hare-sarpinos'`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If that returns a value that is wrong, you can remove it with
+`DEL '/pizza-delivery/harwood-heights-chicago-o-hare-sarpinos'`
+
+Then run your set command
+`SET '/pizza-delivery/sarpino-s-pizzeria-in-harwood-heights-chicago-o-hare' '/pizza-delivery/sarpinos-harwood-heights'`
+
+You can run those commands in the vercel dashboard
+**Project -> Storage -> select the "sarpinos-next-app-redirects” db and it should pop up the CLI**
+
+[Sarpinos Vercel Dashboard](https://vercel.com/sarpino-s-usa-inc/sarpinos-next-app/stores/kv/store_GvRdjfKE6Xy5k0TN/cli)
+
+
+Just note that both the source and destination need to start with the / and neither should have any of the #! fragment stuff, and the source shoud be free of the ?foo=bar query stuff
