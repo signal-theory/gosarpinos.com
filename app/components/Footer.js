@@ -56,7 +56,7 @@ export default function Footer() {
               <div style={{ paddingLeft: '2rem' }}>
                 <p>Follow Us</p>
                 <div className={styles.iconLinks}>
-                  <a href="https://www.facebook.com/SarpinosPizzeria/" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.facebook.com/SarpinosPizza/" target="_blank" rel="noopener noreferrer">
                     <Image
                       src={"/icon-facebook.svg"}
                       width={20}
