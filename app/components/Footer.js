@@ -80,7 +80,7 @@ export default function Footer() {
                       alt="Twitter"
                     />
                     </a>
-                  <a href="https://www.youtube.com/company/sarpinos-pizzeria/" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.youtube.com/@GosarpinosPizzeria/videos" target="_blank" rel="noopener noreferrer">
                     <Image
                       src={"/icon-youtube.svg"}
                       width={20}
