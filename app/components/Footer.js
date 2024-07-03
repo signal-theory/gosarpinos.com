@@ -19,7 +19,7 @@ export default function Footer() {
             <p style={{ maxWidth: '290px' }}>Get $10 off your next order by earning loyalty points while enjoying our delicious pizzas. </p>
             <div className={styles.appStoreLinks}>
               <div>
-                <Link href="https://apps.apple.com/us/app/sarpinos-pizzeria/id1479489789">
+                <Link href="https://apps.apple.com/us/app/sarpinos-pizzeria/id1334667520">
                   <Image
                     src={"/icon-app-store.png"}
                     alt="App Store"
@@ -28,7 +28,7 @@ export default function Footer() {
                     style={{ paddingBottom: '1rem' }}
                   />
                 </Link>
-                <Link href="https://play.google.com/store/apps/details?id=com.sarpinos">
+                <Link href="https://play.google.com/store/apps/details?id=com.foodtec.sarpinosusa&hl=en_US">
                   <Image
                     src={"/icon-google-play.png"}
                     alt="App Store"
