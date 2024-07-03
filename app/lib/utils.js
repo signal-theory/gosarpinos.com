@@ -218,7 +218,7 @@ export async function fetchMiscData(slug) {
 // utils fetchCPTData
 export async function fetchCPTData(cptNames) {
   const data = await Promise.all(cptNames.map(async (cptName) => {
-    const res = await fetch(`${CPT_API_URL}/${cptName}?per_page=100&order=asc&orderby=title`, {
+    const res = await fetch(`${CPT_API_URL}/${cptName}?per_page=100&order=desc&orderby=date`, {
       headers: {
         'Accept': 'application/json'
       }

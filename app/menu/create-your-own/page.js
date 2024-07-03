@@ -2,7 +2,7 @@ import { METADATABASE_API_URL } from '@/app/lib/constants';
 import { fetchMetadata, fetchPageData, fetchCPTData, fetchACFImage } from '@/app/lib/utils';
 import MenuNavigation from '../MenuNavigation';
 import MenuHeader from '../MenuHeader';
-import MenuContent from '../MenuContent';
+import MenuContentCYO from '../MenuContentCYO';
 import CalloutMenu from '@/app/components/CalloutMenu';
 import CalloutMobileApp from '@/app/components/CalloutMobileApp';
 
@@ -124,10 +124,9 @@ export default async function Page({ params }) {
             category="build-your-own"
           />
           {/* Render the menu posts */}
-          <MenuContent
+          <MenuContentCYO
             posts={posts}
-            postTypeSlug={postType}
-            categoryTitle={'Sort ' + postType} />
+            postTypeSlug={postType} />
         </div>
       </section>
 

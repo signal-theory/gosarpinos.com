@@ -16,6 +16,10 @@
 .column {
   padding: 0 1rem;
 }
+.column h3,
+.column p {
+  text-shadow: 2px 2px 40px rgba(0,0,0,1);
+}
 .coupon {
   display: none;
 }
