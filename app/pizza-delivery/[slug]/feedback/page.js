@@ -16,8 +16,8 @@ export async function generateMetadata({ params }) {
 
   return {
     metadataBase,
-    title: metadata.title,
-    description: metadata.description,
+    title: 'Customer Feedback for the ' + metadata.title,
+    description: 'Tell us about your experience and read what our customers are saying about Sarpino\'s Pizzeria',
     openGraph: {
       images: metadata.ogImage ? [{ url: metadata.ogImage }] : []
     },

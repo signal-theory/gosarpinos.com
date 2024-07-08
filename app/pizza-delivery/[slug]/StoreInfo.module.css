@@ -47,10 +47,17 @@
 ol.list {
   margin: 1rem 2rem;
 }
-.list li {
+ol.list li {
   list-style-type: decimal;
   margin: 1rem 0;
 }
+ul.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
 .managerPhoto {
   border-radius: 100%;
   margin-right: 3vw;

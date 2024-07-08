@@ -118,9 +118,65 @@ const StoreInfo = ({ post }) => {
           </div>
         </div> : <div className={styles.column2}>
             <h5>Currently Hiring</h5>
-            <p>Interested in working with us? <a href="https://jobs.gosarpinos.com/" target="_blank">View our current job listings.</a></p>
+            <p>Interested in working with us? <a href="https://jobs.gosarpinos.com/" target="_blank" rel="noopener noreferrer">View our current job listings.</a></p>
           </div>}
       </div>
+      <div className={styles.content}>
+        <h5>LINKS</h5>
+        <ul className={styles.list}>
+          {post.acf?.google_write_a_review_link?.url && 
+            <li><a className='text-link' href={post.acf?.google_write_a_review_link?.url} target="_blank" rel="noopener noreferrer">Google Reviews</a></li>
+          }
+          {post.acf?.allergyeats_url?.url && 
+            <li><a className='text-link' href={post.acf?.allergyeats_url?.url} target="_blank" rel="noopener noreferrer">Allergy Eats</a></li>
+          }
+          {post.acf?.apple_maps_url?.url && 
+            <li><a className='text-link' href={post.acf?.apple_maps_url?.url} target="_blank" rel="noopener noreferrer">Apple Maps</a></li>
+          }
+          {post.acf?.bing_maps_url?.url && 
+            <li><a className='text-link' href={post.acf?.bing_maps_url?.url} target="_blank" rel="noopener noreferrer">Bing Maps</a></li>
+          }
+          {post.acf?.delivery_url?.url && 
+            <li><a className='text-link' href={post.acf?.delivery_url?.url} target="_blank" rel="noopener noreferrer">Delivery</a></li>
+          }
+          {post.acf?.facebook_url?.url && 
+            <li><a className='text-link' href={post.acf?.facebook_url?.url} target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          }
+          {post.acf?.instagram_url?.url && 
+            <li><a className='text-link' href={post.acf?.instagram_url?.url} target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          }
+          {post.acf?.foursquare_url?.url && 
+            <li><a className='text-link' href={post.acf?.foursquare_url?.url} target="_blank" rel="noopener noreferrer">Foursquare</a></li>
+          }
+          {post.acf?.google_url?.url && 
+            <li><a className='text-link' href={post.acf?.google_url?.url} target="_blank" rel="noopener noreferrer">Google</a></li>
+          }
+          {post.acf?.groupon_url?.url && 
+            <li><a className='text-link' href={post.acf?.groupon_url?.url} target="_blank" rel="noopener noreferrer">Groupon</a></li>
+          }
+          {post.acf?.grubhub_url?.url && 
+            <li><a className='text-link' href={post.acf?.grubhub_url?.url} target="_blank" rel="noopener noreferrer">Grubhub</a></li>
+          }
+          {post.acf?.judys_book_url?.url && 
+            <li><a className='text-link' href={post.acf?.judys_book_url?.url} target="_blank" rel="noopener noreferrer">Judy's Book</a></li>
+          }
+          {post.acf?.seamless_url?.url && 
+            <li><a className='text-link' href={post.acf?.seamless_url?.url} target="_blank" rel="noopener noreferrer">Seamless</a></li>
+          }
+          {post.acf?.tripadvisor_url?.url && 
+            <li><a className='text-link' href={post.acf?.tripadvisor_url?.url} target="_blank" rel="noopener noreferrer">Trip Advisor</a></li>
+          }
+          {post.acf?.yellowpages_url?.url && 
+            <li><a className='text-link' href={post.acf?.yellowpages_url?.url} target="_blank" rel="noopener noreferrer">Yellow Pages</a></li>
+          }
+          {post.acf?.yelp_url?.url && 
+            <li><a className='text-link' href={post.acf?.yelp_url?.url} target="_blank" rel="noopener noreferrer">Yelp</a></li>
+          }
+          {post.acf?.zomato_url?.url && 
+            <li><a className='text-link' href={post.acf?.zomato_url?.url} target="_blank" rel="noopener noreferrer">Zomato</a></li>
+          }
+        </ul>
+        </div>
     </>
   );
 }
