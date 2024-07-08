@@ -308,6 +308,9 @@ a.text-link {
 a.nav-link {
   text-decoration: none;
 }
+.textBtn:hover{
+  text-decoration: underline;
+}
 
 /*
 a:hover,
