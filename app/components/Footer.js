@@ -133,7 +133,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="text-align-center" style={{ margin: '2rem auto 0' }}>
-          <p>Franchisee Login &copy;{year} Sarpino&apos;s USA, Inc. All Rights Reserved</p>
+          <p>&copy;{year} Sarpino&apos;s USA, Inc. All Rights Reserved</p>
           <Link href="/privacy" className="textBtn">Privacy Policy</Link> | <Link href="/tos" className="textBtn">Website Terms of Use</Link>
         </div>
       </div>
