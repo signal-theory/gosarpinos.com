@@ -24,6 +24,8 @@ const Hero = ({ post, storefrontImage }) => {
     setNextOpenTime(status.nextOpenTime || '');
   }, [post]);
 
+  const reviewLink = post.acf?.google_write_a_review_link?.url;
+  
   return (
     <section className={styles.hero}>
       <Image
@@ -35,8 +37,16 @@ const Hero = ({ post, storefrontImage }) => {
       />
       <div className={`page-container ${styles.heroContent}`}>
         <h1 className={styles.heroTitle}>{he.decode(post.title.rendered)}</h1>
-        <h4>{isOpen ? `Open Now: ${currentOpenTime} - ${currentCloseTime}` : `Opens at: ${nextOpenTime}`}</h4>
-        <OrderBtn />&nbsp;&nbsp;&nbsp; <Link className='btn secondary-btn' href={post.acf.google_write_a_review_link.url} target="_blank"><span>Rate us on Google</span></Link>
+        <h4>{isOpen ? `Open Now: ${currentOpenTime} - ${currentCloseTime}` : (nextOpenTime != '' ? `Opens at: ${nextOpenTime}` : null)}</h4>
+        <OrderBtn />
+        {reviewLink && (
+          <>
+            &nbsp;&nbsp;&nbsp;
+            <Link className='btn secondary-btn' href={reviewLink} target="_blank">
+              <span>Rate us on Google</span>
+            </Link>
+          </>
+        )}
         <br />
         <Link className={styles.pinBtn} href="/pizza-delivery/">Other Pizza Near Me</Link>
       </div>

@@ -7,7 +7,7 @@ export function convertTo12Hour(time) {
   } else {
     // Handle the error or return a default value
     console.error('Invalid time format');
-    return '00:00 AM';
+    return null;
   }
 }
 

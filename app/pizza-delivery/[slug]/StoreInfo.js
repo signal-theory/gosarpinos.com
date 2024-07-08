@@ -6,7 +6,6 @@ import he from 'he';
 import OrderBtn from '@/app/components/OrderBtn';
 import OrderLink from '@/app/components/OrderLink';
 
-
 const StoreInfo = ({ post }) => {
   const slug = post.slug || '';
   const url = `/pizza-delivery/${slug}`;
@@ -48,37 +47,41 @@ const StoreInfo = ({ post }) => {
     }).join('');
   }
 
+  // Log the URLs to ensure they are not undefined
+  console.log('Google Maps URL:', `https://www.google.com/maps?saddr=Your+Location&daddr=${post.acf?.name || ''}`);
+  console.log('Delivery Area URL:', url + '/delivery-area');
+
   return (
     <>
       <div className={styles.container}>
         <div className={styles.column1}>
-          <p><strong>{post.acf.phone_number || 'phone number'}</strong></p>
-          <p>{post.acf.address || 'address'}<br />
-            {post.acf.city}, {post.acf.state} {post.acf.zip}
+          <p><strong>{post.acf?.phone_number || 'phone number'}</strong></p>
+          <p>{post.acf?.address || 'address'}<br />
+            {post.acf?.city}, {post.acf?.state} {post.acf?.zip}
           </p>
-          <Link className="text-link" href={`https://www.google.com/maps?saddr=Your+Location&daddr=${post.acf.name}`} target="_blank">Directions</Link>
+          <Link className="text-link" href={`https://www.google.com/maps?saddr=Your+Location&daddr=${post.acf?.name || ''}`} target="_blank">Directions</Link>
         </div>
         <div className={styles.column2}>
           <p dangerouslySetInnerHTML={{ __html: groupDays() }}></p>
         </div>
       </div>
       <div className={styles.content}>
-        <h3>Looking for the Best Pizza Delivery in {post.acf.city}?</h3>
+        <h3>Looking for the Best Pizza Delivery in {post.acf?.city || 'your city'}?</h3>
         <p>Look no further than your local Sarpino&apos;s. You want the best pizza delivery in your area, and we aim to fulfill that with hand-made pizza delivered to you with no delivery fee and, oh yeah, we&apos;re open late.</p>
-        <p>We offer specialty pizza with the freshest of ingredients. Our menu is full of gourmet pizza options born from Italian tradition. We also provide numerous vegan/gluten free pizza options because everyone deserves great pizza in their life. Vegan pizza doesn&apos;t mean less flavor. Our vegan pizza uses fresh ingredients from trusted brands such as Daiya Cheese, Beyond Meat, and Field Roast to ensure maximum flavor. We encourage you to try all our different vegan pizza options in Sarpino&apos;s Pizzeria {post.acf.city}. We can even accommodate new creations, so feel free to order a customized vegan pizza today!</p>
+        <p>We offer specialty pizza with the freshest of ingredients. Our menu is full of gourmet pizza options born from Italian tradition. We also provide numerous vegan/gluten free pizza options because everyone deserves great pizza in their life. Vegan pizza doesn&apos;t mean less flavor. Our vegan pizza uses fresh ingredients from trusted brands such as Daiya Cheese, Beyond Meat, and Field Roast to ensure maximum flavor. We encourage you to try all our different vegan pizza options in Sarpino&apos;s Pizzeria {post.acf?.city || 'your city'}. We can even accommodate new creations, so feel free to order a customized vegan pizza today!</p>
         <p>Our menu provides so much more than pizza, serving up sandwiches, pastas, calzones, salads, sides, desserts and more! All meals are made fresh and you can also count on free delivery when you order from Sarpino&apos;s online.</p>
       </div>
       <div className={styles.content}>
-        <h5>The Only Choice for Free Delivery in the {post.acf.metro_area} metro area.</h5>
-        <p>We take pizza and food delivery to the next level. You get fast, free food delivery, even if it&apos;s a late night. There is no minimum order and you can take your time while using our online menu. And of course, you can always count on getting delicious pizza from Sarpino&apos;s Pizzeria in the {post.acf.metro_area} metro area.</p>
+        <h5>The Only Choice for Free Delivery in the {post.acf?.metro_area || 'your metro area'} metro area.</h5>
+        <p>We take pizza and food delivery to the next level. You get fast, free food delivery, even if it&apos;s a late night. There is no minimum order and you can take your time while using our online menu. And of course, you can always count on getting delicious pizza from Sarpino&apos;s Pizzeria in the {post.acf?.metro_area || 'your metro area'} metro area.</p>
       </div>
       <div className={styles.content}>
         <h5>Wondering about our delivery area?</h5>
-        <p>Food and Pizza Delivery to the {post.acf.name} area at no additional cost! Want to know if your zip code, hotel or other location is in our delivery area? See the <Link href={url + '/delivery-area'}>Delivery Area section</Link> for more specific details.</p>
+        <p>Food and Pizza Delivery to the {post.acf?.name || 'your area'} area at no additional cost! Want to know if your zip code, hotel or other location is in our delivery area? See the <Link href={url + '/delivery-area'}>Delivery Area section</Link> for more specific details.</p>
       </div>
       <div className={styles.content}>
         <h5>Have a craving after hours?</h5>
-        <p>It&apos;s late. You are hungry. You are craving pizza. You need it delivered fast. You are on the right page. Your local  {post.acf.name} Sarpino&apos;s is open all day, even at late-night and is ready help you satisfy your cravings.</p>
+        <p>It&apos;s late. You are hungry. You are craving pizza. You need it delivered fast. You are on the right page. Your local  {post.acf?.name || 'Sarpino\'s'} Sarpino&apos;s is open all day, even at late-night and is ready help you satisfy your cravings.</p>
       </div>
       <div className={styles.content}>
         <h5>You can get hot, fresh food delivered to your door in three easy steps:</h5>
@@ -90,31 +93,30 @@ const StoreInfo = ({ post }) => {
       </div>
       <OrderBtn />
       <div className={styles.container2}>
-        {post.acf.manager_name &&
+        {post.acf?.manager_name &&
           <div className={styles.column1}>
             <h5>MANAGER</h5>
             <Image
               className={styles.managerPhoto}
-              src={post.acf.managers_photo || '/default-manager.jpg'}
+              src={post.acf?.managers_photo || '/default-manager.jpg'}
               alt="manager"
               width={80} height={80} />
-            <h5 className={styles.managerName}>{post.acf.manager_name}</h5>
-            {post.acf.managers_email && <Link
+            <h5 className={styles.managerName}>{post.acf?.manager_name}</h5>
+            {post.acf?.managers_email ? <Link
               className={styles.managerEmail}
-              href={`mailto${post.acf.managers_email}`}>{post.acf.managers_email}</Link>
-              || <p className={styles.managerEmail}>manager@email.com</p>}
-
-          </div> || null}
-        {careers && careers.some(career => career.position) && <div className={styles.column2}>
+              href={`mailto:${post.acf.managers_email}`}>{post.acf.managers_email}</Link>
+              : <p className={styles.managerEmail}>manager@email.com</p>}
+          </div>}
+        {careers && careers.some(career => career.position) ? <div className={styles.column2}>
           <h5>Currently Hiring</h5>
           <div className={styles.careers}>
             {careers.map((career, index) => (
               <div key={index} className={styles.career}>
-                <Link className={styles.jobLink} href="">{career.position}</Link>
+                <Link className={styles.jobLink} href={career.url || '#'}>{career.position}</Link>
               </div>
             ))}
           </div>
-        </div> || <div className={styles.column2}>
+        </div> : <div className={styles.column2}>
             <h5>Currently Hiring</h5>
             <p>Interested in working with us? <a href="https://jobs.gosarpinos.com/" target="_blank">View our current job listings.</a></p>
           </div>}

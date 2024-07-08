@@ -11,18 +11,21 @@ const DeliveryArea = ({ post }) => {
   return (
     <>
       <div className={styles.container}>
-        <h3>Sarpino&apos;s delivers food to:</h3>
-        {areacities &&
-          <ul className={styles.list}>
-            {areacities.map((item, index) => (
-              <li key={index}>
-                {item.item_name}
-              </li>
-            ))}
-          </ul>
+        {areacities && areacities.length > 0 &&
+          <>
+          <h3>Sarpino&apos;s delivers food to:</h3>
+            <ul className={styles.list}>
+              {areacities.map((item, index) => (
+                <li key={index}>
+                  {item.item_name}
+                </li>
+              ))}
+            </ul>
+          </>
         }
-        <h5 className={styles.title}>Find best pizza places that deliver in and around {post.acf.city}, {post.acf.state}</h5>
-        {areaneighborhoods &&
+        {areaneighborhoods && areaneighborhoods.length > 0 &&
+        <>
+          <h5 className={styles.title}>Find best pizza places that deliver in and around {post.acf?.city}, {post.acf?.state}</h5>
           <ul className={styles.list}>
             {areaneighborhoods.map((item, index) => (
               <li key={index}>
@@ -30,23 +33,24 @@ const DeliveryArea = ({ post }) => {
               </li>
             ))}
           </ul>
+        </>
         }
       </div>
-      <div className={styles.container}>
-        <h5 className={styles.title}>Food Delivery To Zip Codes</h5>
-        {areazips &&
-          <ul className={styles.list}>
-            {areazips.map((item, index) => (
-              <li key={index}>
-                {item.item_name}
-              </li>
-            ))}
-          </ul>
+        {areazips && areazips.length > 0 &&
+        <div className={styles.container}>
+          <h5 className={styles.title}>Food Delivery To Zip Codes</h5>
+            <ul className={styles.list}>
+              {areazips.map((item, index) => (
+                <li key={index}>
+                  {item.item_name}
+                </li>
+              ))}
+            </ul>
+        </div>
         }
-      </div>
-      <div className={styles.container}>
-        <h5 className={styles.title}>Hotel Delivery Options</h5>
-        {areahotels &&
+        {areahotels && areahotels.length > 0 &&
+        <div className={styles.container}>
+          <h5 className={styles.title}>Hotel Delivery Options</h5>
           <ul className={styles.list}>
             {areahotels.map((item, index) => (
               <li key={index}>
@@ -54,20 +58,20 @@ const DeliveryArea = ({ post }) => {
               </li>
             ))}
           </ul>
+        </div>
         }
-      </div>
-      <div className={styles.container}>
-        <h5 className={styles.title}>Late Night Food Delivery To:</h5>
-        {arealandmarks &&
-          <ul className={styles.list}>
-            {arealandmarks.map((item, index) => (
-              <li key={index}>
-                {item.item_name}
-              </li>
-            ))}
-          </ul>
+        {arealandmarks && arealandmarks.length > 0 &&
+          <div className={styles.container}>
+            <h5 className={styles.title}>Late Night Food Delivery To:</h5>
+            <ul className={styles.list}>
+              {arealandmarks.map((item, index) => (
+                <li key={index}>
+                  {item.item_name}
+                </li>
+              ))}
+            </ul>
+          </div>
         }
-      </div>
     </>
   );
 }
