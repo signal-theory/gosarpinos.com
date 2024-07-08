@@ -122,7 +122,6 @@ const StoreInfo = ({ post }) => {
           </div>}
       </div>
       <div className={styles.content}>
-        <h5>LINKS</h5>
         <ul className={styles.list}>
           {post.acf?.google_write_a_review_link?.url && 
             <li><a className='text-link' href={post.acf?.google_write_a_review_link?.url} target="_blank" rel="noopener noreferrer">Google Reviews</a></li>
