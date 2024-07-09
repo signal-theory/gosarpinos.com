@@ -157,7 +157,7 @@ const StoreInfo = ({ post }) => {
             <li><a className='text-link' href={post.acf?.grubhub_url?.url} target="_blank" rel="noopener noreferrer">Grubhub</a></li>
           }
           {post.acf?.judys_book_url?.url && 
-            <li><a className='text-link' href={post.acf?.judys_book_url?.url} target="_blank" rel="noopener noreferrer">Judy's Book</a></li>
+            <li><a className='text-link' href={post.acf?.judys_book_url?.url} target="_blank" rel="noopener noreferrer">Judy&apos;s Book</a></li>
           }
           {post.acf?.seamless_url?.url && 
             <li><a className='text-link' href={post.acf?.seamless_url?.url} target="_blank" rel="noopener noreferrer">Seamless</a></li>
