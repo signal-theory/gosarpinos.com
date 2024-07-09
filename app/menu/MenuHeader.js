@@ -18,7 +18,7 @@ const MenuHeader = ({ featuredImage, featuredImageAlt, pageTitle, pageContent, c
         )}
       </div>
       <div className='flex-align-center'>
-        <h2 style={{ margin: '0 auto 0 0' }} dangerouslySetInnerHTML={{ __html: pageTitle || '' }} />
+        <h1 style={{ margin: '0 auto 0 0' }} dangerouslySetInnerHTML={{ __html: pageTitle || '' }} />
         <div dangerouslySetInnerHTML={{ __html: pageContent || '' }} />
         <p>Please check your <OrderLink label="local Sarpino's Pizzeria" category={category} />, as not all of the <span dangerouslySetInnerHTML={{ __html: pageTitle + ' items' || 'items' }} /> shown here are available at every location.</p>
       </div>

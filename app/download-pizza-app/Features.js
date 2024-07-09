@@ -5,7 +5,7 @@ const Features = ({ data }) => {
   const features = data?.acf?.features_list || [];
   return (
     <>
-      <h3 dangerouslySetInnerHTML={{ __html: data?.acf?.features_headline || '' }} className={styles.title}></h3>
+      <h2 dangerouslySetInnerHTML={{ __html: data?.acf?.features_headline || '' }} className={styles.title}></h2>
       <div className="responsive-column-container">
         <div dangerouslySetInnerHTML={{ __html: data?.acf?.navigation_features || '' }} className={styles.content} />
         <div className={styles.features}>

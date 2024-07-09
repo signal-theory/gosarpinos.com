@@ -9,12 +9,11 @@ const Hero = ({ data, mainImage }) => {
   return (
     <div className="responsive-column-container">
       <div className={`flex-align-center order2 ${styles.textCol}`}>
-        <h2 className={styles.title} dangerouslySetInnerHTML={{ __html: data?.title.rendered || '' }} />
+        <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: data?.title.rendered || '' }} />
         <div dangerouslySetInnerHTML={{ __html: data?.content.rendered || '' }} />
         <div className={styles2.appStoreLinks}>
           <div>
-            <Link href="https://apps.apple.com/us/app/sarpinos-pizzeria/id1334667520">
-            <a target="_blank">
+            <a href="https://apps.apple.com/us/app/sarpinos-pizzeria/id1334667520" target="_blank" rel="noopener noreferrer">
               <Image
                 src={"/icon-app-store.png"}
                 alt="App Store"
@@ -23,9 +22,7 @@ const Hero = ({ data, mainImage }) => {
                 style={{ paddingBottom: '1rem' }}
               />
               </a>
-            </Link>
-            <Link href="https://play.google.com/store/apps/details?id=com.foodtec.sarpinosusa&hl=en_US">
-            <a target="_blank">
+            <a href="https://play.google.com/store/apps/details?id=com.foodtec.sarpinosusa&hl=en_US" target="_blank" rel="noopener noreferrer">
               <Image
                 src={"/icon-google-play.png"}
                 alt="App Store"
@@ -33,7 +30,6 @@ const Hero = ({ data, mainImage }) => {
                 height={40}
               />
               </a>
-            </Link>
           </div>
 
           <Image
