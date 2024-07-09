@@ -1,3 +1,6 @@
+'use client';
+import { useEffect, useContext } from 'react';
+import { StoreContext } from '@/app/context/useStoreContext';
 import styles from './StoreInfo.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -7,6 +10,14 @@ import OrderBtn from '@/app/components/OrderBtn';
 import OrderLink from '@/app/components/OrderLink';
 
 const StoreInfo = ({ post }) => {
+  const { setStore } = useContext(StoreContext); 
+
+  useEffect(() => {
+    if (post?.acf?.name) {
+      setStore(post.acf.name); // Set the store context to the ACF "name"
+    }
+  }, [post, setStore]);
+  
   const slug = post.slug || '';
   const url = `/pizza-delivery/${slug}`;
 

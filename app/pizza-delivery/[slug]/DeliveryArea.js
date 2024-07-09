@@ -1,5 +1,17 @@
+'use client';
+import { useEffect, useContext } from 'react';
+import { StoreContext } from '@/app/context/useStoreContext';
 import styles from './DeliveryArea.module.css';
+
 const DeliveryArea = ({ post }) => {
+
+  const { setStore } = useContext(StoreContext); 
+
+  useEffect(() => {
+    if (post?.acf?.name) {
+      setStore(post.acf.name); // Set the store context to the ACF "name"
+    }
+  }, [post, setStore]);
 
   const areacities = post.acf?.area_cities || [];
   const areazips = post.acf?.area_zips || [];
