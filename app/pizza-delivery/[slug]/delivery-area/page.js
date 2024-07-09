@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
   return {
     metadataBase,
     title: 'Delivery Area for the ' + metadata.title,
-    description: 'Explore the delivery area for the best gourmet pizza with fresh ingredients. Fast, free delivery with no minimum order.',
+    description: 'Explore the delivery area for the ' + metadata.title,
     openGraph: {
       images: metadata.ogImage ? [{ url: metadata.ogImage }] : []
     },
