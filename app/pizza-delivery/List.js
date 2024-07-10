@@ -78,7 +78,13 @@ const List = ({ locations, filteredLocations, setInfoWindowOpen, openInfoWindowI
                 <Link className="text-link" href={`/pizza-delivery/${location.slug}`} onClick={() => setStore(location.acf.name)}>See Store Info</Link>
               </div>
               <div>
-                <p style={{ textAlign: 'center', marginBottom: '1rem' }}><strong>{location.acf.phone_number || 'phone number'}</strong></p>
+              <p className={styles.phone}>
+                  {location.acf.phone_number && (
+                    <a href={`tel:01${location.acf.phone_number.replace(/-/g, '')}`}>
+                      {location.acf.phone_number}
+                    </a>
+                  )}
+                </p>
                 <a href={`https://${location.acf.name}.gosarpinos.com/ordering/menu/Popular%20Items`} onClick={() => handleLocationSelect(location)} className="btn primary-btn"><span>Order Now</span></a>
 
               </div>
