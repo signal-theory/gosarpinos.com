@@ -8,8 +8,12 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('day');
 
   useEffect(() => {
-    const isDay = checkTime();
-    setTheme(isDay ? 'day' : 'night');
+    const updateTheme = async () => {
+      const isDay = await checkTime();
+      setTheme(isDay ? 'day' : 'night');
+    };
+
+    updateTheme();
   }, []);
 
   return <ThemeContext.Provider value={theme}>

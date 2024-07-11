@@ -284,3 +284,21 @@ export async function fetchLocations() {
 
   return await res.json();
 }
+
+
+export async function fetchACFDayTimes() {
+  const res = await fetch(`${PAGES_API_URL}?slug=about`);
+  if (!res.ok) {
+    throw new Error('Failed to fetch ACF day times');
+  }
+  const data = await res.json();
+  
+  if (!data[0] || !data[0].acf) {
+    throw new Error('ACF data is missing');
+  }
+
+  return {
+    dayStart: data[0].acf.day_start,
+    dayEnd: data[0].acf.day_end
+  };
+}
