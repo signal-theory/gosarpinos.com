@@ -199,7 +199,7 @@ export default function Navigation() {
   return (
     <nav className={`main-navigation ${featuredCouponName && isHomePage ? 'homepage-nav' : ''}`}>
       {featuredCouponName && <div className={`coupon-callout ${isDay === false ? 'night-theme' : ''}`}>
-        <strong>{featuredCouponName || ''}</strong>&nbsp; {featuredCouponName && ' with code '} &nbsp;<strong>{featuredCouponTitle || ''}</strong> {featuredCouponName && <OrderBtn location="coupon" />}
+        <span><span className='coupon-name'><strong>{featuredCouponName || ''}&nbsp;</strong></span><span>{featuredCouponName && ' with code '} <strong className='coupon-code'>{featuredCouponTitle || ''}</strong></span></span><span>{featuredCouponName && <OrderBtn location="coupon" />}</span> 
       </div>}
       <div className={`navbar ${isDay === false ? 'night-theme' : ''}`}>
         <Link href="/" className="logo" title="Go to Sarpino&apos;s Home page">

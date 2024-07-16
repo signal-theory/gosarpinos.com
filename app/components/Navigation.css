@@ -336,7 +336,21 @@ nav.main-navigation .subitem a.navlocator-btn {
 
 @media all and (max-width: 475px) {
   .homepage-nav .coupon-callout {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
+    justify-content: space-between;
+    padding: 0 10px;
+    width: calc(100% - 20px)
+  }
+  .homepage-nav .coupon-callout .coupon-name,
+  .homepage-nav .coupon-callout .coupon-code {
+    font-size: 0.8rem;
+  }
+  .homepage-nav .coupon-callout > span {
+    display: flex;
+    flex-direction: column;
+  }
+  nav.main-navigation a:not(.primary-btn).coupon {
+    font-weight: bold;
   }
 }
 
