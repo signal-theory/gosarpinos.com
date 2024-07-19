@@ -78,7 +78,7 @@ export default async function Page({ params }) {
       `Sa ${post.acf.saturday_open ? moment(post.acf.saturday_open, 'HH:mm:ss').format('h:mm a') : 'Closed'}-${post.acf.saturday_close ? moment(post.acf.saturday_close, 'HH:mm:ss').format('h:mm a') : 'Closed'}`,
       `Su ${post.acf.sunday_open ? moment(post.acf.sunday_open, 'HH:mm:ss').format('h:mm a') : 'Closed'}-${post.acf.sunday_close ? moment(post.acf.sunday_close, 'HH:mm:ss').format('h:mm a') : 'Closed'}`
     ] : [],
-    hasMenu: `https://${post.acf.name}.gosarpinos.com/ordering/menu/Popular%20Items`,
+    hasMenu: `https://${post.acf.name}.gosarpinos.com/ordering/menu/`,
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.5',

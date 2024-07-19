@@ -85,7 +85,7 @@ const List = ({ locations, filteredLocations, setInfoWindowOpen, openInfoWindowI
                     </a>
                   )}
                 </p>
-                <a href={`https://${location.acf.name}.gosarpinos.com/ordering/menu/Popular%20Items`} onClick={() => handleLocationSelect(location)} className="btn primary-btn"><span>Order Now</span></a>
+                <a href={`https://${location.acf.name}.gosarpinos.com/ordering/menu/`} onClick={() => handleLocationSelect(location)} className="btn primary-btn"><span>Order Now</span></a>
 
               </div>
             </div>
