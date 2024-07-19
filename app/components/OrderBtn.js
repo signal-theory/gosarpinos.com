@@ -9,7 +9,7 @@ const OrderBtn = ({ btnColor, theme, location, category, itemCategory }) => {
 
   const [isClient, setIsClient] = useState(false);
 
-  let formattedCategory = 'Popular%20Items';
+  let formattedCategory = '';
 
   useEffect(() => {
     setIsClient(true);

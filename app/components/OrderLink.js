@@ -7,7 +7,7 @@ const OrderLink = ({ label, category, itemCategory }) => {
   const { store } = useContext(StoreContext);
   const { isNavLocatorActive, setIsNavLocatorActive } = useContext(NavLocatorContext);
 
-  let formattedCategory = 'Popular%20Items';
+  let formattedCategory = '';
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
