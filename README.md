@@ -58,4 +58,4 @@ You can run those commands in the vercel dashboard
 [Sarpinos Vercel Dashboard](https://vercel.com/sarpino-s-usa-inc/sarpinos-next-app/stores/kv/store_GvRdjfKE6Xy5k0TN/cli)
 
 
-Just note that both the source and destination need to start with the / and neither should have any of the #! fragment stuff, and the source shoud be free of the ?foo=bar query stuff
+Just note that both the source and destination need to start with the / and neither should have any of the #! fragment stuff, and the source shoud be free of the ?foo=bar query stuff.
