@@ -16,10 +16,10 @@ const MenuContent = ({ posts, postTypeSlug, categoryTitle, filterPostsBy }) => {
     const uniqueCategories = Array.from(new Set(posts.flatMap(post => post.acf.menu_category || [])));
     setCategories(uniqueCategories.map(category => ({ name: category, id: category })));
 
-    // If 'Specialty' category exists, set it as the selected category
-    if (uniqueCategories.includes('Specialty')) {
-      setSelectedCategory('Specialty');
-    }
+    // // If 'Specialty' category exists, set it as the selected category
+    // if (uniqueCategories.includes('Specialty')) {
+    //   setSelectedCategory('Specialty');
+    // }
   }, [posts]);
 
   // Fetch the first 6 images for posts
