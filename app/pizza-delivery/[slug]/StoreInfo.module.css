@@ -63,11 +63,13 @@ ul.list {
   margin-right: 3vw;
 }
 .managerName {
-  margin: 2rem 0 0;
+  margin: 2rem 0 0.5rem;
+  font-size: 1.25rem;
+  font-family: var(--museo-slab);
 }
 .managerEmail {
   font-family: var(--museo-slab);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   text-decoration: underline;
 }
 @media (min-width: 768px) {

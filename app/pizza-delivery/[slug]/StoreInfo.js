@@ -104,20 +104,20 @@ const StoreInfo = ({ post }) => {
       </div>
       <OrderBtn />
       <div className={styles.container2}>
-        {post.acf?.manager_name &&
+        {(post.acf?.managers_email || post.acf?.mangers_name) &&
           <div className={styles.column1}>
             <h5>MANAGER</h5>
-            <Image
+            {post.acf?.managers_photo && <Image
               className={styles.managerPhoto}
               src={post.acf?.managers_photo || '/default-manager.jpg'}
               alt="manager"
-              width={80} height={80} />
-            <h5 className={styles.managerName}>{post.acf?.manager_name}</h5>
-            {post.acf?.managers_email ? <Link
+              width={80} height={80} />}
+            {post.acf?.mangers_name &&<h5 className={styles.managerName}>{post.acf?.mangers_name}</h5>}
+            {post.acf?.managers_email && <Link
               className={styles.managerEmail}
-              href={`mailto:${post.acf.managers_email}`}>{post.acf.managers_email}</Link>
-              : <p className={styles.managerEmail}>manager@email.com</p>}
-          </div>}
+              href={`mailto:${post.acf.managers_email}`}>{post.acf.managers_email}</Link>}
+          </div>
+        }
         {careers && careers.some(career => career.position) ? <div className={styles.column2}>
           <h5>Currently Hiring</h5>
           <div className={styles.careers}>
