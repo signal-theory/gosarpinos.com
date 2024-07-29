@@ -21,6 +21,11 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 
+## Auto-Deployment
+
+Auto-deployments are set in Vercel for the `main` branch, however the repo must be set to public in order for it to work.
+
+
 ## Adding Redirects
 
 Take this link as an example:
