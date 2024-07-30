@@ -25,6 +25,7 @@ const MarkerWithInfoWindow = memo(({ isLoading, filteredLocations, infoWindowOpe
     setStore(location.acf.name);
     setInfoWindowOpen(true);
     const status = checkOpenStatus(location);
+    console.log('checkOpenStatus result:', status); // Debugging line
     setIsOpen(status.isOpen);
     setCurrentOpenTime(status.currentOpenTime || '');
     setCurrentCloseTime(status.currentCloseTime || '');
@@ -86,7 +87,13 @@ const MarkerWithInfoWindow = memo(({ isLoading, filteredLocations, infoWindowOpe
           onCloseClick={() => handleWindowClose(selectedLocation.id)}
         >
           <h5 className={styleInfo.iwTitle}>{he.decode(selectedLocation.title.rendered)}</h5>
-          <p className={styleInfo.iwHours}>{isOpen ? `Open Now: ${currentOpenTime} - ${currentCloseTime}` : (nextOpenTime !== '' ? `Opens at: ${nextOpenTime}` : null)}</p>
+          <p className={styleInfo.iwHours}>
+            {isOpen 
+              ? `Open Now: ${currentOpenTime} - ${currentCloseTime}` 
+              : (nextOpenTime && nextOpenTime !== '' 
+                ? `Opens at: ${nextOpenTime}` 
+                : null)}
+          </p>
           <p className={styleInfo.iwAddress}>
             {selectedLocation.acf.address}<br />
             {selectedLocation.acf.city}, {selectedLocation.acf.state} {selectedLocation.acf.zip}

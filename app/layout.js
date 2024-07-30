@@ -40,8 +40,7 @@ export default function RootLayout({ children }) {
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <link rel="preconnect" href="https://p.typekit.net" crossOrigin="true" />
         <link rel="preconnect" href="https://use.typekit.net" crossOrigin="true" />
-        <script defer type="text/javascript" src="https://myaskai.com/ev-embed-chat-js-min" id="QDjBguDD3wwhEnnK2bqzDHraX6Jzjf" async={true}></script>
-        {/* <script defer type="text/javascript" src="https://www.bugherd.com/sidebarv2.js?apikey=vf4t1wlrfqxjnjtjxlxi1w" async={true}></script> */}
+        <script defer type="text/javascript" src="https://myaskai.com/api/1.1/wf/embed-v2?i=vo9hbXcKD7t1GipmWGoZzNfniNd5h5" id="vo9hbXcKD7t1GipmWGoZzNfniNd5h5" async={true}></script>
       </head>
       <body>
         <StoreProvider>

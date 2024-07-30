@@ -39,14 +39,6 @@ export function checkOpenStatus(post) {
   const openTime = new Date(`${currentTime.toDateString()} ${openTime24}`);
   let closeTime = new Date(`${currentTime.toDateString()} ${closeTime24}`);
 
-  // console.log(`${post.acf.name} Current Time: ${currentTime}`);
-  // console.log(`${post.acf.name} Open Time String: ${openTimeStr}`);
-  // console.log(`${post.acf.name} Close Time String: ${closeTimeStr}`);
-  // console.log(`${post.acf.name} Open Time (24-hour): ${openTime24}`);
-  // console.log(`${post.acf.name} Close Time (24-hour): ${closeTime24}`);
-  // console.log(`${post.acf.name} Open Time: ${openTime}`);
-  // console.log(`${post.acf.name} Close Time: ${closeTime}`);
-
   // If closeTime is before openTime, add a day to closeTime
   if (closeTime.getTime() < openTime.getTime()) {
     closeTime = new Date(closeTime.getTime() + 24 * 60 * 60 * 1000);
@@ -71,9 +63,11 @@ export function checkOpenStatus(post) {
     while (post.acf[`${daysOfWeek[nextDayIndex]}_open`] === undefined) {
       nextDayIndex = (nextDayIndex + 1) % 7;
     }
+    const nextOpenTimeStr = post.acf[`${daysOfWeek[nextDayIndex]}_open`];
+
     return {
       isOpen: false,
-      nextOpenTime: convertTo12Hour(post.acf[`${daysOfWeek[nextDayIndex]}_open`]),
+      nextOpenTime: nextOpenTimeStr ? convertTo12Hour(nextOpenTimeStr) : '',
     };
   }
 }

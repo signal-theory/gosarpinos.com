@@ -70,7 +70,10 @@ const List = ({ locations, filteredLocations, setInfoWindowOpen, openInfoWindowI
             <h5 className={styles.listTitle} onClick={() => handleLocationSelect(location)}>{he.decode(location.title.rendered)}</h5>
             <div className={styles.listColumns}>
               <div>
-                <p><strong>{location.isOpen ? `Open Now: ${location.currentOpenTime || ''} - ${location.currentCloseTime || ''}` : `Opens at: ${location.nextOpenTime || ''}`}</strong></p>
+                <p><strong>{location.isOpen ? `Open Now: ${location.currentOpenTime || ''} - ${location.currentCloseTime || ''}` : 
+                (nextOpenTime && nextOpenTime !== '' 
+                ? `Opens at: ${nextOpenTime}` 
+                : null)}</strong></p>
                 <p>{location.acf.address}<br />
                   {location.acf.city}, {location.acf.state} {location.acf.zip}
                 </p>
