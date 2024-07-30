@@ -8,8 +8,6 @@ import OrderBtn from '@/app/components/OrderBtn';
 import Link from 'next/link';
 import { checkOpenStatus } from '@/app/lib/checkOpenStatus';
 
-
-
 const Hero = ({ post, storefrontImage }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentOpenTime, setCurrentOpenTime] = useState('');
@@ -37,7 +35,7 @@ const Hero = ({ post, storefrontImage }) => {
       />
       <div className={`page-container ${styles.heroContent}`}>
         <h1 className={styles.heroTitle}>{he.decode(post.title.rendered)}</h1>
-        <h4>{isOpen ? `Open Now: ${currentOpenTime} - ${currentCloseTime}` : (nextOpenTime != '' ? `Opens at: ${nextOpenTime}` : null)}</h4>
+        <h4>{isOpen ? `Open Now: ${currentOpenTime} - ${currentCloseTime}` : (nextOpenTime !== '' ? `Opens at: ${nextOpenTime}` : null)}</h4>
         <OrderBtn />
         {reviewLink && (
           <>

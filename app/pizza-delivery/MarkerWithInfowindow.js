@@ -1,16 +1,16 @@
 'use client';
-import React, { useContext, useState, useEffect, useRef, memo } from 'react';
+import React, { useContext, useState, useEffect, useRef, memo, useCallback } from 'react';
 import { StoreContext } from '../context/useStoreContext';
 import Image from 'next/image';
-import he from 'he';
 import styleInfo from './MarkerInfo.module.css';
 import OrderBtn from '@/app/components/OrderBtn';
-import { checkMarkerStatus } from '@/app/lib/checkOpenStatus';
+import { checkOpenStatus } from '@/app/lib/checkOpenStatus';
 import {
   AdvancedMarker,
   InfoWindow,
   Pin,
 } from '@vis.gl/react-google-maps';
+import he from 'he';
 
 const MarkerWithInfoWindow = memo(({ isLoading, filteredLocations, infoWindowOpen, setInfoWindowOpen, openInfoWindowId, setOpenInfoWindowId, store }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,18 +20,19 @@ const MarkerWithInfoWindow = memo(({ isLoading, filteredLocations, infoWindowOpe
 
   const { setStore } = useContext(StoreContext);
 
-  const handleLocationSelect = (location) => {
+
+  const handleLocationSelect = useCallback((location) => {
     setStore(location.acf.name);
     setInfoWindowOpen(true);
-    const status = checkMarkerStatus(location);
+    const status = checkOpenStatus(location);
     setIsOpen(status.isOpen);
     setCurrentOpenTime(status.currentOpenTime || '');
     setCurrentCloseTime(status.currentCloseTime || '');
     setNextOpenTime(status.nextOpenTime || '');
-  };
+  }, [setStore, setInfoWindowOpen]);
 
   const handleWindowClose = () => {
-    setOpenInfoWindowId(null)
+    setOpenInfoWindowId(null);
     setInfoWindowOpen(false);
     setIsOpen(false);
     setCurrentOpenTime('');
@@ -43,8 +44,10 @@ const MarkerWithInfoWindow = memo(({ isLoading, filteredLocations, infoWindowOpe
     const selectedLocation = filteredLocations.find(filteredLocation => filteredLocation.acf.name === store);
     if (selectedLocation) {
       setOpenInfoWindowId(selectedLocation.id);
+      setInfoWindowOpen(true); 
+      handleLocationSelect(selectedLocation);
     }
-  }, [store, setOpenInfoWindowId, filteredLocations]);
+  }, [store, filteredLocations, setOpenInfoWindowId, setInfoWindowOpen, handleLocationSelect]);
 
   // Create a ref for each marker
   const markerRefs = useRef([]); // Create a ref for the markerRefs array
@@ -83,7 +86,7 @@ const MarkerWithInfoWindow = memo(({ isLoading, filteredLocations, infoWindowOpe
           onCloseClick={() => handleWindowClose(selectedLocation.id)}
         >
           <h5 className={styleInfo.iwTitle}>{he.decode(selectedLocation.title.rendered)}</h5>
-          <p className={styleInfo.iwHours}>{isOpen ? `Open Now: ${currentOpenTime} - ${currentCloseTime}` : `Opens at: ${nextOpenTime}`}</p>
+          <p className={styleInfo.iwHours}>{isOpen ? `Open Now: ${currentOpenTime} - ${currentCloseTime}` : (nextOpenTime !== '' ? `Opens at: ${nextOpenTime}` : null)}</p>
           <p className={styleInfo.iwAddress}>
             {selectedLocation.acf.address}<br />
             {selectedLocation.acf.city}, {selectedLocation.acf.state} {selectedLocation.acf.zip}

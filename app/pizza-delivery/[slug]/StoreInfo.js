@@ -22,11 +22,12 @@ const StoreInfo = ({ post }) => {
   const url = `/pizza-delivery/${slug}`;
 
   const careers = post?.acf?.careers || ['careers list'];
+  
   const groupDays = () => {
     const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     let groupedDays = [];
     let currentGroup = [];
-
+  
     for (let i = 0; i < days.length; i++) {
       if (i === 0 || (post.acf[days[i] + '_open'] === post.acf[days[i - 1] + '_open'] && post.acf[days[i] + '_close'] === post.acf[days[i - 1] + '_close'])) {
         currentGroup.push(days[i]);
@@ -35,21 +36,21 @@ const StoreInfo = ({ post }) => {
         currentGroup = [days[i]];
       }
     }
-
+  
     groupedDays.push(currentGroup);
-
+  
     return groupedDays.map(group => {
       const openTimeValue = post.acf[group[0] + '_open'];
       const closeTimeValue = post.acf[group[0] + '_close'];
-
+  
       if (!openTimeValue || !closeTimeValue) {
         return '<p>Hours not available</p>';
       }
-
-      const openTime = moment(openTimeValue, 'HH:mm:ss').format('h:mm a');
-      const closeTime = moment(closeTimeValue, 'HH:mm:ss').format('h:mm a');
+  
+      const openTime = moment(openTimeValue, 'hh:mm:ss A').format('h:mm a');
+      const closeTime = moment(closeTimeValue, 'hh:mm:ss A').format('h:mm a');
       const hours = openTime + ' - ' + closeTime;
-
+  
       if (group.length === 1) {
         return '<p><strong>' + (group[0].charAt(0).toUpperCase() + group[0].slice(1)) + '</strong><br/> ' + hours + '</p>';
       } else {
