@@ -49,8 +49,21 @@ export default async function handler(req, res) {
         
             res.status(200).json({ success: true, message: 'Email sent successfully' });
         } catch (error) {
-            console.error('Error sending email:', error);
-            res.status(500).json({ success: false, message: 'Error sending email' });
+            if (error.response) {
+                // The response error structure
+                console.error('Error response received from SendGrid:');
+                console.error('Status Code:', error.response.statusCode);
+                console.error('Body:', error.response.body);
+            } else {
+                // General errors
+                console.error('SendGrid error:', error.message);
+            }
+
+            res.status(500).json({
+                success: false,
+                message: 'Error sending email',
+                body: error.response.body
+            });
         }
     } else {
         // Handle any other HTTP method
